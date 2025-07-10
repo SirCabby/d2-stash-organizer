@@ -12,47 +12,50 @@ import {
 } from "../../../game-data";
 import { getBase } from "../getBase";
 
-function getLevel(item: Item)
-{
-  let reqlevel = 0
+function getLevel(item: Item) {
+  let reqlevel = 0;
   switch (item.quality) {
     case ItemQuality.NORMAL:
-      reqlevel = Math.max(reqlevel, getBase(item).levelReq)
+      reqlevel = Math.max(reqlevel, getBase(item).levelReq);
       break;
     case ItemQuality.LOW:
-      reqlevel = Math.max(reqlevel, getBase(item).levelReq)
+      reqlevel = Math.max(reqlevel, getBase(item).levelReq);
       break;
     case ItemQuality.SUPERIOR:
-      reqlevel = Math.max(reqlevel, getBase(item).levelReq)
+      reqlevel = Math.max(reqlevel, getBase(item).levelReq);
       break;
     case ItemQuality.RARE:
     case ItemQuality.MAGIC:
-      for(let i = 0; item.prefixes && i < item.prefixes.length; ++i)
-      {
+      for (let i = 0; item.prefixes && i < item.prefixes.length; ++i) {
         if (MAGIC_PREFIXES[item.prefixes[i]])
-          reqlevel = Math.max(reqlevel, MAGIC_PREFIXES[item.prefixes[i]].reqlevel)
+          reqlevel = Math.max(
+            reqlevel,
+            MAGIC_PREFIXES[item.prefixes[i]].reqlevel
+          );
       }
 
-      for(let i = 0; item.suffixes && i < item.suffixes.length; ++i)
-      {
+      for (let i = 0; item.suffixes && i < item.suffixes.length; ++i) {
         if (MAGIC_SUFFIXES[item.suffixes[i]])
-          reqlevel = Math.max(reqlevel, MAGIC_SUFFIXES[item.suffixes[i]].reqlevel)
+          reqlevel = Math.max(
+            reqlevel,
+            MAGIC_SUFFIXES[item.suffixes[i]].reqlevel
+          );
       }
 
       break;
     case ItemQuality.SET:
       if (item.unique)
-        reqlevel = Math.max(reqlevel, SET_ITEMS[item.unique].levelReq)
+        reqlevel = Math.max(reqlevel, SET_ITEMS[item.unique].levelReq);
       break;
     case ItemQuality.UNIQUE:
       if (item.unique)
-        reqlevel = Math.max(reqlevel, UNIQUE_ITEMS[item.unique].reqlevel)
+        reqlevel = Math.max(reqlevel, UNIQUE_ITEMS[item.unique].reqlevel);
       break;
     case ItemQuality.CRAFTED:
       break;
   }
-  
-  reqlevel = Math.max(reqlevel, MISC[item.code]?.levelReq || 0)
+
+  reqlevel = Math.max(reqlevel, MISC[item.code]?.levelReq || 0);
   return reqlevel;
 }
 export function parseQuality(
@@ -136,7 +139,7 @@ export function parseQuality(
     item.name = `${charName}'s ${item.name}`;
   }
 
-  item.reqlevel = getLevel(item)
+  item.reqlevel = getLevel(item);
 
   if (MISC[item.code]?.type === "book") {
     // Skip 5 unknown bits for tomes

@@ -35,10 +35,11 @@ export function parseItem(reader: SaveFileReader, owner: ItemsOwner) {
       }
       throw new ItemParsingError(item, (e as Error).message);
     }
-  }
-  else 
-  {
-    item.reqlevel = Math.max(item.reqlevel || 0, MISC[item.code]?.levelReq || 0)
+  } else {
+    item.reqlevel = Math.max(
+      item.reqlevel || 0,
+      MISC[item.code]?.levelReq || 0
+    );
   }
 
   item.raw = stream.done();

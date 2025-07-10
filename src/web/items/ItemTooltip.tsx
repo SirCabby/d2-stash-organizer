@@ -65,10 +65,10 @@ export function ItemTooltip({ item }: { item: Item }) {
   );
   setGlobalMods?.unshift(<br />);
 
-  let reqline = null
-  if ( item.reqlevel && item.reqlevel > 1 )
-      reqline = <div>Level Required: {item.reqlevel || 1}</div>
-      
+  let reqline = null;
+  if (item.reqlevel && item.reqlevel > 1)
+    reqline = <div>Level Required: {item.reqlevel || 1}</div>;
+
   return (
     <span class="tooltip-container">
       <span

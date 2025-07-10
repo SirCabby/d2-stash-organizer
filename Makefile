@@ -13,8 +13,12 @@ regenerate: ## Regenerate game data files
 build: regenerate ## Build the project
 	npm run build
 
+.PHONY: kill-port
+kill-port: ## Kill any process using port 10001
+	@kill_port.bat
+
 .PHONY: run
-run: install ## Start development server
+run: build kill-port ## Start development server
 	npm run watch
 
 .PHONY: help
@@ -24,3 +28,4 @@ help: ## Show this help
 	@echo "  make build      - Build the project"
 	@echo "  make run        - Start development server"
 	@echo "  make regenerate - Regenerate game data files"
+	@echo "  make kill-port  - Kill any process using port 10001"

@@ -10,8 +10,15 @@ import {
   MOD_LOCA,
 } from "../../../game-data";
 
-
-const fix_classSkillBonus = ["ModStr3a", "ModStr3d", "ModStr3c",  "ModStr3b", "ModStr3e", "ModStre8a" , "ModStre8b"]
+const fix_classSkillBonus = [
+  "ModStr3a",
+  "ModStr3d",
+  "ModStr3c",
+  "ModStr3b",
+  "ModStr3e",
+  "ModStre8a",
+  "ModStre8b",
+];
 
 /**
  * Generates the human-friendly description for an item modifier
@@ -72,8 +79,11 @@ export function describeSingleMod(
       modDesc = modDesc.replace("%d", `${100 / modValue!}`);
       break;
     case 13:
-      modDesc = MOD_LOCA[fix_classSkillBonus[modifier.param || 0]].enUS
-      modDesc = modDesc.replace("%+d", (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`)
+      modDesc = MOD_LOCA[fix_classSkillBonus[modifier.param || 0]].enUS;
+      modDesc = modDesc.replace(
+        "%+d",
+        (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`
+      );
       break;
     case 14:
       skillTab = SKILL_TABS.find(({ id }) => id === modifier.param);

@@ -10,7 +10,7 @@ export async function magicAffixesToJson() {
     for (const line of table) {
       affixes.push({
         name: getString(line[0].trim()),
-        reqlevel: Number(line[6])
+        reqlevel: Number(line[6]),
       });
     }
     await writeJson(file, affixes);
