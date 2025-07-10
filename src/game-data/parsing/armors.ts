@@ -1,9 +1,11 @@
 import { readGameFile, writeJson } from "./files";
 import { Armor, EquipmentTier } from "..";
 import { getString } from "../strings";
+import { itemTypesToJson } from "./itemTypes";
 
 export async function armorsToJson() {
   const table = await readGameFile("Armor");
+  const classMappings = await itemTypesToJson();
   const armors: Record<string, Armor> = {};
   for (const line of table) {
     const code = line[18].trim();
@@ -13,9 +15,10 @@ export async function armorsToJson() {
         : code === line[24].trim()
         ? EquipmentTier.EXCEPTIONAL
         : EquipmentTier.ELITE;
+    const itemType = line[51].trim();
     armors[code] = {
       name: getString(line[19].trim()),
-      type: line[51].trim(),
+      type: itemType,
       tier,
       def: [Number(line[5]), Number(line[6])],
       maxSockets: Number(line[30]),
@@ -25,6 +28,7 @@ export async function armorsToJson() {
       qlevel: Number(line[13]),
       levelReq: Number(line[15]),
       stackable: line[43] === "1",
+      classRequirement: classMappings[itemType],
     };
   }
   await writeJson("Armor", armors);

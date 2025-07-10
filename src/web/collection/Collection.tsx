@@ -13,6 +13,7 @@ import {
   filterItemsByCategory,
   CategoryFilter,
 } from "../controls/CategoryFilter";
+import { ClassFilter, filterItemsByClass } from "../controls/ClassFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
@@ -42,6 +43,8 @@ export function Collection() {
     setCollectionSortField,
     collectionSortDirection,
     setCollectionSortDirection,
+    collectionClass,
+    setCollectionClass,
   } = useContext(SettingsContext);
 
   const filteredItems = useMemo(
@@ -63,6 +66,11 @@ export function Collection() {
       collectionDuplicates,
       collectionCategory,
     ]
+  );
+
+  const classFilteredItems = useMemo(
+    () => filterItemsByClass(filteredItems, collectionClass),
+    [filteredItems, collectionClass]
   );
 
   const handleSort = (field: SortField) => {
@@ -94,6 +102,10 @@ export function Collection() {
           value={collectionCategory}
           onChange={setCollectionCategory}
         />
+        <ClassFilter
+          value={collectionClass}
+          onChange={setCollectionClass}
+        />
         <div>
           <p>
             <label for="page-size-select">Items per page:</label>
@@ -118,7 +130,7 @@ export function Collection() {
       </div>
 
       <ItemsTable
-        items={filteredItems}
+        items={classFilteredItems}
         selectable={true}
         pageSize={collectionPageSize}
         sortField={collectionSortField}

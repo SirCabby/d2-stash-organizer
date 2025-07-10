@@ -41,6 +41,7 @@ export interface Item {
   picture?: number;
   classSpecificAffix?: number;
   qualityModifier?: number;
+  classRequirement?: string; // Class code (ama, bar, nec, pal, sor, dru, ass) from base item
 
   unique?: number;
   runewordId?: number;

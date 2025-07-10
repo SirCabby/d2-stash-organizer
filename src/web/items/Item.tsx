@@ -14,6 +14,7 @@ export interface ItemProps {
   duplicates?: Item[];
   selectable: boolean;
   withLocation: boolean;
+  showClassRequirement?: boolean;
 }
 
 export function Item({
@@ -21,6 +22,7 @@ export function Item({
   duplicates,
   selectable,
   withLocation,
+  showClassRequirement,
 }: ItemProps) {
   const { selectedItems, toggleItem, selectAll, unselectAll } =
     useContext(SelectionContext);
@@ -54,6 +56,9 @@ export function Item({
       </th>
       <td>{item.level ?? "—"}</td>
       <td>{getItemCategoryName(item)}</td>
+      {showClassRequirement && (
+        <td>{item.classRequirement ? item.classRequirement : "—"}</td>
+      )}
       <td>
         <AdditionalInfo item={item} quantity={duplicates?.length} />
       </td>

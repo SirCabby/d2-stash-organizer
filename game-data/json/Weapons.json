@@ -140,7 +140,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 2,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "nec"
   },
   "ywn": {
     "name": "Yew Wand",
@@ -153,7 +154,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 12,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "nec"
   },
   "bwn": {
     "name": "Bone Wand",
@@ -166,7 +168,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 18,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "nec"
   },
   "gwn": {
     "name": "Grim Wand",
@@ -179,7 +182,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 26,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "nec"
   },
   "clb": {
     "name": "Club",
@@ -1356,7 +1360,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 31,
-    "levelReq": 19
+    "levelReq": 19,
+    "classRequirement": "nec"
   },
   "9yw": {
     "name": "Petrified Wand",
@@ -1369,7 +1374,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 38,
-    "levelReq": 25
+    "levelReq": 25,
+    "classRequirement": "nec"
   },
   "9bw": {
     "name": "Tomb Wand",
@@ -1382,7 +1388,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 43,
-    "levelReq": 25
+    "levelReq": 25,
+    "classRequirement": "nec"
   },
   "9gw": {
     "name": "Grave Wand",
@@ -1395,7 +1402,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 49,
-    "levelReq": 25
+    "levelReq": 25,
+    "classRequirement": "nec"
   },
   "9cl": {
     "name": "Cudgel",
@@ -2697,7 +2705,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 55,
-    "levelReq": 41
+    "levelReq": 41,
+    "classRequirement": "nec"
   },
   "7yw": {
     "name": "Ghost Wand",
@@ -2710,7 +2719,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 65,
-    "levelReq": 48
+    "levelReq": 48,
+    "classRequirement": "nec"
   },
   "7bw": {
     "name": "Lich Wand",
@@ -2723,7 +2733,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 75,
-    "levelReq": 56
+    "levelReq": 56,
+    "classRequirement": "nec"
   },
   "7gw": {
     "name": "Unearthed Wand",
@@ -2736,7 +2747,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 86,
-    "levelReq": 64
+    "levelReq": 64,
+    "classRequirement": "nec"
   },
   "7cl": {
     "name": "Truncheon",
@@ -3607,7 +3619,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 1,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "sor"
   },
   "ob2": {
     "name": "Sacred Globe",
@@ -3620,7 +3633,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 8,
-    "levelReq": 0
+    "levelReq": 0,
+    "classRequirement": "sor"
   },
   "ob3": {
     "name": "Smoked Sphere",
@@ -3633,7 +3647,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 12,
-    "levelReq": 8
+    "levelReq": 8,
+    "classRequirement": "sor"
   },
   "ob4": {
     "name": "Clasped Orb",
@@ -3646,7 +3661,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 17,
-    "levelReq": 13
+    "levelReq": 13,
+    "classRequirement": "sor"
   },
   "ob5": {
     "name": "Jared's Stone",
@@ -3659,7 +3675,8 @@
     "width": 1,
     "height": 3,
     "qlevel": 24,
-    "levelReq": 18
+    "levelReq": 18,
+    "classRequirement": "sor"
   },
   "am1": {
     "name": "Stag Bow",
@@ -3737,7 +3754,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 32,
-    "levelReq": 24
+    "levelReq": 24,
+    "classRequirement": "sor"
   },
   "ob7": {
     "name": "Crystalline Globe",
@@ -3750,7 +3768,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 37,
-    "levelReq": 27
+    "levelReq": 27,
+    "classRequirement": "sor"
   },
   "ob8": {
     "name": "Cloudy Sphere",
@@ -3763,7 +3782,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 41,
-    "levelReq": 30
+    "levelReq": 30,
+    "classRequirement": "sor"
   },
   "ob9": {
     "name": "Sparkling Ball",
@@ -3776,7 +3796,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 46,
-    "levelReq": 34
+    "levelReq": 34,
+    "classRequirement": "sor"
   },
   "oba": {
     "name": "Swirling Crystal",
@@ -3789,7 +3810,8 @@
     "width": 1,
     "height": 3,
     "qlevel": 50,
-    "levelReq": 37
+    "levelReq": 37,
+    "classRequirement": "sor"
   },
   "am6": {
     "name": "Ashwood Bow",
@@ -3867,7 +3889,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 59,
-    "levelReq": 44
+    "levelReq": 44,
+    "classRequirement": "sor"
   },
   "obc": {
     "name": "Eldritch Orb",
@@ -3880,7 +3903,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 67,
-    "levelReq": 50
+    "levelReq": 50,
+    "classRequirement": "sor"
   },
   "obd": {
     "name": "Demon Heart",
@@ -3893,7 +3917,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 75,
-    "levelReq": 56
+    "levelReq": 56,
+    "classRequirement": "sor"
   },
   "obe": {
     "name": "Vortex Orb",
@@ -3906,7 +3931,8 @@
     "width": 1,
     "height": 2,
     "qlevel": 84,
-    "levelReq": 63
+    "levelReq": 63,
+    "classRequirement": "sor"
   },
   "obf": {
     "name": "Dimensional Shard",
@@ -3919,7 +3945,8 @@
     "width": 1,
     "height": 3,
     "qlevel": 85,
-    "levelReq": 66
+    "levelReq": 66,
+    "classRequirement": "sor"
   },
   "amb": {
     "name": "Matriarchal Bow",

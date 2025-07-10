@@ -4,6 +4,7 @@ import { QualityFilterValue } from "../controls/QualityFilter";
 import { DuplicatesFilterValue } from "../controls/DuplicatesFilter";
 import { CategoryFilterValue } from "../controls/CategoryFilter";
 import { SortField, SortDirection } from "../collection/Collection";
+import { ClassFilterValue } from "../controls/ClassFilter";
 
 interface SettingsContext {
   accessibleFont: boolean;
@@ -22,6 +23,8 @@ interface SettingsContext {
   setCollectionSortField: (field: SortField) => void;
   collectionSortDirection: SortDirection;
   setCollectionSortDirection: (dir: SortDirection) => void;
+  collectionClass: ClassFilterValue;
+  setCollectionClass: (classValue: ClassFilterValue) => void;
 }
 
 export const SettingsContext = createContext<SettingsContext>({
@@ -41,6 +44,8 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionSortField: () => undefined,
   collectionSortDirection: "asc",
   setCollectionSortDirection: () => undefined,
+  collectionClass: "all",
+  setCollectionClass: () => undefined,
 });
 
 export function SettingsProvider({ children }: RenderableProps<unknown>) {
@@ -90,6 +95,10 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
         "asc"
     );
 
+  const [collectionClass, setCollectionClassState] = useState<ClassFilterValue>(
+    () => (localStorage.getItem("collectionClass") as ClassFilterValue) || "all"
+  );
+
   const toggleAccessibleFont = useCallback(() => {
     setAccessibleFont((previous) => {
       localStorage.setItem("accessibleFont", `${!previous}`);
@@ -135,6 +144,11 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionSortDirection", dir);
   }, []);
 
+  const setCollectionClass = useCallback((classValue: ClassFilterValue) => {
+    setCollectionClassState(classValue);
+    localStorage.setItem("collectionClass", classValue);
+  }, []);
+
   const value = useMemo(
     () => ({
       accessibleFont,
@@ -153,6 +167,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionSortField,
       collectionSortDirection,
       setCollectionSortDirection,
+      collectionClass,
+      setCollectionClass,
     }),
     [
       accessibleFont,
@@ -171,6 +187,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionSortField,
       collectionSortDirection,
       setCollectionSortDirection,
+      collectionClass,
+      setCollectionClass,
     ]
   );
 

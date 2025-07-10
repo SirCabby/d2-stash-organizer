@@ -15,6 +15,7 @@ import {
   StatGroup,
   Gem,
   ModifierLocale,
+  ItemTypeClassMapping,
 } from "./types";
 
 import armors from "../../game-data/json/Armor.json";
@@ -35,6 +36,7 @@ import magicSuffixes from "../../game-data/json/MagicSuffix.json";
 import runewords from "../../game-data/json/Runewords.json";
 import gems from "../../game-data/json/Gems.json";
 import modLoc from "../../game-data/json/item-modifiers.json";
+import itemTypeClassMappings from "../../game-data/json/ItemTypeClassMappings.json";
 
 // TODO: switch to JSON.parse
 export const ARMORS: Record<string, Armor | undefined> = armors;
@@ -54,7 +56,8 @@ export const MAGIC_PREFIXES: MagicAffix[] = magicPrefixes;
 export const MAGIC_SUFFIXES: MagicAffix[] = magicSuffixes;
 export const RUNEWORDS: Runeword[] = runewords;
 export const GEMS: Record<string, Gem> = gems;
-//
+export const ITEM_TYPE_CLASS_MAPPINGS: ItemTypeClassMapping = itemTypeClassMappings;
+
 let locaRecord: Record<string, ModifierLocale> = {};
 for (let i = 0; i < modLoc.length; ++i) {
   locaRecord[modLoc[i].Key] = modLoc[i];

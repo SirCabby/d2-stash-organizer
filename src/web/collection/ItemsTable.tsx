@@ -124,7 +124,7 @@ export interface ItemsTableProps {
 
 function getGroupedItemSortValue(
   itemGroup: ItemType[],
-  field: SortField
+  field: SortField | "class"
 ): string | number {
   const representativeItem = itemGroup[0];
 
@@ -197,6 +197,8 @@ function getGroupedItemSortValue(
       return representativeItem.level ?? 0;
     case "category":
       return getItemCategoryName(representativeItem);
+    case "class":
+      return representativeItem.classRequirement || "";
     default:
       return "";
   }
@@ -323,6 +325,21 @@ export function ItemsTable({
             <th>
               <button
                 class="sort-button"
+                onClick={() => onSort("class")}
+                aria-label={`Sort by class requirement ${
+                  sortField === "class"
+                    ? sortDirection === "asc"
+                      ? "descending"
+                      : "ascending"
+                    : "ascending"
+                }`}
+              >
+                Class {getSortIcon("class")}
+              </button>
+            </th>
+            <th>
+              <button
+                class="sort-button"
                 onClick={() => onSort("characteristics")}
                 aria-label={`Sort by characteristics ${
                   sortField === "characteristics"
@@ -365,6 +382,7 @@ export function ItemsTable({
                 duplicates={items}
                 selectable={selectable}
                 withLocation={true}
+                showClassRequirement={true}
               />
             ))}
         </tbody>

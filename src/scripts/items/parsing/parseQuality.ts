@@ -9,6 +9,8 @@ import {
   RUNEWORDS,
   SET_ITEMS,
   UNIQUE_ITEMS,
+  ARMORS,
+  WEAPONS,
 } from "../../../game-data";
 import { getBase } from "../getBase";
 
@@ -140,6 +142,7 @@ export function parseQuality(
   }
 
   item.reqlevel = getLevel(item);
+  item.classRequirement = getBase(item).classRequirement;
 
   if (MISC[item.code]?.type === "book") {
     // Skip 5 unknown bits for tomes

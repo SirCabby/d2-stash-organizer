@@ -14,10 +14,12 @@ import { runewordsToJson } from "./parsing/runewords";
 import { charClassesToJson } from "./parsing/charClasses";
 import { statGroupsToJson } from "./parsing/statGroups";
 import { gemsToJson } from "./parsing/gems";
+import { itemTypesToJson } from "./parsing/itemTypes";
 
 async function generateAll() {
   await armorsToJson();
   await weaponsToJson();
+  await itemTypesToJson();
   const misc = await miscToJson();
   const itemStats = await itemStatsToJson();
   await statGroupsToJson(itemStats);

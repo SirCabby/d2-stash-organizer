@@ -1485,7 +1485,8 @@
     "height": 2,
     "qlevel": 4,
     "levelReq": 3,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr2": {
     "name": "Hawk Helm",
@@ -1501,7 +1502,8 @@
     "height": 2,
     "qlevel": 8,
     "levelReq": 6,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr3": {
     "name": "Antlers",
@@ -1517,7 +1519,8 @@
     "height": 2,
     "qlevel": 16,
     "levelReq": 12,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr4": {
     "name": "Falcon Mask",
@@ -1533,7 +1536,8 @@
     "height": 2,
     "qlevel": 20,
     "levelReq": 15,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr5": {
     "name": "Spirit Mask",
@@ -1549,7 +1553,8 @@
     "height": 2,
     "qlevel": 24,
     "levelReq": 18,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "ba1": {
     "name": "Jawbone Cap",
@@ -2605,7 +2610,8 @@
     "height": 2,
     "qlevel": 35,
     "levelReq": 26,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr7": {
     "name": "Griffon Headdress",
@@ -2621,7 +2627,8 @@
     "height": 2,
     "qlevel": 40,
     "levelReq": 30,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr8": {
     "name": "Hunter's Guise",
@@ -2637,7 +2644,8 @@
     "height": 2,
     "qlevel": 46,
     "levelReq": 29,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dr9": {
     "name": "Sacred Feathers",
@@ -2653,7 +2661,8 @@
     "height": 2,
     "qlevel": 50,
     "levelReq": 32,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dra": {
     "name": "Totemic Mask",
@@ -2669,7 +2678,8 @@
     "height": 2,
     "qlevel": 55,
     "levelReq": 41,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "ba6": {
     "name": "Jawbone Visor",
@@ -2925,7 +2935,8 @@
     "height": 2,
     "qlevel": 62,
     "levelReq": 46,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "drc": {
     "name": "Sun Spirit",
@@ -2941,7 +2952,8 @@
     "height": 2,
     "qlevel": 69,
     "levelReq": 51,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "drd": {
     "name": "Earth Spirit",
@@ -2957,7 +2969,8 @@
     "height": 2,
     "qlevel": 76,
     "levelReq": 57,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "dre": {
     "name": "Sky Spirit",
@@ -2973,7 +2986,8 @@
     "height": 2,
     "qlevel": 83,
     "levelReq": 62,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "drf": {
     "name": "Dream Spirit",
@@ -2989,7 +3003,8 @@
     "height": 2,
     "qlevel": 85,
     "levelReq": 66,
-    "stackable": false
+    "stackable": false,
+    "classRequirement": "dru"
   },
   "bab": {
     "name": "Carnage Helm",

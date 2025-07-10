@@ -16,6 +16,7 @@ export interface Equipment {
   levelReq: number;
   stackable: boolean;
   trackQuestDifficulty?: boolean;
+  classRequirement?: string; // Class code (ama, bar, nec, pal, sor, dru, ass) or undefined if no restriction
 }
 
 export interface Armor extends Equipment {
@@ -145,4 +146,8 @@ export interface ModifierLocale {
   id: number;
   Key: string;
   enUS: string;
+}
+
+export interface ItemTypeClassMapping {
+  [itemType: string]: string | undefined; // itemType -> class code (ama, bar, nec, pal, sor, dru, ass) or undefined
 }
