@@ -5,7 +5,7 @@ install: ## Install dependencies
 	npm install
 
 .PHONY: regenerate
-regenerate: install ## Regenerate game data files
+regenerate: ## Regenerate game data files
 	npm run game-strings
 	npm run game-data
 
