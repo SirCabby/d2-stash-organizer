@@ -2,6 +2,7 @@ import { createContext, RenderableProps } from "preact";
 import { useCallback, useMemo, useState } from "preact/hooks";
 import { QualityFilterValue } from "../controls/QualityFilter";
 import { DuplicatesFilterValue } from "../controls/DuplicatesFilter";
+import { CategoryFilterValue } from "../controls/CategoryFilter";
 import { SortField, SortDirection } from "../collection/Collection";
 
 interface SettingsContext {
@@ -13,6 +14,8 @@ interface SettingsContext {
   setCollectionQuality: (quality: QualityFilterValue) => void;
   collectionDuplicates: DuplicatesFilterValue;
   setCollectionDuplicates: (duplicates: DuplicatesFilterValue) => void;
+  collectionCategory: CategoryFilterValue;
+  setCollectionCategory: (category: CategoryFilterValue) => void;
   collectionPageSize: number;
   setCollectionPageSize: (pageSize: number) => void;
   collectionSortField: SortField;
@@ -30,6 +33,8 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionQuality: () => undefined,
   collectionDuplicates: "all",
   setCollectionDuplicates: () => undefined,
+  collectionCategory: "all",
+  setCollectionCategory: () => undefined,
   collectionPageSize: 20,
   setCollectionPageSize: () => undefined,
   collectionSortField: "none",
@@ -60,6 +65,13 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
         (localStorage.getItem(
           "collectionDuplicates"
         ) as DuplicatesFilterValue) || "all"
+    );
+
+  const [collectionCategory, setCollectionCategoryState] =
+    useState<CategoryFilterValue>(
+      () =>
+        (localStorage.getItem("collectionCategory") as CategoryFilterValue) ||
+        "all"
     );
 
   const [collectionPageSize, setCollectionPageSizeState] = useState(
@@ -103,6 +115,11 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     []
   );
 
+  const setCollectionCategory = useCallback((category: CategoryFilterValue) => {
+    setCollectionCategoryState(category);
+    localStorage.setItem("collectionCategory", category);
+  }, []);
+
   const setCollectionPageSize = useCallback((pageSize: number) => {
     setCollectionPageSizeState(pageSize);
     localStorage.setItem("collectionPageSize", pageSize.toString());
@@ -128,6 +145,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionQuality,
       collectionDuplicates,
       setCollectionDuplicates,
+      collectionCategory,
+      setCollectionCategory,
       collectionPageSize,
       setCollectionPageSize,
       collectionSortField,
@@ -144,6 +163,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionQuality,
       collectionDuplicates,
       setCollectionDuplicates,
+      collectionCategory,
+      setCollectionCategory,
       collectionPageSize,
       setCollectionPageSize,
       collectionSortField,

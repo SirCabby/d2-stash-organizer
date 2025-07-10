@@ -9,12 +9,17 @@ import {
   filterItemsByDuplicates,
   DuplicatesFilter,
 } from "../controls/DuplicatesFilter";
+import {
+  filterItemsByCategory,
+  CategoryFilter,
+} from "../controls/CategoryFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
 export type SortField =
   | "name"
   | "level"
+  | "category"
   | "characteristics"
   | "location"
   | "none";
@@ -29,6 +34,8 @@ export function Collection() {
     setCollectionQuality,
     collectionDuplicates,
     setCollectionDuplicates,
+    collectionCategory,
+    setCollectionCategory,
     collectionPageSize,
     setCollectionPageSize,
     collectionSortField,
@@ -39,14 +46,23 @@ export function Collection() {
 
   const filteredItems = useMemo(
     () =>
-      filterItemsByDuplicates(
-        filterItemsByQuality(
-          searchItems(allItems, collectionSearch),
-          collectionQuality
+      filterItemsByCategory(
+        filterItemsByDuplicates(
+          filterItemsByQuality(
+            searchItems(allItems, collectionSearch),
+            collectionQuality
+          ),
+          collectionDuplicates
         ),
-        collectionDuplicates
+        collectionCategory
       ),
-    [allItems, collectionSearch, collectionQuality, collectionDuplicates]
+    [
+      allItems,
+      collectionSearch,
+      collectionQuality,
+      collectionDuplicates,
+      collectionCategory,
+    ]
   );
 
   const handleSort = (field: SortField) => {
@@ -73,6 +89,10 @@ export function Collection() {
         <DuplicatesFilter
           value={collectionDuplicates}
           onChange={setCollectionDuplicates}
+        />
+        <CategoryFilter
+          value={collectionCategory}
+          onChange={setCollectionCategory}
         />
         <div>
           <p>
