@@ -157,7 +157,7 @@ export function ItemsTable({
     <>
       <Pagination
         nbEntries={sortedGroupedItems.length}
-        pageSize={pageSize}
+        pageSize={pageSize === -1 ? sortedGroupedItems.length : pageSize}
         currentEntry={firstItem}
         onChange={setFirstItem}
         text={(first, last) => (
@@ -237,7 +237,10 @@ export function ItemsTable({
         </thead>
         <tbody>
           {sortedGroupedItems
-            .slice(firstItem, firstItem + pageSize)
+            .slice(
+              firstItem,
+              pageSize === -1 ? undefined : firstItem + pageSize
+            )
             .map((items, index) => (
               <Item
                 key={items[0].id ?? index}
