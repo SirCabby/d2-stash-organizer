@@ -11,16 +11,30 @@ import {
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
+export type SortField = "name" | "characteristics" | "location" | "none";
+export type SortDirection = "asc" | "desc";
+
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
   const [search, setSearch] = useState("");
   const [quality, setQuality] = useState<QualityFilterValue>("all");
   const [pageSize, setPageSize] = useState(20);
+  const [sortField, setSortField] = useState<SortField>("none");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
   const filteredItems = useMemo(
     () => filterItemsByQuality(searchItems(allItems, search), quality),
     [allItems, search, quality]
   );
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
 
   return (
     <>
@@ -51,7 +65,14 @@ export function Collection() {
         <SelectAll items={filteredItems} />
       </div>
 
-      <ItemsTable items={filteredItems} selectable={true} pageSize={pageSize} />
+      <ItemsTable
+        items={filteredItems}
+        selectable={true}
+        pageSize={pageSize}
+        sortField={sortField}
+        sortDirection={sortDirection}
+        onSort={handleSort}
+      />
     </>
   );
 }

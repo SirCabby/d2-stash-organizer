@@ -24,3 +24,27 @@
 #collection tbody tr:hover td:not(:first-child) {
   color: #6fb76f;
 }
+
+.sort-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.sort-button:hover {
+  color: #6fb76f;
+}
+
+.sort-button:focus {
+  outline: 2px solid #6fb76f;
+  outline-offset: 2px;
+}

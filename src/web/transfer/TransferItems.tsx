@@ -177,7 +177,16 @@ export function TransferItems() {
       </p>
 
       <h4>Selected items</h4>
-      <ItemsTable items={items} selectable={false} pageSize={10} />
+      <ItemsTable
+        items={items}
+        selectable={false}
+        pageSize={10}
+        sortField="none"
+        sortDirection="asc"
+        onSort={() => {
+          // No-op since this table doesn't need sorting
+        }}
+      />
     </div>
   );
 }
