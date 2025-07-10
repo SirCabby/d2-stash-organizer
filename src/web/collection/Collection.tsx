@@ -1,13 +1,14 @@
 import "./Collection.css";
-import { useContext, useMemo, useState } from "preact/hooks";
+import { useContext, useMemo } from "preact/hooks";
 import { CollectionContext } from "../store/CollectionContext";
+import { SettingsContext } from "../settings/SettingsContext";
 import "../controls/Controls.css";
 import { Search, searchItems } from "../controls/Search";
+import { filterItemsByQuality, QualityFilter } from "../controls/QualityFilter";
 import {
-  filterItemsByQuality,
-  QualityFilter,
-  QualityFilterValue,
-} from "../controls/QualityFilter";
+  filterItemsByDuplicates,
+  DuplicatesFilter,
+} from "../controls/DuplicatesFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
@@ -21,33 +22,58 @@ export type SortDirection = "asc" | "desc";
 
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
-  const [search, setSearch] = useState("");
-  const [quality, setQuality] = useState<QualityFilterValue>("all");
-  const [pageSize, setPageSize] = useState(20);
-  const [sortField, setSortField] = useState<SortField>("none");
-  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const {
+    collectionSearch,
+    setCollectionSearch,
+    collectionQuality,
+    setCollectionQuality,
+    collectionDuplicates,
+    setCollectionDuplicates,
+    collectionPageSize,
+    setCollectionPageSize,
+    collectionSortField,
+    setCollectionSortField,
+    collectionSortDirection,
+    setCollectionSortDirection,
+  } = useContext(SettingsContext);
 
   const filteredItems = useMemo(
-    () => filterItemsByQuality(searchItems(allItems, search), quality),
-    [allItems, search, quality]
+    () =>
+      filterItemsByDuplicates(
+        filterItemsByQuality(
+          searchItems(allItems, collectionSearch),
+          collectionQuality
+        ),
+        collectionDuplicates
+      ),
+    [allItems, collectionSearch, collectionQuality, collectionDuplicates]
   );
 
   const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    if (collectionSortField === field) {
+      setCollectionSortDirection(
+        collectionSortDirection === "asc" ? "desc" : "asc"
+      );
     } else {
-      setSortField(field);
-      setSortDirection("asc");
+      setCollectionSortField(field);
+      setCollectionSortDirection("asc");
     }
   };
 
   return (
     <>
       <div class="controls">
-        <Search value={search} onChange={setSearch}>
+        <Search value={collectionSearch} onChange={setCollectionSearch}>
           Search for an item:
         </Search>
-        <QualityFilter value={quality} onChange={setQuality} />
+        <QualityFilter
+          value={collectionQuality}
+          onChange={setCollectionQuality}
+        />
+        <DuplicatesFilter
+          value={collectionDuplicates}
+          onChange={setCollectionDuplicates}
+        />
         <div>
           <p>
             <label for="page-size-select">Items per page:</label>
@@ -55,9 +81,9 @@ export function Collection() {
           <p>
             <select
               id="page-size-select"
-              value={pageSize}
+              value={collectionPageSize}
               onChange={({ currentTarget }) =>
-                setPageSize(Number(currentTarget.value))
+                setCollectionPageSize(Number(currentTarget.value))
               }
             >
               <option value={10}>10</option>
@@ -74,9 +100,9 @@ export function Collection() {
       <ItemsTable
         items={filteredItems}
         selectable={true}
-        pageSize={pageSize}
-        sortField={sortField}
-        sortDirection={sortDirection}
+        pageSize={collectionPageSize}
+        sortField={collectionSortField}
+        sortDirection={collectionSortDirection}
         onSort={handleSort}
       />
     </>
