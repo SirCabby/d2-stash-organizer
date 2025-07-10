@@ -10,7 +10,7 @@ regenerate: install ## Regenerate game data files
 	npm run game-data
 
 .PHONY: build
-build: install ## Build the project
+build: regenerate ## Build the project
 	npm run build
 
 .PHONY: run
