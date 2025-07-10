@@ -4,6 +4,7 @@
     "enabled": true,
     "code": "hax",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "str",
@@ -36,6 +37,7 @@
     "enabled": true,
     "code": "axe",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "stupidity",
@@ -74,6 +76,7 @@
     "enabled": true,
     "code": "2ax",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "dmg-undead",
@@ -124,6 +127,7 @@
     "enabled": true,
     "code": "mpi",
     "qlevel": 28,
+    "reqlevel": 21,
     "modifiers": [
       {
         "prop": "stupidity",
@@ -174,6 +178,7 @@
     "enabled": true,
     "code": "wax",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "pois-min",
@@ -224,6 +229,7 @@
     "enabled": true,
     "code": "lax",
     "qlevel": 11,
+    "reqlevel": 8,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -256,6 +262,7 @@
     "enabled": true,
     "code": "bax",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "swing3",
@@ -294,6 +301,7 @@
     "enabled": true,
     "code": "btx",
     "qlevel": 26,
+    "reqlevel": 19,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -332,6 +340,7 @@
     "enabled": true,
     "code": "gax",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "dmg-min",
@@ -376,6 +385,7 @@
     "enabled": true,
     "code": "gix",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "str",
@@ -420,6 +430,7 @@
     "enabled": true,
     "code": "wnd",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "nec",
@@ -464,6 +475,7 @@
     "enabled": true,
     "code": "ywn",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "ltng-min",
@@ -526,6 +538,7 @@
     "enabled": true,
     "code": "bwn",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "str",
@@ -582,6 +595,7 @@
     "enabled": true,
     "code": "gwn",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "nec",
@@ -626,6 +640,7 @@
     "enabled": true,
     "code": "clb",
     "qlevel": 4,
+    "reqlevel": 3,
     "modifiers": [
       {
         "prop": "res-ltng",
@@ -670,6 +685,7 @@
     "enabled": true,
     "code": "scp",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "crush",
@@ -714,6 +730,7 @@
     "enabled": true,
     "code": "gsc",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "pal",
@@ -770,6 +787,7 @@
     "enabled": true,
     "code": "wsp",
     "qlevel": 31,
+    "reqlevel": 23,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -820,6 +838,7 @@
     "enabled": true,
     "code": "spc",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "thorns",
@@ -852,6 +871,7 @@
     "enabled": true,
     "code": "mac",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "str",
@@ -896,6 +916,7 @@
     "enabled": true,
     "code": "mst",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -946,6 +967,7 @@
     "enabled": true,
     "code": "fla",
     "qlevel": 28,
+    "reqlevel": 21,
     "modifiers": [
       {
         "prop": "dmg-min",
@@ -996,6 +1018,7 @@
     "enabled": true,
     "code": "whm",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "att",
@@ -1034,6 +1057,7 @@
     "enabled": true,
     "code": "mau",
     "qlevel": 32,
+    "reqlevel": 24,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -1072,6 +1096,7 @@
     "enabled": true,
     "code": "gma",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "ease",
@@ -1104,6 +1129,7 @@
     "enabled": true,
     "code": "ssd",
     "qlevel": 3,
+    "reqlevel": 2,
     "modifiers": [
       {
         "prop": "dmg-min",
@@ -1148,6 +1174,7 @@
     "enabled": true,
     "code": "scm",
     "qlevel": 10,
+    "reqlevel": 7,
     "modifiers": [
       {
         "prop": "res-all",
@@ -1198,6 +1225,7 @@
     "enabled": true,
     "code": "sbr",
     "qlevel": 14,
+    "reqlevel": 10,
     "modifiers": [
       {
         "prop": "ignore-ac",
@@ -1242,6 +1270,7 @@
     "enabled": true,
     "code": "flc",
     "qlevel": 18,
+    "reqlevel": 13,
     "modifiers": [
       {
         "prop": "light",
@@ -1286,6 +1315,7 @@
     "enabled": false,
     "code": "crs",
     "qlevel": 18,
+    "reqlevel": 13,
     "modifiers": [
       {
         "prop": "deadly",
@@ -1330,6 +1360,7 @@
     "enabled": true,
     "code": "bsd",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "fire-min",
@@ -1380,6 +1411,7 @@
     "enabled": true,
     "code": "lsd",
     "qlevel": 30,
+    "reqlevel": 22,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -1436,6 +1468,7 @@
     "enabled": true,
     "code": "wsd",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "allskills",
@@ -1480,6 +1513,7 @@
     "enabled": true,
     "code": "2hs",
     "qlevel": 16,
+    "reqlevel": 12,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -1524,6 +1558,7 @@
     "enabled": true,
     "code": "clm",
     "qlevel": 26,
+    "reqlevel": 19,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -1562,6 +1597,7 @@
     "enabled": true,
     "code": "gis",
     "qlevel": 31,
+    "reqlevel": 23,
     "modifiers": [
       {
         "prop": "att",
@@ -1606,6 +1642,7 @@
     "enabled": true,
     "code": "bsw",
     "qlevel": 35,
+    "reqlevel": 26,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -1644,6 +1681,7 @@
     "enabled": true,
     "code": "flb",
     "qlevel": 35,
+    "reqlevel": 26,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -1676,6 +1714,7 @@
     "enabled": true,
     "code": "gsd",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "red-dmg",
@@ -1720,6 +1759,7 @@
     "enabled": true,
     "code": "dgr",
     "qlevel": 6,
+    "reqlevel": 4,
     "modifiers": [
       {
         "prop": "dmg-min",
@@ -1752,6 +1792,7 @@
     "enabled": true,
     "code": "dir",
     "qlevel": 15,
+    "reqlevel": 11,
     "modifiers": [
       {
         "prop": "dex",
@@ -1796,6 +1837,7 @@
     "enabled": true,
     "code": "kri",
     "qlevel": 26,
+    "reqlevel": 19,
     "modifiers": [
       {
         "prop": "att",
@@ -1834,6 +1876,7 @@
     "enabled": true,
     "code": "bld",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "cast3",
@@ -1866,6 +1909,7 @@
     "enabled": true,
     "code": "spr",
     "qlevel": 11,
+    "reqlevel": 8,
     "modifiers": [
       {
         "prop": "att",
@@ -1904,6 +1948,7 @@
     "enabled": true,
     "code": "tri",
     "qlevel": 16,
+    "reqlevel": 12,
     "modifiers": [
       {
         "prop": "slow",
@@ -1948,6 +1993,7 @@
     "enabled": true,
     "code": "brn",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -1986,6 +2032,7 @@
     "enabled": true,
     "code": "spt",
     "qlevel": 30,
+    "reqlevel": 22,
     "modifiers": [
       {
         "prop": "thorns",
@@ -2024,6 +2071,7 @@
     "enabled": true,
     "code": "pik",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "fire-min",
@@ -2080,6 +2128,7 @@
     "enabled": true,
     "code": "bar",
     "qlevel": 11,
+    "reqlevel": 8,
     "modifiers": [
       {
         "prop": "dex",
@@ -2112,6 +2161,7 @@
     "enabled": true,
     "code": "vou",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "howl",
@@ -2156,6 +2206,7 @@
     "enabled": true,
     "code": "scy",
     "qlevel": 26,
+    "reqlevel": 19,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -2200,6 +2251,7 @@
     "enabled": true,
     "code": "pax",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "swing3",
@@ -2238,6 +2290,7 @@
     "enabled": true,
     "code": "hal",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "slow",
@@ -2294,6 +2347,7 @@
     "enabled": true,
     "code": "wsc",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "deadly",
@@ -2332,6 +2386,7 @@
     "enabled": true,
     "code": "sst",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "fire-min",
@@ -2388,6 +2443,7 @@
     "enabled": true,
     "code": "lst",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -2438,6 +2494,7 @@
     "enabled": true,
     "code": "cst",
     "qlevel": 24,
+    "reqlevel": 18,
     "modifiers": [
       {
         "prop": "res-ltng",
@@ -2500,6 +2557,7 @@
     "enabled": true,
     "code": "bst",
     "qlevel": 28,
+    "reqlevel": 21,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -2544,6 +2602,7 @@
     "enabled": true,
     "code": "wst",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "ac",
@@ -2600,6 +2659,7 @@
     "enabled": true,
     "code": "sbw",
     "qlevel": 10,
+    "reqlevel": 7,
     "modifiers": [
       {
         "prop": "att",
@@ -2644,6 +2704,7 @@
     "enabled": true,
     "code": "hbw",
     "qlevel": 18,
+    "reqlevel": 13,
     "modifiers": [
       {
         "prop": "swing3",
@@ -2688,6 +2749,7 @@
     "enabled": true,
     "code": "lbw",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "att%",
@@ -2726,6 +2788,7 @@
     "enabled": true,
     "code": "cbw",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "res-all",
@@ -2770,6 +2833,7 @@
     "enabled": true,
     "code": "sbb",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -2814,6 +2878,7 @@
     "enabled": true,
     "code": "lbb",
     "qlevel": 35,
+    "reqlevel": 26,
     "modifiers": [
       {
         "prop": "magicarrow",
@@ -2870,6 +2935,7 @@
     "enabled": true,
     "code": "swb",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "swing1",
@@ -2926,6 +2992,7 @@
     "enabled": true,
     "code": "lwb",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -2964,6 +3031,7 @@
     "enabled": true,
     "code": "lxb",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "dex",
@@ -3008,6 +3076,7 @@
     "enabled": true,
     "code": "mxb",
     "qlevel": 24,
+    "reqlevel": 18,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -3052,6 +3121,7 @@
     "enabled": true,
     "code": "hxb",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "explosivearrow",
@@ -3102,6 +3172,7 @@
     "enabled": true,
     "code": "rxb",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "ama",
@@ -3140,6 +3211,7 @@
     "enabled": true,
     "code": "cap",
     "qlevel": 4,
+    "reqlevel": 3,
     "modifiers": [
       {
         "prop": "hp",
@@ -3178,6 +3250,7 @@
     "enabled": true,
     "code": "skp",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "gold%",
@@ -3204,6 +3277,7 @@
     "enabled": true,
     "code": "hlm",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "light-thorns",
@@ -3242,6 +3316,7 @@
     "enabled": true,
     "code": "fhl",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "light",
@@ -3286,6 +3361,7 @@
     "enabled": true,
     "code": "bhm",
     "qlevel": 28,
+    "reqlevel": 21,
     "modifiers": [
       {
         "prop": "nec",
@@ -3324,6 +3400,7 @@
     "enabled": true,
     "code": "ghm",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -3368,6 +3445,7 @@
     "enabled": true,
     "code": "crn",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "lifesteal",
@@ -3424,6 +3502,7 @@
     "enabled": true,
     "code": "msk",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "howl",
@@ -3462,6 +3541,7 @@
     "enabled": true,
     "code": "qui",
     "qlevel": 10,
+    "reqlevel": 7,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -3506,6 +3586,7 @@
     "enabled": true,
     "code": "lea",
     "qlevel": 16,
+    "reqlevel": 12,
     "modifiers": [
       {
         "prop": "ac-miss",
@@ -3550,6 +3631,7 @@
     "enabled": true,
     "code": "hla",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "ac",
@@ -3606,6 +3688,7 @@
     "enabled": true,
     "code": "stu",
     "qlevel": 22,
+    "reqlevel": 16,
     "modifiers": [
       {
         "prop": "swing2",
@@ -3650,6 +3733,7 @@
     "enabled": true,
     "code": "rng",
     "qlevel": 19,
+    "reqlevel": 14,
     "modifiers": [
       {
         "prop": "att",
@@ -3694,6 +3778,7 @@
     "enabled": true,
     "code": "scl",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "ac%",
@@ -3732,6 +3817,7 @@
     "enabled": true,
     "code": "chn",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "ac%",
@@ -3764,6 +3850,7 @@
     "enabled": true,
     "code": "brs",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "res-pois-max",
@@ -3802,6 +3889,7 @@
     "enabled": true,
     "code": "spl",
     "qlevel": 30,
+    "reqlevel": 22,
     "modifiers": [
       {
         "prop": "freeze",
@@ -3840,6 +3928,7 @@
     "enabled": true,
     "code": "plt",
     "qlevel": 35,
+    "reqlevel": 26,
     "modifiers": [
       {
         "prop": "lifesteal",
@@ -3872,6 +3961,7 @@
     "enabled": true,
     "code": "fld",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "ease",
@@ -3910,6 +4000,7 @@
     "enabled": true,
     "code": "gth",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "howl",
@@ -3942,6 +4033,7 @@
     "enabled": true,
     "code": "ful",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "ac%",
@@ -3980,6 +4072,7 @@
     "enabled": true,
     "code": "aar",
     "qlevel": 38,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -4012,6 +4105,7 @@
     "enabled": true,
     "code": "ltp",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "ac%",
@@ -4056,6 +4150,7 @@
     "enabled": true,
     "code": "buc",
     "qlevel": 3,
+    "reqlevel": 2,
     "modifiers": [
       {
         "prop": "ac",
@@ -4112,6 +4207,7 @@
     "enabled": true,
     "code": "sml",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "stupidity",
@@ -4168,6 +4264,7 @@
     "enabled": true,
     "code": "lrg",
     "qlevel": 18,
+    "reqlevel": 13,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -4224,6 +4321,7 @@
     "enabled": true,
     "code": "bsh",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "mana-kill",
@@ -4268,6 +4366,7 @@
     "enabled": true,
     "code": "spk",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "thorns",
@@ -4318,6 +4417,7 @@
     "enabled": true,
     "code": "kit",
     "qlevel": 23,
+    "reqlevel": 17,
     "modifiers": [
       {
         "prop": "block",
@@ -4380,6 +4480,7 @@
     "enabled": true,
     "code": "tow",
     "qlevel": 26,
+    "reqlevel": 19,
     "modifiers": [
       {
         "prop": "ac",
@@ -4430,6 +4531,7 @@
     "enabled": true,
     "code": "gts",
     "qlevel": 35,
+    "reqlevel": 26,
     "modifiers": [
       {
         "prop": "ac",
@@ -4474,6 +4576,7 @@
     "enabled": true,
     "code": "lgl",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -4518,6 +4621,7 @@
     "enabled": true,
     "code": "vgl",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "dmg-min",
@@ -4562,6 +4666,7 @@
     "enabled": true,
     "code": "mgl",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "gold%",
@@ -4606,6 +4711,7 @@
     "enabled": true,
     "code": "tgl",
     "qlevel": 31,
+    "reqlevel": 23,
     "modifiers": [
       {
         "prop": "cast3",
@@ -4650,6 +4756,7 @@
     "enabled": true,
     "code": "hgl",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "ac",
@@ -4688,6 +4795,7 @@
     "enabled": true,
     "code": "lbt",
     "qlevel": 7,
+    "reqlevel": 5,
     "modifiers": [
       {
         "prop": "res-fire-max",
@@ -4732,6 +4840,7 @@
     "enabled": true,
     "code": "vbt",
     "qlevel": 12,
+    "reqlevel": 9,
     "modifiers": [
       {
         "prop": "bloody",
@@ -4782,6 +4891,7 @@
     "enabled": true,
     "code": "mbt",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "move2",
@@ -4826,6 +4936,7 @@
     "enabled": true,
     "code": "tbt",
     "qlevel": 30,
+    "reqlevel": 22,
     "modifiers": [
       {
         "prop": "crush",
@@ -4870,6 +4981,7 @@
     "enabled": true,
     "code": "hbt",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "ac",
@@ -4920,6 +5032,7 @@
     "enabled": true,
     "code": "lbl",
     "qlevel": 10,
+    "reqlevel": 7,
     "modifiers": [
       {
         "prop": "mana",
@@ -4952,6 +5065,7 @@
     "enabled": true,
     "code": "vbl",
     "qlevel": 16,
+    "reqlevel": 12,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -4996,6 +5110,7 @@
     "enabled": true,
     "code": "mbl",
     "qlevel": 27,
+    "reqlevel": 20,
     "modifiers": [
       {
         "prop": "res-all",
@@ -5040,6 +5155,7 @@
     "enabled": true,
     "code": "tbl",
     "qlevel": 36,
+    "reqlevel": 27,
     "modifiers": [
       {
         "prop": "mag%",
@@ -5084,6 +5200,7 @@
     "enabled": true,
     "code": "hbl",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "thorns",
@@ -5134,6 +5251,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 14,
+    "reqlevel": 10,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -5172,6 +5290,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "ac-miss",
@@ -5222,6 +5341,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 34,
+    "reqlevel": 25,
     "modifiers": [
       {
         "prop": "dex",
@@ -5278,6 +5398,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 10,
+    "reqlevel": 7,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -5310,6 +5431,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 20,
+    "reqlevel": 15,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -5342,6 +5464,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 39,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "mana",
@@ -5380,6 +5503,7 @@
     "enabled": true,
     "code": "vip",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "mana",
@@ -5406,6 +5530,7 @@
     "enabled": true,
     "code": "msf",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "res-all",
@@ -5426,6 +5551,7 @@
     "enabled": true,
     "code": "hst",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "mana",
@@ -5464,6 +5590,7 @@
     "enabled": true,
     "code": "hfh",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "fire-min",
@@ -5496,6 +5623,7 @@
     "enabled": true,
     "code": "qf1",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "ltng-min",
@@ -5528,6 +5656,7 @@
     "enabled": true,
     "code": "qf2",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": [
       {
         "prop": "ltng-min",
@@ -5572,6 +5701,7 @@
     "enabled": true,
     "code": "9ha",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "dmg-cold",
@@ -5622,6 +5752,7 @@
     "enabled": true,
     "code": "9ax",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "deadly",
@@ -5666,6 +5797,7 @@
     "enabled": true,
     "code": "92a",
     "qlevel": 51,
+    "reqlevel": 43,
     "modifiers": [
       {
         "prop": "dru",
@@ -5734,6 +5866,7 @@
     "enabled": true,
     "code": "9mp",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -5772,6 +5905,7 @@
     "enabled": true,
     "code": "9wa",
     "qlevel": 56,
+    "reqlevel": 48,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -5816,6 +5950,7 @@
     "enabled": true,
     "code": "9la",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "ac",
@@ -5860,6 +5995,7 @@
     "enabled": true,
     "code": "9ba",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "ease",
@@ -5928,6 +6064,7 @@
     "enabled": true,
     "code": "9bt",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -5984,6 +6121,7 @@
     "enabled": true,
     "code": "9ga",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "att-und/lvl",
@@ -6040,6 +6178,7 @@
     "enabled": true,
     "code": "9gi",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "stupidity",
@@ -6090,6 +6229,7 @@
     "enabled": true,
     "code": "9wn",
     "qlevel": 41,
+    "reqlevel": 33,
     "modifiers": [
       {
         "prop": "thorns",
@@ -6134,6 +6274,7 @@
     "enabled": true,
     "code": "9yw",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "hp/lvl",
@@ -6184,6 +6325,7 @@
     "enabled": true,
     "code": "9bw",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "skilltab",
@@ -6252,6 +6394,7 @@
     "enabled": true,
     "code": "9gw",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "skilltab",
@@ -6308,6 +6451,7 @@
     "enabled": true,
     "code": "9cl",
     "qlevel": 42,
+    "reqlevel": 34,
     "modifiers": [
       {
         "prop": "dru",
@@ -6352,6 +6496,7 @@
     "enabled": true,
     "code": "9sc",
     "qlevel": 45,
+    "reqlevel": 37,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -6414,6 +6559,7 @@
     "enabled": true,
     "code": "9qs",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "pal",
@@ -6464,6 +6610,7 @@
     "enabled": true,
     "code": "9ws",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "pal",
@@ -6532,6 +6679,7 @@
     "enabled": true,
     "code": "9sp",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -6594,6 +6742,7 @@
     "enabled": true,
     "code": "9ma",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "dmg-cold",
@@ -6638,6 +6787,7 @@
     "enabled": true,
     "code": "9mt",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -6688,6 +6838,7 @@
     "enabled": true,
     "code": "9fl",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -6738,6 +6889,7 @@
     "enabled": true,
     "code": "9wh",
     "qlevel": 51,
+    "reqlevel": 43,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -6788,6 +6940,7 @@
     "enabled": true,
     "code": "9m9",
     "qlevel": 56,
+    "reqlevel": 48,
     "modifiers": [
       {
         "prop": "crush",
@@ -6838,6 +6991,7 @@
     "enabled": true,
     "code": "9gm",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -6888,6 +7042,7 @@
     "enabled": true,
     "code": "9ss",
     "qlevel": 38,
+    "reqlevel": 30,
     "modifiers": [
       {
         "prop": "dmg-norm",
@@ -6950,6 +7105,7 @@
     "enabled": true,
     "code": "9sm",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "stupidity",
@@ -7000,6 +7156,7 @@
     "enabled": true,
     "code": "9sb",
     "qlevel": 41,
+    "reqlevel": 33,
     "modifiers": [
       {
         "prop": "charged",
@@ -7050,6 +7207,7 @@
     "enabled": true,
     "code": "9fc",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "sock",
@@ -7094,6 +7252,7 @@
     "enabled": true,
     "code": "9cr",
     "qlevel": 45,
+    "reqlevel": 37,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -7138,6 +7297,7 @@
     "enabled": true,
     "code": "9bs",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "noheal",
@@ -7176,6 +7336,7 @@
     "enabled": true,
     "code": "9ls",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -7220,6 +7381,7 @@
     "enabled": true,
     "code": "9wd",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "dur",
@@ -7276,6 +7438,7 @@
     "enabled": true,
     "code": "92h",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "slow",
@@ -7320,6 +7483,7 @@
     "enabled": true,
     "code": "9cm",
     "qlevel": 51,
+    "reqlevel": 43,
     "modifiers": [
       {
         "prop": "ease",
@@ -7364,6 +7528,7 @@
     "enabled": true,
     "code": "9gs",
     "qlevel": 52,
+    "reqlevel": 44,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -7408,6 +7573,7 @@
     "enabled": true,
     "code": "9b9",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -7470,6 +7636,7 @@
     "enabled": true,
     "code": "9fb",
     "qlevel": 54,
+    "reqlevel": 46,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -7520,6 +7687,7 @@
     "enabled": true,
     "code": "9gd",
     "qlevel": 55,
+    "reqlevel": 48,
     "modifiers": [
       {
         "prop": "ease",
@@ -7582,6 +7750,7 @@
     "enabled": true,
     "code": "9dg",
     "qlevel": 40,
+    "reqlevel": 32,
     "modifiers": [
       {
         "prop": "ignore-ac",
@@ -7638,6 +7807,7 @@
     "enabled": true,
     "code": "9di",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "deadly",
@@ -7688,6 +7858,7 @@
     "enabled": true,
     "code": "9kr",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "slow",
@@ -7744,6 +7915,7 @@
     "enabled": true,
     "code": "9bl",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -7782,6 +7954,7 @@
     "enabled": true,
     "code": "9sr",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "ignore-ac",
@@ -7838,6 +8011,7 @@
     "enabled": true,
     "code": "9tr",
     "qlevel": 41,
+    "reqlevel": 33,
     "modifiers": [
       {
         "prop": "slow",
@@ -7882,6 +8056,7 @@
     "enabled": true,
     "code": "9br",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "ease",
@@ -7932,6 +8107,7 @@
     "enabled": true,
     "code": "9st",
     "qlevel": 45,
+    "reqlevel": 37,
     "modifiers": [
       {
         "prop": "sock",
@@ -7970,6 +8146,7 @@
     "enabled": true,
     "code": "9p9",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "att%",
@@ -8032,6 +8209,7 @@
     "enabled": true,
     "code": "9b7",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -8076,6 +8254,7 @@
     "enabled": true,
     "code": "9vo",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "ease",
@@ -8120,6 +8299,7 @@
     "enabled": true,
     "code": "9s8",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "dru",
@@ -8164,6 +8344,7 @@
     "enabled": true,
     "code": "9pa",
     "qlevel": 51,
+    "reqlevel": 43,
     "modifiers": [
       {
         "prop": "deadly",
@@ -8214,6 +8395,7 @@
     "enabled": true,
     "code": "9h9",
     "qlevel": 52,
+    "reqlevel": 44,
     "modifiers": [
       {
         "prop": "regen",
@@ -8258,6 +8440,7 @@
     "enabled": true,
     "code": "9wc",
     "qlevel": 52,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -8320,6 +8503,7 @@
     "enabled": true,
     "code": "8ss",
     "qlevel": 36,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "cast3",
@@ -8370,6 +8554,7 @@
     "enabled": true,
     "code": "8ls",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "dmg-norm",
@@ -8432,6 +8617,7 @@
     "enabled": true,
     "code": "8cs",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "sor",
@@ -8488,6 +8674,7 @@
     "enabled": true,
     "code": "8bs",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "sor",
@@ -8532,6 +8719,7 @@
     "enabled": true,
     "code": "8ws",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "mana%",
@@ -8564,6 +8752,7 @@
     "enabled": true,
     "code": "8sb",
     "qlevel": 36,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -8614,6 +8803,7 @@
     "enabled": true,
     "code": "8hb",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -8658,6 +8848,7 @@
     "enabled": true,
     "code": "8lb",
     "qlevel": 41,
+    "reqlevel": 33,
     "modifiers": [
       {
         "prop": "skill",
@@ -8702,6 +8893,7 @@
     "enabled": true,
     "code": "8cb",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "res-cold",
@@ -8746,6 +8938,7 @@
     "enabled": true,
     "code": "8s8",
     "qlevel": 47,
+    "reqlevel": 39,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -8790,6 +8983,7 @@
     "enabled": true,
     "code": "8l8",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "ama",
@@ -8840,6 +9034,7 @@
     "enabled": true,
     "code": "8sw",
     "qlevel": 51,
+    "reqlevel": 43,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -8902,6 +9097,7 @@
     "enabled": true,
     "code": "8lw",
     "qlevel": 54,
+    "reqlevel": 46,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -8952,6 +9148,7 @@
     "enabled": true,
     "code": "8lx",
     "qlevel": 40,
+    "reqlevel": 32,
     "modifiers": [
       {
         "prop": "knock",
@@ -9002,6 +9199,7 @@
     "enabled": true,
     "code": "8mx",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -9058,6 +9256,7 @@
     "enabled": true,
     "code": "8hx",
     "qlevel": 59,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "pierce",
@@ -9114,6 +9313,7 @@
     "enabled": true,
     "code": "8rx",
     "qlevel": 57,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "ac",
@@ -9164,6 +9364,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -9171,6 +9372,7 @@
     "enabled": true,
     "code": "xap",
     "qlevel": 36,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "enr",
@@ -9215,6 +9417,7 @@
     "enabled": true,
     "code": "xkp",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "res-ltng",
@@ -9265,6 +9468,7 @@
     "enabled": true,
     "code": "xlm",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -9309,6 +9513,7 @@
     "enabled": true,
     "code": "xhl",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "light",
@@ -9359,6 +9564,7 @@
     "enabled": true,
     "code": "xhm",
     "qlevel": 52,
+    "reqlevel": 44,
     "modifiers": [
       {
         "prop": "ac%",
@@ -9397,6 +9603,7 @@
     "enabled": true,
     "code": "xrn",
     "qlevel": 57,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dex",
@@ -9447,6 +9654,7 @@
     "enabled": true,
     "code": "xsk",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "light-thorns",
@@ -9491,6 +9699,7 @@
     "enabled": true,
     "code": "xh9",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -9541,6 +9750,7 @@
     "enabled": true,
     "code": "xui",
     "qlevel": 36,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "nofreeze",
@@ -9579,6 +9789,7 @@
     "enabled": true,
     "code": "xea",
     "qlevel": 37,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "ac%",
@@ -9617,6 +9828,7 @@
     "enabled": true,
     "code": "xla",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "rep-dur",
@@ -9661,6 +9873,7 @@
     "enabled": true,
     "code": "xtu",
     "qlevel": 41,
+    "reqlevel": 33,
     "modifiers": [
       {
         "prop": "dur",
@@ -9705,6 +9918,7 @@
     "enabled": true,
     "code": "xng",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "light",
@@ -9755,6 +9969,7 @@
     "enabled": true,
     "code": "xcl",
     "qlevel": 45,
+    "reqlevel": 37,
     "modifiers": [
       {
         "prop": "openwounds",
@@ -9793,6 +10008,7 @@
     "enabled": true,
     "code": "xhn",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "ac-miss",
@@ -9825,6 +10041,7 @@
     "enabled": true,
     "code": "xrs",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "str",
@@ -9893,6 +10110,7 @@
     "enabled": true,
     "code": "xpl",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "allskills",
@@ -9937,6 +10155,7 @@
     "enabled": true,
     "code": "xlt",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "light",
@@ -9987,6 +10206,7 @@
     "enabled": true,
     "code": "xld",
     "qlevel": 56,
+    "reqlevel": 48,
     "modifiers": [
       {
         "prop": "thorns",
@@ -10037,6 +10257,7 @@
     "enabled": true,
     "code": "xth",
     "qlevel": 59,
+    "reqlevel": 51,
     "modifiers": [
       {
         "prop": "dex",
@@ -10093,6 +10314,7 @@
     "enabled": true,
     "code": "xul",
     "qlevel": 61,
+    "reqlevel": 53,
     "modifiers": [
       {
         "prop": "light",
@@ -10137,6 +10359,7 @@
     "enabled": true,
     "code": "xar",
     "qlevel": 63,
+    "reqlevel": 55,
     "modifiers": [
       {
         "prop": "str",
@@ -10187,6 +10410,7 @@
     "enabled": true,
     "code": "xtp",
     "qlevel": 59,
+    "reqlevel": 51,
     "modifiers": [
       {
         "prop": "cast2",
@@ -10237,6 +10461,7 @@
     "enabled": true,
     "code": "xuc",
     "qlevel": 36,
+    "reqlevel": 28,
     "modifiers": [
       {
         "prop": "sor",
@@ -10275,6 +10500,7 @@
     "enabled": true,
     "code": "xml",
     "qlevel": 39,
+    "reqlevel": 31,
     "modifiers": [
       {
         "prop": "res-all",
@@ -10313,6 +10539,7 @@
     "enabled": true,
     "code": "xrg",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -10375,6 +10602,7 @@
     "enabled": true,
     "code": "xit",
     "qlevel": 46,
+    "reqlevel": 38,
     "modifiers": [
       {
         "prop": "dmg-cold",
@@ -10437,6 +10665,7 @@
     "enabled": true,
     "code": "xow",
     "qlevel": 52,
+    "reqlevel": 44,
     "modifiers": [
       {
         "prop": "red-dmg",
@@ -10487,6 +10716,7 @@
     "enabled": true,
     "code": "xts",
     "qlevel": 58,
+    "reqlevel": 50,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -10543,6 +10773,7 @@
     "enabled": true,
     "code": "xsh",
     "qlevel": 49,
+    "reqlevel": 41,
     "modifiers": [
       {
         "prop": "light",
@@ -10593,6 +10824,7 @@
     "enabled": true,
     "code": "xpk",
     "qlevel": 43,
+    "reqlevel": 35,
     "modifiers": [
       {
         "prop": "hp",
@@ -10637,6 +10869,7 @@
     "enabled": true,
     "code": "xlg",
     "qlevel": 37,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "res-pois",
@@ -10687,6 +10920,7 @@
     "enabled": true,
     "code": "xvg",
     "qlevel": 39,
+    "reqlevel": 32,
     "modifiers": [
       {
         "prop": "enr",
@@ -10725,6 +10959,7 @@
     "enabled": true,
     "code": "xmg",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "att-und/lvl",
@@ -10763,6 +10998,7 @@
     "enabled": true,
     "code": "xtg",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "res-fire",
@@ -10813,6 +11049,7 @@
     "enabled": true,
     "code": "xhg",
     "qlevel": 55,
+    "reqlevel": 47,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -10857,6 +11094,7 @@
     "enabled": true,
     "code": "xlb",
     "qlevel": 37,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -10919,6 +11157,7 @@
     "enabled": true,
     "code": "xvb",
     "qlevel": 40,
+    "reqlevel": 32,
     "modifiers": [
       {
         "prop": "ac-miss",
@@ -10975,6 +11214,7 @@
     "enabled": true,
     "code": "xmb",
     "qlevel": 44,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "ac%",
@@ -11013,6 +11253,7 @@
     "enabled": true,
     "code": "xtb",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "vit",
@@ -11075,6 +11316,7 @@
     "enabled": true,
     "code": "xhb",
     "qlevel": 55,
+    "reqlevel": 47,
     "modifiers": [
       {
         "prop": "ease",
@@ -11131,6 +11373,7 @@
     "enabled": true,
     "code": "zlb",
     "qlevel": 37,
+    "reqlevel": 29,
     "modifiers": [
       {
         "prop": "red-mag",
@@ -11175,6 +11418,7 @@
     "enabled": true,
     "code": "zvb",
     "qlevel": 39,
+    "reqlevel": 32,
     "modifiers": [
       {
         "prop": "thorns/lvl",
@@ -11219,6 +11463,7 @@
     "enabled": true,
     "code": "zmb",
     "qlevel": 45,
+    "reqlevel": 36,
     "modifiers": [
       {
         "prop": "light",
@@ -11263,6 +11508,7 @@
     "enabled": true,
     "code": "ztb",
     "qlevel": 49,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "gethit-skill",
@@ -11319,6 +11565,7 @@
     "enabled": true,
     "code": "zhb",
     "qlevel": 55,
+    "reqlevel": 47,
     "modifiers": [
       {
         "prop": "gethit-skill",
@@ -11381,6 +11628,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -11388,6 +11636,7 @@
     "enabled": true,
     "code": "uap",
     "qlevel": 69,
+    "reqlevel": 62,
     "modifiers": [
       {
         "prop": "allskills",
@@ -11450,6 +11699,7 @@
     "enabled": true,
     "code": "uhm",
     "qlevel": 77,
+    "reqlevel": 73,
     "modifiers": [
       {
         "prop": "res-all",
@@ -11500,6 +11750,7 @@
     "enabled": true,
     "code": "utu",
     "qlevel": 85,
+    "reqlevel": 85,
     "modifiers": [
       {
         "prop": "ac%",
@@ -11562,6 +11813,7 @@
     "enabled": true,
     "code": "upl",
     "qlevel": 85,
+    "reqlevel": 85,
     "modifiers": [
       {
         "prop": "ac%",
@@ -11600,6 +11852,7 @@
     "enabled": true,
     "code": "uml",
     "qlevel": 67,
+    "reqlevel": 61,
     "modifiers": [
       {
         "prop": "dex/lvl",
@@ -11656,6 +11909,7 @@
     "enabled": true,
     "code": "uit",
     "qlevel": 77,
+    "reqlevel": 73,
     "modifiers": [
       {
         "prop": "ac/lvl",
@@ -11718,6 +11972,7 @@
     "enabled": true,
     "code": "7bt",
     "qlevel": 71,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "str/lvl",
@@ -11768,6 +12023,7 @@
     "enabled": true,
     "code": "7ga",
     "qlevel": 75,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "dmg%/lvl",
@@ -11830,6 +12086,7 @@
     "enabled": true,
     "code": "7mt",
     "qlevel": 70,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "att%",
@@ -11892,6 +12149,7 @@
     "enabled": true,
     "code": "7wh",
     "qlevel": 83,
+    "reqlevel": 79,
     "modifiers": [
       {
         "prop": "hit-skill",
@@ -11960,6 +12218,7 @@
     "enabled": true,
     "code": "7gm",
     "qlevel": 85,
+    "reqlevel": 87,
     "modifiers": [
       {
         "prop": "swing2",
@@ -12016,6 +12275,7 @@
     "enabled": true,
     "code": "7cr",
     "qlevel": 66,
+    "reqlevel": 58,
     "modifiers": [
       {
         "prop": "light",
@@ -12084,6 +12344,7 @@
     "enabled": true,
     "code": "7b7",
     "qlevel": 75,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "hp%",
@@ -12134,6 +12395,7 @@
     "enabled": true,
     "code": "7gd",
     "qlevel": 85,
+    "reqlevel": 81,
     "modifiers": [
       {
         "prop": "str",
@@ -12196,6 +12458,7 @@
     "enabled": true,
     "code": "7dg",
     "qlevel": 69,
+    "reqlevel": 61,
     "modifiers": [
       {
         "prop": "mana/lvl",
@@ -12240,6 +12503,7 @@
     "enabled": false,
     "code": "rin",
     "qlevel": 95,
+    "reqlevel": 95,
     "modifiers": [
       {
         "prop": "res-all",
@@ -12272,6 +12536,7 @@
     "enabled": true,
     "code": "7wc",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "res-ltng",
@@ -12334,6 +12599,7 @@
     "enabled": true,
     "code": "6l7",
     "qlevel": 77,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "ignore-ac",
@@ -12378,6 +12644,7 @@
     "enabled": true,
     "code": "6lw",
     "qlevel": 80,
+    "reqlevel": 73,
     "modifiers": [
       {
         "prop": "dex",
@@ -12434,6 +12701,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -12441,6 +12709,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 66,
+    "reqlevel": 58,
     "modifiers": [
       {
         "prop": "hp/lvl",
@@ -12473,6 +12742,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 58,
+    "reqlevel": 50,
     "modifiers": [
       {
         "prop": "move2",
@@ -12511,6 +12781,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "abs-fire/lvl",
@@ -12555,6 +12826,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 58,
+    "reqlevel": 50,
     "modifiers": [
       {
         "prop": "manasteal",
@@ -12599,6 +12871,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 80,
+    "reqlevel": 67,
     "modifiers": [
       {
         "prop": "allskills",
@@ -12643,6 +12916,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 60,
+    "reqlevel": 60,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -12687,6 +12961,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "gold%",
@@ -12731,6 +13006,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 53,
+    "reqlevel": 45,
     "modifiers": [
       {
         "prop": "nofreeze",
@@ -12775,6 +13051,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "res-ltng",
@@ -12819,6 +13096,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 55,
+    "reqlevel": 47,
     "modifiers": [
       {
         "prop": "res-all",
@@ -12863,6 +13141,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -12870,6 +13149,7 @@
     "enabled": true,
     "code": "baa",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "bar",
@@ -12932,6 +13212,7 @@
     "enabled": true,
     "code": "nea",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "nec",
@@ -12994,6 +13275,7 @@
     "enabled": true,
     "code": "ama",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "ama",
@@ -13062,6 +13344,7 @@
     "enabled": true,
     "code": "am7",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "ama",
@@ -13124,6 +13407,7 @@
     "enabled": true,
     "code": "am9",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "ama",
@@ -13186,6 +13470,7 @@
     "enabled": true,
     "code": "oba",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "sor",
@@ -13248,6 +13533,7 @@
     "enabled": true,
     "code": "pa9",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "pal",
@@ -13310,6 +13596,7 @@
     "enabled": true,
     "code": "9tw",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "ass",
@@ -13372,6 +13659,7 @@
     "enabled": true,
     "code": "dra",
     "qlevel": 50,
+    "reqlevel": 42,
     "modifiers": [
       {
         "prop": "dru",
@@ -13434,6 +13722,7 @@
     "enabled": true,
     "code": "9ta",
     "qlevel": 65,
+    "reqlevel": 57,
     "modifiers": [
       {
         "prop": "rep-quant",
@@ -13484,6 +13773,7 @@
     "enabled": true,
     "code": "7sb",
     "qlevel": 69,
+    "reqlevel": 61,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13522,6 +13812,7 @@
     "enabled": true,
     "code": "7sm",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13572,6 +13863,7 @@
     "enabled": true,
     "code": "9tk",
     "qlevel": 52,
+    "reqlevel": 44,
     "modifiers": [
       {
         "prop": "deadly",
@@ -13616,6 +13908,7 @@
     "enabled": true,
     "code": "7bk",
     "qlevel": 83,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13660,6 +13953,7 @@
     "enabled": true,
     "code": "6rx",
     "qlevel": 79,
+    "reqlevel": 71,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13698,6 +13992,7 @@
     "enabled": true,
     "code": "7ha",
     "qlevel": 75,
+    "reqlevel": 67,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13736,6 +14031,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -13743,6 +14039,7 @@
     "enabled": true,
     "code": "7sp",
     "qlevel": 71,
+    "reqlevel": 63,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -13793,6 +14090,7 @@
     "enabled": true,
     "code": "ulm",
     "qlevel": 70,
+    "reqlevel": 62,
     "modifiers": [
       {
         "prop": "ac%",
@@ -13825,6 +14123,7 @@
     "enabled": true,
     "code": "7pa",
     "qlevel": 86,
+    "reqlevel": 84,
     "modifiers": [
       {
         "prop": "swing2",
@@ -13893,6 +14192,7 @@
     "enabled": true,
     "code": "7gw",
     "qlevel": 74,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "allskills",
@@ -13931,6 +14231,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 77,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "noheal",
@@ -13969,6 +14270,7 @@
     "enabled": true,
     "code": "7cr",
     "qlevel": 87,
+    "reqlevel": 85,
     "modifiers": [
       {
         "prop": "dmg-mag",
@@ -14025,6 +14327,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "allskills",
@@ -14075,6 +14378,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -14082,6 +14386,7 @@
     "enabled": true,
     "code": "7kr",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14132,6 +14437,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -14139,6 +14445,7 @@
     "enabled": true,
     "code": "7fl",
     "qlevel": 72,
+    "reqlevel": 64,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14177,6 +14484,7 @@
     "enabled": true,
     "code": "7wh",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14221,6 +14529,7 @@
     "enabled": true,
     "code": "7wb",
     "qlevel": 74,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14265,6 +14574,7 @@
     "enabled": true,
     "code": "uhb",
     "qlevel": 79,
+    "reqlevel": 71,
     "modifiers": [
       {
         "prop": "ac%",
@@ -14309,6 +14619,7 @@
     "enabled": true,
     "code": "drb",
     "qlevel": 71,
+    "reqlevel": 63,
     "modifiers": [
       {
         "prop": "ac%",
@@ -14353,6 +14664,7 @@
     "enabled": true,
     "code": "uar",
     "qlevel": 87,
+    "reqlevel": 84,
     "modifiers": [
       {
         "prop": "ease",
@@ -14415,6 +14727,7 @@
     "enabled": true,
     "code": "umg",
     "qlevel": 82,
+    "reqlevel": 74,
     "modifiers": [
       {
         "prop": "ac%",
@@ -14453,6 +14766,7 @@
     "enabled": true,
     "code": "72a",
     "qlevel": 80,
+    "reqlevel": 72,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14485,6 +14799,7 @@
     "enabled": true,
     "code": "7wa",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14523,6 +14838,7 @@
     "enabled": true,
     "code": "7gi",
     "qlevel": 83,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14561,6 +14877,7 @@
     "enabled": true,
     "code": "amd",
     "qlevel": 72,
+    "reqlevel": 64,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14599,6 +14916,7 @@
     "enabled": true,
     "code": "uld",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "ac%",
@@ -14637,6 +14955,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -14644,6 +14963,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "abs-ltng%",
@@ -14688,6 +15008,7 @@
     "enabled": true,
     "code": "7ts",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14726,6 +15047,7 @@
     "enabled": true,
     "code": "7b8",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14776,6 +15098,7 @@
     "enabled": true,
     "code": "6ws",
     "qlevel": 86,
+    "reqlevel": 82,
     "modifiers": [
       {
         "prop": "allskills",
@@ -14820,6 +15143,7 @@
     "enabled": true,
     "code": "7br",
     "qlevel": 79,
+    "reqlevel": 71,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14864,6 +15188,7 @@
     "enabled": true,
     "code": "7ba",
     "qlevel": 82,
+    "reqlevel": 74,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -14920,6 +15245,7 @@
     "enabled": true,
     "code": "bad",
     "qlevel": 69,
+    "reqlevel": 61,
     "modifiers": [
       {
         "prop": "ac%",
@@ -14970,6 +15296,7 @@
     "enabled": true,
     "code": "7s8",
     "qlevel": 83,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15020,6 +15347,7 @@
     "enabled": true,
     "code": "drd",
     "qlevel": 75,
+    "reqlevel": 67,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15070,6 +15398,7 @@
     "enabled": true,
     "code": "6hx",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15114,6 +15443,7 @@
     "enabled": true,
     "code": "pac",
     "qlevel": 85,
+    "reqlevel": 77,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15164,6 +15494,7 @@
     "enabled": true,
     "code": "nef",
     "qlevel": 72,
+    "reqlevel": 64,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15208,6 +15539,7 @@
     "enabled": true,
     "code": "6sw",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15246,6 +15578,7 @@
     "enabled": true,
     "code": "amb",
     "qlevel": 79,
+    "reqlevel": 71,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15284,6 +15617,7 @@
     "enabled": true,
     "code": "7bl",
     "qlevel": 70,
+    "reqlevel": 62,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15334,6 +15668,7 @@
     "enabled": true,
     "code": "7cs",
     "qlevel": 85,
+    "reqlevel": 78,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15384,6 +15719,7 @@
     "enabled": true,
     "code": "7ta",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15428,6 +15764,7 @@
     "enabled": true,
     "code": "ci3",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "ac",
@@ -15466,6 +15803,7 @@
     "enabled": true,
     "code": "7m7",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15498,6 +15836,7 @@
     "enabled": true,
     "code": "amf",
     "qlevel": 77,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15548,6 +15887,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -15555,6 +15895,7 @@
     "enabled": true,
     "code": "7s7",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15599,6 +15940,7 @@
     "enabled": true,
     "code": "nee",
     "qlevel": 80,
+    "reqlevel": 72,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15637,6 +15979,7 @@
     "enabled": true,
     "code": "7p7",
     "qlevel": 77,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -15681,6 +16024,7 @@
     "enabled": true,
     "code": "uhm",
     "qlevel": 75,
+    "reqlevel": 67,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15731,6 +16075,7 @@
     "enabled": true,
     "code": "urn",
     "qlevel": 86,
+    "reqlevel": 82,
     "modifiers": [
       {
         "prop": "balance2",
@@ -15787,6 +16132,7 @@
     "enabled": true,
     "code": "usk",
     "qlevel": 85,
+    "reqlevel": 83,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15855,6 +16201,7 @@
     "enabled": false,
     "code": "ulm",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -15862,6 +16209,7 @@
     "enabled": true,
     "code": "pae",
     "qlevel": 84,
+    "reqlevel": 80,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15912,6 +16260,7 @@
     "enabled": true,
     "code": "uul",
     "qlevel": 74,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "ac%",
@@ -15962,6 +16311,7 @@
     "enabled": true,
     "code": "uow",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16006,6 +16356,7 @@
     "enabled": true,
     "code": "dre",
     "qlevel": 82,
+    "reqlevel": 74,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16050,6 +16401,7 @@
     "enabled": true,
     "code": "7bw",
     "qlevel": 84,
+    "reqlevel": 79,
     "modifiers": [
       {
         "prop": "nec",
@@ -16100,6 +16452,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -16107,6 +16460,7 @@
     "enabled": true,
     "code": "7gs",
     "qlevel": 79,
+    "reqlevel": 71,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -16163,6 +16517,7 @@
     "enabled": true,
     "code": "obf",
     "qlevel": 81,
+    "reqlevel": 73,
     "modifiers": [
       {
         "prop": "sor",
@@ -16201,6 +16556,7 @@
     "enabled": true,
     "code": "bac",
     "qlevel": 85,
+    "reqlevel": 79,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16263,6 +16619,7 @@
     "enabled": true,
     "code": "uts",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16307,6 +16664,7 @@
     "enabled": true,
     "code": "ci2",
     "qlevel": 85,
+    "reqlevel": 77,
     "modifiers": [
       {
         "prop": "ac",
@@ -16339,6 +16697,7 @@
     "enabled": true,
     "code": "uui",
     "qlevel": 83,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "ac",
@@ -16389,6 +16748,7 @@
     "enabled": true,
     "code": "cm3",
     "qlevel": 70,
+    "reqlevel": 62,
     "modifiers": [
       {
         "prop": "mag%",
@@ -16415,6 +16775,7 @@
     "enabled": true,
     "code": "7fl",
     "qlevel": 86,
+    "reqlevel": 82,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -16471,6 +16832,7 @@
     "enabled": true,
     "code": "bae",
     "qlevel": 85,
+    "reqlevel": 77,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16521,6 +16883,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -16528,6 +16891,7 @@
     "enabled": true,
     "code": "upk",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16572,6 +16936,7 @@
     "enabled": true,
     "code": "uvg",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16616,6 +16981,7 @@
     "enabled": true,
     "code": "7ls",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -16666,6 +17032,7 @@
     "enabled": true,
     "code": "uar",
     "qlevel": 82,
+    "reqlevel": 74,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16716,6 +17083,7 @@
     "enabled": true,
     "code": "obc",
     "qlevel": 80,
+    "reqlevel": 72,
     "modifiers": [
       {
         "prop": "sor",
@@ -16754,6 +17122,7 @@
     "enabled": true,
     "code": "7lw",
     "qlevel": 75,
+    "reqlevel": 67,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -16804,6 +17173,7 @@
     "enabled": true,
     "code": "uvb",
     "qlevel": 72,
+    "reqlevel": 64,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16866,6 +17236,7 @@
     "enabled": true,
     "code": "umb",
     "qlevel": 74,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "ac%",
@@ -16934,6 +17305,7 @@
     "enabled": true,
     "code": "7sc",
     "qlevel": 69,
+    "reqlevel": 61,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -16990,6 +17362,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -16997,6 +17370,7 @@
     "enabled": true,
     "code": "ulc",
     "qlevel": 87,
+    "reqlevel": 80,
     "modifiers": [
       {
         "prop": "ac%",
@@ -17041,6 +17415,7 @@
     "enabled": true,
     "code": "uvc",
     "qlevel": 68,
+    "reqlevel": 51,
     "modifiers": [
       {
         "prop": "str",
@@ -17085,6 +17460,7 @@
     "enabled": true,
     "code": "amu",
     "qlevel": 85,
+    "reqlevel": 81,
     "modifiers": [
       {
         "prop": "ac",
@@ -17123,6 +17499,7 @@
     "enabled": true,
     "code": "umc",
     "qlevel": 71,
+    "reqlevel": 63,
     "modifiers": [
       {
         "prop": "ac%",
@@ -17167,6 +17544,7 @@
     "enabled": false,
     "code": "",
     "qlevel": 0,
+    "reqlevel": 0,
     "modifiers": []
   },
   {
@@ -17174,6 +17552,7 @@
     "enabled": true,
     "code": "rin",
     "qlevel": 68,
+    "reqlevel": 60,
     "modifiers": [
       {
         "prop": "ac-miss",
@@ -17224,6 +17603,7 @@
     "enabled": true,
     "code": "uh9",
     "qlevel": 73,
+    "reqlevel": 65,
     "modifiers": [
       {
         "prop": "ac",
@@ -17262,6 +17642,7 @@
     "enabled": true,
     "code": "7ws",
     "qlevel": 68,
+    "reqlevel": 60,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17324,6 +17705,7 @@
     "enabled": true,
     "code": "cm1",
     "qlevel": 110,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "allskills",
@@ -17356,6 +17738,7 @@
     "enabled": true,
     "code": "7sr",
     "qlevel": 85,
+    "reqlevel": 81,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17400,6 +17783,7 @@
     "enabled": true,
     "code": "7mp",
     "qlevel": 71,
+    "reqlevel": 63,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17444,6 +17828,7 @@
     "enabled": true,
     "code": "7cl",
     "qlevel": 76,
+    "reqlevel": 68,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17494,6 +17879,7 @@
     "enabled": true,
     "code": "7gm",
     "qlevel": 77,
+    "reqlevel": 69,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17544,6 +17930,7 @@
     "enabled": true,
     "code": "7gl",
     "qlevel": 84,
+    "reqlevel": 76,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17582,6 +17969,7 @@
     "enabled": true,
     "code": "7o7",
     "qlevel": 72,
+    "reqlevel": 64,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17626,6 +18014,7 @@
     "enabled": true,
     "code": "6cs",
     "qlevel": 74,
+    "reqlevel": 66,
     "modifiers": [
       {
         "prop": "cast2",
@@ -17670,6 +18059,7 @@
     "enabled": true,
     "code": "7sc",
     "qlevel": 80,
+    "reqlevel": 72,
     "modifiers": [
       {
         "prop": "dmg%",
@@ -17732,6 +18122,7 @@
     "enabled": true,
     "code": "ush",
     "qlevel": 83,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "ac",
@@ -17776,6 +18167,7 @@
     "enabled": true,
     "code": "uhg",
     "qlevel": 78,
+    "reqlevel": 70,
     "modifiers": [
       {
         "prop": "ac",
@@ -17808,6 +18200,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -17840,6 +18233,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-cold",
@@ -17872,6 +18266,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -17904,6 +18299,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -17936,6 +18332,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-ltng",
@@ -17968,6 +18365,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-cold",
@@ -18000,6 +18398,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-fire",
@@ -18032,6 +18431,7 @@
     "enabled": true,
     "code": "jew",
     "qlevel": 85,
+    "reqlevel": 49,
     "modifiers": [
       {
         "prop": "dmg-pois",
@@ -18064,6 +18464,7 @@
     "enabled": true,
     "code": "cm2",
     "qlevel": 110,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "randclassskill",
@@ -18108,6 +18509,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-cold",
@@ -18128,6 +18530,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-fire",
@@ -18148,6 +18551,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-light",
@@ -18168,6 +18572,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-poison",
@@ -18188,6 +18593,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-damage",
@@ -18208,6 +18614,7 @@
     "enabled": false,
     "code": "cm3",
     "qlevel": 69,
+    "reqlevel": 75,
     "modifiers": [
       {
         "prop": "pierce-immunity-magic",

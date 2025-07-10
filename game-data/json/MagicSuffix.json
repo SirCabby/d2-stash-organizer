@@ -1,2246 +1,2994 @@
 [
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 1
   },
   {
-    "name": "of Health"
+    "name": "of Health",
+    "reqlevel": 5
   },
   {
-    "name": "of Protection"
+    "name": "of Protection",
+    "reqlevel": 13
   },
   {
-    "name": "of Absorption"
+    "name": "of Absorption",
+    "reqlevel": 19
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 26
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Warding"
+    "name": "of Warding",
+    "reqlevel": 5
   },
   {
-    "name": "of the Sentinel"
+    "name": "of the Sentinel",
+    "reqlevel": 13
   },
   {
-    "name": "of Guarding"
+    "name": "of Guarding",
+    "reqlevel": 19
   },
   {
-    "name": "of Negation"
+    "name": "of Negation",
+    "reqlevel": 26
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Piercing"
+    "name": "of Piercing",
+    "reqlevel": 18
   },
   {
-    "name": "of Bashing"
+    "name": "of Bashing",
+    "reqlevel": 12
   },
   {
-    "name": "of Puncturing"
+    "name": "of Puncturing",
+    "reqlevel": 4
   },
   {
-    "name": "of Thorns"
+    "name": "of Thorns",
+    "reqlevel": 10
   },
   {
-    "name": "of Spikes"
+    "name": "of Spikes",
+    "reqlevel": 15
   },
   {
-    "name": "of Readiness"
+    "name": "of Readiness",
+    "reqlevel": 1
   },
   {
-    "name": "of Alacrity"
+    "name": "of Alacrity",
+    "reqlevel": 6
   },
   {
-    "name": "of Swiftness"
+    "name": "of Swiftness",
+    "reqlevel": 14
   },
   {
-    "name": "of Quickness"
+    "name": "of Quickness",
+    "reqlevel": 18
   },
   {
-    "name": "of Blocking"
+    "name": "of Blocking",
+    "reqlevel": 1
   },
   {
-    "name": "of Deflecting"
+    "name": "of Deflecting",
+    "reqlevel": 8
   },
   {
-    "name": "of the Apprentice"
+    "name": "of the Apprentice",
+    "reqlevel": 3
   },
   {
-    "name": "of the Magus"
+    "name": "of the Magus",
+    "reqlevel": 12
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 3
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 13
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 41
   },
   {
-    "name": "of Thawing"
+    "name": "of Thawing",
+    "reqlevel": 7
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 3
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 11
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 18
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 30
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 3
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 11
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 18
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 37
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 1
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 3
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 5
   },
   {
-    "name": "of Slaying"
+    "name": "of Slaying",
+    "reqlevel": 8
   },
   {
-    "name": "of Gore"
+    "name": "of Gore",
+    "reqlevel": 10
   },
   {
-    "name": "of Carnage"
+    "name": "of Carnage",
+    "reqlevel": 14
   },
   {
-    "name": "of Slaughter"
+    "name": "of Slaughter",
+    "reqlevel": 18
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 31
   },
   {
-    "name": "of Worth"
+    "name": "of Worth",
+    "reqlevel": 1
   },
   {
-    "name": "of Measure"
+    "name": "of Measure",
+    "reqlevel": 4
   },
   {
-    "name": "of Excellence"
+    "name": "of Excellence",
+    "reqlevel": 9
   },
   {
-    "name": "of Performance"
+    "name": "of Performance",
+    "reqlevel": 13
   },
   {
-    "name": "of Measure"
+    "name": "of Measure",
+    "reqlevel": 27
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 3
   },
   {
-    "name": "of Venom"
+    "name": "of Venom",
+    "reqlevel": 11
   },
   {
-    "name": "of Pestilence"
+    "name": "of Pestilence",
+    "reqlevel": 18
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 33
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 3
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 3
   },
   {
-    "name": "of Skill"
+    "name": "of Skill",
+    "reqlevel": 7
   },
   {
-    "name": "of Skill"
+    "name": "of Skill",
+    "reqlevel": 33
   },
   {
-    "name": "of Accuracy"
+    "name": "of Accuracy",
+    "reqlevel": 13
   },
   {
-    "name": "of Precision"
+    "name": "of Precision",
+    "reqlevel": 16
   },
   {
-    "name": "of Precision"
+    "name": "of Precision",
+    "reqlevel": 45
   },
   {
-    "name": "of Perfection"
+    "name": "of Perfection",
+    "reqlevel": 22
   },
   {
-    "name": "of Balance"
+    "name": "of Balance",
+    "reqlevel": 3
   },
   {
-    "name": "of Stability"
+    "name": "of Stability",
+    "reqlevel": 6
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 7
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 30
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 52
   },
   {
-    "name": "of Regrowth"
+    "name": "of Regrowth",
+    "reqlevel": 12
   },
   {
-    "name": "of Regrowth"
+    "name": "of Regrowth",
+    "reqlevel": 41
   },
   {
-    "name": "of Vileness"
+    "name": "of Vileness",
+    "reqlevel": 6
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 1
   },
   {
-    "name": "of Wealth"
+    "name": "of Wealth",
+    "reqlevel": 12
   },
   {
-    "name": "of Chance"
+    "name": "of Chance",
+    "reqlevel": 9
   },
   {
-    "name": "of Fortune"
+    "name": "of Fortune",
+    "reqlevel": 12
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 3
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 3
   },
   {
-    "name": "of the Mind"
+    "name": "of the Mind",
+    "reqlevel": 7
   },
   {
-    "name": "of Brilliance"
+    "name": "of Brilliance",
+    "reqlevel": 13
   },
   {
-    "name": "of Sorcery"
+    "name": "of Sorcery",
+    "reqlevel": 16
   },
   {
-    "name": "of Wizardry"
+    "name": "of Wizardry",
+    "reqlevel": 22
   },
   {
-    "name": "of the Bear"
+    "name": "of the Bear",
+    "reqlevel": 6
   },
   {
-    "name": "of Light"
+    "name": "of Light",
+    "reqlevel": 4
   },
   {
-    "name": "of Radiance"
+    "name": "of Radiance",
+    "reqlevel": 11
   },
   {
-    "name": "of the Sun"
+    "name": "of the Sun",
+    "reqlevel": 12
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 17
   },
   {
-    "name": "of the Jackal"
+    "name": "of the Jackal",
+    "reqlevel": 2
   },
   {
-    "name": "of the Fox"
+    "name": "of the Fox",
+    "reqlevel": 4
   },
   {
-    "name": "of the Wolf"
+    "name": "of the Wolf",
+    "reqlevel": 10
   },
   {
-    "name": "of the Wolf"
+    "name": "of the Wolf",
+    "reqlevel": 33
   },
   {
-    "name": "of the Tiger"
+    "name": "of the Tiger",
+    "reqlevel": 15
   },
   {
-    "name": "of the Mammoth"
+    "name": "of the Mammoth",
+    "reqlevel": 18
   },
   {
-    "name": "of the Mammoth"
+    "name": "of the Mammoth",
+    "reqlevel": 45
   },
   {
-    "name": "of the Colossus"
+    "name": "of the Colossus",
+    "reqlevel": 22
   },
   {
-    "name": "of the Leech"
+    "name": "of the Leech",
+    "reqlevel": 4
   },
   {
-    "name": "of the Locust"
+    "name": "of the Locust",
+    "reqlevel": 15
   },
   {
-    "name": "of the Bat"
+    "name": "of the Bat",
+    "reqlevel": 4
   },
   {
-    "name": "of the Vampire"
+    "name": "of the Vampire",
+    "reqlevel": 15
   },
   {
-    "name": "of Defiance"
+    "name": "of Defiance",
+    "reqlevel": 18
   },
   {
-    "name": "of Amelioration"
+    "name": "of Amelioration",
+    "reqlevel": 13
   },
   {
-    "name": "of Remedy"
+    "name": "of Remedy",
+    "reqlevel": 5
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Simplicity"
+    "name": "of Simplicity",
+    "reqlevel": 18
   },
   {
-    "name": "of Ease"
+    "name": "of Ease",
+    "reqlevel": 11
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 3
   },
   {
-    "name": "of Might"
+    "name": "of Might",
+    "reqlevel": 7
   },
   {
-    "name": "of the Ox"
+    "name": "of the Ox",
+    "reqlevel": 13
   },
   {
-    "name": "of the Ox"
+    "name": "of the Ox",
+    "reqlevel": 35
   },
   {
-    "name": "of the Giant"
+    "name": "of the Giant",
+    "reqlevel": 16
   },
   {
-    "name": "of the Giant"
+    "name": "of the Giant",
+    "reqlevel": 46
   },
   {
-    "name": "of the Titan"
+    "name": "of the Titan",
+    "reqlevel": 22
   },
   {
-    "name": "of Pacing"
+    "name": "of Pacing",
+    "reqlevel": 1
   },
   {
-    "name": "of Haste"
+    "name": "of Haste",
+    "reqlevel": 9
   },
   {
-    "name": "of Speed"
+    "name": "of Speed",
+    "reqlevel": 16
   },
   {
-    "name": "of Health"
+    "name": "of Health",
+    "reqlevel": 5
   },
   {
-    "name": "of Protection"
+    "name": "of Protection",
+    "reqlevel": 13
   },
   {
-    "name": "of Absorption"
+    "name": "of Absorption",
+    "reqlevel": 19
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 26
   },
   {
-    "name": "of Life Everlasting"
+    "name": "of Life Everlasting",
+    "reqlevel": 37
   },
   {
-    "name": "of Protection"
+    "name": "of Protection",
+    "reqlevel": 18
   },
   {
-    "name": "of Absorption"
+    "name": "of Absorption",
+    "reqlevel": 24
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 33
   },
   {
-    "name": "of Amicae"
+    "name": "of Amicae",
+    "reqlevel": 43
   },
   {
-    "name": "of Warding"
+    "name": "of Warding",
+    "reqlevel": 5
   },
   {
-    "name": "of the Sentinel"
+    "name": "of the Sentinel",
+    "reqlevel": 12
   },
   {
-    "name": "of Guarding"
+    "name": "of Guarding",
+    "reqlevel": 19
   },
   {
-    "name": "of Negation"
+    "name": "of Negation",
+    "reqlevel": 35
   },
   {
-    "name": "of the Sentinel"
+    "name": "of the Sentinel",
+    "reqlevel": 18
   },
   {
-    "name": "of Guarding"
+    "name": "of Guarding",
+    "reqlevel": 24
   },
   {
-    "name": "of Negation"
+    "name": "of Negation",
+    "reqlevel": 33
   },
   {
-    "name": "of Coolness"
+    "name": "of Coolness",
+    "reqlevel": 8
   },
   {
-    "name": "of Inflammability"
+    "name": "of Inflammability",
+    "reqlevel": 14
   },
   {
-    "name": "of Amianthus"
+    "name": "of Amianthus",
+    "reqlevel": 21
   },
   {
-    "name": "of Quenching"
+    "name": "of Quenching",
+    "reqlevel": 30
   },
   {
-    "name": "of Coolness"
+    "name": "of Coolness",
+    "reqlevel": 9
   },
   {
-    "name": "of Inflammability"
+    "name": "of Inflammability",
+    "reqlevel": 16
   },
   {
-    "name": "of Amianthus"
+    "name": "of Amianthus",
+    "reqlevel": 25
   },
   {
-    "name": "of Quenching"
+    "name": "of Quenching",
+    "reqlevel": 38
   },
   {
-    "name": "of Faith"
+    "name": "of Faith",
+    "reqlevel": 17
   },
   {
-    "name": "of Resistance"
+    "name": "of Resistance",
+    "reqlevel": 8
   },
   {
-    "name": "of Insulation"
+    "name": "of Insulation",
+    "reqlevel": 14
   },
   {
-    "name": "of Grounding"
+    "name": "of Grounding",
+    "reqlevel": 21
   },
   {
-    "name": "of the Dynamo"
+    "name": "of the Dynamo",
+    "reqlevel": 30
   },
   {
-    "name": "of Resistance"
+    "name": "of Resistance",
+    "reqlevel": 9
   },
   {
-    "name": "of Insulation"
+    "name": "of Insulation",
+    "reqlevel": 16
   },
   {
-    "name": "of Grounding"
+    "name": "of Grounding",
+    "reqlevel": 25
   },
   {
-    "name": "of the Dynamo"
+    "name": "of the Dynamo",
+    "reqlevel": 38
   },
   {
-    "name": "of Stoicism"
+    "name": "of Stoicism",
+    "reqlevel": 16
   },
   {
-    "name": "of Warming"
+    "name": "of Warming",
+    "reqlevel": 8
   },
   {
-    "name": "of Thawing"
+    "name": "of Thawing",
+    "reqlevel": 14
   },
   {
-    "name": "of the Dunes"
+    "name": "of the Dunes",
+    "reqlevel": 21
   },
   {
-    "name": "of the Scirocco"
+    "name": "of the Scirocco",
+    "reqlevel": 30
   },
   {
-    "name": "of Warming"
+    "name": "of Warming",
+    "reqlevel": 9
   },
   {
-    "name": "of Thawing"
+    "name": "of Thawing",
+    "reqlevel": 16
   },
   {
-    "name": "of the Dunes"
+    "name": "of the Dunes",
+    "reqlevel": 25
   },
   {
-    "name": "of the Scirocco"
+    "name": "of the Scirocco",
+    "reqlevel": 38
   },
   {
-    "name": "of Desire"
+    "name": "of Desire",
+    "reqlevel": 17
   },
   {
-    "name": "of Piercing"
+    "name": "of Piercing",
+    "reqlevel": 18
   },
   {
-    "name": "of Bashing"
+    "name": "of Bashing",
+    "reqlevel": 12
   },
   {
-    "name": "of Puncturing"
+    "name": "of Puncturing",
+    "reqlevel": 4
   },
   {
-    "name": "of Thorns"
+    "name": "of Thorns",
+    "reqlevel": 10
   },
   {
-    "name": "of Spikes"
+    "name": "of Spikes",
+    "reqlevel": 15
   },
   {
-    "name": "of Razors"
+    "name": "of Razors",
+    "reqlevel": 26
   },
   {
-    "name": "of Swords"
+    "name": "of Swords",
+    "reqlevel": 39
   },
   {
-    "name": "of Malice"
+    "name": "of Malice",
+    "reqlevel": 29
   },
   {
-    "name": "of Readiness"
+    "name": "of Readiness",
+    "reqlevel": 3
   },
   {
-    "name": "of Alacrity"
+    "name": "of Alacrity",
+    "reqlevel": 17
   },
   {
-    "name": "of Swiftness"
+    "name": "of Swiftness",
+    "reqlevel": 26
   },
   {
-    "name": "of Quickness"
+    "name": "of Quickness",
+    "reqlevel": 38
   },
   {
-    "name": "of Alacrity"
+    "name": "of Alacrity",
+    "reqlevel": 35
   },
   {
-    "name": "of Fervor"
+    "name": "of Fervor",
+    "reqlevel": 31
   },
   {
-    "name": "of Blocking"
+    "name": "of Blocking",
+    "reqlevel": 1
   },
   {
-    "name": "of Deflecting"
+    "name": "of Deflecting",
+    "reqlevel": 8
   },
   {
-    "name": "of the Apprentice"
+    "name": "of the Apprentice",
+    "reqlevel": 3
   },
   {
-    "name": "of the Magus"
+    "name": "of the Magus",
+    "reqlevel": 21
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 3
   },
   {
-    "name": "of the Icicle"
+    "name": "of the Icicle",
+    "reqlevel": 9
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 20
   },
   {
-    "name": "of Winter"
+    "name": "of Winter",
+    "reqlevel": 37
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 41
   },
   {
-    "name": "of Frigidity"
+    "name": "of Frigidity",
+    "reqlevel": 12
   },
   {
-    "name": "of Thawing"
+    "name": "of Thawing",
+    "reqlevel": 7
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 3
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 11
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 18
   },
   {
-    "name": "of Incineration"
+    "name": "of Incineration",
+    "reqlevel": 35
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 30
   },
   {
-    "name": "of Passion"
+    "name": "of Passion",
+    "reqlevel": 11
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 3
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 11
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 18
   },
   {
-    "name": "of Storms"
+    "name": "of Storms",
+    "reqlevel": 26
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 37
   },
   {
-    "name": "of Ennui"
+    "name": "of Ennui",
+    "reqlevel": 11
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 1
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 3
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 5
   },
   {
-    "name": "of Slaying"
+    "name": "of Slaying",
+    "reqlevel": 8
   },
   {
-    "name": "of Gore"
+    "name": "of Gore",
+    "reqlevel": 10
   },
   {
-    "name": "of Carnage"
+    "name": "of Carnage",
+    "reqlevel": 14
   },
   {
-    "name": "of Slaughter"
+    "name": "of Slaughter",
+    "reqlevel": 18
   },
   {
-    "name": "of Butchery"
+    "name": "of Butchery",
+    "reqlevel": 27
   },
   {
-    "name": "of Evisceration"
+    "name": "of Evisceration",
+    "reqlevel": 37
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 34
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 1
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 6
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 11
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 17
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 22
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 29
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 37
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 6
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 13
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 21
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 30
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 40
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 15
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 28
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 43
   },
   {
-    "name": "of Ire"
+    "name": "of Ire",
+    "reqlevel": 3
   },
   {
-    "name": "of Wrath"
+    "name": "of Wrath",
+    "reqlevel": 8
   },
   {
-    "name": "of Carnage"
+    "name": "of Carnage",
+    "reqlevel": 18
   },
   {
-    "name": "of Worth"
+    "name": "of Worth",
+    "reqlevel": 1
   },
   {
-    "name": "of Measure"
+    "name": "of Measure",
+    "reqlevel": 9
   },
   {
-    "name": "of Excellence"
+    "name": "of Excellence",
+    "reqlevel": 18
   },
   {
-    "name": "of Performance"
+    "name": "of Performance",
+    "reqlevel": 40
   },
   {
-    "name": "of Transcendence"
+    "name": "of Transcendence",
+    "reqlevel": 68
   },
   {
-    "name": "of Worth"
+    "name": "of Worth",
+    "reqlevel": 11
   },
   {
-    "name": "of Measure"
+    "name": "of Measure",
+    "reqlevel": 29
   },
   {
-    "name": "of Excellence"
+    "name": "of Excellence",
+    "reqlevel": 51
   },
   {
-    "name": "of Performance"
+    "name": "of Performance",
+    "reqlevel": 73
   },
   {
-    "name": "of Joyfulness"
+    "name": "of Joyfulness",
+    "reqlevel": 3
   },
   {
-    "name": "of Bliss"
+    "name": "of Bliss",
+    "reqlevel": 37
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 3
   },
   {
-    "name": "of Venom"
+    "name": "of Venom",
+    "reqlevel": 11
   },
   {
-    "name": "of Pestilence"
+    "name": "of Pestilence",
+    "reqlevel": 18
   },
   {
-    "name": "of Anthrax"
+    "name": "of Anthrax",
+    "reqlevel": 25
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 33
   },
   {
-    "name": "of Envy"
+    "name": "of Envy",
+    "reqlevel": 1
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 1
   },
   {
-    "name": "of Skill"
+    "name": "of Skill",
+    "reqlevel": 8
   },
   {
-    "name": "of Accuracy"
+    "name": "of Accuracy",
+    "reqlevel": 20
   },
   {
-    "name": "of Precision"
+    "name": "of Precision",
+    "reqlevel": 35
   },
   {
-    "name": "of Perfection"
+    "name": "of Perfection",
+    "reqlevel": 51
   },
   {
-    "name": "of Nirvana"
+    "name": "of Nirvana",
+    "reqlevel": 64
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 4
   },
   {
-    "name": "of Skill"
+    "name": "of Skill",
+    "reqlevel": 16
   },
   {
-    "name": "of Accuracy"
+    "name": "of Accuracy",
+    "reqlevel": 31
   },
   {
-    "name": "of Precision"
+    "name": "of Precision",
+    "reqlevel": 48
   },
   {
-    "name": "of Perfection"
+    "name": "of Perfection",
+    "reqlevel": 67
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 9
   },
   {
-    "name": "of Skill"
+    "name": "of Skill",
+    "reqlevel": 26
   },
   {
-    "name": "of Accuracy"
+    "name": "of Accuracy",
+    "reqlevel": 38
   },
   {
-    "name": "of Precision"
+    "name": "of Precision",
+    "reqlevel": 52
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 1
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 2
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 5
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 10
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 13
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 16
   },
   {
-    "name": "of Daring"
+    "name": "of Daring",
+    "reqlevel": 5
   },
   {
-    "name": "of Balance"
+    "name": "of Balance",
+    "reqlevel": 3
   },
   {
-    "name": "of Equilibrium"
+    "name": "of Equilibrium",
+    "reqlevel": 6
   },
   {
-    "name": "of Stability"
+    "name": "of Stability",
+    "reqlevel": 13
   },
   {
-    "name": "of Balance"
+    "name": "of Balance",
+    "reqlevel": 1
   },
   {
-    "name": "of Balance"
+    "name": "of Balance",
+    "reqlevel": 14
   },
   {
-    "name": "of Balance"
+    "name": "of Balance",
+    "reqlevel": 29
   },
   {
-    "name": "of Truth"
+    "name": "of Truth",
+    "reqlevel": 36
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 7
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 30
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 52
   },
   {
-    "name": "of Regrowth"
+    "name": "of Regrowth",
+    "reqlevel": 12
   },
   {
-    "name": "of Regrowth"
+    "name": "of Regrowth",
+    "reqlevel": 41
   },
   {
-    "name": "of Revivification"
+    "name": "of Revivification",
+    "reqlevel": 30
   },
   {
-    "name": "of Honor"
+    "name": "of Honor",
+    "reqlevel": 35
   },
   {
-    "name": "of Vileness"
+    "name": "of Vileness",
+    "reqlevel": 6
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 1
   },
   {
-    "name": "of Wealth"
+    "name": "of Wealth",
+    "reqlevel": 12
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 1
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 5
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 14
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 5
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 15
   },
   {
-    "name": "of Greed"
+    "name": "of Greed",
+    "reqlevel": 15
   },
   {
-    "name": "of Avarice"
+    "name": "of Avarice",
+    "reqlevel": 1
   },
   {
-    "name": "of Chance"
+    "name": "of Chance",
+    "reqlevel": 9
   },
   {
-    "name": "of Fortune"
+    "name": "of Fortune",
+    "reqlevel": 12
   },
   {
-    "name": "of Fortune"
+    "name": "of Fortune",
+    "reqlevel": 31
   },
   {
-    "name": "of Luck"
+    "name": "of Luck",
+    "reqlevel": 19
   },
   {
-    "name": "of Fortune"
+    "name": "of Fortune",
+    "reqlevel": 18
   },
   {
-    "name": "of Good Luck"
+    "name": "of Good Luck",
+    "reqlevel": 33
   },
   {
-    "name": "of Prosperity"
+    "name": "of Prosperity",
+    "reqlevel": 19
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 1
   },
   {
-    "name": "of the Mind"
+    "name": "of the Mind",
+    "reqlevel": 3
   },
   {
-    "name": "of Brilliance"
+    "name": "of Brilliance",
+    "reqlevel": 9
   },
   {
-    "name": "of Sorcery"
+    "name": "of Sorcery",
+    "reqlevel": 16
   },
   {
-    "name": "of Wizardry"
+    "name": "of Wizardry",
+    "reqlevel": 23
   },
   {
-    "name": "of Enlightenment"
+    "name": "of Enlightenment",
+    "reqlevel": 33
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 5
   },
   {
-    "name": "of the Mind"
+    "name": "of the Mind",
+    "reqlevel": 9
   },
   {
-    "name": "of Brilliance"
+    "name": "of Brilliance",
+    "reqlevel": 16
   },
   {
-    "name": "of Sorcery"
+    "name": "of Sorcery",
+    "reqlevel": 23
   },
   {
-    "name": "of Wizardry"
+    "name": "of Wizardry",
+    "reqlevel": 33
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 3
   },
   {
-    "name": "of the Mind"
+    "name": "of the Mind",
+    "reqlevel": 7
   },
   {
-    "name": "of Brilliance"
+    "name": "of Brilliance",
+    "reqlevel": 12
   },
   {
-    "name": "of Sorcery"
+    "name": "of Sorcery",
+    "reqlevel": 21
   },
   {
-    "name": "of Knowledge"
+    "name": "of Knowledge",
+    "reqlevel": 6
   },
   {
-    "name": "of the Bear"
+    "name": "of the Bear",
+    "reqlevel": 6
   },
   {
-    "name": "of Light"
+    "name": "of Light",
+    "reqlevel": 4
   },
   {
-    "name": "of Radiance"
+    "name": "of Radiance",
+    "reqlevel": 11
   },
   {
-    "name": "of the Sun"
+    "name": "of the Sun",
+    "reqlevel": 12
   },
   {
-    "name": "of the Jackal"
+    "name": "of the Jackal",
+    "reqlevel": 1
   },
   {
-    "name": "of the Fox"
+    "name": "of the Fox",
+    "reqlevel": 5
   },
   {
-    "name": "of the Wolf"
+    "name": "of the Wolf",
+    "reqlevel": 11
   },
   {
-    "name": "of the Tiger"
+    "name": "of the Tiger",
+    "reqlevel": 15
   },
   {
-    "name": "of the Mammoth"
+    "name": "of the Mammoth",
+    "reqlevel": 18
   },
   {
-    "name": "of the Colossus"
+    "name": "of the Colossus",
+    "reqlevel": 22
   },
   {
-    "name": "of the Squid"
+    "name": "of the Squid",
+    "reqlevel": 30
   },
   {
-    "name": "of the Whale"
+    "name": "of the Whale",
+    "reqlevel": 37
   },
   {
-    "name": "of the Jackal"
+    "name": "of the Jackal",
+    "reqlevel": 3
   },
   {
-    "name": "of the Fox"
+    "name": "of the Fox",
+    "reqlevel": 8
   },
   {
-    "name": "of the Wolf"
+    "name": "of the Wolf",
+    "reqlevel": 20
   },
   {
-    "name": "of the Tiger"
+    "name": "of the Tiger",
+    "reqlevel": 35
   },
   {
-    "name": "of the Mammoth"
+    "name": "of the Mammoth",
+    "reqlevel": 51
   },
   {
-    "name": "of the Colossus"
+    "name": "of the Colossus",
+    "reqlevel": 67
   },
   {
-    "name": "of the Jackal"
+    "name": "of the Jackal",
+    "reqlevel": 6
   },
   {
-    "name": "of the Fox"
+    "name": "of the Fox",
+    "reqlevel": 13
   },
   {
-    "name": "of the Wolf"
+    "name": "of the Wolf",
+    "reqlevel": 26
   },
   {
-    "name": "of the Tiger"
+    "name": "of the Tiger",
+    "reqlevel": 43
   },
   {
-    "name": "of the Mammoth"
+    "name": "of the Mammoth",
+    "reqlevel": 60
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 1
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 6
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 14
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 23
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 37
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 53
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 69
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 83
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 97
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 9
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 9
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 19
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 34
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 50
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 66
   },
   {
-    "name": "of Life"
+    "name": "of Life",
+    "reqlevel": 14
   },
   {
-    "name": "of Sustenance"
+    "name": "of Sustenance",
+    "reqlevel": 17
   },
   {
-    "name": "of Vita"
+    "name": "of Vita",
+    "reqlevel": 39
   },
   {
-    "name": "of Spirit"
+    "name": "of Spirit",
+    "reqlevel": 1
   },
   {
-    "name": "of Hope"
+    "name": "of Hope",
+    "reqlevel": 37
   },
   {
-    "name": "of the Leech"
+    "name": "of the Leech",
+    "reqlevel": 4
   },
   {
-    "name": "of the Locust"
+    "name": "of the Locust",
+    "reqlevel": 15
   },
   {
-    "name": "of the Lamprey"
+    "name": "of the Lamprey",
+    "reqlevel": 43
   },
   {
-    "name": "of the Leech"
+    "name": "of the Leech",
+    "reqlevel": 10
   },
   {
-    "name": "of the Locust"
+    "name": "of the Locust",
+    "reqlevel": 35
   },
   {
-    "name": "of the Lamprey"
+    "name": "of the Lamprey",
+    "reqlevel": 65
   },
   {
-    "name": "of the Leech"
+    "name": "of the Leech",
+    "reqlevel": 26
   },
   {
-    "name": "of the Bat"
+    "name": "of the Bat",
+    "reqlevel": 4
   },
   {
-    "name": "of the Wraith"
+    "name": "of the Wraith",
+    "reqlevel": 16
   },
   {
-    "name": "of the Vampire"
+    "name": "of the Vampire",
+    "reqlevel": 48
   },
   {
-    "name": "of the Bat"
+    "name": "of the Bat",
+    "reqlevel": 11
   },
   {
-    "name": "of the Wraith"
+    "name": "of the Wraith",
+    "reqlevel": 40
   },
   {
-    "name": "of the Vampire"
+    "name": "of the Vampire",
+    "reqlevel": 66
   },
   {
-    "name": "of the Bat"
+    "name": "of the Bat",
+    "reqlevel": 27
   },
   {
-    "name": "of Defiance"
+    "name": "of Defiance",
+    "reqlevel": 18
   },
   {
-    "name": "of Amelioration"
+    "name": "of Amelioration",
+    "reqlevel": 13
   },
   {
-    "name": "of Remedy"
+    "name": "of Remedy",
+    "reqlevel": 5
   },
   {
-    "name": "of Simplicity"
+    "name": "of Simplicity",
+    "reqlevel": 18
   },
   {
-    "name": "of Ease"
+    "name": "of Ease",
+    "reqlevel": 11
   },
   {
-    "name": "of Freedom"
+    "name": "of Freedom",
+    "reqlevel": 1
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 1
   },
   {
-    "name": "of Might"
+    "name": "of Might",
+    "reqlevel": 8
   },
   {
-    "name": "of the Ox"
+    "name": "of the Ox",
+    "reqlevel": 19
   },
   {
-    "name": "of the Giant"
+    "name": "of the Giant",
+    "reqlevel": 34
   },
   {
-    "name": "of the Titan"
+    "name": "of the Titan",
+    "reqlevel": 50
   },
   {
-    "name": "of Atlas"
+    "name": "of Atlas",
+    "reqlevel": 63
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 3
   },
   {
-    "name": "of Might"
+    "name": "of Might",
+    "reqlevel": 15
   },
   {
-    "name": "of the Ox"
+    "name": "of the Ox",
+    "reqlevel": 30
   },
   {
-    "name": "of the Giant"
+    "name": "of the Giant",
+    "reqlevel": 47
   },
   {
-    "name": "of the Titan"
+    "name": "of the Titan",
+    "reqlevel": 66
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 8
   },
   {
-    "name": "of Might"
+    "name": "of Might",
+    "reqlevel": 25
   },
   {
-    "name": "of the Ox"
+    "name": "of the Ox",
+    "reqlevel": 37
   },
   {
-    "name": "of the Giant"
+    "name": "of the Giant",
+    "reqlevel": 51
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 1
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 2
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 5
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 10
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 13
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 16
   },
   {
-    "name": "of Virility"
+    "name": "of Virility",
+    "reqlevel": 13
   },
   {
-    "name": "of Pacing"
+    "name": "of Pacing",
+    "reqlevel": 8
   },
   {
-    "name": "of Haste"
+    "name": "of Haste",
+    "reqlevel": 16
   },
   {
-    "name": "of Speed"
+    "name": "of Speed",
+    "reqlevel": 29
   },
   {
-    "name": "of Transportation"
+    "name": "of Transportation",
+    "reqlevel": 57
   },
   {
-    "name": "of Acceleration"
+    "name": "of Acceleration",
+    "reqlevel": 43
   },
   {
-    "name": "of Inertia"
+    "name": "of Inertia",
+    "reqlevel": 14
   },
   {
-    "name": "of Inertia"
+    "name": "of Inertia",
+    "reqlevel": 18
   },
   {
-    "name": "of Inertia"
+    "name": "of Inertia",
+    "reqlevel": 27
   },
   {
-    "name": "of Self-Repair"
+    "name": "of Self-Repair",
+    "reqlevel": 1
   },
   {
-    "name": "of Restoration"
+    "name": "of Restoration",
+    "reqlevel": 12
   },
   {
-    "name": "of Ages"
+    "name": "of Ages",
+    "reqlevel": 42
   },
   {
-    "name": "of Replenishing"
+    "name": "of Replenishing",
+    "reqlevel": 3
   },
   {
-    "name": "of Propogation"
+    "name": "of Propogation",
+    "reqlevel": 18
   },
   {
-    "name": "of the Centaur"
+    "name": "of the Centaur",
+    "reqlevel": 1
   },
   {
-    "name": "of Memory"
+    "name": "of Memory",
+    "reqlevel": 1
   },
   {
-    "name": "of the Elephant"
+    "name": "of the Elephant",
+    "reqlevel": 7
   },
   {
-    "name": "of Power"
+    "name": "of Power",
+    "reqlevel": 1
   },
   {
-    "name": "of Grace"
+    "name": "of Grace",
+    "reqlevel": 1
   },
   {
-    "name": "of Grace and Power"
+    "name": "of Grace and Power",
+    "reqlevel": 1
   },
   {
-    "name": "of the Yeti"
+    "name": "of the Yeti",
+    "reqlevel": 1
   },
   {
-    "name": "of the Phoenix"
+    "name": "of the Phoenix",
+    "reqlevel": 1
   },
   {
-    "name": "of the Efreeti"
+    "name": "of the Efreeti",
+    "reqlevel": 1
   },
   {
-    "name": "of the Cobra"
+    "name": "of the Cobra",
+    "reqlevel": 1
   },
   {
-    "name": "of the Elements"
+    "name": "of the Elements",
+    "reqlevel": 1
   },
   {
-    "name": "of Firebolts"
+    "name": "of Firebolts",
+    "reqlevel": 12
   },
   {
-    "name": "of Firebolts"
+    "name": "of Firebolts",
+    "reqlevel": 4
   },
   {
-    "name": "of Firebolts"
+    "name": "of Firebolts",
+    "reqlevel": 15
   },
   {
-    "name": "of Charged Bolt"
+    "name": "of Charged Bolt",
+    "reqlevel": 4
   },
   {
-    "name": "of Charged Bolt"
+    "name": "of Charged Bolt",
+    "reqlevel": 12
   },
   {
-    "name": "of Charged Bolt"
+    "name": "of Charged Bolt",
+    "reqlevel": 19
   },
   {
-    "name": "of Icebolt"
+    "name": "of Icebolt",
+    "reqlevel": 4
   },
   {
-    "name": "of Frozen Armor"
+    "name": "of Frozen Armor",
+    "reqlevel": 0
   },
   {
-    "name": "of Static Field"
+    "name": "of Static Field",
+    "reqlevel": 0
   },
   {
-    "name": "of Telekinesis"
+    "name": "of Telekinesis",
+    "reqlevel": 0
   },
   {
-    "name": "of Frost Shield"
+    "name": "of Frost Shield",
+    "reqlevel": 9
   },
   {
-    "name": "of Ice Blast"
+    "name": "of Ice Blast",
+    "reqlevel": 0
   },
   {
-    "name": "of Blaze"
+    "name": "of Blaze",
+    "reqlevel": 0
   },
   {
-    "name": "of Fire Ball"
+    "name": "of Fire Ball",
+    "reqlevel": 0
   },
   {
-    "name": "of Nova"
+    "name": "of Nova",
+    "reqlevel": 13
   },
   {
-    "name": "of Nova"
+    "name": "of Nova",
+    "reqlevel": 21
   },
   {
-    "name": "of Nova Shield"
+    "name": "of Nova Shield",
+    "reqlevel": 13
   },
   {
-    "name": "of Nova Shield"
+    "name": "of Nova Shield",
+    "reqlevel": 21
   },
   {
-    "name": "of Nova Shield"
+    "name": "of Nova Shield",
+    "reqlevel": 28
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 13
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 18
   },
   {
-    "name": "of Shiver Armor"
+    "name": "of Shiver Armor",
+    "reqlevel": 0
   },
   {
-    "name": "of Fire Wall"
+    "name": "of Fire Wall",
+    "reqlevel": 0
   },
   {
-    "name": "of Enchant"
+    "name": "of Enchant",
+    "reqlevel": 0
   },
   {
-    "name": "of Chain Lightning"
+    "name": "of Chain Lightning",
+    "reqlevel": 18
   },
   {
-    "name": "of Chain Lightning"
+    "name": "of Chain Lightning",
+    "reqlevel": 26
   },
   {
-    "name": "of Chain Lightning"
+    "name": "of Chain Lightning",
+    "reqlevel": 33
   },
   {
-    "name": "of Teleport Shield"
+    "name": "of Teleport Shield",
+    "reqlevel": 18
   },
   {
-    "name": "of Teleport Shield"
+    "name": "of Teleport Shield",
+    "reqlevel": 26
   },
   {
-    "name": "of Teleport Shield"
+    "name": "of Teleport Shield",
+    "reqlevel": 33
   },
   {
-    "name": "of Glacial Spike"
+    "name": "of Glacial Spike",
+    "reqlevel": 0
   },
   {
-    "name": "of Meteor"
+    "name": "of Meteor",
+    "reqlevel": 0
   },
   {
-    "name": "of Thunder Storm"
+    "name": "of Thunder Storm",
+    "reqlevel": 0
   },
   {
-    "name": "of Energy Shield"
+    "name": "of Energy Shield",
+    "reqlevel": 0
   },
   {
-    "name": "of Blizzard"
+    "name": "of Blizzard",
+    "reqlevel": 0
   },
   {
-    "name": "of Chilling Armor"
+    "name": "of Chilling Armor",
+    "reqlevel": 0
   },
   {
-    "name": "of Hydra Shield"
+    "name": "of Hydra Shield",
+    "reqlevel": 30
   },
   {
-    "name": "of Frozen Orb"
+    "name": "of Frozen Orb",
+    "reqlevel": 0
   },
   {
-    "name": "of Dawn"
+    "name": "of Dawn",
+    "reqlevel": 22
   },
   {
-    "name": "of Sunlight"
+    "name": "of Sunlight",
+    "reqlevel": 22
   },
   {
-    "name": "of Magic Arrow"
+    "name": "of Magic Arrow",
+    "reqlevel": 11
   },
   {
-    "name": "of Magic Arrow"
+    "name": "of Magic Arrow",
+    "reqlevel": 28
   },
   {
-    "name": "of Fire Arrow"
+    "name": "of Fire Arrow",
+    "reqlevel": 12
   },
   {
-    "name": "of Fire Arrow"
+    "name": "of Fire Arrow",
+    "reqlevel": 32
   },
   {
-    "name": "of Inner Sight"
+    "name": "of Inner Sight",
+    "reqlevel": 14
   },
   {
-    "name": "of Inner Sight"
+    "name": "of Inner Sight",
+    "reqlevel": 42
   },
   {
-    "name": "of Jab"
+    "name": "of Jab",
+    "reqlevel": 18
   },
   {
-    "name": "of Jab"
+    "name": "of Jab",
+    "reqlevel": 42
   },
   {
-    "name": "of Cold Arrow"
+    "name": "of Cold Arrow",
+    "reqlevel": 16
   },
   {
-    "name": "of Cold Arrow"
+    "name": "of Cold Arrow",
+    "reqlevel": 39
   },
   {
-    "name": "of Multiple Shot"
+    "name": "of Multiple Shot",
+    "reqlevel": 19
   },
   {
-    "name": "of Multiple Shot"
+    "name": "of Multiple Shot",
+    "reqlevel": 55
   },
   {
-    "name": "of Power Strike"
+    "name": "of Power Strike",
+    "reqlevel": 13
   },
   {
-    "name": "of Power Strike"
+    "name": "of Power Strike",
+    "reqlevel": 47
   },
   {
-    "name": "of Poison Jab"
+    "name": "of Poison Jab",
+    "reqlevel": 18
   },
   {
-    "name": "of Poison Jab"
+    "name": "of Poison Jab",
+    "reqlevel": 59
   },
   {
-    "name": "of Exploding Arrow"
+    "name": "of Exploding Arrow",
+    "reqlevel": 26
   },
   {
-    "name": "of Exploding Arrow"
+    "name": "of Exploding Arrow",
+    "reqlevel": 61
   },
   {
-    "name": "of Slow Missile"
+    "name": "of Slow Missile",
+    "reqlevel": 27
   },
   {
-    "name": "of Slow Missile"
+    "name": "of Slow Missile",
+    "reqlevel": 60
   },
   {
-    "name": "of Impaling Strike"
+    "name": "of Impaling Strike",
+    "reqlevel": 18
   },
   {
-    "name": "of Impaling Strike"
+    "name": "of Impaling Strike",
+    "reqlevel": 51
   },
   {
-    "name": "of Lightning Javelin"
+    "name": "of Lightning Javelin",
+    "reqlevel": 18
   },
   {
-    "name": "of Lightning Javelin"
+    "name": "of Lightning Javelin",
+    "reqlevel": 62
   },
   {
-    "name": "of Ice Arrow"
+    "name": "of Ice Arrow",
+    "reqlevel": 28
   },
   {
-    "name": "of Ice Arrow"
+    "name": "of Ice Arrow",
+    "reqlevel": 64
   },
   {
-    "name": "of Guided Arrow"
+    "name": "of Guided Arrow",
+    "reqlevel": 26
   },
   {
-    "name": "of Guided Arrow"
+    "name": "of Guided Arrow",
+    "reqlevel": 61
   },
   {
-    "name": "of Charged Strike"
+    "name": "of Charged Strike",
+    "reqlevel": 25
   },
   {
-    "name": "of Charged Strike"
+    "name": "of Charged Strike",
+    "reqlevel": 60
   },
   {
-    "name": "of Plague Jab"
+    "name": "of Plague Jab",
+    "reqlevel": 27
   },
   {
-    "name": "of Plague Jab"
+    "name": "of Plague Jab",
+    "reqlevel": 63
   },
   {
-    "name": "of Immolating Arrow"
+    "name": "of Immolating Arrow",
+    "reqlevel": 36
   },
   {
-    "name": "of Immolating Arrow"
+    "name": "of Immolating Arrow",
+    "reqlevel": 77
   },
   {
-    "name": "of Fending"
+    "name": "of Fending",
+    "reqlevel": 35
   },
   {
-    "name": "of Fending"
+    "name": "of Fending",
+    "reqlevel": 75
   },
   {
-    "name": "of Freezing Arrow"
+    "name": "of Freezing Arrow",
+    "reqlevel": 42
   },
   {
-    "name": "of Freezing Arrow"
+    "name": "of Freezing Arrow",
+    "reqlevel": 86
   },
   {
-    "name": "of Lightning Strike"
+    "name": "of Lightning Strike",
+    "reqlevel": 39
   },
   {
-    "name": "of Lightning Strike"
+    "name": "of Lightning Strike",
+    "reqlevel": 82
   },
   {
-    "name": "of Lightning Fury"
+    "name": "of Lightning Fury",
+    "reqlevel": 41
   },
   {
-    "name": "of Lightning Fury"
+    "name": "of Lightning Fury",
+    "reqlevel": 84
   },
   {
-    "name": "of Fire Bolt"
+    "name": "of Fire Bolt",
+    "reqlevel": 7
   },
   {
-    "name": "of Fire Bolt"
+    "name": "of Fire Bolt",
+    "reqlevel": 14
   },
   {
-    "name": "of Charged Bolt"
+    "name": "of Charged Bolt",
+    "reqlevel": 7
   },
   {
-    "name": "of Charged Bolt"
+    "name": "of Charged Bolt",
+    "reqlevel": 14
   },
   {
-    "name": "of Ice Bolt"
+    "name": "of Ice Bolt",
+    "reqlevel": 7
   },
   {
-    "name": "of Ice Bolt"
+    "name": "of Ice Bolt",
+    "reqlevel": 14
   },
   {
-    "name": "of Frozen Armor"
+    "name": "of Frozen Armor",
+    "reqlevel": 7
   },
   {
-    "name": "of Frozen Armor"
+    "name": "of Frozen Armor",
+    "reqlevel": 14
   },
   {
-    "name": "of Static Field"
+    "name": "of Static Field",
+    "reqlevel": 12
   },
   {
-    "name": "of Static Field"
+    "name": "of Static Field",
+    "reqlevel": 24
   },
   {
-    "name": "of Telekinesis"
+    "name": "of Telekinesis",
+    "reqlevel": 12
   },
   {
-    "name": "of Telekinesis"
+    "name": "of Telekinesis",
+    "reqlevel": 24
   },
   {
-    "name": "of Frost Nova"
+    "name": "of Frost Nova",
+    "reqlevel": 12
   },
   {
-    "name": "of Frost Nova"
+    "name": "of Frost Nova",
+    "reqlevel": 24
   },
   {
-    "name": "of Ice Blast"
+    "name": "of Ice Blast",
+    "reqlevel": 12
   },
   {
-    "name": "of Ice Blast"
+    "name": "of Ice Blast",
+    "reqlevel": 24
   },
   {
-    "name": "of Blazing"
+    "name": "of Blazing",
+    "reqlevel": 18
   },
   {
-    "name": "of Blazing"
+    "name": "of Blazing",
+    "reqlevel": 36
   },
   {
-    "name": "of Fire Ball"
+    "name": "of Fire Ball",
+    "reqlevel": 18
   },
   {
-    "name": "of Fire Ball"
+    "name": "of Fire Ball",
+    "reqlevel": 36
   },
   {
-    "name": "of Nova"
+    "name": "of Nova",
+    "reqlevel": 18
   },
   {
-    "name": "of Nova"
+    "name": "of Nova",
+    "reqlevel": 36
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 18
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 36
   },
   {
-    "name": "of Shiver Armor"
+    "name": "of Shiver Armor",
+    "reqlevel": 18
   },
   {
-    "name": "of Shiver Armor"
+    "name": "of Shiver Armor",
+    "reqlevel": 36
   },
   {
-    "name": "of Fire Wall"
+    "name": "of Fire Wall",
+    "reqlevel": 24
   },
   {
-    "name": "of Fire Wall"
+    "name": "of Fire Wall",
+    "reqlevel": 48
   },
   {
-    "name": "of Enchantment"
+    "name": "of Enchantment",
+    "reqlevel": 24
   },
   {
-    "name": "of Enchantment"
+    "name": "of Enchantment",
+    "reqlevel": 48
   },
   {
-    "name": "of Chain Lightning"
+    "name": "of Chain Lightning",
+    "reqlevel": 24
   },
   {
-    "name": "of Chain Lightning"
+    "name": "of Chain Lightning",
+    "reqlevel": 48
   },
   {
-    "name": "of Teleportation"
+    "name": "of Teleportation",
+    "reqlevel": 24
   },
   {
-    "name": "of Teleportation"
+    "name": "of Teleportation",
+    "reqlevel": 48
   },
   {
-    "name": "of Glacial Spike"
+    "name": "of Glacial Spike",
+    "reqlevel": 24
   },
   {
-    "name": "of Glacial Spike"
+    "name": "of Glacial Spike",
+    "reqlevel": 48
   },
   {
-    "name": "of Meteor"
+    "name": "of Meteor",
+    "reqlevel": 30
   },
   {
-    "name": "of Meteor"
+    "name": "of Meteor",
+    "reqlevel": 60
   },
   {
-    "name": "of Thunder Storm"
+    "name": "of Thunder Storm",
+    "reqlevel": 30
   },
   {
-    "name": "of Thunder Storm"
+    "name": "of Thunder Storm",
+    "reqlevel": 60
   },
   {
-    "name": "of Energy Shield"
+    "name": "of Energy Shield",
+    "reqlevel": 30
   },
   {
-    "name": "of Energy Shield"
+    "name": "of Energy Shield",
+    "reqlevel": 60
   },
   {
-    "name": "of Blizzard"
+    "name": "of Blizzard",
+    "reqlevel": 30
   },
   {
-    "name": "of Blizzard"
+    "name": "of Blizzard",
+    "reqlevel": 60
   },
   {
-    "name": "of Chilling Armor"
+    "name": "of Chilling Armor",
+    "reqlevel": 30
   },
   {
-    "name": "of Chilling Armor"
+    "name": "of Chilling Armor",
+    "reqlevel": 60
   },
   {
-    "name": "of Hydra"
+    "name": "of Hydra",
+    "reqlevel": 36
   },
   {
-    "name": "of Hydra"
+    "name": "of Hydra",
+    "reqlevel": 72
   },
   {
-    "name": "of Frozen Orb"
+    "name": "of Frozen Orb",
+    "reqlevel": 36
   },
   {
-    "name": "of Frozen Orb"
+    "name": "of Frozen Orb",
+    "reqlevel": 72
   },
   {
-    "name": "of Amplify Damage"
+    "name": "of Amplify Damage",
+    "reqlevel": 7
   },
   {
-    "name": "of Amplify Damage"
+    "name": "of Amplify Damage",
+    "reqlevel": 14
   },
   {
-    "name": "of Teeth"
+    "name": "of Teeth",
+    "reqlevel": 7
   },
   {
-    "name": "of Teeth"
+    "name": "of Teeth",
+    "reqlevel": 14
   },
   {
-    "name": "of Bone Armor"
+    "name": "of Bone Armor",
+    "reqlevel": 7
   },
   {
-    "name": "of Bone Armor"
+    "name": "of Bone Armor",
+    "reqlevel": 14
   },
   {
-    "name": "of Raise Skeleton"
+    "name": "of Raise Skeleton",
+    "reqlevel": 7
   },
   {
-    "name": "of Raise Skeleton"
+    "name": "of Raise Skeleton",
+    "reqlevel": 14
   },
   {
-    "name": "of Dim Vision"
+    "name": "of Dim Vision",
+    "reqlevel": 12
   },
   {
-    "name": "of Dim Vision"
+    "name": "of Dim Vision",
+    "reqlevel": 24
   },
   {
-    "name": "of Weaken"
+    "name": "of Weaken",
+    "reqlevel": 12
   },
   {
-    "name": "of Weaken"
+    "name": "of Weaken",
+    "reqlevel": 24
   },
   {
-    "name": "of Poison Dagger"
+    "name": "of Poison Dagger",
+    "reqlevel": 12
   },
   {
-    "name": "of Poison Dagger"
+    "name": "of Poison Dagger",
+    "reqlevel": 24
   },
   {
-    "name": "of Corpse Explosion"
+    "name": "of Corpse Explosion",
+    "reqlevel": 12
   },
   {
-    "name": "of Corpse Explosion"
+    "name": "of Corpse Explosion",
+    "reqlevel": 24
   },
   {
-    "name": "of Clay Golem"
+    "name": "of Clay Golem",
+    "reqlevel": 12
   },
   {
-    "name": "of Clay Golem"
+    "name": "of Clay Golem",
+    "reqlevel": 24
   },
   {
-    "name": "of Iron Maiden"
+    "name": "of Iron Maiden",
+    "reqlevel": 18
   },
   {
-    "name": "of Iron Maiden"
+    "name": "of Iron Maiden",
+    "reqlevel": 36
   },
   {
-    "name": "of Terror"
+    "name": "of Terror",
+    "reqlevel": 18
   },
   {
-    "name": "of Terror"
+    "name": "of Terror",
+    "reqlevel": 36
   },
   {
-    "name": "of Bone Wall"
+    "name": "of Bone Wall",
+    "reqlevel": 18
   },
   {
-    "name": "of Bone Wall"
+    "name": "of Bone Wall",
+    "reqlevel": 36
   },
   {
-    "name": "of Skeletal Mages"
+    "name": "of Skeletal Mages",
+    "reqlevel": 18
   },
   {
-    "name": "of Skeletal Mages"
+    "name": "of Skeletal Mages",
+    "reqlevel": 36
   },
   {
-    "name": "of Confusion"
+    "name": "of Confusion",
+    "reqlevel": 24
   },
   {
-    "name": "of Confusion"
+    "name": "of Confusion",
+    "reqlevel": 48
   },
   {
-    "name": "of Life Tap"
+    "name": "of Life Tap",
+    "reqlevel": 24
   },
   {
-    "name": "of Life Tap"
+    "name": "of Life Tap",
+    "reqlevel": 48
   },
   {
-    "name": "of Poison Explosion"
+    "name": "of Poison Explosion",
+    "reqlevel": 24
   },
   {
-    "name": "of Poison Explosion"
+    "name": "of Poison Explosion",
+    "reqlevel": 48
   },
   {
-    "name": "of Bone Spear"
+    "name": "of Bone Spear",
+    "reqlevel": 24
   },
   {
-    "name": "of Bone Spear"
+    "name": "of Bone Spear",
+    "reqlevel": 48
   },
   {
-    "name": "of Blood Golem"
+    "name": "of Blood Golem",
+    "reqlevel": 24
   },
   {
-    "name": "of Blood Golem"
+    "name": "of Blood Golem",
+    "reqlevel": 48
   },
   {
-    "name": "of Attract"
+    "name": "of Attract",
+    "reqlevel": 30
   },
   {
-    "name": "of Attract"
+    "name": "of Attract",
+    "reqlevel": 60
   },
   {
-    "name": "of Decrepify"
+    "name": "of Decrepify",
+    "reqlevel": 30
   },
   {
-    "name": "of Decrepify"
+    "name": "of Decrepify",
+    "reqlevel": 60
   },
   {
-    "name": "of Bone Prison"
+    "name": "of Bone Prison",
+    "reqlevel": 30
   },
   {
-    "name": "of Bone Prison"
+    "name": "of Bone Prison",
+    "reqlevel": 60
   },
   {
-    "name": "of Iron Golem"
+    "name": "of Iron Golem",
+    "reqlevel": 30
   },
   {
-    "name": "of Iron Golem"
+    "name": "of Iron Golem",
+    "reqlevel": 60
   },
   {
-    "name": "of Lower Resistance"
+    "name": "of Lower Resistance",
+    "reqlevel": 36
   },
   {
-    "name": "of Lower Resistance"
+    "name": "of Lower Resistance",
+    "reqlevel": 72
   },
   {
-    "name": "of Poison Nova"
+    "name": "of Poison Nova",
+    "reqlevel": 36
   },
   {
-    "name": "of Poison Nova"
+    "name": "of Poison Nova",
+    "reqlevel": 72
   },
   {
-    "name": "of Bone Spirit"
+    "name": "of Bone Spirit",
+    "reqlevel": 36
   },
   {
-    "name": "of Bone Spirit"
+    "name": "of Bone Spirit",
+    "reqlevel": 72
   },
   {
-    "name": "of Fire Golem"
+    "name": "of Fire Golem",
+    "reqlevel": 36
   },
   {
-    "name": "of Fire Golem"
+    "name": "of Fire Golem",
+    "reqlevel": 72
   },
   {
-    "name": "of Revivification"
+    "name": "of Revivification",
+    "reqlevel": 36
   },
   {
-    "name": "of Revivification"
+    "name": "of Revivification",
+    "reqlevel": 72
   },
   {
-    "name": "of Sacrifice"
+    "name": "of Sacrifice",
+    "reqlevel": 7
   },
   {
-    "name": "of Sacrifice"
+    "name": "of Sacrifice",
+    "reqlevel": 14
   },
   {
-    "name": "of Holy Bolt"
+    "name": "of Holy Bolt",
+    "reqlevel": 12
   },
   {
-    "name": "of Holy Bolt"
+    "name": "of Holy Bolt",
+    "reqlevel": 24
   },
   {
-    "name": "of Zeal"
+    "name": "of Zeal",
+    "reqlevel": 18
   },
   {
-    "name": "of Zeal"
+    "name": "of Zeal",
+    "reqlevel": 36
   },
   {
-    "name": "of Vengeance"
+    "name": "of Vengeance",
+    "reqlevel": 24
   },
   {
-    "name": "of Vengeance"
+    "name": "of Vengeance",
+    "reqlevel": 48
   },
   {
-    "name": "of Blessed Hammer"
+    "name": "of Blessed Hammer",
+    "reqlevel": 24
   },
   {
-    "name": "of Blessed Hammer"
+    "name": "of Blessed Hammer",
+    "reqlevel": 48
   },
   {
-    "name": "of Conversion"
+    "name": "of Conversion",
+    "reqlevel": 30
   },
   {
-    "name": "of Conversion"
+    "name": "of Conversion",
+    "reqlevel": 60
   },
   {
-    "name": "of Fist of the Heavens"
+    "name": "of Fist of the Heavens",
+    "reqlevel": 36
   },
   {
-    "name": "of Fist of the Heavens"
+    "name": "of Fist of the Heavens",
+    "reqlevel": 72
   },
   {
-    "name": "of Bashing"
+    "name": "of Bashing",
+    "reqlevel": 7
   },
   {
-    "name": "of Bashing"
+    "name": "of Bashing",
+    "reqlevel": 14
   },
   {
-    "name": "of Howl"
+    "name": "of Howl",
+    "reqlevel": 7
   },
   {
-    "name": "of Howl"
+    "name": "of Howl",
+    "reqlevel": 14
   },
   {
-    "name": "of Find Potion"
+    "name": "of Find Potion",
+    "reqlevel": 7
   },
   {
-    "name": "of Find Potion"
+    "name": "of Find Potion",
+    "reqlevel": 14
   },
   {
-    "name": "of Taunt"
+    "name": "of Taunt",
+    "reqlevel": 12
   },
   {
-    "name": "of Taunt"
+    "name": "of Taunt",
+    "reqlevel": 24
   },
   {
-    "name": "of Shout"
+    "name": "of Shout",
+    "reqlevel": 12
   },
   {
-    "name": "of Shout"
+    "name": "of Shout",
+    "reqlevel": 24
   },
   {
-    "name": "of Stun"
+    "name": "of Stun",
+    "reqlevel": 18
   },
   {
-    "name": "of Stun"
+    "name": "of Stun",
+    "reqlevel": 36
   },
   {
-    "name": "of Find Item"
+    "name": "of Find Item",
+    "reqlevel": 18
   },
   {
-    "name": "of Find Item"
+    "name": "of Find Item",
+    "reqlevel": 36
   },
   {
-    "name": "of Concentration"
+    "name": "of Concentration",
+    "reqlevel": 24
   },
   {
-    "name": "of Concentration"
+    "name": "of Concentration",
+    "reqlevel": 48
   },
   {
-    "name": "of Battle Cry"
+    "name": "of Battle Cry",
+    "reqlevel": 24
   },
   {
-    "name": "of Battle Cry"
+    "name": "of Battle Cry",
+    "reqlevel": 48
   },
   {
-    "name": "of Battle Orders"
+    "name": "of Battle Orders",
+    "reqlevel": 30
   },
   {
-    "name": "of Battle Orders"
+    "name": "of Battle Orders",
+    "reqlevel": 60
   },
   {
-    "name": "of Grim Ward"
+    "name": "of Grim Ward",
+    "reqlevel": 30
   },
   {
-    "name": "of Grim Ward"
+    "name": "of Grim Ward",
+    "reqlevel": 60
   },
   {
-    "name": "of War Cry"
+    "name": "of War Cry",
+    "reqlevel": 36
   },
   {
-    "name": "of War Cry"
+    "name": "of War Cry",
+    "reqlevel": 72
   },
   {
-    "name": "of Battle Command"
+    "name": "of Battle Command",
+    "reqlevel": 36
   },
   {
-    "name": "of Battle Command"
+    "name": "of Battle Command",
+    "reqlevel": 72
   },
   {
-    "name": "of Firestorms"
+    "name": "of Firestorms",
+    "reqlevel": 7
   },
   {
-    "name": "of Firestorms"
+    "name": "of Firestorms",
+    "reqlevel": 14
   },
   {
-    "name": "of Molten Boulder"
+    "name": "of Molten Boulder",
+    "reqlevel": 12
   },
   {
-    "name": "of Molten Boulder"
+    "name": "of Molten Boulder",
+    "reqlevel": 24
   },
   {
-    "name": "of Fissure"
+    "name": "of Fissure",
+    "reqlevel": 18
   },
   {
-    "name": "of Fissure"
+    "name": "of Fissure",
+    "reqlevel": 36
   },
   {
-    "name": "of Cyclone Armor"
+    "name": "of Cyclone Armor",
+    "reqlevel": 18
   },
   {
-    "name": "of Cyclone Armor"
+    "name": "of Cyclone Armor",
+    "reqlevel": 36
   },
   {
-    "name": "of Twister"
+    "name": "of Twister",
+    "reqlevel": 24
   },
   {
-    "name": "of Twister"
+    "name": "of Twister",
+    "reqlevel": 48
   },
   {
-    "name": "of Volcano"
+    "name": "of Volcano",
+    "reqlevel": 30
   },
   {
-    "name": "of Volcano"
+    "name": "of Volcano",
+    "reqlevel": 60
   },
   {
-    "name": "of Tornado"
+    "name": "of Tornado",
+    "reqlevel": 30
   },
   {
-    "name": "of Tornado"
+    "name": "of Tornado",
+    "reqlevel": 60
   },
   {
-    "name": "of Armageddon"
+    "name": "of Armageddon",
+    "reqlevel": 36
   },
   {
-    "name": "of Armageddon"
+    "name": "of Armageddon",
+    "reqlevel": 72
   },
   {
-    "name": "of Hurricane"
+    "name": "of Hurricane",
+    "reqlevel": 36
   },
   {
-    "name": "of Hurricane"
+    "name": "of Hurricane",
+    "reqlevel": 72
   },
   {
-    "name": "of Amplify Damage"
+    "name": "of Amplify Damage",
+    "reqlevel": 0
   },
   {
-    "name": "of the Icicle"
+    "name": "of the Icicle",
+    "reqlevel": 29
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 50
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 28
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 49
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 28
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 49
   },
   {
-    "name": "of Daring"
+    "name": "of Daring",
+    "reqlevel": 14
   },
   {
-    "name": "of Daring"
+    "name": "of Daring",
+    "reqlevel": 28
   },
   {
-    "name": "of Knowledge"
+    "name": "of Knowledge",
+    "reqlevel": 18
   },
   {
-    "name": "of Knowledge"
+    "name": "of Knowledge",
+    "reqlevel": 33
   },
   {
-    "name": "of Virility"
+    "name": "of Virility",
+    "reqlevel": 25
   },
   {
-    "name": "of Virility"
+    "name": "of Virility",
+    "reqlevel": 42
   },
   {
-    "name": "of Readiness"
+    "name": "of Readiness",
+    "reqlevel": 15
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 1
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 33
   },
   {
-    "name": "of Maiming"
+    "name": "of Maiming",
+    "reqlevel": 63
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 19
   },
   {
-    "name": "of Quality"
+    "name": "of Quality",
+    "reqlevel": 48
   },
   {
-    "name": "of Craftmanship"
+    "name": "of Craftmanship",
+    "reqlevel": 77
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 1
   },
   {
-    "name": "of Venom"
+    "name": "of Venom",
+    "reqlevel": 4
   },
   {
-    "name": "of Pestilence"
+    "name": "of Pestilence",
+    "reqlevel": 10
   },
   {
-    "name": "of Anthrax"
+    "name": "of Anthrax",
+    "reqlevel": 15
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 3
   },
   {
-    "name": "of Venom"
+    "name": "of Venom",
+    "reqlevel": 9
   },
   {
-    "name": "of Pestilence"
+    "name": "of Pestilence",
+    "reqlevel": 17
   },
   {
-    "name": "of Anthrax"
+    "name": "of Anthrax",
+    "reqlevel": 25
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 6
   },
   {
-    "name": "of Venom"
+    "name": "of Venom",
+    "reqlevel": 15
   },
   {
-    "name": "of Pestilence"
+    "name": "of Pestilence",
+    "reqlevel": 24
   },
   {
-    "name": "of Anthrax"
+    "name": "of Anthrax",
+    "reqlevel": 36
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 3
   },
   {
-    "name": "of the Icicle"
+    "name": "of the Icicle",
+    "reqlevel": 6
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 11
   },
   {
-    "name": "of Winter"
+    "name": "of Winter",
+    "reqlevel": 17
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 6
   },
   {
-    "name": "of the Icicle"
+    "name": "of the Icicle",
+    "reqlevel": 11
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 18
   },
   {
-    "name": "of Winter"
+    "name": "of Winter",
+    "reqlevel": 27
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 10
   },
   {
-    "name": "of the Icicle"
+    "name": "of the Icicle",
+    "reqlevel": 15
   },
   {
-    "name": "of the Glacier"
+    "name": "of the Glacier",
+    "reqlevel": 25
   },
   {
-    "name": "of Winter"
+    "name": "of Winter",
+    "reqlevel": 38
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 2
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 6
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 10
   },
   {
-    "name": "of Incineration"
+    "name": "of Incineration",
+    "reqlevel": 16
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 5
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 10
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 18
   },
   {
-    "name": "of Incineration"
+    "name": "of Incineration",
+    "reqlevel": 26
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 8
   },
   {
-    "name": "of Fire"
+    "name": "of Fire",
+    "reqlevel": 15
   },
   {
-    "name": "of Burning"
+    "name": "of Burning",
+    "reqlevel": 24
   },
   {
-    "name": "of Incineration"
+    "name": "of Incineration",
+    "reqlevel": 37
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 3
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 5
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 11
   },
   {
-    "name": "of Storms"
+    "name": "of Storms",
+    "reqlevel": 16
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 5
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 10
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 18
   },
   {
-    "name": "of Storms"
+    "name": "of Storms",
+    "reqlevel": 26
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 9
   },
   {
-    "name": "of Lightning"
+    "name": "of Lightning",
+    "reqlevel": 15
   },
   {
-    "name": "of Thunder"
+    "name": "of Thunder",
+    "reqlevel": 25
   },
   {
-    "name": "of Storms"
+    "name": "of Storms",
+    "reqlevel": 37
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 1
   },
   {
-    "name": "of Dexterity"
+    "name": "of Dexterity",
+    "reqlevel": 1
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 1
   },
   {
-    "name": "of Strength"
+    "name": "of Strength",
+    "reqlevel": 1
   },
   {
-    "name": "of Thorns"
+    "name": "of Thorns",
+    "reqlevel": 1
   },
   {
-    "name": "of Frost"
+    "name": "of Frost",
+    "reqlevel": 1
   },
   {
-    "name": "of Flame"
+    "name": "of Flame",
+    "reqlevel": 1
   },
   {
-    "name": "of Blight"
+    "name": "of Blight",
+    "reqlevel": 1
   },
   {
-    "name": "of Shock"
+    "name": "of Shock",
+    "reqlevel": 1
   },
   {
-    "name": "of Regeneration"
+    "name": "of Regeneration",
+    "reqlevel": 1
   },
   {
-    "name": "of Energy"
+    "name": "of Energy",
+    "reqlevel": 1
   },
   {
-    "name": "of Light"
+    "name": "of Light",
+    "reqlevel": 1
   },
   {
-    "name": "of the Leech"
+    "name": "of the Leech",
+    "reqlevel": 20
   },
   {
-    "name": "of the Locust"
+    "name": "of the Locust",
+    "reqlevel": 45
   },
   {
-    "name": "of the Lamprey"
+    "name": "of the Lamprey",
+    "reqlevel": 73
   },
   {
-    "name": "of the Bat"
+    "name": "of the Bat",
+    "reqlevel": 21
   },
   {
-    "name": "of the Wraith"
+    "name": "of the Wraith",
+    "reqlevel": 46
   },
   {
-    "name": "of the Vampire"
+    "name": "of the Vampire",
+    "reqlevel": 74
   }
 ]

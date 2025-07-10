@@ -1,2012 +1,2682 @@
 [
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 1
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Sturdy"
+    "name": "Sturdy",
+    "reqlevel": 3
   },
   {
-    "name": "Strong"
+    "name": "Strong",
+    "reqlevel": 6
   },
   {
-    "name": "Glorious"
+    "name": "Glorious",
+    "reqlevel": 14
   },
   {
-    "name": "Blessed"
+    "name": "Blessed",
+    "reqlevel": 18
   },
   {
-    "name": "Saintly"
+    "name": "Saintly",
+    "reqlevel": 23
   },
   {
-    "name": "Holy"
+    "name": "Holy",
+    "reqlevel": 27
   },
   {
-    "name": "Devious"
+    "name": "Devious",
+    "reqlevel": 5
   },
   {
-    "name": "Fortified"
+    "name": "Fortified",
+    "reqlevel": 10
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 1
   },
   {
-    "name": "Deadly"
+    "name": "Deadly",
+    "reqlevel": 3
   },
   {
-    "name": "Vicious"
+    "name": "Vicious",
+    "reqlevel": 6
   },
   {
-    "name": "Brutal"
+    "name": "Brutal",
+    "reqlevel": 10
   },
   {
-    "name": "Massive"
+    "name": "Massive",
+    "reqlevel": 15
   },
   {
-    "name": "Savage"
+    "name": "Savage",
+    "reqlevel": 19
   },
   {
-    "name": "Merciless"
+    "name": "Merciless",
+    "reqlevel": 24
   },
   {
-    "name": "Vulpine"
+    "name": "Vulpine",
+    "reqlevel": 6
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Tireless"
+    "name": "Tireless",
+    "reqlevel": 10
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 10
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 1
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 3
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 6
   },
   {
-    "name": "Silver"
+    "name": "Silver",
+    "reqlevel": 9
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Gold"
+    "name": "Gold",
+    "reqlevel": 12
   },
   {
-    "name": "Platinum"
+    "name": "Platinum",
+    "reqlevel": 16
   },
   {
-    "name": "Meteoric"
+    "name": "Meteoric",
+    "reqlevel": 20
   },
   {
-    "name": "Sharp"
+    "name": "Sharp",
+    "reqlevel": 3
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 6
   },
   {
-    "name": "Warrior's"
+    "name": "Warrior's",
+    "reqlevel": 11
   },
   {
-    "name": "Soldier's"
+    "name": "Soldier's",
+    "reqlevel": 15
   },
   {
-    "name": "Knight's"
+    "name": "Knight's",
+    "reqlevel": 18
   },
   {
-    "name": "Lord's"
+    "name": "Lord's",
+    "reqlevel": 22
   },
   {
-    "name": "King's"
+    "name": "King's",
+    "reqlevel": 26
   },
   {
-    "name": "Howling"
+    "name": "Howling",
+    "reqlevel": 12
   },
   {
-    "name": "Fortuitous"
+    "name": "Fortuitous",
+    "reqlevel": 3
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Glimmering"
+    "name": "Glimmering",
+    "reqlevel": 1
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 4
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 2
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 4
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 10
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 27
   },
   {
-    "name": "Drake's"
+    "name": "Drake's",
+    "reqlevel": 15
   },
   {
-    "name": "Dragon's"
+    "name": "Dragon's",
+    "reqlevel": 18
   },
   {
-    "name": "Dragon's"
+    "name": "Dragon's",
+    "reqlevel": 39
   },
   {
-    "name": "Wyrm's"
+    "name": "Wyrm's",
+    "reqlevel": 22
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Prismatic"
+    "name": "Prismatic",
+    "reqlevel": 20
   },
   {
-    "name": "Prismatic"
+    "name": "Prismatic",
+    "reqlevel": 46
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 3
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 9
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 26
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 13
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 41
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 18
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 3
   },
   {
-    "name": "Burgundy"
+    "name": "Burgundy",
+    "reqlevel": 9
   },
   {
-    "name": "Burgundy"
+    "name": "Burgundy",
+    "reqlevel": 26
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 13
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 41
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 18
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 3
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 9
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 26
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 13
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 41
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Amber"
+    "name": "Amber",
+    "reqlevel": 18
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 3
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 9
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 26
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 13
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 41
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 18
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Fletcher's"
+    "name": "Fletcher's",
+    "reqlevel": 22
   },
   {
-    "name": "Archer's"
+    "name": "Archer's",
+    "reqlevel": 30
   },
   {
-    "name": "Archer's"
+    "name": "Archer's",
+    "reqlevel": 67
   },
   {
-    "name": "Monk's"
+    "name": "Monk's",
+    "reqlevel": 22
   },
   {
-    "name": "Priest's"
+    "name": "Priest's",
+    "reqlevel": 30
   },
   {
-    "name": "Priest's"
+    "name": "Priest's",
+    "reqlevel": 67
   },
   {
-    "name": "Summoner's"
+    "name": "Summoner's",
+    "reqlevel": 22
   },
   {
-    "name": "Necromancer's"
+    "name": "Necromancer's",
+    "reqlevel": 30
   },
   {
-    "name": "Necromancer's"
+    "name": "Necromancer's",
+    "reqlevel": 67
   },
   {
-    "name": "Angel's"
+    "name": "Angel's",
+    "reqlevel": 22
   },
   {
-    "name": "Arch-Angel's"
+    "name": "Arch-Angel's",
+    "reqlevel": 30
   },
   {
-    "name": "Arch-Angel's"
+    "name": "Arch-Angel's",
+    "reqlevel": 67
   },
   {
-    "name": "Slayer's"
+    "name": "Slayer's",
+    "reqlevel": 22
   },
   {
-    "name": "Berserker's"
+    "name": "Berserker's",
+    "reqlevel": 30
   },
   {
-    "name": "Berserker's"
+    "name": "Berserker's",
+    "reqlevel": 67
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": ""
+    "name": "",
+    "reqlevel": 0
   },
   {
-    "name": "Triumphant"
+    "name": "Triumphant",
+    "reqlevel": 2
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 1
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 5
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 9
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 12
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 16
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 20
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 24
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 29
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 34
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 1
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 10
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 15
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 19
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 24
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 30
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 37
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 1
   },
   {
-    "name": "Stout"
+    "name": "Stout",
+    "reqlevel": 15
   },
   {
-    "name": "Burly"
+    "name": "Burly",
+    "reqlevel": 28
   },
   {
-    "name": "Stalwart"
+    "name": "Stalwart",
+    "reqlevel": 40
   },
   {
-    "name": "Blanched"
+    "name": "Blanched",
+    "reqlevel": 1
   },
   {
-    "name": "Eburine"
+    "name": "Eburine",
+    "reqlevel": 12
   },
   {
-    "name": "Bone"
+    "name": "Bone",
+    "reqlevel": 24
   },
   {
-    "name": "Ivory"
+    "name": "Ivory",
+    "reqlevel": 56
   },
   {
-    "name": "Sturdy"
+    "name": "Sturdy",
+    "reqlevel": 1
   },
   {
-    "name": "Sturdy"
+    "name": "Sturdy",
+    "reqlevel": 3
   },
   {
-    "name": "Strong"
+    "name": "Strong",
+    "reqlevel": 6
   },
   {
-    "name": "Glorious"
+    "name": "Glorious",
+    "reqlevel": 14
   },
   {
-    "name": "Blessed"
+    "name": "Blessed",
+    "reqlevel": 18
   },
   {
-    "name": "Saintly"
+    "name": "Saintly",
+    "reqlevel": 23
   },
   {
-    "name": "Holy"
+    "name": "Holy",
+    "reqlevel": 27
   },
   {
-    "name": "Godly"
+    "name": "Godly",
+    "reqlevel": 38
   },
   {
-    "name": "Devious"
+    "name": "Devious",
+    "reqlevel": 5
   },
   {
-    "name": "Void"
+    "name": "Void",
+    "reqlevel": 10
   },
   {
-    "name": "Null"
+    "name": "Null",
+    "reqlevel": 16
   },
   {
-    "name": "Antimagic"
+    "name": "Antimagic",
+    "reqlevel": 21
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 3
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 12
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 21
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 32
   },
   {
-    "name": "Bloody"
+    "name": "Bloody",
+    "reqlevel": 46
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 8
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 25
   },
   {
-    "name": "Bloody"
+    "name": "Bloody",
+    "reqlevel": 47
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 16
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 33
   },
   {
-    "name": "Bloody"
+    "name": "Bloody",
+    "reqlevel": 50
   },
   {
-    "name": "Scarlet"
+    "name": "Scarlet",
+    "reqlevel": 6
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 30
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 2
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 7
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 12
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 18
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 24
   },
   {
-    "name": "Serrated"
+    "name": "Serrated",
+    "reqlevel": 31
   },
   {
-    "name": "Serrated"
+    "name": "Serrated",
+    "reqlevel": 39
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 7
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 15
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 22
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 32
   },
   {
-    "name": "Serrated"
+    "name": "Serrated",
+    "reqlevel": 42
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 17
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 30
   },
   {
-    "name": "Serrated"
+    "name": "Serrated",
+    "reqlevel": 45
   },
   {
-    "name": "Carbuncle"
+    "name": "Carbuncle",
+    "reqlevel": 9
   },
   {
-    "name": "Carmine"
+    "name": "Carmine",
+    "reqlevel": 27
   },
   {
-    "name": "Vermilion"
+    "name": "Vermilion",
+    "reqlevel": 50
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 1
   },
   {
-    "name": "Deadly"
+    "name": "Deadly",
+    "reqlevel": 3
   },
   {
-    "name": "Vicious"
+    "name": "Vicious",
+    "reqlevel": 6
   },
   {
-    "name": "Brutal"
+    "name": "Brutal",
+    "reqlevel": 10
   },
   {
-    "name": "Massive"
+    "name": "Massive",
+    "reqlevel": 15
   },
   {
-    "name": "Savage"
+    "name": "Savage",
+    "reqlevel": 19
   },
   {
-    "name": "Merciless"
+    "name": "Merciless",
+    "reqlevel": 24
   },
   {
-    "name": "Ferocious"
+    "name": "Ferocious",
+    "reqlevel": 33
   },
   {
-    "name": "Cruel"
+    "name": "Cruel",
+    "reqlevel": 43
   },
   {
-    "name": "Cinnabar"
+    "name": "Cinnabar",
+    "reqlevel": 1
   },
   {
-    "name": "Rusty"
+    "name": "Rusty",
+    "reqlevel": 9
   },
   {
-    "name": "Realgar"
+    "name": "Realgar",
+    "reqlevel": 37
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 58
   },
   {
-    "name": "Vulpine"
+    "name": "Vulpine",
+    "reqlevel": 6
   },
   {
-    "name": "Dun"
+    "name": "Dun",
+    "reqlevel": 5
   },
   {
-    "name": "Tireless"
+    "name": "Tireless",
+    "reqlevel": 4
   },
   {
-    "name": "Tireless"
+    "name": "Tireless",
+    "reqlevel": 10
   },
   {
-    "name": "Brown"
+    "name": "Brown",
+    "reqlevel": 31
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 1
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 5
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 15
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 0
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 5
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 15
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 0
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 15
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 1
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 6
   },
   {
-    "name": "Rugged"
+    "name": "Rugged",
+    "reqlevel": 6
   },
   {
-    "name": "Vigorous"
+    "name": "Vigorous",
+    "reqlevel": 12
   },
   {
-    "name": "Chestnut"
+    "name": "Chestnut",
+    "reqlevel": 1
   },
   {
-    "name": "Maroon"
+    "name": "Maroon",
+    "reqlevel": 12
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 1
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 5
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 9
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 14
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 18
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 23
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 29
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 35
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 41
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 1
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 5
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 12
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 18
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 26
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 36
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 44
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 1
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 15
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 31
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 49
   },
   {
-    "name": "Bronze"
+    "name": "Bronze",
+    "reqlevel": 1
   },
   {
-    "name": "Iron"
+    "name": "Iron",
+    "reqlevel": 3
   },
   {
-    "name": "Steel"
+    "name": "Steel",
+    "reqlevel": 6
   },
   {
-    "name": "Silver"
+    "name": "Silver",
+    "reqlevel": 9
   },
   {
-    "name": "Gold"
+    "name": "Gold",
+    "reqlevel": 12
   },
   {
-    "name": "Platinum"
+    "name": "Platinum",
+    "reqlevel": 16
   },
   {
-    "name": "Meteoric"
+    "name": "Meteoric",
+    "reqlevel": 20
   },
   {
-    "name": "Strange"
+    "name": "Strange",
+    "reqlevel": 24
   },
   {
-    "name": "Weird"
+    "name": "Weird",
+    "reqlevel": 27
   },
   {
-    "name": "Nickel"
+    "name": "Nickel",
+    "reqlevel": 1
   },
   {
-    "name": "Tin"
+    "name": "Tin",
+    "reqlevel": 6
   },
   {
-    "name": "Silver"
+    "name": "Silver",
+    "reqlevel": 18
   },
   {
-    "name": "Argent"
+    "name": "Argent",
+    "reqlevel": 36
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 11
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 16
   },
   {
-    "name": "Sharp"
+    "name": "Sharp",
+    "reqlevel": 21
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 14
   },
   {
-    "name": "Sharp"
+    "name": "Sharp",
+    "reqlevel": 21
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 21
   },
   {
-    "name": "Sharp"
+    "name": "Sharp",
+    "reqlevel": 3
   },
   {
-    "name": "Fine"
+    "name": "Fine",
+    "reqlevel": 9
   },
   {
-    "name": "Warrior's"
+    "name": "Warrior's",
+    "reqlevel": 13
   },
   {
-    "name": "Soldier's"
+    "name": "Soldier's",
+    "reqlevel": 19
   },
   {
-    "name": "Knight's"
+    "name": "Knight's",
+    "reqlevel": 30
   },
   {
-    "name": "Lord's"
+    "name": "Lord's",
+    "reqlevel": 39
   },
   {
-    "name": "King's"
+    "name": "King's",
+    "reqlevel": 48
   },
   {
-    "name": "Master's"
+    "name": "Master's",
+    "reqlevel": 48
   },
   {
-    "name": "Grandmaster's"
+    "name": "Grandmaster's",
+    "reqlevel": 61
   },
   {
-    "name": "Glimmering"
+    "name": "Glimmering",
+    "reqlevel": 1
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 4
   },
   {
-    "name": "Bright"
+    "name": "Bright",
+    "reqlevel": 1
   },
   {
-    "name": "Screaming"
+    "name": "Screaming",
+    "reqlevel": 7
   },
   {
-    "name": "Howling"
+    "name": "Howling",
+    "reqlevel": 12
   },
   {
-    "name": "Wailing"
+    "name": "Wailing",
+    "reqlevel": 13
   },
   {
-    "name": "Screaming"
+    "name": "Screaming",
+    "reqlevel": 7
   },
   {
-    "name": "Howling"
+    "name": "Howling",
+    "reqlevel": 12
   },
   {
-    "name": "Wailing"
+    "name": "Wailing",
+    "reqlevel": 18
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Lucky"
+    "name": "Lucky",
+    "reqlevel": 0
   },
   {
-    "name": "Felicitous"
+    "name": "Felicitous",
+    "reqlevel": 3
   },
   {
-    "name": "Fortuitous"
+    "name": "Fortuitous",
+    "reqlevel": 8
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 12
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 1
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 5
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 9
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 14
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 18
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 23
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 29
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 35
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 41
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 1
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 6
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 12
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 18
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 25
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 33
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 41
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 12
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 12
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 24
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 40
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 2
   },
   {
-    "name": "Snake's"
+    "name": "Snake's",
+    "reqlevel": 4
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 10
   },
   {
-    "name": "Serpent's"
+    "name": "Serpent's",
+    "reqlevel": 27
   },
   {
-    "name": "Drake's"
+    "name": "Drake's",
+    "reqlevel": 15
   },
   {
-    "name": "Dragon's"
+    "name": "Dragon's",
+    "reqlevel": 18
   },
   {
-    "name": "Dragon's"
+    "name": "Dragon's",
+    "reqlevel": 39
   },
   {
-    "name": "Wyrm's"
+    "name": "Wyrm's",
+    "reqlevel": 22
   },
   {
-    "name": "Great Wyrm's"
+    "name": "Great Wyrm's",
+    "reqlevel": 29
   },
   {
-    "name": "Bahamut's"
+    "name": "Bahamut's",
+    "reqlevel": 37
   },
   {
-    "name": "Zircon"
+    "name": "Zircon",
+    "reqlevel": 2
   },
   {
-    "name": "Jacinth"
+    "name": "Jacinth",
+    "reqlevel": 12
   },
   {
-    "name": "Turquoise"
+    "name": "Turquoise",
+    "reqlevel": 21
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 6
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 10
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 27
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 12
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 26
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 25
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 4
   },
   {
-    "name": "Rainbow"
+    "name": "Rainbow",
+    "reqlevel": 13
   },
   {
-    "name": "Scintillating"
+    "name": "Scintillating",
+    "reqlevel": 21
   },
   {
-    "name": "Prismatic"
+    "name": "Prismatic",
+    "reqlevel": 31
   },
   {
-    "name": "Chromatic"
+    "name": "Chromatic",
+    "reqlevel": 42
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 6
   },
   {
-    "name": "Rainbow"
+    "name": "Rainbow",
+    "reqlevel": 15
   },
   {
-    "name": "Scintillating"
+    "name": "Scintillating",
+    "reqlevel": 25
   },
   {
-    "name": "Prismatic"
+    "name": "Prismatic",
+    "reqlevel": 31
   },
   {
-    "name": "Chromatic"
+    "name": "Chromatic",
+    "reqlevel": 41
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 37
   },
   {
-    "name": "Rainbow"
+    "name": "Rainbow",
+    "reqlevel": 48
   },
   {
-    "name": "Scintillating"
+    "name": "Scintillating",
+    "reqlevel": 59
   },
   {
-    "name": "Shimmering"
+    "name": "Shimmering",
+    "reqlevel": 12
   },
   {
-    "name": "Scintillating"
+    "name": "Scintillating",
+    "reqlevel": 26
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 1
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 7
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 15
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 22
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 1
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 12
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 18
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 27
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 1
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 10
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 20
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 32
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 3
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 9
   },
   {
-    "name": "Lapis"
+    "name": "Lapis",
+    "reqlevel": 26
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 13
   },
   {
-    "name": "Cobalt"
+    "name": "Cobalt",
+    "reqlevel": 41
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 18
   },
   {
-    "name": "Lapis Lazuli"
+    "name": "Lapis Lazuli",
+    "reqlevel": 1
   },
   {
-    "name": "Sapphire"
+    "name": "Sapphire",
+    "reqlevel": 14
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 1
   },
   {
-    "name": "Russet"
+    "name": "Russet",
+    "reqlevel": 7
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 15
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 22
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 1
   },
   {
-    "name": "Russet"
+    "name": "Russet",
+    "reqlevel": 12
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 18
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 27
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 1
   },
   {
-    "name": "Russet"
+    "name": "Russet",
+    "reqlevel": 10
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 20
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 32
   },
   {
-    "name": "Russet"
+    "name": "Russet",
+    "reqlevel": 9
   },
   {
-    "name": "Russet"
+    "name": "Russet",
+    "reqlevel": 26
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 13
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 41
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 18
   },
   {
-    "name": "Garnet"
+    "name": "Garnet",
+    "reqlevel": 1
   },
   {
-    "name": "Ruby"
+    "name": "Ruby",
+    "reqlevel": 13
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 1
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 7
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 15
   },
   {
-    "name": "Amber"
+    "name": "Amber",
+    "reqlevel": 22
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 1
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 12
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 18
   },
   {
-    "name": "Amber"
+    "name": "Amber",
+    "reqlevel": 27
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 1
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 10
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 20
   },
   {
-    "name": "Amber"
+    "name": "Amber",
+    "reqlevel": 32
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 3
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 9
   },
   {
-    "name": "Ocher"
+    "name": "Ocher",
+    "reqlevel": 26
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 13
   },
   {
-    "name": "Coral"
+    "name": "Coral",
+    "reqlevel": 41
   },
   {
-    "name": "Amber"
+    "name": "Amber",
+    "reqlevel": 18
   },
   {
-    "name": "Camphor"
+    "name": "Camphor",
+    "reqlevel": 1
   },
   {
-    "name": "Ambergris"
+    "name": "Ambergris",
+    "reqlevel": 14
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 1
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 7
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 15
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 22
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 1
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 12
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 18
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 27
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 1
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 10
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 20
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 32
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 3
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 9
   },
   {
-    "name": "Viridian"
+    "name": "Viridian",
+    "reqlevel": 26
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 13
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 41
   },
   {
-    "name": "Emerald"
+    "name": "Emerald",
+    "reqlevel": 18
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 1
   },
   {
-    "name": "Jade"
+    "name": "Jade",
+    "reqlevel": 14
   },
   {
-    "name": "Triumphant"
+    "name": "Triumphant",
+    "reqlevel": 2
   },
   {
-    "name": "Victorious"
+    "name": "Victorious",
+    "reqlevel": 12
   },
   {
-    "name": "Aureolic"
+    "name": "Aureolic",
+    "reqlevel": 16
   },
   {
-    "name": "Mechanic's"
+    "name": "Mechanic's",
+    "reqlevel": 7
   },
   {
-    "name": "Artisan's"
+    "name": "Artisan's",
+    "reqlevel": 25
   },
   {
-    "name": "Jeweler's"
+    "name": "Jeweler's",
+    "reqlevel": 47
   },
   {
-    "name": "Lunar"
+    "name": "Lunar",
+    "reqlevel": 1
   },
   {
-    "name": "Arcadian"
+    "name": "Arcadian",
+    "reqlevel": 11
   },
   {
-    "name": "Unearthly"
+    "name": "Unearthly",
+    "reqlevel": 18
   },
   {
-    "name": "Astral"
+    "name": "Astral",
+    "reqlevel": 26
   },
   {
-    "name": "Elysian"
+    "name": "Elysian",
+    "reqlevel": 33
   },
   {
-    "name": "Celestial"
+    "name": "Celestial",
+    "reqlevel": 41
   },
   {
-    "name": "Diamond"
+    "name": "Diamond",
+    "reqlevel": 19
   },
   {
-    "name": "Fletcher's"
+    "name": "Fletcher's",
+    "reqlevel": 42
   },
   {
-    "name": "Acrobatic"
+    "name": "Acrobatic",
+    "reqlevel": 42
   },
   {
-    "name": "Harpoonist's"
+    "name": "Harpoonist's",
+    "reqlevel": 42
   },
   {
-    "name": "Fletcher's"
+    "name": "Fletcher's",
+    "reqlevel": 15
   },
   {
-    "name": "Bowyer's"
+    "name": "Bowyer's",
+    "reqlevel": 30
   },
   {
-    "name": "Archer's"
+    "name": "Archer's",
+    "reqlevel": 45
   },
   {
-    "name": "Acrobatic"
+    "name": "Acrobatic",
+    "reqlevel": 15
   },
   {
-    "name": "Gymnastic"
+    "name": "Gymnastic",
+    "reqlevel": 30
   },
   {
-    "name": "Athletic"
+    "name": "Athletic",
+    "reqlevel": 45
   },
   {
-    "name": "Harpoonist's"
+    "name": "Harpoonist's",
+    "reqlevel": 15
   },
   {
-    "name": "Spearmaiden's"
+    "name": "Spearmaiden's",
+    "reqlevel": 30
   },
   {
-    "name": "Lancer's"
+    "name": "Lancer's",
+    "reqlevel": 45
   },
   {
-    "name": "Burning"
+    "name": "Burning",
+    "reqlevel": 42
   },
   {
-    "name": "Sparking"
+    "name": "Sparking",
+    "reqlevel": 42
   },
   {
-    "name": "Chilling"
+    "name": "Chilling",
+    "reqlevel": 42
   },
   {
-    "name": "Burning"
+    "name": "Burning",
+    "reqlevel": 15
   },
   {
-    "name": "Blazing"
+    "name": "Blazing",
+    "reqlevel": 30
   },
   {
-    "name": "Volcanic"
+    "name": "Volcanic",
+    "reqlevel": 45
   },
   {
-    "name": "Sparking"
+    "name": "Sparking",
+    "reqlevel": 15
   },
   {
-    "name": "Charged"
+    "name": "Charged",
+    "reqlevel": 30
   },
   {
-    "name": "Powered"
+    "name": "Powered",
+    "reqlevel": 45
   },
   {
-    "name": "Chilling"
+    "name": "Chilling",
+    "reqlevel": 15
   },
   {
-    "name": "Freezing"
+    "name": "Freezing",
+    "reqlevel": 30
   },
   {
-    "name": "Glacial"
+    "name": "Glacial",
+    "reqlevel": 45
   },
   {
-    "name": "Hexing"
+    "name": "Hexing",
+    "reqlevel": 42
   },
   {
-    "name": "Fungal"
+    "name": "Fungal",
+    "reqlevel": 42
   },
   {
-    "name": "Graverobber's"
+    "name": "Graverobber's",
+    "reqlevel": 42
   },
   {
-    "name": "Hexing"
+    "name": "Hexing",
+    "reqlevel": 15
   },
   {
-    "name": "Blighting"
+    "name": "Blighting",
+    "reqlevel": 30
   },
   {
-    "name": "Cursing"
+    "name": "Cursing",
+    "reqlevel": 45
   },
   {
-    "name": "Fungal"
+    "name": "Fungal",
+    "reqlevel": 15
   },
   {
-    "name": "Noxious"
+    "name": "Noxious",
+    "reqlevel": 30
   },
   {
-    "name": "Venomous"
+    "name": "Venomous",
+    "reqlevel": 45
   },
   {
-    "name": "Graverobber's"
+    "name": "Graverobber's",
+    "reqlevel": 15
   },
   {
-    "name": "Mojo"
+    "name": "Mojo",
+    "reqlevel": 30
   },
   {
-    "name": "Golemlord's"
+    "name": "Golemlord's",
+    "reqlevel": 45
   },
   {
-    "name": "Lion Branded"
+    "name": "Lion Branded",
+    "reqlevel": 42
   },
   {
-    "name": "Captain's"
+    "name": "Captain's",
+    "reqlevel": 42
   },
   {
-    "name": "Preserver's"
+    "name": "Preserver's",
+    "reqlevel": 42
   },
   {
-    "name": "Lion Branded"
+    "name": "Lion Branded",
+    "reqlevel": 15
   },
   {
-    "name": "Hawk Branded"
+    "name": "Hawk Branded",
+    "reqlevel": 30
   },
   {
-    "name": "Rose Branded"
+    "name": "Rose Branded",
+    "reqlevel": 45
   },
   {
-    "name": "Captain's"
+    "name": "Captain's",
+    "reqlevel": 15
   },
   {
-    "name": "Commander's"
+    "name": "Commander's",
+    "reqlevel": 30
   },
   {
-    "name": "Marshal's"
+    "name": "Marshal's",
+    "reqlevel": 45
   },
   {
-    "name": "Preserver's"
+    "name": "Preserver's",
+    "reqlevel": 15
   },
   {
-    "name": "Warden's"
+    "name": "Warden's",
+    "reqlevel": 30
   },
   {
-    "name": "Guardian's"
+    "name": "Guardian's",
+    "reqlevel": 45
   },
   {
-    "name": "Expert's"
+    "name": "Expert's",
+    "reqlevel": 42
   },
   {
-    "name": "Fanatic"
+    "name": "Fanatic",
+    "reqlevel": 42
   },
   {
-    "name": "Sounding"
+    "name": "Sounding",
+    "reqlevel": 42
   },
   {
-    "name": "Expert's"
+    "name": "Expert's",
+    "reqlevel": 15
   },
   {
-    "name": "Veteran's"
+    "name": "Veteran's",
+    "reqlevel": 30
   },
   {
-    "name": "Master's"
+    "name": "Master's",
+    "reqlevel": 45
   },
   {
-    "name": "Fanatic"
+    "name": "Fanatic",
+    "reqlevel": 15
   },
   {
-    "name": "Raging"
+    "name": "Raging",
+    "reqlevel": 30
   },
   {
-    "name": "Furious"
+    "name": "Furious",
+    "reqlevel": 45
   },
   {
-    "name": "Sounding"
+    "name": "Sounding",
+    "reqlevel": 15
   },
   {
-    "name": "Resonant"
+    "name": "Resonant",
+    "reqlevel": 30
   },
   {
-    "name": "Echoing"
+    "name": "Echoing",
+    "reqlevel": 45
   },
   {
-    "name": "Trainer's"
+    "name": "Trainer's",
+    "reqlevel": 42
   },
   {
-    "name": "Spiritual"
+    "name": "Spiritual",
+    "reqlevel": 42
   },
   {
-    "name": "Natural"
+    "name": "Natural",
+    "reqlevel": 42
   },
   {
-    "name": "Trainer's"
+    "name": "Trainer's",
+    "reqlevel": 15
   },
   {
-    "name": "Caretaker's"
+    "name": "Caretaker's",
+    "reqlevel": 30
   },
   {
-    "name": "Keeper's"
+    "name": "Keeper's",
+    "reqlevel": 45
   },
   {
-    "name": "Spiritual"
+    "name": "Spiritual",
+    "reqlevel": 15
   },
   {
-    "name": "Feral"
+    "name": "Feral",
+    "reqlevel": 30
   },
   {
-    "name": "Communal"
+    "name": "Communal",
+    "reqlevel": 45
   },
   {
-    "name": "Natural"
+    "name": "Natural",
+    "reqlevel": 15
   },
   {
-    "name": "Terrene"
+    "name": "Terrene",
+    "reqlevel": 30
   },
   {
-    "name": "Gaean"
+    "name": "Gaean",
+    "reqlevel": 45
   },
   {
-    "name": "Entrapping"
+    "name": "Entrapping",
+    "reqlevel": 42
   },
   {
-    "name": "Mentalist's"
+    "name": "Mentalist's",
+    "reqlevel": 42
   },
   {
-    "name": "Shogukusha's"
+    "name": "Shogukusha's",
+    "reqlevel": 42
   },
   {
-    "name": "Entrapping"
+    "name": "Entrapping",
+    "reqlevel": 15
   },
   {
-    "name": "Trickster's"
+    "name": "Trickster's",
+    "reqlevel": 30
   },
   {
-    "name": "Cunning"
+    "name": "Cunning",
+    "reqlevel": 45
   },
   {
-    "name": "Mentalist's"
+    "name": "Mentalist's",
+    "reqlevel": 15
   },
   {
-    "name": "Psychic"
+    "name": "Psychic",
+    "reqlevel": 30
   },
   {
-    "name": "Shadow"
+    "name": "Shadow",
+    "reqlevel": 45
   },
   {
-    "name": "Shogukusha's"
+    "name": "Shogukusha's",
+    "reqlevel": 15
   },
   {
-    "name": "Sensei's"
+    "name": "Sensei's",
+    "reqlevel": 30
   },
   {
-    "name": "Kenshi's"
+    "name": "Kenshi's",
+    "reqlevel": 45
   },
   {
-    "name": "Enlightened"
+    "name": "Enlightened",
+    "reqlevel": 1
   },
   {
-    "name": "Enlightened"
+    "name": "Enlightened",
+    "reqlevel": 1
   },
   {
-    "name": "Honorable"
+    "name": "Honorable",
+    "reqlevel": 7
   },
   {
-    "name": "Honorable"
+    "name": "Honorable",
+    "reqlevel": 7
   },
   {
-    "name": "Righteous"
+    "name": "Righteous",
+    "reqlevel": 15
   },
   {
-    "name": "Righteous"
+    "name": "Righteous",
+    "reqlevel": 15
   },
   {
-    "name": "Faithful"
+    "name": "Faithful",
+    "reqlevel": 22
   },
   {
-    "name": "Faithful"
+    "name": "Faithful",
+    "reqlevel": 22
   },
   {
-    "name": "Knave's"
+    "name": "Knave's",
+    "reqlevel": 1
   },
   {
-    "name": "Jack's"
+    "name": "Jack's",
+    "reqlevel": 7
   },
   {
-    "name": "Jester's"
+    "name": "Jester's",
+    "reqlevel": 15
   },
   {
-    "name": "Joker's"
+    "name": "Joker's",
+    "reqlevel": 26
   },
   {
-    "name": "Fool's"
+    "name": "Fool's",
+    "reqlevel": 37
   },
   {
-    "name": "Alarming"
+    "name": "Alarming",
+    "reqlevel": 1
   },
   {
-    "name": "Calling"
+    "name": "Calling",
+    "reqlevel": 7
   },
   {
-    "name": "Yelling"
+    "name": "Yelling",
+    "reqlevel": 15
   },
   {
-    "name": "Howling"
+    "name": "Howling",
+    "reqlevel": 26
   },
   {
-    "name": "Grinding"
+    "name": "Grinding",
+    "reqlevel": 37
   },
   {
-    "name": "Paradox"
+    "name": "Paradox",
+    "reqlevel": 18
   },
   {
-    "name": "Paradox"
+    "name": "Paradox",
+    "reqlevel": 18
   },
   {
-    "name": "Robineye"
+    "name": "Robineye",
+    "reqlevel": 1
   },
   {
-    "name": "Sparroweye"
+    "name": "Sparroweye",
+    "reqlevel": 7
   },
   {
-    "name": "Falconeye"
+    "name": "Falconeye",
+    "reqlevel": 15
   },
   {
-    "name": "Hawkeye"
+    "name": "Hawkeye",
+    "reqlevel": 26
   },
   {
-    "name": "Eagleeye"
+    "name": "Eagleeye",
+    "reqlevel": 37
   },
   {
-    "name": "Visionary"
+    "name": "Visionary",
+    "reqlevel": 18
   },
   {
-    "name": "Mnemonic"
+    "name": "Mnemonic",
+    "reqlevel": 18
   },
   {
-    "name": "Snowy"
+    "name": "Snowy",
+    "reqlevel": 18
   },
   {
-    "name": "Shivering"
+    "name": "Shivering",
+    "reqlevel": 26
   },
   {
-    "name": "Boreal"
+    "name": "Boreal",
+    "reqlevel": 40
   },
   {
-    "name": "Hibernal"
+    "name": "Hibernal",
+    "reqlevel": 60
   },
   {
-    "name": "Fiery"
+    "name": "Fiery",
+    "reqlevel": 18
   },
   {
-    "name": "Smoldering"
+    "name": "Smoldering",
+    "reqlevel": 26
   },
   {
-    "name": "Smoking"
+    "name": "Smoking",
+    "reqlevel": 37
   },
   {
-    "name": "Flaming"
+    "name": "Flaming",
+    "reqlevel": 51
   },
   {
-    "name": "Condensing"
+    "name": "Condensing",
+    "reqlevel": 67
   },
   {
-    "name": "Static"
+    "name": "Static",
+    "reqlevel": 18
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 25
   },
   {
-    "name": "Buzzing"
+    "name": "Buzzing",
+    "reqlevel": 36
   },
   {
-    "name": "Arcing"
+    "name": "Arcing",
+    "reqlevel": 50
   },
   {
-    "name": "Shocking"
+    "name": "Shocking",
+    "reqlevel": 66
   },
   {
-    "name": "Septic"
+    "name": "Septic",
+    "reqlevel": 1
   },
   {
-    "name": "Foul"
+    "name": "Foul",
+    "reqlevel": 7
   },
   {
-    "name": "Corrosive"
+    "name": "Corrosive",
+    "reqlevel": 15
   },
   {
-    "name": "Toxic"
+    "name": "Toxic",
+    "reqlevel": 26
   },
   {
-    "name": "Pestilent"
+    "name": "Pestilent",
+    "reqlevel": 37
   },
   {
-    "name": "Maiden's"
+    "name": "Maiden's",
+    "reqlevel": 27
   },
   {
-    "name": "Valkyrie's"
+    "name": "Valkyrie's",
+    "reqlevel": 67
   },
   {
-    "name": "Maiden's"
+    "name": "Maiden's",
+    "reqlevel": 22
   },
   {
-    "name": "Valkyrie's"
+    "name": "Valkyrie's",
+    "reqlevel": 42
   },
   {
-    "name": "Monk's"
+    "name": "Monk's",
+    "reqlevel": 27
   },
   {
-    "name": "Priest's"
+    "name": "Priest's",
+    "reqlevel": 67
   },
   {
-    "name": "Monk's"
+    "name": "Monk's",
+    "reqlevel": 22
   },
   {
-    "name": "Priest's"
+    "name": "Priest's",
+    "reqlevel": 42
   },
   {
-    "name": "Monk's"
+    "name": "Monk's",
+    "reqlevel": 27
   },
   {
-    "name": "Priest's"
+    "name": "Priest's",
+    "reqlevel": 58
   },
   {
-    "name": "Summoner's"
+    "name": "Summoner's",
+    "reqlevel": 27
   },
   {
-    "name": "Necromancer's"
+    "name": "Necromancer's",
+    "reqlevel": 67
   },
   {
-    "name": "Summoner's"
+    "name": "Summoner's",
+    "reqlevel": 22
   },
   {
-    "name": "Necromancer's"
+    "name": "Necromancer's",
+    "reqlevel": 42
   },
   {
-    "name": "Angel's"
+    "name": "Angel's",
+    "reqlevel": 27
   },
   {
-    "name": "Arch-Angel's"
+    "name": "Arch-Angel's",
+    "reqlevel": 67
   },
   {
-    "name": "Angel's"
+    "name": "Angel's",
+    "reqlevel": 22
   },
   {
-    "name": "Arch-Angel's"
+    "name": "Arch-Angel's",
+    "reqlevel": 42
   },
   {
-    "name": "Slayer's"
+    "name": "Slayer's",
+    "reqlevel": 27
   },
   {
-    "name": "Berserker's"
+    "name": "Berserker's",
+    "reqlevel": 67
   },
   {
-    "name": "Slayer's"
+    "name": "Slayer's",
+    "reqlevel": 22
   },
   {
-    "name": "Berserker's"
+    "name": "Berserker's",
+    "reqlevel": 42
   },
   {
-    "name": "Slayer's"
+    "name": "Slayer's",
+    "reqlevel": 22
   },
   {
-    "name": "Berserker's"
+    "name": "Berserker's",
+    "reqlevel": 42
   },
   {
-    "name": "Shaman's"
+    "name": "Shaman's",
+    "reqlevel": 27
   },
   {
-    "name": "Hierophant's"
+    "name": "Hierophant's",
+    "reqlevel": 67
   },
   {
-    "name": "Shaman's"
+    "name": "Shaman's",
+    "reqlevel": 22
   },
   {
-    "name": "Hierophant's"
+    "name": "Hierophant's",
+    "reqlevel": 42
   },
   {
-    "name": "Magekiller's"
+    "name": "Magekiller's",
+    "reqlevel": 27
   },
   {
-    "name": "Witch-hunter's"
+    "name": "Witch-hunter's",
+    "reqlevel": 67
   },
   {
-    "name": "Magekiller's"
+    "name": "Magekiller's",
+    "reqlevel": 22
   },
   {
-    "name": "Witch-hunter's"
+    "name": "Witch-hunter's",
+    "reqlevel": 42
   },
   {
-    "name": "Compact"
+    "name": "Compact",
+    "reqlevel": 1
   },
   {
-    "name": "Thin"
+    "name": "Thin",
+    "reqlevel": 12
   },
   {
-    "name": "Dense"
+    "name": "Dense",
+    "reqlevel": 30
   },
   {
-    "name": "Consecrated"
+    "name": "Consecrated",
+    "reqlevel": 1
   },
   {
-    "name": "Pure"
+    "name": "Pure",
+    "reqlevel": 11
   },
   {
-    "name": "Sacred"
+    "name": "Sacred",
+    "reqlevel": 18
   },
   {
-    "name": "Hallowed"
+    "name": "Hallowed",
+    "reqlevel": 27
   },
   {
-    "name": "Divine"
+    "name": "Divine",
+    "reqlevel": 37
   },
   {
-    "name": "Pearl"
+    "name": "Pearl",
+    "reqlevel": 13
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 3
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 11
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 37
   },
   {
-    "name": "Bloody"
+    "name": "Bloody",
+    "reqlevel": 67
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 22
   },
   {
-    "name": "Sanguinary"
+    "name": "Sanguinary",
+    "reqlevel": 52
   },
   {
-    "name": "Red"
+    "name": "Red",
+    "reqlevel": 82
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 5
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 29
   },
   {
-    "name": "Serrated"
+    "name": "Serrated",
+    "reqlevel": 59
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 16
   },
   {
-    "name": "Forked"
+    "name": "Forked",
+    "reqlevel": 44
   },
   {
-    "name": "Jagged"
+    "name": "Jagged",
+    "reqlevel": 73
   },
   {
-    "name": "Snowy"
+    "name": "Snowy",
+    "reqlevel": 6
   },
   {
-    "name": "Shivering"
+    "name": "Shivering",
+    "reqlevel": 11
   },
   {
-    "name": "Boreal"
+    "name": "Boreal",
+    "reqlevel": 22
   },
   {
-    "name": "Hibernal"
+    "name": "Hibernal",
+    "reqlevel": 38
   },
   {
-    "name": "Snowy"
+    "name": "Snowy",
+    "reqlevel": 13
   },
   {
-    "name": "Shivering"
+    "name": "Shivering",
+    "reqlevel": 21
   },
   {
-    "name": "Boreal"
+    "name": "Boreal",
+    "reqlevel": 41
   },
   {
-    "name": "Hibernal"
+    "name": "Hibernal",
+    "reqlevel": 61
   },
   {
-    "name": "Snowy"
+    "name": "Snowy",
+    "reqlevel": 20
   },
   {
-    "name": "Shivering"
+    "name": "Shivering",
+    "reqlevel": 34
   },
   {
-    "name": "Boreal"
+    "name": "Boreal",
+    "reqlevel": 58
   },
   {
-    "name": "Hibernal"
+    "name": "Hibernal",
+    "reqlevel": 83
   },
   {
-    "name": "Fiery"
+    "name": "Fiery",
+    "reqlevel": 3
   },
   {
-    "name": "Smoldering"
+    "name": "Smoldering",
+    "reqlevel": 11
   },
   {
-    "name": "Smoking"
+    "name": "Smoking",
+    "reqlevel": 21
   },
   {
-    "name": "Flaming"
+    "name": "Flaming",
+    "reqlevel": 35
   },
   {
-    "name": "Fiery"
+    "name": "Fiery",
+    "reqlevel": 9
   },
   {
-    "name": "Smoldering"
+    "name": "Smoldering",
+    "reqlevel": 20
   },
   {
-    "name": "Smoking"
+    "name": "Smoking",
+    "reqlevel": 39
   },
   {
-    "name": "Flaming"
+    "name": "Flaming",
+    "reqlevel": 59
   },
   {
-    "name": "Fiery"
+    "name": "Fiery",
+    "reqlevel": 15
   },
   {
-    "name": "Smoldering"
+    "name": "Smoldering",
+    "reqlevel": 32
   },
   {
-    "name": "Smoking"
+    "name": "Smoking",
+    "reqlevel": 56
   },
   {
-    "name": "Flaming"
+    "name": "Flaming",
+    "reqlevel": 81
   },
   {
-    "name": "Static"
+    "name": "Static",
+    "reqlevel": 5
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 10
   },
   {
-    "name": "Arcing"
+    "name": "Arcing",
+    "reqlevel": 21
   },
   {
-    "name": "Shocking"
+    "name": "Shocking",
+    "reqlevel": 36
   },
   {
-    "name": "Static"
+    "name": "Static",
+    "reqlevel": 10
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 20
   },
   {
-    "name": "Arcing"
+    "name": "Arcing",
+    "reqlevel": 40
   },
   {
-    "name": "Shocking"
+    "name": "Shocking",
+    "reqlevel": 60
   },
   {
-    "name": "Static"
+    "name": "Static",
+    "reqlevel": 17
   },
   {
-    "name": "Glowing"
+    "name": "Glowing",
+    "reqlevel": 33
   },
   {
-    "name": "Arcing"
+    "name": "Arcing",
+    "reqlevel": 57
   },
   {
-    "name": "Shocking"
+    "name": "Shocking",
+    "reqlevel": 82
   },
   {
-    "name": "Septic"
+    "name": "Septic",
+    "reqlevel": 1
   },
   {
-    "name": "Foul"
+    "name": "Foul",
+    "reqlevel": 9
   },
   {
-    "name": "Toxic"
+    "name": "Toxic",
+    "reqlevel": 20
   },
   {
-    "name": "Pestilent"
+    "name": "Pestilent",
+    "reqlevel": 34
   },
   {
-    "name": "Septic"
+    "name": "Septic",
+    "reqlevel": 6
   },
   {
-    "name": "Foul"
+    "name": "Foul",
+    "reqlevel": 19
   },
   {
-    "name": "Toxic"
+    "name": "Toxic",
+    "reqlevel": 38
   },
   {
-    "name": "Pestilent"
+    "name": "Pestilent",
+    "reqlevel": 58
   },
   {
-    "name": "Septic"
+    "name": "Septic",
+    "reqlevel": 13
   },
   {
-    "name": "Foul"
+    "name": "Foul",
+    "reqlevel": 31
   },
   {
-    "name": "Toxic"
+    "name": "Toxic",
+    "reqlevel": 55
   },
   {
-    "name": "Pestilent"
+    "name": "Pestilent",
+    "reqlevel": 80
   },
   {
-    "name": "Tireless"
+    "name": "Tireless",
+    "reqlevel": 1
   },
   {
-    "name": "Lizard's"
+    "name": "Lizard's",
+    "reqlevel": 1
   },
   {
-    "name": "Azure"
+    "name": "Azure",
+    "reqlevel": 1
   },
   {
-    "name": "Crimson"
+    "name": "Crimson",
+    "reqlevel": 1
   },
   {
-    "name": "Tangerine"
+    "name": "Tangerine",
+    "reqlevel": 1
   },
   {
-    "name": "Beryl"
+    "name": "Beryl",
+    "reqlevel": 1
   },
   {
-    "name": "Godly"
+    "name": "Godly",
+    "reqlevel": 43
   },
   {
-    "name": "Cruel"
+    "name": "Cruel",
+    "reqlevel": 48
   }
 ]

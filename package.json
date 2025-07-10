@@ -6,7 +6,7 @@
     "start": "ts-node src/scripts/main.ts",
     "game-strings": "ts-node src/game-data/generate-strings.ts",
     "game-data": "ts-node src/game-data/generate-all.ts",
-    "format": "prettier --write './**/*.{ts,tsx,.css}'",
+    "format": "prettier --write './**/*.{ts,tsx,css}'",
     "lint": "eslint './**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './**/*.{ts,tsx}'",
     "build": "npm run format && npm run lint -- --max-warnings 0 && rm -r ./docs && rollup -c --environment PROD",
