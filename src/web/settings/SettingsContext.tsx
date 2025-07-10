@@ -32,11 +32,11 @@ export const SettingsContext = createContext<SettingsContext>({
   toggleAccessibleFont: () => undefined,
   collectionSearch: "",
   setCollectionSearch: () => undefined,
-  collectionQuality: "all",
+  collectionQuality: [],
   setCollectionQuality: () => undefined,
   collectionDuplicates: false,
   setCollectionDuplicates: () => undefined,
-  collectionCategory: "all",
+  collectionCategory: [],
   setCollectionCategory: () => undefined,
   collectionPageSize: 20,
   setCollectionPageSize: () => undefined,
@@ -44,7 +44,7 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionSortField: () => undefined,
   collectionSortDirection: "asc",
   setCollectionSortDirection: () => undefined,
-  collectionClass: "all",
+  collectionClass: [],
   setCollectionClass: () => undefined,
 });
 
@@ -58,11 +58,30 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
   );
 
   const [collectionQuality, setCollectionQualityState] =
-    useState<QualityFilterValue>(
-      () =>
-        (localStorage.getItem("collectionQuality") as QualityFilterValue) ||
-        "all"
-    );
+    useState<QualityFilterValue>(() => {
+      const stored = localStorage.getItem("collectionQuality");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed as QualityFilterValue;
+          }
+        } catch {
+          // Fallback to default if parsing fails
+        }
+      }
+      return [
+        "normal",
+        "superior",
+        "magic",
+        "rare",
+        "unique",
+        "set",
+        "runeword",
+        "crafted",
+        "misc",
+      ];
+    });
 
   const [collectionDuplicates, setCollectionDuplicatesState] =
     useState<DuplicatesFilterValue>(
@@ -70,11 +89,20 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     );
 
   const [collectionCategory, setCollectionCategoryState] =
-    useState<CategoryFilterValue>(
-      () =>
-        (localStorage.getItem("collectionCategory") as CategoryFilterValue) ||
-        "all"
-    );
+    useState<CategoryFilterValue>(() => {
+      const stored = localStorage.getItem("collectionCategory");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed as CategoryFilterValue;
+          }
+        } catch {
+          // Fallback to default if parsing fails
+        }
+      }
+      return [];
+    });
 
   const [collectionPageSize, setCollectionPageSizeState] = useState(
     () => Number(localStorage.getItem("collectionPageSize")) || 20
@@ -93,7 +121,20 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     );
 
   const [collectionClass, setCollectionClassState] = useState<ClassFilterValue>(
-    () => (localStorage.getItem("collectionClass") as ClassFilterValue) || "all"
+    () => {
+      const stored = localStorage.getItem("collectionClass");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed as ClassFilterValue;
+          }
+        } catch {
+          // Fallback to default if parsing fails
+        }
+      }
+      return [];
+    }
   );
 
   const toggleAccessibleFont = useCallback(() => {
@@ -110,7 +151,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
 
   const setCollectionQuality = useCallback((quality: QualityFilterValue) => {
     setCollectionQualityState(quality);
-    localStorage.setItem("collectionQuality", quality);
+    localStorage.setItem("collectionQuality", JSON.stringify(quality));
   }, []);
 
   const setCollectionDuplicates = useCallback(
@@ -123,7 +164,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
 
   const setCollectionCategory = useCallback((category: CategoryFilterValue) => {
     setCollectionCategoryState(category);
-    localStorage.setItem("collectionCategory", category);
+    localStorage.setItem("collectionCategory", JSON.stringify(category));
   }, []);
 
   const setCollectionPageSize = useCallback((pageSize: number) => {
@@ -143,7 +184,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
 
   const setCollectionClass = useCallback((classValue: ClassFilterValue) => {
     setCollectionClassState(classValue);
-    localStorage.setItem("collectionClass", classValue);
+    localStorage.setItem("collectionClass", JSON.stringify(classValue));
   }, []);
 
   const value = useMemo(

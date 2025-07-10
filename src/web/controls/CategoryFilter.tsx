@@ -1,70 +1,16 @@
 import { Item } from "../../scripts/items/types/Item";
 import { getItemCategories } from "../collection/ItemsTable";
+import { useState, useEffect, useRef } from "preact/hooks";
 
-export type CategoryFilterValue =
-  | "all"
-  // Weapon subcategories
-  | "axe"
-  | "sword"
-  | "mace"
-  | "hammer"
-  | "club"
-  | "knife"
-  | "spear"
-  | "polearm"
-  | "bow"
-  | "crossbow"
-  | "scepter"
-  | "wand"
-  | "staff"
-  | "javelin"
-  | "throwing-knife"
-  | "throwing-axe"
-  | "orb"
-  | "hand-to-hand"
-  | "amazon-bow"
-  | "amazon-spear"
-  | "amazon-javelin"
-  | "voodoo-head"
-  | "auric-shield"
-  | "primal-helm"
-  | "pelt"
-  | "cloak"
-  // Armor subcategories
-  | "helm"
-  | "armor"
-  | "shield"
-  | "boots"
-  | "gloves"
-  | "belt"
-  | "circlet"
-  // Misc subcategories
-  | "ring"
-  | "amulet"
-  | "charm"
-  | "potion"
-  | "elixir"
-  | "scroll"
-  | "book"
-  | "key"
-  | "torch"
-  | "body-part"
-  | "quest"
-  | "herb"
-  | "gold"
-  | "jewel"
-  | "rune"
-  // Major categories (for gems and sockets)
-  | "gem"
-  | "socket";
+export type CategoryFilterValue = string[];
 
 export interface CategoryFilterProps {
-  value: string;
+  value: CategoryFilterValue;
   onChange: (value: CategoryFilterValue) => void;
 }
 
 // Human-readable names for categories
-export const CATEGORY_NAMES: Record<CategoryFilterValue, string> = {
+export const CATEGORY_NAMES: Record<string, string> = {
   all: "All Categories",
   // Weapons
   axe: "Axes",
@@ -172,46 +118,259 @@ const CATEGORY_GROUPS = {
   ],
 };
 
+const CATEGORY_OPTIONS = Object.entries(CATEGORY_GROUPS).flatMap(
+  ([groupName, categories]) =>
+    categories.map((category) => ({
+      value: category,
+      label: CATEGORY_NAMES[category],
+      group: groupName,
+    }))
+);
+
 export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [tempSelection, setTempSelection] =
+    useState<CategoryFilterValue>(value);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Update temp selection when value changes
+  useEffect(() => {
+    setTempSelection(value);
+  }, [value]);
+
+  // Click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+        setTempSelection(value); // Reset to original value
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen, value]);
+
+  const handleToggle = (category: string) => {
+    const newValue = tempSelection.includes(category)
+      ? tempSelection.filter((v) => v !== category)
+      : [...tempSelection, category];
+    setTempSelection(newValue);
+  };
+
+  const selectAll = () => {
+    setTempSelection(CATEGORY_OPTIONS.map((option) => option.value));
+  };
+
+  const selectNone = () => {
+    setTempSelection([]);
+  };
+
+  const applySelection = () => {
+    onChange(tempSelection);
+    setIsOpen(false);
+  };
+
+  const cancelSelection = () => {
+    setTempSelection(value);
+    setIsOpen(false);
+  };
+
+  const getSelectedLabels = () => {
+    if (tempSelection.length === 0) return "None";
+    if (tempSelection.length === CATEGORY_OPTIONS.length) return "All";
+    if (tempSelection.length === 1) {
+      return (
+        CATEGORY_OPTIONS.find((opt) => opt.value === tempSelection[0])?.label ||
+        ""
+      );
+    }
+    return `${tempSelection.length} selected`;
+  };
+
   return (
-    <div>
-      <p>
-        <label for="category-select">Filter by category:</label>
+    <div ref={containerRef} style={{ position: "relative" }}>
+      <p style={{ margin: "0.25em 0" }}>
+        <label style={{ fontSize: "0.9em" }}>Filter by category:</label>
       </p>
-      <p>
-        <select
-          id="category-select"
-          value={value}
-          onChange={({ currentTarget }) =>
-            onChange(currentTarget.value as CategoryFilterValue)
-          }
+      <p style={{ margin: "0.25em 0" }}>
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            width: "100%",
+            maxWidth: "150px",
+            textAlign: "left",
+            padding: "0.25em 0.5em",
+            fontSize: "0.9em",
+            border: "1px solid #ccc",
+            borderRadius: "3px",
+            backgroundColor: "#f8f8f8",
+            cursor: "pointer",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
         >
-          <option value="all">{CATEGORY_NAMES.all}</option>
-          {Object.entries(CATEGORY_GROUPS).map(([groupName, categories]) => (
-            <optgroup key={groupName} label={groupName}>
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {CATEGORY_NAMES[category as CategoryFilterValue]}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+          {getSelectedLabels()}
+        </button>
       </p>
+
+      {isOpen && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            backgroundColor: "#f8f8f8",
+            border: "1px solid #ccc",
+            borderRadius: "3px",
+            padding: "0.5em",
+            zIndex: 1000,
+            minWidth: "200px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+            fontSize: "0.85em",
+            color: "#000",
+          }}
+        >
+          <div style={{ marginBottom: "0.5em" }}>
+            <button
+              type="button"
+              onClick={selectAll}
+              style={{
+                marginRight: "0.25em",
+                padding: "0.2em 0.4em",
+                fontSize: "0.8em",
+                border: "1px solid #ccc",
+                borderRadius: "2px",
+                backgroundColor: "#fff",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              onClick={selectNone}
+              style={{
+                padding: "0.2em 0.4em",
+                fontSize: "0.8em",
+                border: "1px solid #ccc",
+                borderRadius: "2px",
+                backgroundColor: "#fff",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            >
+              None
+            </button>
+          </div>
+
+          <div
+            style={{
+              maxHeight: "200px",
+              overflowY: "auto",
+              marginBottom: "0.5em",
+            }}
+          >
+            {Object.entries(CATEGORY_GROUPS).map(([groupName, categories]) => (
+              <div key={groupName}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    padding: "0.3em 0.2em",
+                    backgroundColor: "#e0e0e0",
+                    fontSize: "0.8em",
+                    marginTop: "0.5em",
+                  }}
+                >
+                  {groupName}
+                </div>
+                {categories.map((category, index) => (
+                  <div
+                    key={category}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0.2em 0.3em",
+                      marginBottom: "0",
+                      backgroundColor: index % 2 === 0 ? "#f0f0f0" : "#f8f8f8",
+                      fontSize: "0.85em",
+                      color: "#000",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={tempSelection.includes(category)}
+                      onChange={() => handleToggle(category)}
+                      style={{
+                        marginRight: "0.5em",
+                        margin: "0 0.5em 0 0",
+                      }}
+                    />
+                    <span>{CATEGORY_NAMES[category]}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "right" }}>
+            <button
+              type="button"
+              onClick={cancelSelection}
+              style={{
+                marginRight: "0.25em",
+                padding: "0.2em 0.4em",
+                fontSize: "0.8em",
+                border: "1px solid #ccc",
+                borderRadius: "2px",
+                backgroundColor: "#fff",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={applySelection}
+              style={{
+                padding: "0.2em 0.4em",
+                fontSize: "0.8em",
+                border: "1px solid #ccc",
+                borderRadius: "2px",
+                backgroundColor: "#fff",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export function filterItemsByCategory(
   items: Item[],
-  category: CategoryFilterValue
+  categories: CategoryFilterValue
 ) {
-  if (category === "all") {
+  if (categories.length === 0) {
     return items;
   }
-  const categoryName = CATEGORY_NAMES[category];
+
   return items.filter((item) => {
-    const categories = getItemCategories(item);
-    return categories.includes(categoryName);
+    const itemCategories = getItemCategories(item);
+    return categories.some((category) => itemCategories.includes(category));
   });
 }

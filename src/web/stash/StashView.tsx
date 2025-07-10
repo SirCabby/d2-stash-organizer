@@ -29,7 +29,17 @@ export function StashView() {
     )
   );
   const [search, setSearch] = useState("");
-  const [quality, setQuality] = useState<QualityFilterValue>("all");
+  const [quality, setQuality] = useState<QualityFilterValue>([
+    "normal",
+    "superior",
+    "magic",
+    "rare",
+    "unique",
+    "set",
+    "runeword",
+    "crafted",
+    "misc",
+  ]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const owner = owners[ownerIndex];
