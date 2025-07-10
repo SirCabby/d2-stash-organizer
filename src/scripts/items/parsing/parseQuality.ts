@@ -9,8 +9,6 @@ import {
   RUNEWORDS,
   SET_ITEMS,
   UNIQUE_ITEMS,
-  ARMORS,
-  WEAPONS,
 } from "../../../game-data";
 import { getBase } from "../getBase";
 

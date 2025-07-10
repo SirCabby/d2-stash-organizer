@@ -124,9 +124,9 @@ export const CATEGORY_NAMES: Record<CategoryFilterValue, string> = {
 
 // Category groupings for optgroups
 const CATEGORY_GROUPS = {
-  "Weapons": [
+  Weapons: [
     "amazon-bow",
-    "amazon-javelin", 
+    "amazon-javelin",
     "amazon-spear",
     "auric-shield",
     "axe",
@@ -149,22 +149,11 @@ const CATEGORY_GROUPS = {
     "throwing-axe",
     "throwing-knife",
     "voodoo-head",
-    "wand"
+    "wand",
   ],
-  "Armor": [
-    "armor",
-    "belt",
-    "boots",
-    "circlet",
-    "gloves",
-    "helm",
-    "shield"
-  ],
-  "Jewelry": [
-    "amulet",
-    "ring"
-  ],
-  "Miscellaneous": [
+  Armor: ["armor", "belt", "boots", "circlet", "gloves", "helm", "shield"],
+  Jewelry: ["amulet", "ring"],
+  Miscellaneous: [
     "book",
     "body-part",
     "charm",
@@ -179,8 +168,8 @@ const CATEGORY_GROUPS = {
     "rune",
     "scroll",
     "socket",
-    "torch"
-  ]
+    "torch",
+  ],
 };
 
 export function CategoryFilter({ value, onChange }: CategoryFilterProps) {

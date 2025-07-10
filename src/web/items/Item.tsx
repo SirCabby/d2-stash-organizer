@@ -5,8 +5,7 @@ import { ItemTooltip } from "./ItemTooltip";
 import { ItemLocationDesc } from "./ItemLocationDesc";
 import { useCallback, useContext } from "preact/hooks";
 import { SelectionContext } from "../transfer/SelectionContext";
-import { getBase } from "../../scripts/items/getBase";
-import { CATEGORY_NAMES } from "../controls/CategoryFilter";
+
 import { getItemCategoryName } from "../collection/ItemsTable";
 
 export interface ItemProps {

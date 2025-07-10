@@ -1,10 +1,10 @@
 import { Item } from "../../scripts/items/types/Item";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 
-export type DuplicatesFilterValue = "all" | "duplicates";
+export type DuplicatesFilterValue = boolean;
 
 export interface DuplicatesFilterProps {
-  value: string;
+  value: boolean;
   onChange: (value: DuplicatesFilterValue) => void;
 }
 
@@ -12,19 +12,15 @@ export function DuplicatesFilter({ value, onChange }: DuplicatesFilterProps) {
   return (
     <div>
       <p>
-        <label for="duplicates-select">Filter by duplicates:</label>
+        <label htmlFor="duplicates-checkbox">Show only duplicates:</label>
       </p>
       <p>
-        <select
-          id="duplicates-select"
-          value={value}
-          onChange={({ currentTarget }) =>
-            onChange(currentTarget.value as DuplicatesFilterValue)
-          }
-        >
-          <option value="all">All</option>
-          <option value="duplicates">Duplicates</option>
-        </select>
+        <input
+          id="duplicates-checkbox"
+          type="checkbox"
+          checked={value}
+          onChange={({ currentTarget }) => onChange(currentTarget.checked)}
+        />
       </p>
     </div>
   );
@@ -34,7 +30,7 @@ export function filterItemsByDuplicates(
   items: Item[],
   duplicatesFilter: DuplicatesFilterValue
 ) {
-  if (duplicatesFilter === "all") {
+  if (!duplicatesFilter) {
     return items;
   }
 

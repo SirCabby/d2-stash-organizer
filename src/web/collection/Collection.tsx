@@ -94,17 +94,14 @@ export function Collection() {
           value={collectionQuality}
           onChange={setCollectionQuality}
         />
-        <DuplicatesFilter
-          value={collectionDuplicates}
-          onChange={setCollectionDuplicates}
-        />
         <CategoryFilter
           value={collectionCategory}
           onChange={setCollectionCategory}
         />
-        <ClassFilter
-          value={collectionClass}
-          onChange={setCollectionClass}
+        <ClassFilter value={collectionClass} onChange={setCollectionClass} />
+        <DuplicatesFilter
+          value={collectionDuplicates}
+          onChange={setCollectionDuplicates}
         />
         <div>
           <p>

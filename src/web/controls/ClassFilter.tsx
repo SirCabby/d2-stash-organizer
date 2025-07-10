@@ -1,6 +1,14 @@
 import { Item } from "../../scripts/items/types/Item";
 
-export type ClassFilterValue = "all" | "ama" | "bar" | "nec" | "pal" | "sor" | "dru" | "ass";
+export type ClassFilterValue =
+  | "all"
+  | "ama"
+  | "bar"
+  | "nec"
+  | "pal"
+  | "sor"
+  | "dru"
+  | "ass";
 
 export interface ClassFilterProps {
   value: ClassFilterValue;
@@ -45,7 +53,10 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
   );
 }
 
-export function filterItemsByClass(items: Item[], classValue: ClassFilterValue) {
+export function filterItemsByClass(
+  items: Item[],
+  classValue: ClassFilterValue
+) {
   if (classValue === "all") return items;
   return items.filter((item) => item.classRequirement === classValue);
-} 
+}

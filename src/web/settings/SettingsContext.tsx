@@ -34,7 +34,7 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionSearch: () => undefined,
   collectionQuality: "all",
   setCollectionQuality: () => undefined,
-  collectionDuplicates: "all",
+  collectionDuplicates: false,
   setCollectionDuplicates: () => undefined,
   collectionCategory: "all",
   setCollectionCategory: () => undefined,
@@ -66,10 +66,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
 
   const [collectionDuplicates, setCollectionDuplicatesState] =
     useState<DuplicatesFilterValue>(
-      () =>
-        (localStorage.getItem(
-          "collectionDuplicates"
-        ) as DuplicatesFilterValue) || "all"
+      () => localStorage.getItem("collectionDuplicates") === "true"
     );
 
   const [collectionCategory, setCollectionCategoryState] =
@@ -119,7 +116,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
   const setCollectionDuplicates = useCallback(
     (duplicates: DuplicatesFilterValue) => {
       setCollectionDuplicatesState(duplicates);
-      localStorage.setItem("collectionDuplicates", duplicates);
+      localStorage.setItem("collectionDuplicates", duplicates.toString());
     },
     []
   );
