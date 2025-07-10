@@ -122,6 +122,67 @@ export const CATEGORY_NAMES: Record<CategoryFilterValue, string> = {
   socket: "Socket Fillers",
 };
 
+// Category groupings for optgroups
+const CATEGORY_GROUPS = {
+  "Weapons": [
+    "amazon-bow",
+    "amazon-javelin", 
+    "amazon-spear",
+    "auric-shield",
+    "axe",
+    "bow",
+    "club",
+    "crossbow",
+    "hand-to-hand",
+    "hammer",
+    "javelin",
+    "knife",
+    "mace",
+    "orb",
+    "pelt",
+    "polearm",
+    "primal-helm",
+    "scepter",
+    "spear",
+    "staff",
+    "sword",
+    "throwing-axe",
+    "throwing-knife",
+    "voodoo-head",
+    "wand"
+  ],
+  "Armor": [
+    "armor",
+    "belt",
+    "boots",
+    "circlet",
+    "gloves",
+    "helm",
+    "shield"
+  ],
+  "Jewelry": [
+    "amulet",
+    "ring"
+  ],
+  "Miscellaneous": [
+    "book",
+    "body-part",
+    "charm",
+    "elixir",
+    "gem",
+    "gold",
+    "herb",
+    "jewel",
+    "key",
+    "potion",
+    "quest",
+    "rune",
+    "scroll",
+    "socket",
+    "torch"
+  ]
+};
+
 export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
   return (
     <div>
@@ -136,10 +197,15 @@ export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
             onChange(currentTarget.value as CategoryFilterValue)
           }
         >
-          {Object.entries(CATEGORY_NAMES).map(([key, name]) => (
-            <option key={key} value={key}>
-              {name}
-            </option>
+          <option value="all">{CATEGORY_NAMES.all}</option>
+          {Object.entries(CATEGORY_GROUPS).map(([groupName, categories]) => (
+            <optgroup key={groupName} label={groupName}>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {CATEGORY_NAMES[category as CategoryFilterValue]}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </p>
