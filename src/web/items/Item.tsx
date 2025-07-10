@@ -49,6 +49,7 @@ export function Item({
       <th scope="row" aria-label={item.name}>
         <ItemTooltip item={item} />
       </th>
+      <td>{item.level ?? "—"}</td>
       <td>
         <AdditionalInfo item={item} quantity={duplicates?.length} />
       </td>

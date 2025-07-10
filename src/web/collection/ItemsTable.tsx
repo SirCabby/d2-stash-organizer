@@ -93,6 +93,8 @@ function getGroupedItemSortValue(
           return "Unknown location";
       }
     }
+    case "level":
+      return representativeItem.level ?? 0;
     default:
       return "";
   }
@@ -184,6 +186,21 @@ export function ItemsTable({
                 }`}
               >
                 Item {getSortIcon("name")}
+              </button>
+            </th>
+            <th>
+              <button
+                class="sort-button"
+                onClick={() => onSort("level")}
+                aria-label={`Sort by level ${
+                  sortField === "level"
+                    ? sortDirection === "asc"
+                      ? "descending"
+                      : "ascending"
+                    : "ascending"
+                }`}
+              >
+                Level {getSortIcon("level")}
               </button>
             </th>
             <th>

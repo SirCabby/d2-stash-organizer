@@ -11,7 +11,12 @@ import {
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
-export type SortField = "name" | "characteristics" | "location" | "none";
+export type SortField =
+  | "name"
+  | "level"
+  | "characteristics"
+  | "location"
+  | "none";
 export type SortDirection = "asc" | "desc";
 
 export function Collection() {
