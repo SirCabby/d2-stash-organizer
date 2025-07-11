@@ -266,7 +266,7 @@ export function GrailTracker() {
           ) {
             continue;
           }
-          items.push(
+                      items.push(
             <tr>
               <th scope="row" class={"set" in item ? "set" : "unique"}>
                 {item.name}
@@ -308,8 +308,14 @@ export function GrailTracker() {
 
   return (
     <>
-      <div class="controls">
+      <div class="controls" style={{ padding: "0.5em 0" }}>
         <GrailSummary />
+      </div>
+      <div style={{ 
+        marginBottom: "0.5em",
+        borderBottom: "1px solid #666666",
+        paddingBottom: "0.5em"
+      }}>
         <GrailFilter value={filters} onChange={setFilters} />
       </div>
       <table id="grail-tracker">
