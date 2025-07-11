@@ -3,6 +3,7 @@ import "./ItemTooltip.css";
 import { getBase } from "../../scripts/items/getBase";
 import { colorClass } from "../collection/utils/colorClass";
 import { useState, useRef, useEffect } from "preact/hooks";
+import { JSX } from "preact";
 
 let UNIQUE_ID = 0;
 
@@ -13,12 +14,20 @@ function Range({ range }: { range?: [number, number] }) {
   return <span class="sidenote"> [{range.join(" - ")}]</span>;
 }
 
-export function ItemTooltip({ item }: { item: Item }) {
-  const [tooltipId] = useState(() => `item-tooltip-${UNIQUE_ID++}`);
+export function ItemTooltip({
+  item,
+  children,
+  useDefaultColor = true,
+}: {
+  item: Item;
+  children?: JSX.Element;
+  useDefaultColor?: boolean;
+}) {
+  const [tooltipId] = useState(() => `item-tooltip-${item.id ?? UNIQUE_ID++}`);
   const [showBelow, setShowBelow] = useState(false);
   const containerRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const className = colorClass(item);
+  const className = useDefaultColor ? colorClass(item) : "";
 
   useEffect(() => {
     const container = containerRef.current;
@@ -124,7 +133,7 @@ export function ItemTooltip({ item }: { item: Item }) {
         tabIndex={0}
         aria-describedby={tooltipId}
       >
-        {item.name}
+        {children || item.name}
       </span>
       <div
         id={tooltipId}

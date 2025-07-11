@@ -13,6 +13,8 @@ export interface GrailStatus {
   ethereal?: boolean;
   perfect: boolean;
   perfectEth?: boolean;
+  // Add the actual items found for this grail item
+  foundItems: Item[];
 }
 
 function addToGrail(found: Map<UniqueItem | SetItem, Item[]>, item: Item) {
@@ -66,6 +68,7 @@ export function grailProgress(items: Item[]) {
                       perfectionScore === 100 && ethereal
                   )
               : undefined,
+            foundItems: found.get(item) || [],
           };
         })
       )
@@ -85,6 +88,7 @@ export function grailProgress(items: Item[]) {
               perfectionScore === 100 && !ethereal
           ),
         perfectEth: undefined,
+        foundItems: found.get(item) || [],
       })),
     ]);
   }

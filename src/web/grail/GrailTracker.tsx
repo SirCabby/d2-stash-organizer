@@ -4,6 +4,8 @@ import { JSX } from "preact";
 import "./GrailTracker.css";
 import { CollectionContext } from "../store/CollectionContext";
 import { GrailSummary } from "./GrailSummary";
+import { ItemTooltip } from "../items/ItemTooltip";
+import { GrailItemTooltip } from "../items/GrailItemTooltip";
 
 const TIER_NAMES = ["Normal", "Exceptional", "Elite"];
 
@@ -106,7 +108,14 @@ export function GrailTracker() {
     for (const [section, tiers] of progress) {
       tiers.forEach((tier, i) => {
         const items: JSX.Element[] = [];
-        for (const { item, normal, ethereal, perfect, perfectEth } of tier) {
+        for (const {
+          item,
+          normal,
+          ethereal,
+          perfect,
+          perfectEth,
+          foundItems,
+        } of tier) {
           // Check if item should be shown based on filters
           const shouldShowNormal =
             filters.normal === "any" ||
@@ -138,10 +147,24 @@ export function GrailTracker() {
             continue;
           }
 
+          // Find the best representative item for tooltip
+          const tooltipItem = foundItems.length > 0 ? foundItems[0] : null;
+
+          // Find ethereal item for tooltip
+          const etherealItem = foundItems.find((item) => item.ethereal);
+
           items.push(
-            <tr class="grail-item">
+            <tr key={`${item.name}-${i}`} class="grail-item">
               <th scope="row" class={"set" in item ? "set" : "unique"}>
-                {item.name.trim()}
+                {tooltipItem ? (
+                  <ItemTooltip item={tooltipItem} />
+                ) : (
+                  <GrailItemTooltip
+                    item={item}
+                    isEthereal={ethereal === true}
+                    isPerfect={perfect}
+                  />
+                )}
               </th>
               <td class={toClassName(normal)}>
                 <span style={{ display: "inline-block", verticalAlign: "top" }}>
@@ -158,7 +181,20 @@ export function GrailTracker() {
                   <span
                     style={{ display: "inline-block", verticalAlign: "top" }}
                   >
-                    Ethereal
+                    {etherealItem ? (
+                      <ItemTooltip item={etherealItem} useDefaultColor={false}>
+                        <span>Ethereal</span>
+                      </ItemTooltip>
+                    ) : (
+                      <GrailItemTooltip
+                        item={item}
+                        isEthereal={true}
+                        isPerfect={false}
+                        useDefaultColor={false}
+                      >
+                        <span>Ethereal</span>
+                      </GrailItemTooltip>
+                    )}
                   </span>
                 )}
               </td>
@@ -182,7 +218,7 @@ export function GrailTracker() {
         const sectionName =
           tiers.length > 1 ? `${TIER_NAMES[i]} ${section.name}` : section.name;
         rows.push(
-          <tr class="grail-header">
+          <tr key={`header-${sectionName}-${i}`} class="grail-header">
             <td colSpan={5}>{sectionName}</td>
           </tr>
         );
