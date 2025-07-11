@@ -17,8 +17,8 @@ const GRAIL_FILTER_OPTIONS = [
 
 const GRAIL_CATEGORIES = [
   { key: "normal", label: "Normal" },
-  { key: "ethereal", label: "Ethereal" },
   { key: "perfect", label: "Perfect" },
+  { key: "ethereal", label: "Ethereal" },
   { key: "eth-perfect", label: "Eth Perfect" },
 ] as const;
 
