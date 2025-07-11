@@ -233,7 +233,7 @@ function getGroupedItemSortValue(
     case "category":
       return getItemCategoryName(representativeItem);
     case "class":
-      return representativeItem.classRequirement || "";
+      return representativeItem.classRequirement || "All";
     default:
       return "";
   }

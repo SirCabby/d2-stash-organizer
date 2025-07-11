@@ -60,7 +60,7 @@ export function Item({
       <td>{getItemQualityName(item)}</td>
       <td>{getItemCategoryName(item)}</td>
       {showClassRequirement && (
-        <td>{item.classRequirement ? item.classRequirement : "—"}</td>
+        <td>{item.classRequirement ? item.classRequirement : "All"}</td>
       )}
       <td>
         <AdditionalInfo item={item} quantity={duplicates?.length} />
