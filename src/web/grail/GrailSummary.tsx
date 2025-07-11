@@ -5,10 +5,8 @@ import { CollectionContext } from "../store/CollectionContext";
 export function GrailSummary() {
   const { allItems } = useContext(CollectionContext);
 
-  const { nbNormal, totalNormal, nbEth, totalEth, nbPerfect } = useMemo(
-    () => grailSummary(allItems),
-    [allItems]
-  );
+  const { nbNormal, totalNormal, nbEth, totalEth, nbPerfect, nbPerfectEth } =
+    useMemo(() => grailSummary(allItems), [allItems]);
 
   return (
     <div>
@@ -16,10 +14,13 @@ export function GrailSummary() {
         Normal Grail: {nbNormal} / {totalNormal}
       </p>
       <p>
-        Eth Grail: {nbEth} / {totalEth}
+        Perfect Grail: {nbPerfect} / {totalNormal}
       </p>
       <p>
-        Perfect Grail: {nbPerfect} / {totalNormal}
+        Ethereal Grail: {nbEth} / {totalEth}
+      </p>
+      <p>
+        Perfect Eth Grail: {nbPerfectEth} / {totalEth}
       </p>
     </div>
   );

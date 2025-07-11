@@ -12,6 +12,7 @@ export interface GrailStatus {
   // Undefined means not applicable
   ethereal?: boolean;
   perfect: boolean;
+  perfectEth?: boolean;
 }
 
 function addToGrail(found: Map<UniqueItem | SetItem, Item[]>, item: Item) {
@@ -47,13 +48,24 @@ export function grailProgress(items: Item[]) {
         tier.map((item) => {
           return {
             item,
-            normal: !!found.get(item),
+            normal: !!found.get(item)?.some(({ ethereal }) => !ethereal),
             ethereal: canBeEthereal(item)
               ? !!found.get(item)?.some(({ ethereal }) => ethereal)
               : undefined,
             perfect: !!found
               .get(item)
-              ?.some(({ perfectionScore }) => perfectionScore === 100),
+              ?.some(
+                ({ perfectionScore, ethereal }) =>
+                  perfectionScore === 100 && !ethereal
+              ),
+            perfectEth: canBeEthereal(item)
+              ? !!found
+                  .get(item)
+                  ?.some(
+                    ({ perfectionScore, ethereal }) =>
+                      perfectionScore === 100 && ethereal
+                  )
+              : undefined,
           };
         })
       )
@@ -64,11 +76,15 @@ export function grailProgress(items: Item[]) {
     progress.set(set, [
       setItems.map((item) => ({
         item,
-        normal: !!found.get(item),
+        normal: !!found.get(item)?.some(({ ethereal }) => !ethereal),
         ethereal: undefined,
         perfect: !!found
           .get(item)
-          ?.some(({ perfectionScore }) => perfectionScore === 100),
+          ?.some(
+            ({ perfectionScore, ethereal }) =>
+              perfectionScore === 100 && !ethereal
+          ),
+        perfectEth: undefined,
       })),
     ]);
   }
@@ -83,10 +99,11 @@ export function grailSummary(items: Item[]) {
     nbEth: 0,
     totalEth: 0,
     nbPerfect: 0,
+    nbPerfectEth: 0,
   };
   for (const tiers of grailProgress(items).values()) {
     for (const tier of tiers) {
-      for (const { normal, ethereal, perfect } of tier) {
+      for (const { normal, ethereal, perfect, perfectEth } of tier) {
         summary.totalNormal++;
         if (normal) {
           summary.nbNormal++;
@@ -100,6 +117,11 @@ export function grailSummary(items: Item[]) {
             summary.nbEth++;
           }
         }
+        if (typeof perfectEth !== "undefined") {
+          if (perfectEth) {
+            summary.nbPerfectEth++;
+          }
+        }
       }
     }
   }
@@ -110,7 +132,7 @@ export function printGrailProgress(items: Item[]) {
   for (const [section, tiers] of grailProgress(items)) {
     console.log(`\x1b[35m${section.name}\x1b[39m`);
     for (const tier of tiers) {
-      for (const { item, normal, ethereal, perfect } of tier) {
+      for (const { item, normal, ethereal, perfect, perfectEth } of tier) {
         let line = item.name;
         line += normal
           ? ` \x1b[32mnormal ✔\x1b[39m`
@@ -123,6 +145,11 @@ export function printGrailProgress(items: Item[]) {
         line += perfect
           ? ` \x1b[32mperfect ✔\x1b[39m`
           : ` \x1b[31mperfect ✘\x1b[39m`;
+        if (typeof perfectEth !== "undefined") {
+          line += perfectEth
+            ? ` \x1b[32mperfectEth ✔\x1b[39m`
+            : ` \x1b[31mperfectEth ✘\x1b[39m`;
+        }
         console.log(line);
       }
       console.log("");

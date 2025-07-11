@@ -15,12 +15,12 @@ export function GrailTracker() {
 
   const progress = useMemo(() => grailProgress(allItems), [allItems]);
 
-  const sections = useMemo(() => {
-    const sections: JSX.Element[] = [];
+  const tableContent = useMemo(() => {
+    const content: JSX.Element[] = [];
     for (const [section, tiers] of progress) {
       tiers.forEach((tier, i) => {
         const items = [];
-        for (const { item, normal, ethereal, perfect } of tier) {
+        for (const { item, normal, ethereal, perfect, perfectEth } of tier) {
           if (
             (normal && filter === "missing") ||
             (perfect && filter === "perfect") ||
@@ -35,6 +35,7 @@ export function GrailTracker() {
                 {item.name}
               </th>
               <td class={toClassName(normal)}>Normal</td>
+              <td class={toClassName(perfect)}>Perfect</td>
               {typeof ethereal === "undefined" ? (
                 <td>
                   <span aria-label="Not applicable" />
@@ -42,7 +43,13 @@ export function GrailTracker() {
               ) : (
                 <td class={toClassName(ethereal)}>Ethereal</td>
               )}
-              <td class={toClassName(perfect)}>Perfect</td>
+              {typeof perfectEth === "undefined" ? (
+                <td>
+                  <span aria-label="Not applicable" />
+                </td>
+              ) : (
+                <td class={toClassName(perfectEth)}>Perfect Eth</td>
+              )}
             </tr>
           );
         }
@@ -51,17 +58,15 @@ export function GrailTracker() {
         }
         const sectionName =
           tiers.length > 1 ? `${TIER_NAMES[i]} ${section.name}` : section.name;
-        sections.push(
-          <tbody>
-            <tr>
-              <td colSpan={4}>{sectionName}</td>
-            </tr>
-            {items}
-          </tbody>
+        content.push(
+          <tr>
+            <td colSpan={5}>{sectionName}</td>
+          </tr>
         );
+        content.push(...items);
       });
     }
-    return sections;
+    return content;
   }, [filter, progress]);
 
   return (
@@ -86,7 +91,9 @@ export function GrailTracker() {
           </p>
         </div>
       </div>
-      <table id="grail-tracker">{sections}</table>
+      <table id="grail-tracker">
+        <tbody>{tableContent}</tbody>
+      </table>
     </>
   );
 }
