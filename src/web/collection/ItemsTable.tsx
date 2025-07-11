@@ -13,6 +13,7 @@ import {
 } from "../../scripts/items/types/ItemLocation";
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
 import { colorClass } from "./utils/colorClass";
+import { Item } from "../items/Item";
 
 // Function to get all possible categories for an item (for filtering)
 export function getItemCategories(item: ItemType): string[] {
@@ -115,6 +116,7 @@ export function getItemCategoryName(item: ItemType): string {
 
 export interface ItemsTableProps {
   items: ItemType[];
+  selectable: boolean;
   pageSize: number;
   sortField: SortField;
   sortDirection: SortDirection;
@@ -229,6 +231,7 @@ function sortGroupedItems(
 
 export function ItemsTable({
   items,
+  selectable,
   pageSize,
   sortField,
   sortDirection,
@@ -335,7 +338,6 @@ export function ItemsTable({
                 Class {getSortIcon("class")}
               </button>
             </th>
-            <th>Ethereal</th>
             <th>
               <button
                 class="sort-button"
@@ -377,18 +379,14 @@ export function ItemsTable({
             .map((items, index) => {
               const item = items[0];
               return (
-                <tr key={item.id ?? index} className={colorClass(item)}>
-                  <td></td>
-                  <td>{item.name}</td>
-                  <td>{item.level ?? ""}</td>
-                  <td>{getItemCategoryName(item)}</td>
-                  <td>{item.classRequirement ?? ""}</td>
-                  <td style={{ textAlign: "center" }}>
-                    {item.ethereal ? "✓" : ""}
-                  </td>
-                  <td>{getGroupedItemSortValue(items, "characteristics")}</td>
-                  <td>{getGroupedItemSortValue(items, "location")}</td>
-                </tr>
+                <Item
+                  key={item.id ?? index}
+                  item={item}
+                  duplicates={items}
+                  selectable={selectable}
+                  withLocation={true}
+                  showClassRequirement={true}
+                />
               );
             })}
         </tbody>
