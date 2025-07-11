@@ -40,4 +40,12 @@ This is a TypeScript/Node.js project for organizing Diablo 2 stash files. The pr
 - Source code in `src/` directory
 - Game data in `game-data/` directory
 - Web interface in `src/web/` directory
-- Scripts in `src/scripts/` directory 
+- Scripts in `src/scripts/` directory
+- Temporary outputs in `Output/` directory
+
+## Debugging and Output Management
+- **All temporary debugging outputs must go to the `Output/` folder**
+- Reuse existing output files when possible instead of generating new ones
+- Use descriptive filenames for output files (e.g., `build_output.txt`, `lint_output.txt`)
+- Clean up old output files periodically to prevent clutter
+- Console logs, build outputs, and temporary data should be directed to appropriate files in `Output/` 

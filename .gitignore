@@ -4,3 +4,7 @@ node_modules/
 
 test/
 dist/
+
+# Input and Output folders
+Input/
+Output/
