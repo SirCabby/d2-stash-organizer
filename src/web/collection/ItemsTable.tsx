@@ -168,14 +168,7 @@ function getGroupedItemSortValue(
       const characteristics = [];
       if (isSimpleItem(representativeItem)) {
         // Include quantity for simple items
-        characteristics.push(`simple (${itemGroup.length})`);
-      }
-      if (
-        representativeItem.runeword ||
-        representativeItem.quality === ItemQuality.UNIQUE ||
-        representativeItem.quality === ItemQuality.SET
-      ) {
-        characteristics.push("special");
+        characteristics.push(`quantity: ${itemGroup.length}`);
       }
       if (representativeItem.ethereal) {
         characteristics.push("ethereal");

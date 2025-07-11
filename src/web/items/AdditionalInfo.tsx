@@ -12,7 +12,7 @@ export function AdditionalInfo({ item, quantity }: AdditionalInfoProps) {
   const relevant = [];
 
   if (isSimpleItem(item)) {
-    relevant.push(`Quantity: ${quantity}`);
+    relevant.push(`quantity: ${quantity}`);
   }
 
   if (

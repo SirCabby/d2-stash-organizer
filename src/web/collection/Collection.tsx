@@ -14,6 +14,7 @@ import {
   CategoryFilter,
 } from "../controls/CategoryFilter";
 import { ClassFilter, filterItemsByClass } from "../controls/ClassFilter";
+import { CharacteristicsFilter, filterItemsByCharacteristics } from "../controls/CharacteristicsFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 import { Item as ItemType } from "../../scripts/items/types/Item";
@@ -29,13 +30,7 @@ export type SortField =
   | "none";
 export type SortDirection = "asc" | "desc";
 
-function filterItemsByEthereal(
-  items: ItemType[],
-  ethereal: boolean
-): ItemType[] {
-  if (!ethereal) return items;
-  return items.filter((item) => item.ethereal);
-}
+
 
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
@@ -48,14 +43,14 @@ export function Collection() {
     setCollectionDuplicates,
     collectionCategory,
     setCollectionCategory,
-    collectionEthereal,
-    setCollectionEthereal,
     collectionSortField,
     setCollectionSortField,
     collectionSortDirection,
     setCollectionSortDirection,
     collectionClass,
     setCollectionClass,
+    collectionCharacteristics,
+    setCollectionCharacteristics,
   } = useContext(SettingsContext);
 
   const filteredItems = useMemo(
@@ -79,14 +74,14 @@ export function Collection() {
     ]
   );
 
-  const etherealFilteredItems = useMemo(
-    () => filterItemsByEthereal(filteredItems, collectionEthereal),
-    [filteredItems, collectionEthereal]
+  const classFilteredItems = useMemo(
+    () => filterItemsByClass(filteredItems, collectionClass),
+    [filteredItems, collectionClass]
   );
 
-  const classFilteredItems = useMemo(
-    () => filterItemsByClass(etherealFilteredItems, collectionClass),
-    [etherealFilteredItems, collectionClass]
+  const characteristicsFilteredItems = useMemo(
+    () => filterItemsByCharacteristics(classFilteredItems, collectionCharacteristics),
+    [classFilteredItems, collectionCharacteristics]
   );
 
   const handleSort = (field: SortField) => {
@@ -115,32 +110,20 @@ export function Collection() {
           onChange={setCollectionCategory}
         />
         <ClassFilter value={collectionClass} onChange={setCollectionClass} />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            gap: 4,
-          }}
-        >
-          <DuplicatesFilter
-            value={collectionDuplicates}
-            onChange={setCollectionDuplicates}
-          />
-          <label style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <input
-              type="checkbox"
-              checked={collectionEthereal}
-              onChange={(e) => setCollectionEthereal(e.currentTarget.checked)}
-            />
-            Ethereal
-          </label>
-        </div>
-        <SelectAll items={filteredItems} />
+        <CharacteristicsFilter 
+          value={collectionCharacteristics} 
+          onChange={setCollectionCharacteristics}
+          items={allItems}
+        />
+        <DuplicatesFilter
+          value={collectionDuplicates}
+          onChange={setCollectionDuplicates}
+        />
+        <SelectAll items={characteristicsFilteredItems} />
       </div>
 
       <ItemsTable
-        items={classFilteredItems}
+        items={characteristicsFilteredItems}
         selectable={true}
         pageSize={-1}
         sortField={collectionSortField}

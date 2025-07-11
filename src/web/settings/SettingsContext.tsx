@@ -5,6 +5,7 @@ import { DuplicatesFilterValue } from "../controls/DuplicatesFilter";
 import { CategoryFilterValue } from "../controls/CategoryFilter";
 import { SortField, SortDirection } from "../collection/Collection";
 import { ClassFilterValue } from "../controls/ClassFilter";
+import { CharacteristicsFilterValue } from "../controls/CharacteristicsFilter";
 
 interface SettingsContext {
   accessibleFont: boolean;
@@ -17,14 +18,14 @@ interface SettingsContext {
   setCollectionDuplicates: (duplicates: DuplicatesFilterValue) => void;
   collectionCategory: CategoryFilterValue;
   setCollectionCategory: (category: CategoryFilterValue) => void;
-  collectionEthereal: boolean;
-  setCollectionEthereal: (ethereal: boolean) => void;
   collectionSortField: SortField;
   setCollectionSortField: (field: SortField) => void;
   collectionSortDirection: SortDirection;
   setCollectionSortDirection: (dir: SortDirection) => void;
   collectionClass: ClassFilterValue;
   setCollectionClass: (classValue: ClassFilterValue) => void;
+  collectionCharacteristics: CharacteristicsFilterValue;
+  setCollectionCharacteristics: (characteristics: CharacteristicsFilterValue) => void;
 }
 
 export const SettingsContext = createContext<SettingsContext>({
@@ -38,14 +39,14 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionDuplicates: () => undefined,
   collectionCategory: [],
   setCollectionCategory: () => undefined,
-  collectionEthereal: false,
-  setCollectionEthereal: () => undefined,
   collectionSortField: "none",
   setCollectionSortField: () => undefined,
   collectionSortDirection: "asc",
   setCollectionSortDirection: () => undefined,
   collectionClass: [],
   setCollectionClass: () => undefined,
+  collectionCharacteristics: [],
+  setCollectionCharacteristics: () => undefined,
 });
 
 export function SettingsProvider({ children }: RenderableProps<unknown>) {
@@ -104,9 +105,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       return [];
     });
 
-  const [collectionEthereal, setCollectionEtherealState] = useState(
-    () => localStorage.getItem("collectionEthereal") === "true"
-  );
+
 
   const [collectionSortField, setCollectionSortFieldState] =
     useState<SortField>(
@@ -128,6 +127,23 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed)) {
             return parsed as ClassFilterValue;
+          }
+        } catch {
+          // Fallback to default if parsing fails
+        }
+      }
+      return [];
+    }
+  );
+
+  const [collectionCharacteristics, setCollectionCharacteristicsState] = useState<CharacteristicsFilterValue>(
+    () => {
+      const stored = localStorage.getItem("collectionCharacteristics");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed as CharacteristicsFilterValue;
           }
         } catch {
           // Fallback to default if parsing fails
@@ -167,10 +183,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionCategory", JSON.stringify(category));
   }, []);
 
-  const setCollectionEthereal = useCallback((ethereal: boolean) => {
-    setCollectionEtherealState(ethereal);
-    localStorage.setItem("collectionEthereal", ethereal.toString());
-  }, []);
+
 
   const setCollectionSortField = useCallback((field: SortField) => {
     setCollectionSortFieldState(field);
@@ -187,6 +200,11 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionClass", JSON.stringify(classValue));
   }, []);
 
+  const setCollectionCharacteristics = useCallback((characteristics: CharacteristicsFilterValue) => {
+    setCollectionCharacteristicsState(characteristics);
+    localStorage.setItem("collectionCharacteristics", JSON.stringify(characteristics));
+  }, []);
+
   const value = useMemo(
     () => ({
       accessibleFont,
@@ -199,14 +217,14 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionDuplicates,
       collectionCategory,
       setCollectionCategory,
-      collectionEthereal,
-      setCollectionEthereal,
       collectionSortField,
       setCollectionSortField,
       collectionSortDirection,
       setCollectionSortDirection,
       collectionClass,
       setCollectionClass,
+      collectionCharacteristics,
+      setCollectionCharacteristics,
     }),
     [
       accessibleFont,
@@ -219,14 +237,14 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionDuplicates,
       collectionCategory,
       setCollectionCategory,
-      collectionEthereal,
-      setCollectionEthereal,
       collectionSortField,
       setCollectionSortField,
       collectionSortDirection,
       setCollectionSortDirection,
       collectionClass,
       setCollectionClass,
+      collectionCharacteristics,
+      setCollectionCharacteristics,
     ]
   );
 
