@@ -12,6 +12,8 @@ import {
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
+import { ItemTooltip } from "../items/ItemTooltip";
+import { AdditionalInfo } from "../items/AdditionalInfo";
 
 import { QuantityControls } from "./QuantityControls";
 
@@ -447,7 +449,7 @@ export function TransferItemsTable({
                     <span class="sr-only">Select</span>
                   </td>
                   <th scope="row" aria-label={item.name}>
-                    <div class="item-tooltip">{item.name}</div>
+                    <ItemTooltip item={item} />
                   </th>
                   <td>{item.level ?? "—"}</td>
                   <td>{getItemQualityName(item)}</td>
@@ -456,15 +458,7 @@ export function TransferItemsTable({
                     {item.classRequirement ? item.classRequirement : "All"}
                   </td>
                   <td>
-                    <div>
-                      {isSimpleItem(item) && `quantity: ${items.length}`}
-                      {item.ethereal && "ethereal"}
-                      {item.runeword && getBase(item).name}
-                      {(item.quality ?? 10) <= ItemQuality.SUPERIOR &&
-                        !item.runeword &&
-                        !!item.sockets &&
-                        `${item.sockets} sockets`}
-                    </div>
+                    <AdditionalInfo item={item} quantity={items.length} />
                   </td>
                   <td>
                     {isSimpleItem(item) && items.length > 1 ? (
