@@ -3,7 +3,7 @@ import { getSavedStashes, writeAllFiles, writeSaveFile } from "./store";
 import { downloadAllFiles, downloadFile } from "./downloader";
 import { useCallback, useContext } from "preact/hooks";
 import { CollectionContext } from "./CollectionContext";
-import { ItemsOwner, isStash } from "../../scripts/save-file/ownership";
+import { ItemsOwner } from "../../scripts/save-file/ownership";
 
 export function useUpdateCollection() {
   const { owners, setCollection, setSingleFile } =

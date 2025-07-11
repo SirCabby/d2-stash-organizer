@@ -10,7 +10,7 @@ import {
   isStash,
   ItemsOwner,
 } from "../../scripts/save-file/ownership";
-import { ItemStorageType } from "../../scripts/items/types/ItemLocation";
+import { ItemLocation, ItemStorageType } from "../../scripts/items/types/ItemLocation";
 import { useUpdateCollection } from "../store/useUpdateCollection";
 import { numberInputChangeHandler } from "../organizer/numberInputChangeHandler";
 import { organize } from "../../scripts/grail/organize";
@@ -74,9 +74,39 @@ export function TransferItems() {
 
   const handleRemoveItem = useCallback(
     (itemToRemove: Item) => {
-      // Find all items that are the same as the one to remove (including duplicates)
+      // Find all items that are the same as the one to remove (same code and location)
       const itemsToRemove = Array.from(selectedItems).filter(
-        (item) => item.code === itemToRemove.code
+        (item) => {
+          // Basic properties must match
+          if (item.code !== itemToRemove.code || item.owner !== itemToRemove.owner) {
+            return false;
+          }
+          
+          // Location-specific properties must match
+          if (item.location !== itemToRemove.location) {
+            return false;
+          }
+          
+          // For stored items, check storage type and page
+          if (item.location === ItemLocation.STORED) {
+            if (item.stored !== itemToRemove.stored) {
+              return false;
+            }
+            // For stash items, also check page number
+            if (item.stored === ItemStorageType.STASH && item.page !== itemToRemove.page) {
+              return false;
+            }
+          }
+          
+          // For equipped items, check mercenary and corpse properties
+          if (item.location === ItemLocation.EQUIPPED) {
+            if (item.mercenary !== itemToRemove.mercenary || item.corpse !== itemToRemove.corpse) {
+              return false;
+            }
+          }
+          
+          return true;
+        }
       );
       unselectAll(itemsToRemove);
     },
