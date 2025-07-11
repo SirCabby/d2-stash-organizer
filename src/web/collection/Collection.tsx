@@ -28,9 +28,12 @@ export type SortField =
   | "none";
 export type SortDirection = "asc" | "desc";
 
-function filterItemsByEthereal(items: ItemType[], ethereal: boolean): ItemType[] {
+function filterItemsByEthereal(
+  items: ItemType[],
+  ethereal: boolean
+): ItemType[] {
   if (!ethereal) return items;
-  return items.filter(item => item.ethereal);
+  return items.filter((item) => item.ethereal);
 }
 
 export function Collection() {
@@ -111,16 +114,23 @@ export function Collection() {
           onChange={setCollectionCategory}
         />
         <ClassFilter value={collectionClass} onChange={setCollectionClass} />
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: 4,
+          }}
+        >
           <DuplicatesFilter
             value={collectionDuplicates}
             onChange={setCollectionDuplicates}
           />
-          <label style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <input
               type="checkbox"
               checked={collectionEthereal}
-              onChange={e => setCollectionEthereal(e.currentTarget.checked)}
+              onChange={(e) => setCollectionEthereal(e.currentTarget.checked)}
             />
             Ethereal
           </label>

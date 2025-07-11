@@ -2,7 +2,6 @@ import { Item as ItemType } from "../../scripts/items/types/Item";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { groupItems } from "../items/groupItems";
 import { Pagination } from "../controls/Pagination";
-import { Item } from "../items/Item";
 import { SortField, SortDirection } from "./Collection";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
@@ -117,7 +116,6 @@ export function getItemCategoryName(item: ItemType): string {
 export interface ItemsTableProps {
   items: ItemType[];
   pageSize: number;
-  selectable: boolean;
   sortField: SortField;
   sortDirection: SortDirection;
   onSort: (field: SortField) => void;
@@ -232,7 +230,6 @@ function sortGroupedItems(
 export function ItemsTable({
   items,
   pageSize,
-  selectable,
   sortField,
   sortDirection,
   onSort,
@@ -338,9 +335,7 @@ export function ItemsTable({
                 Class {getSortIcon("class")}
               </button>
             </th>
-            <th>
-              Ethereal
-            </th>
+            <th>Ethereal</th>
             <th>
               <button
                 class="sort-button"
@@ -385,12 +380,14 @@ export function ItemsTable({
                 <tr key={item.id ?? index} className={colorClass(item)}>
                   <td></td>
                   <td>{item.name}</td>
-                  <td>{item.level ?? ''}</td>
+                  <td>{item.level ?? ""}</td>
                   <td>{getItemCategoryName(item)}</td>
-                  <td>{item.classRequirement ?? ''}</td>
-                  <td style={{ textAlign: 'center' }}>{item.ethereal ? '✓' : ''}</td>
-                  <td>{getGroupedItemSortValue(items, 'characteristics')}</td>
-                  <td>{getGroupedItemSortValue(items, 'location')}</td>
+                  <td>{item.classRequirement ?? ""}</td>
+                  <td style={{ textAlign: "center" }}>
+                    {item.ethereal ? "✓" : ""}
+                  </td>
+                  <td>{getGroupedItemSortValue(items, "characteristics")}</td>
+                  <td>{getGroupedItemSortValue(items, "location")}</td>
                 </tr>
               );
             })}

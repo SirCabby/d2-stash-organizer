@@ -11,7 +11,7 @@ export interface DuplicatesFilterProps {
 export function DuplicatesFilter({ value, onChange }: DuplicatesFilterProps) {
   return (
     <div>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+      <label style={{ display: "flex", alignItems: "center", gap: 4 }}>
         <input
           type="checkbox"
           checked={value}
