@@ -11,17 +11,14 @@ export interface DuplicatesFilterProps {
 export function DuplicatesFilter({ value, onChange }: DuplicatesFilterProps) {
   return (
     <div>
-      <p>
-        <label htmlFor="duplicates-checkbox">Show only duplicates:</label>
-      </p>
-      <p>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <input
-          id="duplicates-checkbox"
           type="checkbox"
           checked={value}
           onChange={({ currentTarget }) => onChange(currentTarget.checked)}
         />
-      </p>
+        Duplicates
+      </label>
     </div>
   );
 }
@@ -34,7 +31,7 @@ export function filterItemsByDuplicates(
     return items;
   }
 
-  // Create a map to count occurrences of each item by name
+  // Create a map to count occurrences of each item by name and ethereal status
   const itemCounts = new Map<string, number>();
 
   items.forEach((item) => {
@@ -46,8 +43,9 @@ export function filterItemsByDuplicates(
       return;
     }
 
-    // Use item name as the key for duplicate detection
-    const key = item.name || "Unknown";
+    // Use item name + ethereal status as the key for duplicate detection
+    const etherealSuffix = item.ethereal ? "_ethereal" : "_normal";
+    const key = (item.name || "Unknown") + etherealSuffix;
     itemCounts.set(key, (itemCounts.get(key) || 0) + 1);
   });
 
@@ -61,8 +59,9 @@ export function filterItemsByDuplicates(
       return false;
     }
 
-    // Use item name as the key
-    const key = item.name || "Unknown";
+    // Use item name + ethereal status as the key
+    const etherealSuffix = item.ethereal ? "_ethereal" : "_normal";
+    const key = (item.name || "Unknown") + etherealSuffix;
     return itemCounts.get(key)! > 1;
   });
 }

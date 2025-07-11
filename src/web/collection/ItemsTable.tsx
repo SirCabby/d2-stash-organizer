@@ -13,6 +13,7 @@ import {
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
+import { colorClass } from "./utils/colorClass";
 
 // Function to get all possible categories for an item (for filtering)
 export function getItemCategories(item: ItemType): string[] {
@@ -338,6 +339,9 @@ export function ItemsTable({
               </button>
             </th>
             <th>
+              Ethereal
+            </th>
+            <th>
               <button
                 class="sort-button"
                 onClick={() => onSort("characteristics")}
@@ -375,16 +379,21 @@ export function ItemsTable({
               firstItem,
               pageSize === -1 ? undefined : firstItem + pageSize
             )
-            .map((items, index) => (
-              <Item
-                key={items[0].id ?? index}
-                item={items[0]}
-                duplicates={items}
-                selectable={selectable}
-                withLocation={true}
-                showClassRequirement={true}
-              />
-            ))}
+            .map((items, index) => {
+              const item = items[0];
+              return (
+                <tr key={item.id ?? index} className={colorClass(item)}>
+                  <td></td>
+                  <td>{item.name}</td>
+                  <td>{item.level ?? ''}</td>
+                  <td>{getItemCategoryName(item)}</td>
+                  <td>{item.classRequirement ?? ''}</td>
+                  <td style={{ textAlign: 'center' }}>{item.ethereal ? '✓' : ''}</td>
+                  <td>{getGroupedItemSortValue(items, 'characteristics')}</td>
+                  <td>{getGroupedItemSortValue(items, 'location')}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </>

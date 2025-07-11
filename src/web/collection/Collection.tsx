@@ -16,6 +16,7 @@ import {
 import { ClassFilter, filterItemsByClass } from "../controls/ClassFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
+import { Item as ItemType } from "../../scripts/items/types/Item";
 
 export type SortField =
   | "name"
@@ -23,8 +24,14 @@ export type SortField =
   | "category"
   | "characteristics"
   | "location"
+  | "class"
   | "none";
 export type SortDirection = "asc" | "desc";
+
+function filterItemsByEthereal(items: ItemType[], ethereal: boolean): ItemType[] {
+  if (!ethereal) return items;
+  return items.filter(item => item.ethereal);
+}
 
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
@@ -37,8 +44,8 @@ export function Collection() {
     setCollectionDuplicates,
     collectionCategory,
     setCollectionCategory,
-    collectionPageSize,
-    setCollectionPageSize,
+    collectionEthereal,
+    setCollectionEthereal,
     collectionSortField,
     setCollectionSortField,
     collectionSortDirection,
@@ -68,9 +75,14 @@ export function Collection() {
     ]
   );
 
+  const etherealFilteredItems = useMemo(
+    () => filterItemsByEthereal(filteredItems, collectionEthereal),
+    [filteredItems, collectionEthereal]
+  );
+
   const classFilteredItems = useMemo(
-    () => filterItemsByClass(filteredItems, collectionClass),
-    [filteredItems, collectionClass]
+    () => filterItemsByClass(etherealFilteredItems, collectionClass),
+    [etherealFilteredItems, collectionClass]
   );
 
   const handleSort = (field: SortField) => {
@@ -99,29 +111,19 @@ export function Collection() {
           onChange={setCollectionCategory}
         />
         <ClassFilter value={collectionClass} onChange={setCollectionClass} />
-        <DuplicatesFilter
-          value={collectionDuplicates}
-          onChange={setCollectionDuplicates}
-        />
-        <div>
-          <p>
-            <label for="page-size-select">Items per page:</label>
-          </p>
-          <p>
-            <select
-              id="page-size-select"
-              value={collectionPageSize}
-              onChange={({ currentTarget }) =>
-                setCollectionPageSize(Number(currentTarget.value))
-              }
-            >
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-              <option value={-1}>All</option>
-            </select>
-          </p>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
+          <DuplicatesFilter
+            value={collectionDuplicates}
+            onChange={setCollectionDuplicates}
+          />
+          <label style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <input
+              type="checkbox"
+              checked={collectionEthereal}
+              onChange={e => setCollectionEthereal(e.currentTarget.checked)}
+            />
+            Ethereal
+          </label>
         </div>
         <SelectAll items={filteredItems} />
       </div>
@@ -129,7 +131,7 @@ export function Collection() {
       <ItemsTable
         items={classFilteredItems}
         selectable={true}
-        pageSize={collectionPageSize}
+        pageSize={-1}
         sortField={collectionSortField}
         sortDirection={collectionSortDirection}
         onSort={handleSort}

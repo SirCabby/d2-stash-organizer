@@ -17,8 +17,8 @@ interface SettingsContext {
   setCollectionDuplicates: (duplicates: DuplicatesFilterValue) => void;
   collectionCategory: CategoryFilterValue;
   setCollectionCategory: (category: CategoryFilterValue) => void;
-  collectionPageSize: number;
-  setCollectionPageSize: (pageSize: number) => void;
+  collectionEthereal: boolean;
+  setCollectionEthereal: (ethereal: boolean) => void;
   collectionSortField: SortField;
   setCollectionSortField: (field: SortField) => void;
   collectionSortDirection: SortDirection;
@@ -38,8 +38,8 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionDuplicates: () => undefined,
   collectionCategory: [],
   setCollectionCategory: () => undefined,
-  collectionPageSize: 20,
-  setCollectionPageSize: () => undefined,
+  collectionEthereal: false,
+  setCollectionEthereal: () => undefined,
   collectionSortField: "none",
   setCollectionSortField: () => undefined,
   collectionSortDirection: "asc",
@@ -104,8 +104,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       return [];
     });
 
-  const [collectionPageSize, setCollectionPageSizeState] = useState(
-    () => Number(localStorage.getItem("collectionPageSize")) || 20
+  const [collectionEthereal, setCollectionEtherealState] = useState(
+    () => localStorage.getItem("collectionEthereal") === "true"
   );
 
   const [collectionSortField, setCollectionSortFieldState] =
@@ -167,9 +167,9 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionCategory", JSON.stringify(category));
   }, []);
 
-  const setCollectionPageSize = useCallback((pageSize: number) => {
-    setCollectionPageSizeState(pageSize);
-    localStorage.setItem("collectionPageSize", pageSize.toString());
+  const setCollectionEthereal = useCallback((ethereal: boolean) => {
+    setCollectionEtherealState(ethereal);
+    localStorage.setItem("collectionEthereal", ethereal.toString());
   }, []);
 
   const setCollectionSortField = useCallback((field: SortField) => {
@@ -199,8 +199,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionDuplicates,
       collectionCategory,
       setCollectionCategory,
-      collectionPageSize,
-      setCollectionPageSize,
+      collectionEthereal,
+      setCollectionEthereal,
       collectionSortField,
       setCollectionSortField,
       collectionSortDirection,
@@ -219,8 +219,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionDuplicates,
       collectionCategory,
       setCollectionCategory,
-      collectionPageSize,
-      setCollectionPageSize,
+      collectionEthereal,
+      setCollectionEthereal,
       collectionSortField,
       setCollectionSortField,
       collectionSortDirection,
