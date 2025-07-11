@@ -20,6 +20,7 @@ export const CLASS_NAMES: Record<string, string> = {
 };
 
 const CLASS_OPTIONS = [
+  { value: "all", label: "All Classes" },
   { value: "ama", label: "Amazon" },
   { value: "bar", label: "Barbarian" },
   { value: "nec", label: "Necromancer" },
@@ -251,7 +252,15 @@ export function filterItemsByClass(
   classValues: ClassFilterValue
 ) {
   if (classValues.length === 0) return items;
-  return items.filter((item) =>
-    classValues.includes(item.classRequirement || "")
-  );
+  return items.filter((item) => {
+    const itemClass = item.classRequirement || "";
+    
+    // If "all" is selected, include items with no class requirement
+    if (classValues.includes("all") && itemClass === "") {
+      return true;
+    }
+    
+    // Include items that match any of the selected classes
+    return classValues.includes(itemClass);
+  });
 }

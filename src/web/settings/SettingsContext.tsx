@@ -25,7 +25,9 @@ interface SettingsContext {
   collectionClass: ClassFilterValue;
   setCollectionClass: (classValue: ClassFilterValue) => void;
   collectionCharacteristics: CharacteristicsFilterValue;
-  setCollectionCharacteristics: (characteristics: CharacteristicsFilterValue) => void;
+  setCollectionCharacteristics: (
+    characteristics: CharacteristicsFilterValue
+  ) => void;
 }
 
 export const SettingsContext = createContext<SettingsContext>({
@@ -105,8 +107,6 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       return [];
     });
 
-
-
   const [collectionSortField, setCollectionSortFieldState] =
     useState<SortField>(
       () => (localStorage.getItem("collectionSortField") as SortField) || "none"
@@ -136,8 +136,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     }
   );
 
-  const [collectionCharacteristics, setCollectionCharacteristicsState] = useState<CharacteristicsFilterValue>(
-    () => {
+  const [collectionCharacteristics, setCollectionCharacteristicsState] =
+    useState<CharacteristicsFilterValue>(() => {
       const stored = localStorage.getItem("collectionCharacteristics");
       if (stored) {
         try {
@@ -150,8 +150,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
         }
       }
       return [];
-    }
-  );
+    });
 
   const toggleAccessibleFont = useCallback(() => {
     setAccessibleFont((previous) => {
@@ -183,8 +182,6 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionCategory", JSON.stringify(category));
   }, []);
 
-
-
   const setCollectionSortField = useCallback((field: SortField) => {
     setCollectionSortFieldState(field);
     localStorage.setItem("collectionSortField", field);
@@ -200,10 +197,16 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionClass", JSON.stringify(classValue));
   }, []);
 
-  const setCollectionCharacteristics = useCallback((characteristics: CharacteristicsFilterValue) => {
-    setCollectionCharacteristicsState(characteristics);
-    localStorage.setItem("collectionCharacteristics", JSON.stringify(characteristics));
-  }, []);
+  const setCollectionCharacteristics = useCallback(
+    (characteristics: CharacteristicsFilterValue) => {
+      setCollectionCharacteristicsState(characteristics);
+      localStorage.setItem(
+        "collectionCharacteristics",
+        JSON.stringify(characteristics)
+      );
+    },
+    []
+  );
 
   const value = useMemo(
     () => ({

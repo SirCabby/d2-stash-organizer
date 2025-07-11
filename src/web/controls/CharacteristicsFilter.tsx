@@ -21,9 +21,14 @@ const CHARACTERISTICS_OPTIONS = [
   { value: "runeword_base", label: "Runeword Base Items" },
 ];
 
-export function CharacteristicsFilter({ value, onChange, items }: CharacteristicsFilterProps) {
+export function CharacteristicsFilter({
+  value,
+  onChange,
+  items,
+}: CharacteristicsFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [tempSelection, setTempSelection] = useState<CharacteristicsFilterValue>(value);
+  const [tempSelection, setTempSelection] =
+    useState<CharacteristicsFilterValue>(value);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Update temp selection when value changes
@@ -80,7 +85,8 @@ export function CharacteristicsFilter({ value, onChange, items }: Characteristic
     if (tempSelection.length === CHARACTERISTICS_OPTIONS.length) return "All";
     if (tempSelection.length === 1) {
       return (
-        CHARACTERISTICS_OPTIONS.find((opt) => opt.value === tempSelection[0])?.label || ""
+        CHARACTERISTICS_OPTIONS.find((opt) => opt.value === tempSelection[0])
+          ?.label || ""
       );
     }
     return `${tempSelection.length} selected`;
@@ -243,7 +249,7 @@ export function filterItemsByCharacteristics(
   characteristics: CharacteristicsFilterValue
 ) {
   if (characteristics.length === 0) return items;
-  
+
   return items.filter((item) => {
     // Check if item has any of the selected characteristics
     return characteristics.some((characteristic) => {
@@ -251,16 +257,20 @@ export function filterItemsByCharacteristics(
         case "ethereal":
           return item.ethereal;
         case "sockets":
-          return !!item.sockets && 
-                 (item.quality ?? 10) <= ItemQuality.SUPERIOR && 
-                 !item.runeword;
+          return (
+            !!item.sockets &&
+            (item.quality ?? 10) <= ItemQuality.SUPERIOR &&
+            !item.runeword
+          );
         case "quantity":
           return isSimpleItem(item);
         case "perfect":
-          return (item.runeword || 
-                  item.quality === ItemQuality.UNIQUE || 
-                  item.quality === ItemQuality.SET) && 
-                 item.perfectionScore === 100;
+          return (
+            (item.runeword ||
+              item.quality === ItemQuality.UNIQUE ||
+              item.quality === ItemQuality.SET) &&
+            item.perfectionScore === 100
+          );
         case "runeword_base":
           return item.runeword;
         default:
@@ -268,4 +278,4 @@ export function filterItemsByCharacteristics(
       }
     });
   });
-} 
+}

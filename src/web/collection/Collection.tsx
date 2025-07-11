@@ -14,7 +14,10 @@ import {
   CategoryFilter,
 } from "../controls/CategoryFilter";
 import { ClassFilter, filterItemsByClass } from "../controls/ClassFilter";
-import { CharacteristicsFilter, filterItemsByCharacteristics } from "../controls/CharacteristicsFilter";
+import {
+  CharacteristicsFilter,
+  filterItemsByCharacteristics,
+} from "../controls/CharacteristicsFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 import { Item as ItemType } from "../../scripts/items/types/Item";
@@ -29,8 +32,6 @@ export type SortField =
   | "class"
   | "none";
 export type SortDirection = "asc" | "desc";
-
-
 
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
@@ -80,7 +81,11 @@ export function Collection() {
   );
 
   const characteristicsFilteredItems = useMemo(
-    () => filterItemsByCharacteristics(classFilteredItems, collectionCharacteristics),
+    () =>
+      filterItemsByCharacteristics(
+        classFilteredItems,
+        collectionCharacteristics
+      ),
     [classFilteredItems, collectionCharacteristics]
   );
 
@@ -110,8 +115,8 @@ export function Collection() {
           onChange={setCollectionCategory}
         />
         <ClassFilter value={collectionClass} onChange={setCollectionClass} />
-        <CharacteristicsFilter 
-          value={collectionCharacteristics} 
+        <CharacteristicsFilter
+          value={collectionCharacteristics}
           onChange={setCollectionCharacteristics}
           items={allItems}
         />
