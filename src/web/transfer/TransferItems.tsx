@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useState } from "preact/hooks";
 import { SelectionContext } from "./SelectionContext";
-import { ItemsTable } from "../collection/ItemsTable";
+import { TransferItemsTable } from "./TransferItemsTable";
 import "./TransferItems.css";
 import { CollectionContext } from "../store/CollectionContext";
 import { PrettyOwnerName } from "../save-files/PrettyOwnerName";
@@ -16,12 +16,19 @@ import { numberInputChangeHandler } from "../organizer/numberInputChangeHandler"
 import { organize } from "../../scripts/grail/organize";
 import { OwnerSelector } from "../save-files/OwnerSelector";
 import { updateCharacterStashes } from "../store/plugyDuplicates";
-import { bulkTransfer } from "../../scripts/items/moving/bulkTransfer";
+import { bulkTransferWithQuantities } from "../../scripts/items/moving/bulkTransferWithQuantities";
+import { TransferQuantityContext } from "./TransferQuantityContext";
+import { Item } from "../../scripts/items/types/Item";
+import { groupItems } from "../items/groupItems";
+import { isSimpleItem } from "../collection/utils/isSimpleItem";
 
 export function TransferItems() {
   const { lastActivePlugyStashPage } = useContext(CollectionContext);
   const { updateAllFiles, rollback } = useUpdateCollection();
-  const { selectedItems } = useContext(SelectionContext);
+  const { selectedItems, unselectAll } = useContext(SelectionContext);
+  const { transferQuantities, resetQuantities } = useContext(
+    TransferQuantityContext
+  );
   const [target, setTarget] = useState<ItemsOwner>();
   const [targetStorage, setTargetStorage] = useState<ItemStorageType>();
   const [error, setError] = useState<string>();
@@ -31,6 +38,50 @@ export function TransferItems() {
   const [skipPages, setSkipPages] = useState(0);
 
   const items = useMemo(() => Array.from(selectedItems), [selectedItems]);
+
+  // Calculate the actual number of items that will be transferred
+  const actualTransferCount = useMemo(() => {
+    const groupedItems = groupItems(items);
+    let totalTransferred = 0;
+
+    for (const itemGroup of groupedItems) {
+      const representativeItem = itemGroup[0];
+
+      if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
+        // For simple items with quantities, check if we have a specific transfer quantity
+        const transferQuantity = transferQuantities.get(
+          representativeItem.code
+        );
+        if (
+          transferQuantity &&
+          transferQuantity > 0 &&
+          transferQuantity < itemGroup.length
+        ) {
+          // Transfer only the specified quantity
+          totalTransferred += transferQuantity;
+        } else {
+          // Transfer all items in the group
+          totalTransferred += itemGroup.length;
+        }
+      } else {
+        // For non-simple items or single items, transfer all
+        totalTransferred += itemGroup.length;
+      }
+    }
+
+    return totalTransferred;
+  }, [items, transferQuantities]);
+
+  const handleRemoveItem = useCallback(
+    (itemToRemove: Item) => {
+      // Find all items that are the same as the one to remove (including duplicates)
+      const itemsToRemove = Array.from(selectedItems).filter(
+        (item) => item.code === itemToRemove.code
+      );
+      unselectAll(itemsToRemove);
+    },
+    [selectedItems, unselectAll]
+  );
 
   const transferItems = useCallback(async () => {
     if (!target) {
@@ -44,16 +95,23 @@ export function TransferItems() {
       return;
     }
     setError(undefined);
+    
     try {
-      bulkTransfer(target, items, targetStorage);
+      bulkTransferWithQuantities(
+        target,
+        items,
+        transferQuantities,
+        targetStorage
+      );
       if (isPlugyStash(target) && (withOrganize || target.nonPlugY)) {
         organize(target, [], skipPages);
       }
       if (lastActivePlugyStashPage) {
         updateCharacterStashes(lastActivePlugyStashPage);
       }
+      // Update the entire collection to ensure all changes are reflected
       await updateAllFiles(target);
-      setSuccess(`${items.length} items transferred!`);
+      setSuccess(`${actualTransferCount} items transferred!`);
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message);
@@ -72,6 +130,8 @@ export function TransferItems() {
     rollback,
     withOrganize,
     lastActivePlugyStashPage,
+    transferQuantities,
+    actualTransferCount,
   ]);
 
   if (items.length === 0 && !error && !success) {
@@ -97,7 +157,8 @@ export function TransferItems() {
     <div id="transfer-items">
       <p>
         You have currently selected <span class="magic">{items.length}</span>{" "}
-        items (full list below).
+        items (will transfer <span class="magic">{actualTransferCount}</span>{" "}
+        items based on quantities).
       </p>
       <p>Select where you want to transfer them:</p>
       <div class="selectors">
@@ -172,20 +233,23 @@ export function TransferItems() {
         <button class="button" onClick={transferItems}>
           Transfer my items
         </button>
+        <button class="button secondary" onClick={resetQuantities}>
+          Reset quantities
+        </button>
         <span class="error danger">{error}</span>
         <span class="success">{success}</span>
       </p>
 
       <h4>Selected items</h4>
-      <ItemsTable
+      <TransferItemsTable
         items={items}
-        selectable={false}
         pageSize={10}
         sortField="none"
         sortDirection="asc"
         onSort={() => {
           // No-op since this table doesn't need sorting
         }}
+        onRemoveItem={handleRemoveItem}
       />
     </div>
   );

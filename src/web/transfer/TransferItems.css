@@ -27,6 +27,17 @@
   color: #6fb76f;
 }
 
+#transfer-items .button.secondary {
+  margin-left: 1em;
+  background: #666;
+  border-color: #555;
+}
+
+#transfer-items .button.secondary:hover {
+  background: #777;
+  border-color: #666;
+}
+
 #transfer-items h4 {
   padding-top: 0.4em;
   margin-top: 3em;
@@ -35,4 +46,83 @@
 
 #transfer-items .pagination {
   margin-top: 0;
+}
+
+/* Ensure table alignment */
+#transfer-items table#collection th,
+#transfer-items table#collection td {
+  text-align: left;
+  vertical-align: top;
+}
+
+#transfer-items table#collection th:first-child,
+#transfer-items table#collection td:first-child {
+  text-align: left;
+}
+
+/* Override any center alignment for specific columns */
+#transfer-items table#collection td:nth-child(3), /* Level */
+#transfer-items table#collection td:nth-child(4), /* Quality */
+#transfer-items table#collection td:nth-child(5), /* Category */
+#transfer-items table#collection td:nth-child(6), /* Class */
+#transfer-items table#collection td:nth-child(7), /* Quantity */
+#transfer-items table#collection td:nth-child(8)  /* Location */ {
+  text-align: left;
+}
+
+/* Ensure all content within cells is left-aligned */
+#transfer-items table#collection td *,
+#transfer-items table#collection th * {
+  text-align: left;
+}
+
+/* Specific alignment for quantity controls */
+#transfer-items table#collection .quantity-controls {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* Ensure ItemTooltip and ItemLocationDesc are left-aligned */
+#transfer-items table#collection .item-tooltip,
+#transfer-items table#collection .item-location-desc {
+  text-align: left !important;
+}
+
+/* Override any center alignment from ItemTooltip.css */
+#transfer-items table#collection .item-tooltip,
+#transfer-items table#collection .tooltip-content {
+  text-align: left !important;
+}
+
+/* Override tooltip content alignment specifically */
+#transfer-items table#collection .tooltip-container .tooltip-content {
+  text-align: left !important;
+}
+
+/* Remove button styling */
+.remove-btn {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #b71c1c;
+}
+
+.remove-btn:focus {
+  outline: 2px solid #6fb76f;
+  outline-offset: 2px;
 }

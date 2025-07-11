@@ -20,7 +20,6 @@ import {
 } from "../controls/CharacteristicsFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
-import { Item as ItemType } from "../../scripts/items/types/Item";
 
 export type SortField =
   | "name"

@@ -1,7 +1,6 @@
 import { Item } from "../../scripts/items/types/Item";
 import { useState, useEffect, useRef } from "preact/hooks";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
-import { getBase } from "../../scripts/items/getBase";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 
 export type CharacteristicsFilterValue = string[];
@@ -9,7 +8,6 @@ export type CharacteristicsFilterValue = string[];
 export interface CharacteristicsFilterProps {
   value: CharacteristicsFilterValue;
   onChange: (value: CharacteristicsFilterValue) => void;
-  items: Item[];
 }
 
 // Define the possible characteristics values
@@ -24,7 +22,6 @@ const CHARACTERISTICS_OPTIONS = [
 export function CharacteristicsFilter({
   value,
   onChange,
-  items,
 }: CharacteristicsFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [tempSelection, setTempSelection] =

@@ -254,12 +254,12 @@ export function filterItemsByClass(
   if (classValues.length === 0) return items;
   return items.filter((item) => {
     const itemClass = item.classRequirement || "";
-    
+
     // If "all" is selected, include items with no class requirement
     if (classValues.includes("all") && itemClass === "") {
       return true;
     }
-    
+
     // Include items that match any of the selected classes
     return classValues.includes(itemClass);
   });

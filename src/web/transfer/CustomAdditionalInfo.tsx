@@ -2,13 +2,25 @@ import { Item } from "../../scripts/items/types/Item";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
+import { QuantityControls } from "./QuantityControls";
 
-export interface AdditionalInfoProps {
+export interface CustomAdditionalInfoProps {
   item: Item;
   quantity?: number;
+  duplicates?: Item[];
 }
 
-export function AdditionalInfo({ item, quantity }: AdditionalInfoProps) {
+export function CustomAdditionalInfo({
+  item,
+  quantity,
+  duplicates,
+}: CustomAdditionalInfoProps) {
+  // For simple items with quantities, show quantity controls
+  if (isSimpleItem(item) && duplicates && duplicates.length > 1) {
+    return <QuantityControls item={item} duplicates={duplicates} />;
+  }
+
+  // For other items, show regular additional info
   const relevant = [];
 
   if (isSimpleItem(item)) {
@@ -43,5 +55,5 @@ export function AdditionalInfo({ item, quantity }: AdditionalInfoProps) {
     relevant.push(`${item.sockets} sockets`);
   }
 
-  return <div>{relevant.join(", ")}</div>;
+  return <>{relevant.join(", ")}</>;
 }

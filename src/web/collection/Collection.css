@@ -6,10 +6,16 @@
 
 #collection thead th {
   padding-bottom: 0.4em;
+  padding-left: 2em;
+  padding-right: 2em;
+  text-align: left;
+  vertical-align: top;
 }
 
 #collection .item td:not(:first-child) {
   padding: 0 2em;
+  text-align: left;
+  vertical-align: top;
 }
 
 #collection tbody .item th,

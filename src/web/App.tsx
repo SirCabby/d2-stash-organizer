@@ -3,6 +3,7 @@ import "./App.css";
 import { GitHubLink } from "./GitHubLink";
 import { CollectionProvider } from "./store/CollectionContext";
 import { SelectionProvider } from "./transfer/SelectionContext";
+import { TransferQuantityProvider } from "./transfer/TransferQuantityContext";
 import { Routes } from "./routing/Routes";
 import { HelpLink } from "./help/HelpLink";
 import { SettingsContext, SettingsProvider } from "./settings/SettingsContext";
@@ -12,7 +13,9 @@ function Providers({ children }: RenderableProps<unknown>) {
   return (
     <SettingsProvider>
       <SelectionProvider>
-        <CollectionProvider>{children}</CollectionProvider>
+        <TransferQuantityProvider>
+          <CollectionProvider>{children}</CollectionProvider>
+        </TransferQuantityProvider>
       </SelectionProvider>
     </SettingsProvider>
   );

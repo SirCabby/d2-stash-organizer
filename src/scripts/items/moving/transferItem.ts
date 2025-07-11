@@ -17,25 +17,7 @@ import { fromInt } from "../../save-file/binary";
 import { FIRST_D2R } from "../../character/parsing/versions";
 import { D2R_OFFSET, toD2, toD2R } from "./conversion";
 
-function takeItemFromCurrentOwner(item: Item) {
-  if (!item.owner) {
-    return;
-  }
-  if (isStash(item.owner)) {
-    for (const page of item.owner.pages) {
-      const index = page.items.indexOf(item);
-      if (index >= 0) {
-        page.items.splice(index, 1);
-        break;
-      }
-    }
-  } else {
-    const index = item.owner.items.indexOf(item);
-    if (index >= 0) {
-      item.owner.items.splice(index, 1);
-    }
-  }
-}
+
 
 function giveItemTo(
   item: Item,
@@ -72,6 +54,28 @@ export function transferItem(
   storageType = ItemStorageType.STASH,
   pageIndex?: number
 ) {
+  // Store the original owner before we change it
+  const originalOwner = item.owner;
+
+  // Remove from original owner first
+  if (originalOwner) {
+    if (isStash(originalOwner)) {
+      for (let pageIndex = 0; pageIndex < originalOwner.pages.length; pageIndex++) {
+        const page = originalOwner.pages[pageIndex];
+        const index = page.items.indexOf(item);
+        if (index >= 0) {
+          page.items.splice(index, 1);
+          break;
+        }
+      }
+    } else {
+      const index = originalOwner.items.indexOf(item);
+      if (index >= 0) {
+        originalOwner.items.splice(index, 1);
+      }
+    }
+  }
+
   // Try to position first, so we don't reach a state with no owner if there is no room
   if (isStash(to)) {
     const page = to.pages[pageIndex ?? 0];
@@ -102,7 +106,7 @@ export function transferItem(
     delete item.page;
   }
 
-  takeItemFromCurrentOwner(item);
   giveItemTo(item, to, storageType);
+
   return true;
 }
