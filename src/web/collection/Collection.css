@@ -27,8 +27,8 @@
   border-bottom: 1px solid #222;
 }
 
-#collection tbody tr:hover td:not(:first-child) {
-  color: #6fb76f;
+#collection tbody tr.item:hover {
+  background-color: #2a2a2a;
 }
 
 .sort-button {
