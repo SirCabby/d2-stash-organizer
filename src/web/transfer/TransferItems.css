@@ -52,7 +52,7 @@
 #transfer-items table#collection th,
 #transfer-items table#collection td {
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 #transfer-items table#collection th:first-child,
@@ -61,31 +61,129 @@
 }
 
 /* Override any center alignment for specific columns */
-#transfer-items table#collection td:nth-child(3), /* Level */
-#transfer-items table#collection td:nth-child(4), /* Quality */
-#transfer-items table#collection td:nth-child(5), /* Category */
-#transfer-items table#collection td:nth-child(6), /* Class */
-#transfer-items table#collection td:nth-child(7), /* Quantity */
-#transfer-items table#collection td:nth-child(8)  /* Location */ {
+#transfer-items table#collection td:nth-child(4), /* Level */
+#transfer-items table#collection td:nth-child(5), /* Quality */
+#transfer-items table#collection td:nth-child(6), /* Category */
+#transfer-items table#collection td:nth-child(7), /* Class */
+#transfer-items table#collection td:nth-child(8), /* Characteristics */
+#transfer-items table#collection td:nth-child(9), /* Transfer Quantity */
+#transfer-items table#collection td:nth-child(10) /* Location */ {
   text-align: left;
 }
 
-/* Ensure all content within cells is left-aligned */
+/* Make the transfer quantity column wider for controls */
+#transfer-items table#collection th:nth-child(9),
+#transfer-items table#collection td:nth-child(9) {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+}
+
+/* Ensure the remove button column is compact */
+#transfer-items table#collection th:first-child,
+#transfer-items table#collection td:first-child {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  padding: 0 0.5em;
+}
+
+/* Ensure the empty select column is compact */
+#transfer-items table#collection th:nth-child(2),
+#transfer-items table#collection td:nth-child(2) {
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  padding: 0;
+}
+
+/* Ensure all content within cells is left-aligned and vertically centered */
 #transfer-items table#collection td *,
 #transfer-items table#collection th * {
   text-align: left;
+  vertical-align: middle;
+}
+
+/* Make the table layout more balanced */
+#transfer-items table#collection {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Give reasonable space to the item name column */
+#transfer-items table#collection th:nth-child(3),
+#transfer-items table#collection td:nth-child(3) {
+  width: 8.1%;
+  min-width: 68px;
+  max-width: 122px;
+}
+
+/* Make other columns more compact */
+#transfer-items table#collection th:nth-child(4), /* Level */
+#transfer-items table#collection td:nth-child(4) {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+}
+
+#transfer-items table#collection th:nth-child(5), /* Quality */
+#transfer-items table#collection td:nth-child(5) {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  white-space: nowrap;
+}
+
+#transfer-items table#collection th:nth-child(6), /* Category */
+#transfer-items table#collection td:nth-child(6) {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+#transfer-items table#collection th:nth-child(7), /* Class */
+#transfer-items table#collection td:nth-child(7) {
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+#transfer-items table#collection th:nth-child(8), /* Characteristics */
+#transfer-items table#collection td:nth-child(8) {
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+#transfer-items table#collection th:nth-child(9), /* Transfer Quantity */
+#transfer-items table#collection td:nth-child(9) {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+}
+
+#transfer-items table#collection th:nth-child(10), /* Location */
+#transfer-items table#collection td:nth-child(10) {
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 /* Specific alignment for quantity controls */
 #transfer-items table#collection .quantity-controls {
   text-align: left;
   justify-content: flex-start;
+  align-items: center;
+  display: flex;
 }
 
-/* Ensure ItemTooltip and ItemLocationDesc are left-aligned */
+/* Ensure ItemTooltip and ItemLocationDesc are left-aligned and vertically centered */
 #transfer-items table#collection .item-tooltip,
 #transfer-items table#collection .item-location-desc {
   text-align: left !important;
+  vertical-align: middle !important;
+  display: flex;
+  align-items: center;
 }
 
 /* Override any center alignment from ItemTooltip.css */
