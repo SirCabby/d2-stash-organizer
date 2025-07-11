@@ -267,26 +267,22 @@ export function GrailTracker() {
             continue;
           }
                       items.push(
-            <tr>
+            <tr class="grail-item">
               <th scope="row" class={"set" in item ? "set" : "unique"}>
-                {item.name}
+                {item.name.trim()}
               </th>
-              <td class={toClassName(normal)}>Normal</td>
-              <td class={toClassName(perfect)}>Perfect</td>
-              {typeof ethereal === "undefined" ? (
-                <td>
-                  <span aria-label="Not applicable" />
-                </td>
-              ) : (
-                <td class={toClassName(ethereal)}>Ethereal</td>
-              )}
-              {typeof perfectEth === "undefined" ? (
-                <td>
-                  <span aria-label="Not applicable" />
-                </td>
-              ) : (
-                <td class={toClassName(perfectEth)}>Perfect Eth</td>
-              )}
+              <td class={toClassName(normal)}>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>Normal</span>
+              </td>
+              <td class={toClassName(perfect)}>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>Perfect</span>
+              </td>
+              <td class={toClassName(ethereal || false)}>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>{ethereal === undefined ? "N/A" : "Ethereal"}</span>
+              </td>
+              <td class={toClassName(perfectEth || false)}>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>{perfectEth === undefined ? "N/A" : "Perfect Eth"}</span>
+              </td>
             </tr>
           );
         }
@@ -296,8 +292,8 @@ export function GrailTracker() {
         const sectionName =
           tiers.length > 1 ? `${TIER_NAMES[i]} ${section.name}` : section.name;
         rows.push(
-          <tr>
-            <td colSpan={5}>{sectionName}</td>
+          <tr class="grail-header">
+            <td colSpan="5">{sectionName}</td>
           </tr>
         );
         rows.push(...items);

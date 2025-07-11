@@ -14,16 +14,36 @@
 
 #grail-tracker {
   margin-top: 1em;
+  border-collapse: collapse;
 }
 
 #grail-tracker th {
   text-align: left;
   font-weight: inherit;
+  vertical-align: top;
 }
 #grail-tracker td {
   padding: 0 1em;
+  vertical-align: top;
+  line-height: 1.2;
 }
-#grail-tracker td[colspan] {
+#grail-tracker .grail-header td[colspan] {
   text-align: center;
   padding-top: 1em;
+}
+
+/* Add dividers and hover effect to item rows only */
+#grail-tracker .grail-item {
+  border-bottom: 1px solid #222;
+}
+
+#grail-tracker .grail-item:hover {
+  background-color: #2a2a2a;
+}
+
+/* Ensure content doesn't get pushed down */
+#grail-tracker .grail-item td span {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.2;
 }
