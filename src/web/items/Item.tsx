@@ -6,7 +6,10 @@ import { ItemLocationDesc } from "./ItemLocationDesc";
 import { useCallback, useContext } from "preact/hooks";
 import { SelectionContext } from "../transfer/SelectionContext";
 
-import { getItemCategoryName } from "../collection/ItemsTable";
+import {
+  getItemCategoryName,
+  getItemQualityName,
+} from "../collection/ItemsTable";
 
 export interface ItemProps {
   item: Item;
@@ -54,6 +57,7 @@ export function Item({
         <ItemTooltip item={item} />
       </th>
       <td>{item.level ?? "—"}</td>
+      <td>{getItemQualityName(item)}</td>
       <td>{getItemCategoryName(item)}</td>
       {showClassRequirement && (
         <td>{item.classRequirement ? item.classRequirement : "—"}</td>

@@ -12,8 +12,40 @@ import {
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
-import { colorClass } from "./utils/colorClass";
 import { Item } from "../items/Item";
+
+// Function to get the quality display name for an item
+export function getItemQualityName(item: ItemType): string {
+  if (item.runeword) {
+    return "Rune word";
+  }
+  if (item.simple) {
+    return "Non-equipment";
+  }
+
+  const quality = item.quality ?? 10;
+
+  switch (quality) {
+    case ItemQuality.LOW:
+      return "Low";
+    case ItemQuality.NORMAL:
+      return "Non-magical";
+    case ItemQuality.SUPERIOR:
+      return "Superior";
+    case ItemQuality.MAGIC:
+      return "Magic";
+    case ItemQuality.SET:
+      return "Set";
+    case ItemQuality.RARE:
+      return "Rare";
+    case ItemQuality.UNIQUE:
+      return "Unique";
+    case ItemQuality.CRAFTED:
+      return "Crafted";
+    default:
+      return "Non-magical";
+  }
+}
 
 // Function to get all possible categories for an item (for filtering)
 export function getItemCategories(item: ItemType): string[] {
@@ -196,6 +228,8 @@ function getGroupedItemSortValue(
     }
     case "level":
       return representativeItem.level ?? 0;
+    case "quality":
+      return getItemQualityName(representativeItem);
     case "category":
       return getItemCategoryName(representativeItem);
     case "class":
@@ -306,6 +340,21 @@ export function ItemsTable({
                 }`}
               >
                 Level {getSortIcon("level")}
+              </button>
+            </th>
+            <th>
+              <button
+                class="sort-button"
+                onClick={() => onSort("quality")}
+                aria-label={`Sort by quality ${
+                  sortField === "quality"
+                    ? sortDirection === "asc"
+                      ? "descending"
+                      : "ascending"
+                    : "ascending"
+                }`}
+              >
+                Quality {getSortIcon("quality")}
               </button>
             </th>
             <th>

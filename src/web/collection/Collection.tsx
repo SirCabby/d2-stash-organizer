@@ -21,6 +21,7 @@ import { Item as ItemType } from "../../scripts/items/types/Item";
 export type SortField =
   | "name"
   | "level"
+  | "quality"
   | "category"
   | "characteristics"
   | "location"
