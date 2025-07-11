@@ -254,15 +254,13 @@ export function GrailTracker() {
     const rows: JSX.Element[] = [];
     for (const [section, tiers] of progress) {
       tiers.forEach((tier, i) => {
-        const items = [];
+        const items: JSX.Element[] = [];
         for (const { item, normal, ethereal, perfect, perfectEth } of tier) {
           if (
             (normal && filters.includes("normal")) ||
             (perfect && filters.includes("perfect")) ||
-            ((typeof ethereal === "undefined" || ethereal) &&
-              filters.includes("ethereal")) ||
-            ((typeof perfectEth === "undefined" || perfectEth) &&
-              filters.includes("eth-perfect"))
+            (ethereal && filters.includes("ethereal")) ||
+            (perfectEth && filters.includes("eth-perfect"))
           ) {
             continue;
           }
@@ -277,11 +275,15 @@ export function GrailTracker() {
               <td class={toClassName(perfect)}>
                 <span style={{ display: "inline-block", verticalAlign: "top" }}>Perfect</span>
               </td>
-              <td class={toClassName(ethereal || false)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>{ethereal === undefined ? "N/A" : "Ethereal"}</span>
+              <td class={ethereal === undefined ? "" : toClassName(ethereal)}>
+                {ethereal === undefined ? null : (
+                  <span style={{ display: "inline-block", verticalAlign: "top" }}>Ethereal</span>
+                )}
               </td>
-              <td class={toClassName(perfectEth || false)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>{perfectEth === undefined ? "N/A" : "Perfect Eth"}</span>
+              <td class={perfectEth === undefined ? "" : toClassName(perfectEth)}>
+                {perfectEth === undefined ? null : (
+                  <span style={{ display: "inline-block", verticalAlign: "top" }}>Perfect Eth</span>
+                )}
               </td>
             </tr>
           );
@@ -293,7 +295,7 @@ export function GrailTracker() {
           tiers.length > 1 ? `${TIER_NAMES[i]} ${section.name}` : section.name;
         rows.push(
           <tr class="grail-header">
-            <td colSpan="5">{sectionName}</td>
+            <td colSpan={5}>{sectionName}</td>
           </tr>
         );
         rows.push(...items);
@@ -303,8 +305,8 @@ export function GrailTracker() {
   }, [filters, progress]);
 
   return (
-    <>
-      <div class="controls" style={{ padding: "0.5em 0" }}>
+    <div>
+      <div className="controls" style={{ padding: "0.5em 0" }}>
         <GrailSummary />
       </div>
       <div style={{ 
@@ -317,6 +319,6 @@ export function GrailTracker() {
       <table id="grail-tracker">
         <tbody>{tableRows}</tbody>
       </table>
-    </>
+    </div>
   );
 }
