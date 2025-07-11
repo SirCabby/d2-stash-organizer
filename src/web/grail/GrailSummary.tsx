@@ -10,30 +10,38 @@ export function GrailSummary() {
 
   return (
     <div>
-      <div style={{ 
-        display: "flex", 
-        gap: "0", 
-        marginBottom: "0.5em",
-        alignItems: "center"
-      }}>
-        <span style={{ 
-          borderRight: "1px solid #666666",
-          paddingRight: "2em" 
-        }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "0",
+          marginBottom: "0.5em",
+          alignItems: "center",
+        }}
+      >
+        <span
+          style={{
+            borderRight: "1px solid #666666",
+            paddingRight: "2em",
+          }}
+        >
           Normal Grail: {nbNormal} / {totalNormal}
         </span>
-        <span style={{ 
-          borderRight: "1px solid #666666", 
-          paddingRight: "2em",
-          paddingLeft: "2em"
-        }}>
+        <span
+          style={{
+            borderRight: "1px solid #666666",
+            paddingRight: "2em",
+            paddingLeft: "2em",
+          }}
+        >
           Perfect Grail: {nbPerfect} / {totalNormal}
         </span>
-        <span style={{ 
-          borderRight: "1px solid #666666", 
-          paddingRight: "2em",
-          paddingLeft: "2em"
-        }}>
+        <span
+          style={{
+            borderRight: "1px solid #666666",
+            paddingRight: "2em",
+            paddingLeft: "2em",
+          }}
+        >
           Ethereal Grail: {nbEth} / {totalEth}
         </span>
         <span style={{ paddingLeft: "2em" }}>

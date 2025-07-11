@@ -1,5 +1,6 @@
 import { RenderableProps } from "preact";
 import { useContext, useEffect, useMemo, useState } from "preact/hooks";
+import { JSX } from "preact";
 import { GrailTracker } from "../grail/GrailTracker";
 import { StashView } from "../stash/StashView";
 import "./Navigation.css";
@@ -17,8 +18,20 @@ function NavLink({
   children,
 }: RenderableProps<{ hash: string; isHome?: boolean }>) {
   const isActive = location.hash === hash || (isHome && location.hash === "");
+
+  const handleClick = (e: JSX.TargetedEvent<HTMLAnchorElement>) => {
+    // Prevent default scroll behavior when clicking on already active tab
+    if (isActive) {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <a class={isActive ? "nav-link active" : "nav-link"} href={hash}>
+    <a
+      class={isActive ? "nav-link active" : "nav-link"}
+      href={hash}
+      onClick={handleClick}
+    >
       {children}
     </a>
   );

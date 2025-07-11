@@ -1,5 +1,5 @@
 import { grailProgress } from "../../scripts/grail/list/grailProgress";
-import { useContext, useMemo, useState, useEffect, useRef } from "preact/hooks";
+import { useContext, useMemo, useState } from "preact/hooks";
 import { JSX } from "preact";
 import "./GrailTracker.css";
 import { CollectionContext } from "../store/CollectionContext";
@@ -35,7 +35,10 @@ interface GrailFilterProps {
 }
 
 function GrailFilter({ value, onChange }: GrailFilterProps) {
-  const handleCategoryChange = (category: keyof GrailFilters, newValue: "any" | "missing" | "found") => {
+  const handleCategoryChange = (
+    category: keyof GrailFilters,
+    newValue: "any" | "missing" | "found"
+  ) => {
     onChange({
       ...value,
       [category]: newValue,
@@ -43,14 +46,29 @@ function GrailFilter({ value, onChange }: GrailFilterProps) {
   };
 
   return (
-    <div style={{ display: "flex", gap: "1em", alignItems: "center", flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "1em",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
       <span style={{ fontSize: "0.9em", fontWeight: "bold" }}>Filters:</span>
       {GRAIL_CATEGORIES.map((category) => (
-        <div key={category.key} style={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
+        <div
+          key={category.key}
+          style={{ display: "flex", alignItems: "center", gap: "0.5em" }}
+        >
           <label style={{ fontSize: "0.85em" }}>{category.label}:</label>
           <select
             value={value[category.key]}
-            onChange={(e) => handleCategoryChange(category.key, e.currentTarget.value as "any" | "missing" | "found")}
+            onChange={(e) =>
+              handleCategoryChange(
+                category.key,
+                e.currentTarget.value as "any" | "missing" | "found"
+              )
+            }
             style={{
               padding: "0.25em 0.5em",
               fontSize: "0.85em",
@@ -90,24 +108,33 @@ export function GrailTracker() {
         const items: JSX.Element[] = [];
         for (const { item, normal, ethereal, perfect, perfectEth } of tier) {
           // Check if item should be shown based on filters
-          const shouldShowNormal = filters.normal === "any" || 
-            (filters.normal === "found" && normal) || 
+          const shouldShowNormal =
+            filters.normal === "any" ||
+            (filters.normal === "found" && normal) ||
             (filters.normal === "missing" && !normal);
-          
-          const shouldShowEthereal = filters.ethereal === "any" || 
-            (filters.ethereal === "found" && ethereal === true) || 
+
+          const shouldShowEthereal =
+            filters.ethereal === "any" ||
+            (filters.ethereal === "found" && ethereal === true) ||
             (filters.ethereal === "missing" && ethereal === false);
-          
-          const shouldShowPerfect = filters.perfect === "any" || 
-            (filters.perfect === "found" && perfect) || 
+
+          const shouldShowPerfect =
+            filters.perfect === "any" ||
+            (filters.perfect === "found" && perfect) ||
             (filters.perfect === "missing" && !perfect);
-          
-          const shouldShowEthPerfect = filters["eth-perfect"] === "any" || 
-            (filters["eth-perfect"] === "found" && perfectEth === true) || 
+
+          const shouldShowEthPerfect =
+            filters["eth-perfect"] === "any" ||
+            (filters["eth-perfect"] === "found" && perfectEth === true) ||
             (filters["eth-perfect"] === "missing" && perfectEth === false);
 
           // Only show item if all selected filters are satisfied
-          if (!shouldShowNormal || !shouldShowEthereal || !shouldShowPerfect || !shouldShowEthPerfect) {
+          if (
+            !shouldShowNormal ||
+            !shouldShowEthereal ||
+            !shouldShowPerfect ||
+            !shouldShowEthPerfect
+          ) {
             continue;
           }
 
@@ -117,19 +144,33 @@ export function GrailTracker() {
                 {item.name.trim()}
               </th>
               <td class={toClassName(normal)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>Normal</span>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>
+                  Normal
+                </span>
               </td>
               <td class={toClassName(perfect)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>Perfect</span>
+                <span style={{ display: "inline-block", verticalAlign: "top" }}>
+                  Perfect
+                </span>
               </td>
               <td class={ethereal === undefined ? "" : toClassName(ethereal)}>
                 {ethereal === undefined ? null : (
-                  <span style={{ display: "inline-block", verticalAlign: "top" }}>Ethereal</span>
+                  <span
+                    style={{ display: "inline-block", verticalAlign: "top" }}
+                  >
+                    Ethereal
+                  </span>
                 )}
               </td>
-              <td class={perfectEth === undefined ? "" : toClassName(perfectEth)}>
+              <td
+                class={perfectEth === undefined ? "" : toClassName(perfectEth)}
+              >
                 {perfectEth === undefined ? null : (
-                  <span style={{ display: "inline-block", verticalAlign: "top" }}>Perfect Eth</span>
+                  <span
+                    style={{ display: "inline-block", verticalAlign: "top" }}
+                  >
+                    Perfect Eth
+                  </span>
                 )}
               </td>
             </tr>
@@ -156,12 +197,14 @@ export function GrailTracker() {
       <div className="controls" style={{ padding: "0.5em 0" }}>
         <GrailSummary />
       </div>
-      <div style={{ 
-        marginBottom: "0.5em",
-        borderBottom: "1px solid #666666",
-        paddingBottom: "0.5em",
-        paddingTop: "0.5em"
-      }}>
+      <div
+        style={{
+          marginBottom: "0.5em",
+          borderBottom: "1px solid #666666",
+          paddingBottom: "0.5em",
+          paddingTop: "0.5em",
+        }}
+      >
         <GrailFilter value={filters} onChange={setFilters} />
       </div>
       <table id="grail-tracker">
