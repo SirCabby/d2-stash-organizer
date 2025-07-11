@@ -17,7 +17,8 @@ export function QuantityControls({ item, duplicates }: QuantityControlsProps) {
   const totalQuantity = duplicates?.length || 0;
   const currentTransferQuantity = getTransferQuantity(item.code);
   // Default to total quantity if not set
-  const displayQuantity = currentTransferQuantity > 0 ? currentTransferQuantity : totalQuantity;
+  const displayQuantity =
+    currentTransferQuantity > 0 ? currentTransferQuantity : totalQuantity;
 
   const handleInputChange = useCallback(
     (e: Event) => {
@@ -33,7 +34,7 @@ export function QuantityControls({ item, duplicates }: QuantityControlsProps) {
 
       // Cap at the total quantity
       const capped = Math.min(totalQuantity, value);
-      
+
       // Always set the transfer quantity to what the user specified
       setTransferQuantity(item.code, capped);
     },

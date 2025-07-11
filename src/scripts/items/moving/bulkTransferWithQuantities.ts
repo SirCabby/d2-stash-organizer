@@ -34,15 +34,20 @@ export function bulkTransferWithQuantities(
         transferQuantity < itemGroup.length
       ) {
         // Transfer only the specified quantity - use the first N items from the original items array
-        
+
         // Find the first N items of this type from the original items array
-        const itemsOfThisType = items.filter(item => item.code === representativeItem.code);
-        const itemsToTransferFromGroup = itemsOfThisType.slice(0, transferQuantity);
-        
+        const itemsOfThisType = items.filter(
+          (item) => item.code === representativeItem.code
+        );
+        const itemsToTransferFromGroup = itemsOfThisType.slice(
+          0,
+          transferQuantity
+        );
+
         itemsToTransfer.push(...itemsToTransferFromGroup);
       } else {
         // Transfer all items in the group (either no quantity set or quantity equals total)
-        
+
         // When transferring all items, use the original grouped items to ensure we get all unique items
         itemsToTransfer.push(...itemGroup);
       }

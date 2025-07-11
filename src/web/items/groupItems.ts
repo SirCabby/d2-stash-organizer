@@ -13,10 +13,10 @@ function getItemLocationKey(item: Item): string {
   if (!item.owner) {
     return `${item.code}-unknown`;
   }
-  
+
   const owner = ownerName(item.owner);
   let location = "";
-  
+
   switch (item.location) {
     case ItemLocation.STORED:
       switch (item.stored) {
@@ -55,7 +55,7 @@ function getItemLocationKey(item: Item): string {
     default:
       location = `unknown-${owner}`;
   }
-  
+
   return `${item.code}-${location}`;
 }
 

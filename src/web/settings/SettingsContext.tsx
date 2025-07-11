@@ -6,6 +6,7 @@ import { CategoryFilterValue } from "../controls/CategoryFilter";
 import { SortField, SortDirection } from "../collection/Collection";
 import { ClassFilterValue } from "../controls/ClassFilter";
 import { CharacteristicsFilterValue } from "../controls/CharacteristicsFilter";
+import { LocationFilterValue } from "../controls/LocationFilter";
 
 interface SettingsContext {
   accessibleFont: boolean;
@@ -28,6 +29,8 @@ interface SettingsContext {
   setCollectionCharacteristics: (
     characteristics: CharacteristicsFilterValue
   ) => void;
+  collectionLocation: LocationFilterValue;
+  setCollectionLocation: (location: LocationFilterValue) => void;
 }
 
 export const SettingsContext = createContext<SettingsContext>({
@@ -49,6 +52,8 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionClass: () => undefined,
   collectionCharacteristics: [],
   setCollectionCharacteristics: () => undefined,
+  collectionLocation: [],
+  setCollectionLocation: () => undefined,
 });
 
 export function SettingsProvider({ children }: RenderableProps<unknown>) {
@@ -152,6 +157,22 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       return [];
     });
 
+  const [collectionLocation, setCollectionLocationState] =
+    useState<LocationFilterValue>(() => {
+      const stored = localStorage.getItem("collectionLocation");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed as LocationFilterValue;
+          }
+        } catch {
+          // Fallback to default if parsing fails
+        }
+      }
+      return [];
+    });
+
   const toggleAccessibleFont = useCallback(() => {
     setAccessibleFont((previous) => {
       localStorage.setItem("accessibleFont", `${!previous}`);
@@ -208,6 +229,11 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     []
   );
 
+  const setCollectionLocation = useCallback((location: LocationFilterValue) => {
+    setCollectionLocationState(location);
+    localStorage.setItem("collectionLocation", JSON.stringify(location));
+  }, []);
+
   const value = useMemo(
     () => ({
       accessibleFont,
@@ -228,6 +254,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionClass,
       collectionCharacteristics,
       setCollectionCharacteristics,
+      collectionLocation,
+      setCollectionLocation,
     }),
     [
       accessibleFont,
@@ -248,6 +276,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionClass,
       collectionCharacteristics,
       setCollectionCharacteristics,
+      collectionLocation,
+      setCollectionLocation,
     ]
   );
 

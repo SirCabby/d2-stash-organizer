@@ -17,8 +17,6 @@ import { fromInt } from "../../save-file/binary";
 import { FIRST_D2R } from "../../character/parsing/versions";
 import { D2R_OFFSET, toD2, toD2R } from "./conversion";
 
-
-
 function giveItemTo(
   item: Item,
   owner: ItemsOwner,
@@ -60,7 +58,11 @@ export function transferItem(
   // Remove from original owner first
   if (originalOwner) {
     if (isStash(originalOwner)) {
-      for (let pageIndex = 0; pageIndex < originalOwner.pages.length; pageIndex++) {
+      for (
+        let pageIndex = 0;
+        pageIndex < originalOwner.pages.length;
+        pageIndex++
+      ) {
         const page = originalOwner.pages[pageIndex];
         const index = page.items.indexOf(item);
         if (index >= 0) {

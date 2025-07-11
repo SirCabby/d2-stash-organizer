@@ -18,6 +18,10 @@ import {
   CharacteristicsFilter,
   filterItemsByCharacteristics,
 } from "../controls/CharacteristicsFilter";
+import {
+  LocationFilter,
+  filterItemsByLocation,
+} from "../controls/LocationFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
 
@@ -51,6 +55,8 @@ export function Collection() {
     setCollectionClass,
     collectionCharacteristics,
     setCollectionCharacteristics,
+    collectionLocation,
+    setCollectionLocation,
   } = useContext(SettingsContext);
 
   const filteredItems = useMemo(
@@ -88,6 +94,12 @@ export function Collection() {
     [classFilteredItems, collectionCharacteristics]
   );
 
+  const locationFilteredItems = useMemo(
+    () =>
+      filterItemsByLocation(characteristicsFilteredItems, collectionLocation),
+    [characteristicsFilteredItems, collectionLocation]
+  );
+
   const handleSort = (field: SortField) => {
     if (collectionSortField === field) {
       setCollectionSortDirection(
@@ -117,17 +129,21 @@ export function Collection() {
         <CharacteristicsFilter
           value={collectionCharacteristics}
           onChange={setCollectionCharacteristics}
+        />
+        <LocationFilter
+          value={collectionLocation}
+          onChange={setCollectionLocation}
           items={allItems}
         />
         <DuplicatesFilter
           value={collectionDuplicates}
           onChange={setCollectionDuplicates}
         />
-        <SelectAll items={characteristicsFilteredItems} />
+        <SelectAll items={locationFilteredItems} />
       </div>
 
       <ItemsTable
-        items={characteristicsFilteredItems}
+        items={locationFilteredItems}
         selectable={true}
         pageSize={-1}
         sortField={collectionSortField}

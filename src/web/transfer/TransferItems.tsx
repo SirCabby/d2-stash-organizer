@@ -95,7 +95,7 @@ export function TransferItems() {
       return;
     }
     setError(undefined);
-    
+
     try {
       bulkTransferWithQuantities(
         target,
