@@ -1,6 +1,10 @@
 import { Item } from "../../scripts/items/types/Item";
 import { useState, useEffect, useRef, useMemo } from "preact/hooks";
-import { ownerName, isCharacter, isPlugyStash } from "../../scripts/save-file/ownership";
+import {
+  ownerName,
+  isCharacter,
+  isPlugyStash,
+} from "../../scripts/save-file/ownership";
 
 export type LocationFilterValue = string[];
 
@@ -31,9 +35,12 @@ function generateLocationOptions(items: Item[]) {
   }
 
   // Group by type
-  const groups: Record<string, Array<{ value: string; label: string; group: string }>> = {
-    "Characters": [],
-    "Stashes": []
+  const groups: Record<
+    string,
+    Array<{ value: string; label: string; group: string }>
+  > = {
+    Characters: [],
+    Stashes: [],
   };
 
   for (const { type, name } of owners.values()) {
@@ -43,10 +50,15 @@ function generateLocationOptions(items: Item[]) {
   return groups;
 }
 
-export function LocationFilter({ value, onChange, items }: LocationFilterProps) {
+export function LocationFilter({
+  value,
+  onChange,
+  items,
+}: LocationFilterProps) {
   const locationGroups = useMemo(() => generateLocationOptions(items), [items]);
-  const allOptions = useMemo(() => 
-    Object.values(locationGroups).flat(), [locationGroups]
+  const allOptions = useMemo(
+    () => Object.values(locationGroups).flat(),
+    [locationGroups]
   );
   const [isOpen, setIsOpen] = useState(false);
   const [tempSelection, setTempSelection] =
@@ -107,8 +119,7 @@ export function LocationFilter({ value, onChange, items }: LocationFilterProps) 
     if (tempSelection.length === allOptions.length) return "All";
     if (tempSelection.length === 1) {
       return (
-        allOptions.find((opt) => opt.value === tempSelection[0])?.label ||
-        ""
+        allOptions.find((opt) => opt.value === tempSelection[0])?.label || ""
       );
     }
     return `${tempSelection.length} selected`;
@@ -293,7 +304,7 @@ export function filterItemsByLocation(
     if (!item.owner) {
       return false;
     }
-    
+
     const ownerKey = ownerName(item.owner);
     return locations.includes(ownerKey);
   });

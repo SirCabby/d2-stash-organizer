@@ -1,6 +1,5 @@
-import { Pagination } from "../controls/Pagination";
 import { Page } from "./Page";
-import { useContext, useEffect, useMemo, useState } from "preact/hooks";
+import { useContext, useMemo, useState } from "preact/hooks";
 import { pageName } from "./utils/pageName";
 import { CollectionContext } from "../store/CollectionContext";
 import { Search, searchItems } from "../controls/Search";
@@ -17,8 +16,6 @@ import {
 } from "../../scripts/save-file/ownership";
 import { characterPages } from "./characterPages";
 import { SelectAll } from "../controls/SelectAll";
-
-const PAGE_SIZE = 10;
 
 export function StashView() {
   const { owners, lastActivePlugyStashPage } = useContext(CollectionContext);
@@ -40,7 +37,6 @@ export function StashView() {
     "crafted",
     "misc",
   ]);
-  const [currentPage, setCurrentPage] = useState(0);
 
   const owner = owners[ownerIndex];
 
@@ -75,23 +71,6 @@ export function StashView() {
     [filteredPages]
   );
 
-  // Reset to the first page when the owner changes
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [owner]);
-
-  const pagination = (
-    <Pagination
-      nbEntries={filteredPages.length}
-      pageSize={PAGE_SIZE}
-      currentEntry={currentPage}
-      onChange={setCurrentPage}
-      text={(first, last) =>
-        `Pages ${first} - ${last} out of ${filteredPages.length}`
-      }
-    />
-  );
-
   return (
     <>
       <div class="controls">
@@ -119,16 +98,12 @@ export function StashView() {
         <QualityFilter value={quality} onChange={setQuality} />
         <SelectAll items={filteredItems} />
       </div>
-      {pagination}
       {/* Need an extra div because Preact doesn't seem to like maps flat with non-mapped elements */}
       <div>
-        {filteredPages
-          .slice(currentPage, currentPage + PAGE_SIZE)
-          .map((page, index) => (
-            <Page key={index} page={page} index={index + currentPage} />
-          ))}
+        {filteredPages.map((page, index) => (
+          <Page key={index} page={page} index={index} />
+        ))}
       </div>
-      {pagination}
     </>
   );
 }
