@@ -162,20 +162,22 @@ export function GrailItemTooltip({
         <div>Item Level: {item.qlevel}</div>
         {reqline}
         {strengthReq}
-        {"def" in base && Array.isArray(base.def) && base.def.length >= 2 && (
-          <div>
-            Defense:{" "}
-            <span class="magic">
-              {isEthereal
-                ? `${Math.floor(
-                    (base.def as [number, number])[0] * 1.5
-                  )}-${Math.floor((base.def as [number, number])[1] * 1.5)}`
-                : `${(base.def as [number, number])[0]}-${
-                    (base.def as [number, number])[1]
-                  }`}
-            </span>
-          </div>
-        )}
+        {"def" in base &&
+          Array.isArray(base.def) &&
+          (base.def as number[]).length >= 2 && (
+            <div>
+              Defense:{" "}
+              <span class="magic">
+                {isEthereal
+                  ? `${Math.floor(
+                      (base.def as [number, number])[0] * 1.5
+                    )}-${Math.floor((base.def as [number, number])[1] * 1.5)}`
+                  : `${(base.def as [number, number])[0]}-${
+                      (base.def as [number, number])[1]
+                    }`}
+              </span>
+            </div>
+          )}
         {isEthereal && "twoHanded" in base && (
           <div class="magic">+50% Enhanced Damage (Ethereal)</div>
         )}

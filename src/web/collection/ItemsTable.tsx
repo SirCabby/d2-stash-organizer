@@ -55,25 +55,94 @@ export function getItemCategories(item: ItemType): string[] {
 
   // Explicit categories
   if (itemType.startsWith("gem") || itemType === "gemz") {
-    categories.push(CATEGORY_NAMES.gem, CATEGORY_NAMES.socket);
+    categories.push("gem", "socket");
     return categories;
   }
   if (itemType === "jewl") {
-    categories.push(CATEGORY_NAMES.jewel, CATEGORY_NAMES.socket);
+    categories.push("jewel", "socket");
     return categories;
   }
   if (itemType === "rune") {
-    categories.push(CATEGORY_NAMES.rune, CATEGORY_NAMES.socket);
+    categories.push("rune", "socket");
     return categories;
   }
   if (itemType === "sock") {
-    categories.push(CATEGORY_NAMES.socket);
+    categories.push("socket");
     return categories;
   }
   // All other types: only their explicit category
-  const explicit = getItemCategoryName(item);
-  if (explicit !== "Unknown") categories.push(explicit);
+  const explicit = getItemCategoryKey(item);
+  if (explicit !== "unknown") categories.push(explicit);
   return categories;
+}
+
+// Function to get the category key for an item (for filtering)
+function getItemCategoryKey(item: ItemType): string {
+  const base = getBase(item);
+  const itemType = base.type;
+
+  // Map item types to category keys
+  if (itemType.startsWith("gem") || itemType === "gemz") {
+    return "gem";
+  }
+  if (itemType === "jewl") return "jewel";
+  if (itemType === "rune") return "rune";
+  if (itemType === "sock") return "socket";
+  if (itemType === "axe") return "axe";
+  if (itemType === "swor" || itemType === "knif") return "sword";
+  if (itemType === "mace") return "mace";
+  if (itemType === "hamm") return "hammer";
+  if (itemType === "club") return "club";
+  if (itemType === "spea") return "spear";
+  if (itemType === "pole") return "polearm";
+  if (itemType === "bow") return "bow";
+  if (itemType === "xbow") return "crossbow";
+  if (itemType === "scep") return "scepter";
+  if (itemType === "wand") return "wand";
+  if (itemType === "staf") return "staff";
+  if (itemType === "jave") return "javelin";
+  if (itemType === "tkni") return "throwing-knife";
+  if (itemType === "taxe") return "throwing-axe";
+  if (itemType === "orb") return "orb";
+  if (itemType === "h2h" || itemType === "h2h2") return "hand-to-hand";
+  if (itemType === "abow") return "amazon-bow";
+  if (itemType === "aspe") return "amazon-spear";
+  if (itemType === "ajav") return "amazon-javelin";
+  if (itemType === "head") return "voodoo-head";
+  if (itemType === "ashd") return "auric-shield";
+  if (itemType === "phlm") return "primal-helm";
+  if (itemType === "pelt") return "pelt";
+  if (itemType === "cloa") return "cloak";
+  if (itemType === "helm" || itemType === "circ") return "helm";
+  if (itemType === "tors") return "armor";
+  if (itemType === "shie") return "shield";
+  if (itemType === "boot") return "boots";
+  if (itemType === "glov") return "gloves";
+  if (itemType === "belt") return "belt";
+  if (itemType === "ring") return "ring";
+  if (itemType === "amul") return "amulet";
+  if (itemType === "scha" || itemType === "mcha" || itemType === "lcha")
+    return "charm";
+  if (
+    itemType === "poti" ||
+    itemType === "hpot" ||
+    itemType === "mpot" ||
+    itemType === "rpot" ||
+    itemType === "spot" ||
+    itemType === "apot" ||
+    itemType === "wpot"
+  )
+    return "potion";
+  if (itemType === "elix") return "elixir";
+  if (itemType === "scro") return "scroll";
+  if (itemType === "book") return "book";
+  if (itemType === "key") return "key";
+  if (itemType === "torc") return "torch";
+  if (itemType === "body") return "body-part";
+  if (itemType === "ques") return "quest";
+  if (itemType === "herb") return "herb";
+  if (itemType === "gold") return "gold";
+  return "unknown";
 }
 
 // Function to get the explicit category name for an item (for display)
