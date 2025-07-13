@@ -1,5 +1,5 @@
 import "./Collection.css";
-import { useContext, useMemo } from "preact/hooks";
+import { useContext, useMemo, useEffect } from "preact/hooks";
 import { CollectionContext } from "../store/CollectionContext";
 import { SettingsContext } from "../settings/SettingsContext";
 import "../controls/Controls.css";
@@ -24,6 +24,7 @@ import {
 } from "../controls/LocationFilter";
 import { ItemsTable } from "./ItemsTable";
 import { SelectAll } from "../controls/SelectAll";
+import { ownerName } from "../../scripts/save-file/ownership";
 
 export type SortField =
   | "name"
@@ -58,6 +59,29 @@ export function Collection() {
     collectionLocation,
     setCollectionLocation,
   } = useContext(SettingsContext);
+
+  // Clean up location filter when locations no longer exist
+  useEffect(() => {
+    if (collectionLocation.length > 0) {
+      // Get all available location names from current items
+      const availableLocations = new Set<string>();
+      for (const item of allItems) {
+        if (item.owner) {
+          availableLocations.add(ownerName(item.owner));
+        }
+      }
+
+      // Filter out locations that no longer exist
+      const validLocations = collectionLocation.filter((location) =>
+        availableLocations.has(location)
+      );
+
+      // Update the filter if any locations were removed
+      if (validLocations.length !== collectionLocation.length) {
+        setCollectionLocation(validLocations);
+      }
+    }
+  }, [allItems, collectionLocation, setCollectionLocation]);
 
   const filteredItems = useMemo(
     () =>
