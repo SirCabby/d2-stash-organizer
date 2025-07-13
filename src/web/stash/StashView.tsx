@@ -75,22 +75,18 @@ export function StashView() {
     <>
       <div class="controls">
         <div>
-          <p>
-            <label for="character-select">Select a character:</label>
-          </p>
-          <p>
-            <select
-              id="character-select"
-              value={ownerIndex}
-              onChange={({ currentTarget }) =>
-                setOwnerIndex(Number(currentTarget.value))
-              }
-            >
-              {owners.map((owner, i) => (
-                <option value={i}>{ownerName(owner)}</option>
-              ))}
-            </select>
-          </p>
+          <label for="character-select">Select a character:</label>
+          <select
+            id="character-select"
+            value={ownerIndex}
+            onChange={({ currentTarget }) =>
+              setOwnerIndex(Number(currentTarget.value))
+            }
+          >
+            {owners.map((owner, i) => (
+              <option value={i}>{ownerName(owner)}</option>
+            ))}
+          </select>
         </div>
         <Search value={search} onChange={setSearch}>
           Search for an item or a page:

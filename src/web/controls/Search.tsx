@@ -14,17 +14,13 @@ export function Search({
 }: RenderableProps<SearchProps>) {
   return (
     <div>
-      <p>
-        <label for="search-input">{children}</label>
-      </p>
-      <p>
-        <input
-          id="search-input"
-          type="search"
-          value={value}
-          onInput={({ currentTarget }) => onChange(currentTarget.value)}
-        />
-      </p>
+      <label for="search-input">{children}</label>
+      <input
+        id="search-input"
+        type="search"
+        value={value}
+        onInput={({ currentTarget }) => onChange(currentTarget.value)}
+      />
     </div>
   );
 }
