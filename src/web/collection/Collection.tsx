@@ -86,22 +86,13 @@ export function Collection() {
   const filteredItems = useMemo(
     () =>
       filterItemsByCategory(
-        filterItemsByDuplicates(
-          filterItemsByQuality(
-            searchItems(allItems, collectionSearch),
-            collectionQuality
-          ),
-          collectionDuplicates
+        filterItemsByQuality(
+          searchItems(allItems, collectionSearch),
+          collectionQuality
         ),
         collectionCategory
       ),
-    [
-      allItems,
-      collectionSearch,
-      collectionQuality,
-      collectionDuplicates,
-      collectionCategory,
-    ]
+    [allItems, collectionSearch, collectionQuality, collectionCategory]
   );
 
   const classFilteredItems = useMemo(
@@ -122,6 +113,12 @@ export function Collection() {
     () =>
       filterItemsByLocation(characteristicsFilteredItems, collectionLocation),
     [characteristicsFilteredItems, collectionLocation]
+  );
+
+  // Duplicates filter should be applied last, so it only considers currently visible items
+  const duplicatesFilteredItems = useMemo(
+    () => filterItemsByDuplicates(locationFilteredItems, collectionDuplicates),
+    [locationFilteredItems, collectionDuplicates]
   );
 
   const handleSort = (field: SortField) => {
@@ -163,11 +160,11 @@ export function Collection() {
           value={collectionDuplicates}
           onChange={setCollectionDuplicates}
         />
-        <SelectAll items={locationFilteredItems} />
+        <SelectAll items={duplicatesFilteredItems} />
       </div>
 
       <ItemsTable
-        items={locationFilteredItems}
+        items={duplicatesFilteredItems}
         selectable={true}
         pageSize={-1}
         sortField={collectionSortField}
