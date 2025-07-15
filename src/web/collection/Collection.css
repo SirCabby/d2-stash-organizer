@@ -9,13 +9,18 @@
   padding-left: 2em;
   padding-right: 2em;
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
+}
+
+#collection .item td,
+#collection .item th {
+  vertical-align: middle;
 }
 
 #collection .item td:not(:first-child) {
   padding: 0 2em;
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 #collection tbody .item th,

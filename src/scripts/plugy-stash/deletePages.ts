@@ -1,6 +1,5 @@
-import { PlugyStash } from "./types";
 import { isPlugyStash, isStash, ItemsOwner } from "../save-file/ownership";
-import { D2rStash } from "../d2r-stash/types";
+import { D2rPage } from "../d2r-stash/types";
 
 // Deletes a range of pages and returns all the items they contained
 export function deletePages(stash: ItemsOwner, from: number, to?: number) {
@@ -17,9 +16,8 @@ export function deletePages(stash: ItemsOwner, from: number, to?: number) {
     // D2R stashes store gold per page, so we need to accumulate it
     let totalGold = 0;
     for (const page of removed) {
-      if ("gold" in page) {
-        totalGold += (page as any).gold;
-      }
+      const d2rPage = page as D2rPage;
+      totalGold += d2rPage.gold;
       allItems.push(...page.items);
     }
 
@@ -27,10 +25,10 @@ export function deletePages(stash: ItemsOwner, from: number, to?: number) {
     if (totalGold > 0) {
       if (stash.pages.length > 0) {
         // Add to the first remaining page
-        (stash.pages[0] as any).gold += totalGold;
+        stash.pages[0].gold += totalGold;
       } else {
         // Create a new page to hold the gold
-        (stash as D2rStash).pages.push({
+        stash.pages.push({
           gold: totalGold,
           items: [],
         });
