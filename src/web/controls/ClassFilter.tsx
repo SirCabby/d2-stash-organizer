@@ -32,13 +32,7 @@ const CLASS_OPTIONS = [
 
 export function ClassFilter({ value, onChange }: ClassFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [tempSelection, setTempSelection] = useState<ClassFilterValue>(value);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Update temp selection when value changes
-  useEffect(() => {
-    setTempSelection(value);
-  }, [value]);
 
   // Click outside handler
   useEffect(() => {
@@ -48,7 +42,6 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
         !containerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
-        setTempSelection(value); // Reset to original value
       }
     };
 
@@ -57,42 +50,30 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [isOpen, value]);
+  }, [isOpen]);
 
   const handleToggle = (classValue: string) => {
-    const newValue = tempSelection.includes(classValue)
-      ? tempSelection.filter((v) => v !== classValue)
-      : [...tempSelection, classValue];
-    setTempSelection(newValue);
+    const newValue = value.includes(classValue)
+      ? value.filter((v) => v !== classValue)
+      : [...value, classValue];
+    onChange(newValue);
   };
 
   const selectAll = () => {
-    setTempSelection(CLASS_OPTIONS.map((option) => option.value));
+    onChange(CLASS_OPTIONS.map((option) => option.value));
   };
 
   const selectNone = () => {
-    setTempSelection([]);
-  };
-
-  const applySelection = () => {
-    onChange(tempSelection);
-    setIsOpen(false);
-  };
-
-  const cancelSelection = () => {
-    setTempSelection(value);
-    setIsOpen(false);
+    onChange([]);
   };
 
   const getSelectedLabels = () => {
-    if (tempSelection.length === 0) return "None";
-    if (tempSelection.length === CLASS_OPTIONS.length) return "All";
-    if (tempSelection.length === 1) {
-      return (
-        CLASS_OPTIONS.find((opt) => opt.value === tempSelection[0])?.label || ""
-      );
+    if (value.length === 0) return "None";
+    if (value.length === CLASS_OPTIONS.length) return "All";
+    if (value.length === 1) {
+      return CLASS_OPTIONS.find((opt) => opt.value === value[0])?.label || "";
     }
-    return `${tempSelection.length} selected`;
+    return `${value.length} selected`;
   };
 
   return (
@@ -178,7 +159,6 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
             style={{
               maxHeight: "150px",
               overflowY: "auto",
-              marginBottom: "0.5em",
             }}
           >
             {CLASS_OPTIONS.map((option, index) => (
@@ -196,7 +176,7 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
               >
                 <input
                   type="checkbox"
-                  checked={tempSelection.includes(option.value)}
+                  checked={value.includes(option.value)}
                   onChange={() => handleToggle(option.value)}
                   style={{
                     marginRight: "0.5em",
@@ -206,40 +186,6 @@ export function ClassFilter({ value, onChange }: ClassFilterProps) {
                 <span>{option.label}</span>
               </div>
             ))}
-          </div>
-
-          <div style={{ textAlign: "right" }}>
-            <button
-              type="button"
-              onClick={cancelSelection}
-              style={{
-                marginRight: "0.25em",
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={applySelection}
-              style={{
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Apply
-            </button>
           </div>
         </div>
       )}

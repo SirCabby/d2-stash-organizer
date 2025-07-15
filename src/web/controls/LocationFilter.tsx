@@ -61,14 +61,7 @@ export function LocationFilter({
     [locationGroups]
   );
   const [isOpen, setIsOpen] = useState(false);
-  const [tempSelection, setTempSelection] =
-    useState<LocationFilterValue>(value);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Update temp selection when value changes
-  useEffect(() => {
-    setTempSelection(value);
-  }, [value]);
 
   // Click outside handler
   useEffect(() => {
@@ -78,7 +71,6 @@ export function LocationFilter({
         !containerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
-        setTempSelection(value); // Reset to original value
       }
     };
 
@@ -87,42 +79,30 @@ export function LocationFilter({
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [isOpen, value]);
+  }, [isOpen]);
 
   const handleToggle = (location: string) => {
-    const newValue = tempSelection.includes(location)
-      ? tempSelection.filter((v) => v !== location)
-      : [...tempSelection, location];
-    setTempSelection(newValue);
+    const newValue = value.includes(location)
+      ? value.filter((v) => v !== location)
+      : [...value, location];
+    onChange(newValue);
   };
 
   const selectAll = () => {
-    setTempSelection(allOptions.map((option) => option.value));
+    onChange(allOptions.map((option) => option.value));
   };
 
   const selectNone = () => {
-    setTempSelection([]);
-  };
-
-  const applySelection = () => {
-    onChange(tempSelection);
-    setIsOpen(false);
-  };
-
-  const cancelSelection = () => {
-    setTempSelection(value);
-    setIsOpen(false);
+    onChange([]);
   };
 
   const getSelectedLabels = () => {
-    if (tempSelection.length === 0) return "None";
-    if (tempSelection.length === allOptions.length) return "All";
-    if (tempSelection.length === 1) {
-      return (
-        allOptions.find((opt) => opt.value === tempSelection[0])?.label || ""
-      );
+    if (value.length === 0) return "None";
+    if (value.length === allOptions.length) return "All";
+    if (value.length === 1) {
+      return allOptions.find((opt) => opt.value === value[0])?.label || "";
     }
-    return `${tempSelection.length} selected`;
+    return `${value.length} selected`;
   };
 
   return (
@@ -208,7 +188,6 @@ export function LocationFilter({
             style={{
               maxHeight: "200px",
               overflowY: "auto",
-              marginBottom: "0.5em",
             }}
           >
             {Object.entries(locationGroups).map(([groupName, options]) => (
@@ -239,7 +218,7 @@ export function LocationFilter({
                   >
                     <input
                       type="checkbox"
-                      checked={tempSelection.includes(option.value)}
+                      checked={value.includes(option.value)}
                       onChange={() => handleToggle(option.value)}
                       style={{
                         marginRight: "0.5em",
@@ -251,40 +230,6 @@ export function LocationFilter({
                 ))}
               </div>
             ))}
-          </div>
-
-          <div style={{ textAlign: "right" }}>
-            <button
-              type="button"
-              onClick={cancelSelection}
-              style={{
-                marginRight: "0.25em",
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={applySelection}
-              style={{
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Apply
-            </button>
           </div>
         </div>
       )}

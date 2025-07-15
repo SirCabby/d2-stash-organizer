@@ -23,13 +23,7 @@ const QUALITY_OPTIONS = [
 
 export function QualityFilter({ value, onChange }: QualityFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [tempSelection, setTempSelection] = useState<QualityFilterValue>(value);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Update temp selection when value changes
-  useEffect(() => {
-    setTempSelection(value);
-  }, [value]);
 
   // Click outside handler
   useEffect(() => {
@@ -39,7 +33,6 @@ export function QualityFilter({ value, onChange }: QualityFilterProps) {
         !containerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
-        setTempSelection(value); // Reset to original value
       }
     };
 
@@ -48,43 +41,30 @@ export function QualityFilter({ value, onChange }: QualityFilterProps) {
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [isOpen, value]);
+  }, [isOpen]);
 
   const handleToggle = (quality: string) => {
-    const newValue = tempSelection.includes(quality)
-      ? tempSelection.filter((v) => v !== quality)
-      : [...tempSelection, quality];
-    setTempSelection(newValue);
+    const newValue = value.includes(quality)
+      ? value.filter((v) => v !== quality)
+      : [...value, quality];
+    onChange(newValue);
   };
 
   const selectAll = () => {
-    setTempSelection(QUALITY_OPTIONS.map((option) => option.value));
+    onChange(QUALITY_OPTIONS.map((option) => option.value));
   };
 
   const selectNone = () => {
-    setTempSelection([]);
-  };
-
-  const applySelection = () => {
-    onChange(tempSelection);
-    setIsOpen(false);
-  };
-
-  const cancelSelection = () => {
-    setTempSelection(value);
-    setIsOpen(false);
+    onChange([]);
   };
 
   const getSelectedLabels = () => {
-    if (tempSelection.length === 0) return "None";
-    if (tempSelection.length === QUALITY_OPTIONS.length) return "All";
-    if (tempSelection.length === 1) {
-      return (
-        QUALITY_OPTIONS.find((opt) => opt.value === tempSelection[0])?.label ||
-        ""
-      );
+    if (value.length === 0) return "None";
+    if (value.length === QUALITY_OPTIONS.length) return "All";
+    if (value.length === 1) {
+      return QUALITY_OPTIONS.find((opt) => opt.value === value[0])?.label || "";
     }
-    return `${tempSelection.length} selected`;
+    return `${value.length} selected`;
   };
 
   return (
@@ -170,7 +150,6 @@ export function QualityFilter({ value, onChange }: QualityFilterProps) {
             style={{
               maxHeight: "150px",
               overflowY: "auto",
-              marginBottom: "0.5em",
             }}
           >
             {QUALITY_OPTIONS.map((option, index) => (
@@ -188,7 +167,7 @@ export function QualityFilter({ value, onChange }: QualityFilterProps) {
               >
                 <input
                   type="checkbox"
-                  checked={tempSelection.includes(option.value)}
+                  checked={value.includes(option.value)}
                   onChange={() => handleToggle(option.value)}
                   style={{
                     marginRight: "0.5em",
@@ -198,40 +177,6 @@ export function QualityFilter({ value, onChange }: QualityFilterProps) {
                 <span>{option.label}</span>
               </div>
             ))}
-          </div>
-
-          <div style={{ textAlign: "right" }}>
-            <button
-              type="button"
-              onClick={cancelSelection}
-              style={{
-                marginRight: "0.25em",
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={applySelection}
-              style={{
-                padding: "0.2em 0.4em",
-                fontSize: "0.8em",
-                border: "1px solid #ccc",
-                borderRadius: "2px",
-                backgroundColor: "#fff",
-                cursor: "pointer",
-                color: "#000",
-              }}
-            >
-              Apply
-            </button>
           </div>
         </div>
       )}
