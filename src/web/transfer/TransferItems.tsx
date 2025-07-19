@@ -283,7 +283,6 @@ export function TransferItems() {
       <h4>Selected items</h4>
       <TransferItemsTable
         items={items}
-        pageSize={10}
         sortField="none"
         sortDirection="asc"
         onSort={() => {

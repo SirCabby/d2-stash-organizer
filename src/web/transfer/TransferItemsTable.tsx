@@ -1,7 +1,6 @@
 import { Item as ItemType } from "../../scripts/items/types/Item";
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 import { groupItems } from "../items/groupItems";
-import { Pagination } from "../controls/Pagination";
 import { SortField, SortDirection } from "../collection/Collection";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
@@ -151,7 +150,6 @@ export function getItemCategoryName(item: ItemType): string {
 
 export interface TransferItemsTableProps {
   items: ItemType[];
-  pageSize: number;
   sortField: SortField;
   sortDirection: SortDirection;
   onSort: (field: SortField) => void;
@@ -261,25 +259,17 @@ function sortGroupedItems(
 
 export function TransferItemsTable({
   items,
-  pageSize,
   sortField,
   sortDirection,
   onSort,
   onRemoveItem,
 }: TransferItemsTableProps) {
-  const [firstItem, setFirstItem] = useState(0);
-
   // Group items first, then sort the groups
   const groupedItems = useMemo(() => groupItems(items), [items]);
   const sortedGroupedItems = useMemo(
     () => sortGroupedItems(groupedItems, sortField, sortDirection),
     [groupedItems, sortField, sortDirection]
   );
-
-  // Reset to the first page when the list of items changes
-  useEffect(() => {
-    setFirstItem(0);
-  }, [items]);
 
   const getSortIcon = (field: SortField) => {
     if (sortField !== field) {
@@ -290,19 +280,11 @@ export function TransferItemsTable({
 
   return (
     <div>
-      <Pagination
-        nbEntries={sortedGroupedItems.length}
-        pageSize={pageSize === -1 ? sortedGroupedItems.length : pageSize}
-        currentEntry={firstItem}
-        onChange={setFirstItem}
-        text={(first, last) => (
-          <div>
-            Items {first} - {last} out of {sortedGroupedItems.length}{" "}
-            <span class="sidenote">({items.length} with duplicates)</span>
-          </div>
-        )}
-      />
-      <table id="collection">
+      <div class="sidenote">
+        Showing {sortedGroupedItems.length} items{" "}
+        <span class="sidenote">({items.length} with duplicates)</span>
+      </div>
+      <table id="collection" class="transfer-table">
         <thead>
           <tr class="sidenote">
             <th>
@@ -424,93 +406,86 @@ export function TransferItemsTable({
           </tr>
         </thead>
         <tbody>
-          {sortedGroupedItems
-            .slice(
-              firstItem,
-              pageSize === -1 ? undefined : firstItem + pageSize
-            )
-            .map((items, index) => {
-              const item = items[0];
-              return (
-                <tr class="item" key={item.id ?? index}>
-                  <td>
-                    {onRemoveItem && (
-                      <button
-                        class="remove-btn"
-                        onClick={() => onRemoveItem(item)}
-                        aria-label={`Remove ${item.name} from transfer list`}
-                        title="Remove from transfer list"
-                      >
-                        ×
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    <span class="sr-only">Select</span>
-                  </td>
-                  <th scope="row" aria-label={item.name}>
-                    <ItemTooltip item={item} />
-                  </th>
-                  <td>{item.level ?? "—"}</td>
-                  <td>{getItemQualityName(item)}</td>
-                  <td>{getItemCategoryName(item)}</td>
-                  <td>
-                    {item.classRequirement ? item.classRequirement : "All"}
-                  </td>
-                  <td>
-                    <AdditionalInfo item={item} quantity={items.length} />
-                  </td>
-                  <td>
-                    {isSimpleItem(item) && items.length > 1 ? (
-                      <QuantityControls item={item} duplicates={items} />
+          {sortedGroupedItems.map((items, index) => {
+            const item = items[0];
+            return (
+              <tr class="item" key={item.id ?? index}>
+                <td>
+                  {onRemoveItem && (
+                    <button
+                      class="remove-btn"
+                      onClick={() => onRemoveItem(item)}
+                      aria-label={`Remove ${item.name} from transfer list`}
+                      title="Remove from transfer list"
+                    >
+                      ×
+                    </button>
+                  )}
+                </td>
+                <td>
+                  <span class="sr-only">Select</span>
+                </td>
+                <td aria-label={item.name}>
+                  <ItemTooltip item={item} />
+                </td>
+                <td>{item.level ?? "—"}</td>
+                <td>{getItemQualityName(item)}</td>
+                <td>{getItemCategoryName(item)}</td>
+                <td>{item.classRequirement ? item.classRequirement : "All"}</td>
+                <td>
+                  <AdditionalInfo item={item} quantity={items.length} />
+                </td>
+                <td>
+                  {isSimpleItem(item) && items.length > 1 ? (
+                    <QuantityControls item={item} duplicates={items} />
+                  ) : (
+                    <span>—</span>
+                  )}
+                </td>
+                <td>
+                  <div>
+                    {item.owner ? (
+                      <span>
+                        {(() => {
+                          const name = ownerName(item.owner);
+                          switch (item.location) {
+                            case ItemLocation.STORED:
+                              switch (item.stored) {
+                                case ItemStorageType.STASH:
+                                  if (!isPlugyStash(item.owner)) {
+                                    return `In ${name}'s stash`;
+                                  }
+                                  return name;
+                                case ItemStorageType.INVENTORY:
+                                  return `In ${name}'s inventory`;
+                                case ItemStorageType.CUBE:
+                                  return `In ${name}'s cube`;
+                                default:
+                                  return "Unknown location";
+                              }
+                            case ItemLocation.BELT:
+                              return `In ${name}'s belt`;
+                            case ItemLocation.EQUIPPED:
+                              if (item.mercenary) {
+                                return `Worn by ${item.mercenary}'s mercenary`;
+                              } else if (item.corpse) {
+                                return `On ${item.corpse}'s corpse`;
+                              } else {
+                                return `Worn by ${name}`;
+                              }
+                            default:
+                              return "Unknown location";
+                          }
+                        })()}
+                      </span>
                     ) : (
-                      <span>—</span>
+                      "Unknown location"
                     )}
-                  </td>
-                  <td>
-                    <div>
-                      {item.owner ? (
-                        <span>
-                          {(() => {
-                            const name = ownerName(item.owner);
-                            switch (item.location) {
-                              case ItemLocation.STORED:
-                                switch (item.stored) {
-                                  case ItemStorageType.STASH:
-                                    if (!isPlugyStash(item.owner)) {
-                                      return `In ${name}'s stash`;
-                                    }
-                                    return name;
-                                  case ItemStorageType.INVENTORY:
-                                    return `In ${name}'s inventory`;
-                                  case ItemStorageType.CUBE:
-                                    return `In ${name}'s cube`;
-                                  default:
-                                    return "Unknown location";
-                                }
-                              case ItemLocation.BELT:
-                                return `In ${name}'s belt`;
-                              case ItemLocation.EQUIPPED:
-                                if (item.mercenary) {
-                                  return `Worn by ${item.mercenary}'s mercenary`;
-                                } else if (item.corpse) {
-                                  return `On ${item.corpse}'s corpse`;
-                                } else {
-                                  return `Worn by ${name}`;
-                                }
-                              default:
-                                return "Unknown location";
-                            }
-                          })()}
-                        </span>
-                      ) : (
-                        "Unknown location"
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

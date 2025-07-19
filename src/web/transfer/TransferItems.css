@@ -55,6 +55,16 @@
   vertical-align: middle;
 }
 
+/* Reduce padding between columns to 10px */
+#transfer-items table#collection thead th {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#transfer-items table#collection .item td:not(:first-child) {
+  padding: 0 10px;
+}
+
 #transfer-items table#collection th:first-child,
 #transfer-items table#collection td:first-child {
   text-align: left;
@@ -81,20 +91,25 @@
 
 /* Ensure the remove button column is compact */
 #transfer-items table#collection th:first-child,
-#transfer-items table#collection td:first-child {
-  width: 40px;
-  min-width: 40px;
-  max-width: 40px;
-  padding: 0 0.5em;
+#transfer-items table#collection td:first-child,
+#transfer-items table#collection .item td:first-child {
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  padding: 0 5px !important;
+  box-sizing: border-box !important;
 }
 
 /* Ensure the empty select column is compact */
 #transfer-items table#collection th:nth-child(2),
-#transfer-items table#collection td:nth-child(2) {
-  width: 20px;
-  min-width: 20px;
-  max-width: 20px;
-  padding: 0;
+#transfer-items table#collection td:nth-child(2),
+#transfer-items table.transfer-table th:nth-child(2),
+#transfer-items table.transfer-table td:nth-child(2) {
+  width: 14px !important;
+  min-width: 14px !important;
+  max-width: 14px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
 /* Ensure all content within cells is left-aligned and vertically centered */
@@ -106,67 +121,113 @@
 
 /* Make the table layout more balanced */
 #transfer-items table#collection {
-  table-layout: fixed;
-  width: 100%;
+  table-layout: fixed !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+/* Specific styles for transfer table to override conflicting rules */
+#transfer-items table.transfer-table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+#transfer-items table.transfer-table th,
+#transfer-items table.transfer-table td {
+  box-sizing: border-box !important;
+}
+
+#transfer-items table.transfer-table th:first-child,
+#transfer-items table.transfer-table td:first-child {
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  padding: 0 5px !important;
+  box-sizing: border-box !important;
 }
 
 /* Give reasonable space to the item name column */
 #transfer-items table#collection th:nth-child(3),
-#transfer-items table#collection td:nth-child(3) {
-  width: 8.1%;
-  min-width: 68px;
-  max-width: 122px;
+#transfer-items table#collection td:nth-child(3),
+#transfer-items table.transfer-table th:nth-child(3),
+#transfer-items table.transfer-table td:nth-child(3) {
+  width: 330px !important;
+  min-width: 330px !important;
+  max-width: 330px !important;
+  box-sizing: border-box !important;
 }
 
 /* Make other columns more compact */
 #transfer-items table#collection th:nth-child(4), /* Level */
-#transfer-items table#collection td:nth-child(4) {
-  width: 60px;
-  min-width: 60px;
-  max-width: 60px;
+#transfer-items table#collection td:nth-child(4),
+#transfer-items table.transfer-table th:nth-child(4), /* Level */
+#transfer-items table.transfer-table td:nth-child(4) {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(5), /* Quality */
-#transfer-items table#collection td:nth-child(5) {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
-  white-space: nowrap;
+#transfer-items table#collection td:nth-child(5),
+#transfer-items table.transfer-table th:nth-child(5), /* Quality */
+#transfer-items table.transfer-table td:nth-child(5) {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(6), /* Category */
-#transfer-items table#collection td:nth-child(6) {
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
+#transfer-items table#collection td:nth-child(6),
+#transfer-items table.transfer-table th:nth-child(6), /* Category */
+#transfer-items table.transfer-table td:nth-child(6) {
+  width: 140px !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(7), /* Class */
-#transfer-items table#collection td:nth-child(7) {
-  width: 80px;
-  min-width: 80px;
-  max-width: 80px;
+#transfer-items table#collection td:nth-child(7),
+#transfer-items table.transfer-table th:nth-child(7), /* Class */
+#transfer-items table.transfer-table td:nth-child(7) {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(8), /* Characteristics */
-#transfer-items table#collection td:nth-child(8) {
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
+#transfer-items table#collection td:nth-child(8),
+#transfer-items table.transfer-table th:nth-child(8), /* Characteristics */
+#transfer-items table.transfer-table td:nth-child(8) {
+  width: 180px !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(9), /* Transfer Quantity */
-#transfer-items table#collection td:nth-child(9) {
-  width: 220px;
-  min-width: 220px;
-  max-width: 220px;
+#transfer-items table#collection td:nth-child(9),
+#transfer-items table.transfer-table th:nth-child(9), /* Transfer Quantity */
+#transfer-items table.transfer-table td:nth-child(9) {
+  width: 290px !important;
+  min-width: 290px !important;
+  max-width: 290px !important;
+  box-sizing: border-box !important;
 }
 
 #transfer-items table#collection th:nth-child(10), /* Location */
-#transfer-items table#collection td:nth-child(10) {
-  width: 180px;
-  min-width: 180px;
-  max-width: 180px;
+#transfer-items table#collection td:nth-child(10),
+#transfer-items table.transfer-table th:nth-child(10), /* Location */
+#transfer-items table.transfer-table td:nth-child(10) {
+  width: auto !important;
+  min-width: 210px !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
 }
 
 /* Specific alignment for quantity controls */
