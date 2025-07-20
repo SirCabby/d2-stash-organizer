@@ -152,9 +152,9 @@
 #transfer-items table#collection td:nth-child(3),
 #transfer-items table.transfer-table th:nth-child(3),
 #transfer-items table.transfer-table td:nth-child(3) {
-  width: 330px !important;
-  min-width: 330px !important;
-  max-width: 330px !important;
+  width: 380px !important;
+  min-width: 380px !important;
+  max-width: 380px !important;
   box-sizing: border-box !important;
 }
 
