@@ -10,8 +10,6 @@ import { addPage } from "../../scripts/plugy-stash/addPage";
 import { organize } from "../../scripts/grail/organize";
 import { isPlugyStash, isCharacter } from "../../scripts/save-file/ownership";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
-import { D2R_STASH_HEIGHT, D2R_STASH_WIDTH } from "../../scripts/character/dimensions";
-import { findSpot } from "../../scripts/items/moving/findSpot";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { postProcessStash as postProcessPlugyStash } from "../../scripts/plugy-stash/parsing/postProcessStash";
 import { postProcessStash as postProcessD2rStash } from "../../scripts/d2r-stash/parsing/postProcessStash";
