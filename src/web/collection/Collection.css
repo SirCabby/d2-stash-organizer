@@ -2,12 +2,11 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 2em;
+  table-layout: fixed;
 }
 
 #collection thead th {
-  padding-bottom: 0.4em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 0;
   text-align: left;
   vertical-align: middle;
 }
@@ -15,17 +14,18 @@
 #collection .item td,
 #collection .item th {
   vertical-align: middle;
+  padding: 0;
 }
 
 #collection .item td:not(:first-child) {
-  padding: 0 2em;
+  padding: 0;
   text-align: left;
   vertical-align: middle;
 }
 
 #collection tbody .item th,
 #collection tbody .item th {
-  padding-top: 0.3em;
+  padding: 0;
 }
 
 #collection tr {
@@ -34,6 +34,65 @@
 
 #collection tbody tr.item:hover {
   background-color: #2a2a2a;
+}
+
+/* Set specific column widths using px only */
+#collection th:first-child,
+#collection td:first-child {
+  width: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(2),
+#collection td:nth-child(2) {
+  width: 380px !important;
+  min-width: 380px !important;
+  max-width: 380px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(3),
+#collection td:nth-child(3) {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(4),
+#collection td:nth-child(4) {
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(5),
+#collection td:nth-child(5) {
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(6),
+#collection td:nth-child(6) {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(7),
+#collection td:nth-child(7) {
+  width: 280px !important;
+  min-width: 280px !important;
+  max-width: 280px !important;
+  box-sizing: border-box !important;
+}
+#collection th:nth-child(8),
+#collection td:nth-child(8) {
+  width: auto !important;
+  min-width: 210px !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
 }
 
 .sort-button {

@@ -184,9 +184,9 @@
 #transfer-items table#collection td:nth-child(6),
 #transfer-items table.transfer-table th:nth-child(6), /* Category */
 #transfer-items table.transfer-table td:nth-child(6) {
-  width: 140px !important;
-  min-width: 140px !important;
-  max-width: 140px !important;
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
   box-sizing: border-box !important;
 }
 
