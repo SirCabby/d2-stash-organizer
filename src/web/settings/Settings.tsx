@@ -8,12 +8,14 @@ import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
 import { addPage } from "../../scripts/plugy-stash/addPage";
 import { organize } from "../../scripts/grail/organize";
-import { isPlugyStash } from "../../scripts/save-file/ownership";
+import { isPlugyStash, isCharacter } from "../../scripts/save-file/ownership";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { D2R_STASH_HEIGHT, D2R_STASH_WIDTH } from "../../scripts/character/dimensions";
 import { findSpot } from "../../scripts/items/moving/findSpot";
+import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { postProcessStash as postProcessPlugyStash } from "../../scripts/plugy-stash/parsing/postProcessStash";
 import { postProcessStash as postProcessD2rStash } from "../../scripts/d2r-stash/parsing/postProcessStash";
+import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
 
 export function Settings() {
   const { accessibleFont, toggleAccessibleFont } = useContext(SettingsContext);
@@ -96,6 +98,62 @@ export function Settings() {
     alert(`Created ${pagesCreated} pages and placed ${itemsPlaced} simple items (one page per item code).`);
   }, [owners, setCollection]);
 
+  // Repair All handler
+  const handleRepairAll = useCallback(() => {
+    if (owners.length === 0) {
+      alert("No save files loaded.");
+      return;
+    }
+    let repairedCount = 0;
+    const repairItem = (item: any) => {
+      // Repair durability
+      if (item.durability && item.durability.length === 2) {
+        if (typeof item.extraDurability === "number") {
+          item.durability[0] = item.durability[1] + item.extraDurability;
+        } else {
+          item.durability[0] = item.durability[1];
+        }
+        repairedCount++;
+      }
+      // Repair charges in all modifiers
+      if (item.modifiers) {
+        for (const mod of item.modifiers) {
+          if (
+            typeof mod.charges === "number" &&
+            typeof mod.maxCharges === "number" &&
+            mod.charges !== mod.maxCharges
+          ) {
+            mod.charges = mod.maxCharges;
+            repairedCount++;
+          }
+        }
+      }
+      // Recursively repair socketed items
+      if (item.filledSockets) {
+        for (const socketed of item.filledSockets) {
+          repairItem(socketed);
+        }
+      }
+      postProcessItem(item);
+    };
+    const newOwners = owners.map((owner) => {
+      const items = getAllItems(owner);
+      for (const item of items) {
+        repairItem(item);
+      }
+      // For stashes, re-run postProcessStash to update all items
+      if (isPlugyStash(owner)) {
+        postProcessPlugyStash(owner);
+      } else if (!isCharacter(owner)) {
+        // D2R stash
+        postProcessD2rStash(owner);
+      }
+      return owner;
+    });
+    setCollection(newOwners);
+    alert(`Repaired ${repairedCount} durability/charges on all items.`);
+  }, [owners, setCollection]);
+
   return (
     <div>
       <p>
@@ -125,6 +183,15 @@ export function Settings() {
           disabled={owners.length === 0}
         >
           Top Off Items
+        </button>
+      </p>
+      <p>
+        <button
+          class="button"
+          onClick={handleRepairAll}
+          disabled={owners.length === 0}
+        >
+          Repair All
         </button>
       </p>
     </div>
