@@ -107,6 +107,7 @@ export function describeSingleMod(
         .replace("%s", `${SKILLS[modifier.param!].name}`);
       break;
     case 1:
+      valueDesc = (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`;
       modDesc = modDesc.replace("%d", `${modValue}`);
       break;
     case 20:
@@ -121,11 +122,11 @@ export function describeSingleMod(
       // We need to do the monster, but I can't find a single item with this.
       break;
     case 24:
-      modDesc = `Level ${modifier.level} ${
-        SKILLS[modifier.spell!].name
-      } ${modDesc
+      modDesc = modDesc
+        .replace("%d", `${modifier.level}`)
+        .replace("%s", `${SKILLS[modifier.spell!].name}`)
         .replace("%d", `${modifier.charges}`)
-        .replace("%d", `${modifier.maxCharges}`)}`;
+        .replace("%d", `${modifier.maxCharges}`);
       break;
     case 27:
       skill = SKILLS[modifier.param!];
@@ -167,6 +168,9 @@ export function describeSingleMod(
           )
           .replace("%d", `${Math.round(modifier.values![2] / 25)}`);
       }
+      break;
+    case 29:
+      modDesc = modDesc.replace("%d", `${modValue}`).replace("%%", "%");
       break;
   }
 
