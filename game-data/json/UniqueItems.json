@@ -18506,7 +18506,7 @@
   },
   {
     "name": "Cold Rupture",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,
@@ -18527,7 +18527,7 @@
   },
   {
     "name": "Flame Rift",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,
@@ -18548,7 +18548,7 @@
   },
   {
     "name": "Crack of the Heavens",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,
@@ -18569,7 +18569,7 @@
   },
   {
     "name": "Rotting Fissure",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,
@@ -18590,7 +18590,7 @@
   },
   {
     "name": "Bone Break",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,
@@ -18611,7 +18611,7 @@
   },
   {
     "name": "Black Cleft",
-    "enabled": false,
+    "enabled": true,
     "code": "cm3",
     "qlevel": 69,
     "reqlevel": 75,

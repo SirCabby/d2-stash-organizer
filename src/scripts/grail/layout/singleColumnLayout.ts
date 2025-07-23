@@ -8,19 +8,20 @@ export function singleColumnLayout<T extends LayoutItem>(
 ): LayoutResult<T> {
   const positions = new Map<T, Position>();
 
+  let currentPage = 0;
   let row = 0;
   for (const group of groups) {
     for (const item of group) {
       const base = getBase(item);
       if (row + base.height > PAGE_HEIGHT) {
-        throw new Error(
-          `Single-column layout ran out of space for ${item.name}`
-        );
+        // Move to next page
+        currentPage++;
+        row = 0;
       }
-      positions.set(item, { page: 0, rows: [row], cols: ALL_COLUMNS });
+      positions.set(item, { page: currentPage, rows: [row], cols: ALL_COLUMNS });
       row += base.height;
     }
   }
 
-  return { nbPages: Math.sign(groups.length), positions };
+  return { nbPages: currentPage + 1, positions };
 }
