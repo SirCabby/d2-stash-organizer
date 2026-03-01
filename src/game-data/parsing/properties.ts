@@ -29,7 +29,7 @@ export async function propertiesToJson() {
   for (const line of table) {
     const stats: Property["stats"] = [];
     for (let i = 1; i < 8; i++) {
-      const statIndex = -1 + 4 * i;
+      const statIndex = 4 * i;
       if (line[statIndex]) {
         const param = line[statIndex + 1]
           ? Number(line[statIndex + 1])

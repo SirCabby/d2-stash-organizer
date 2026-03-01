@@ -18,7 +18,11 @@ export function singleColumnLayout<T extends LayoutItem>(
         currentPage++;
         row = 0;
       }
-      positions.set(item, { page: currentPage, rows: [row], cols: ALL_COLUMNS });
+      positions.set(item, {
+        page: currentPage,
+        rows: [row],
+        cols: ALL_COLUMNS,
+      });
       row += base.height;
     }
   }

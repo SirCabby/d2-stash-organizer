@@ -1,8 +1,9 @@
 import { grailProgress } from "../../scripts/grail/list/grailProgress";
-import { useContext, useMemo, useState } from "preact/hooks";
+import { useContext, useMemo } from "preact/hooks";
 import { JSX } from "preact";
 import "./GrailTracker.css";
 import { CollectionContext } from "../store/CollectionContext";
+import { SettingsContext, GrailFilters } from "../settings/SettingsContext";
 import { GrailSummary } from "./GrailSummary";
 import { ItemTooltip } from "../items/ItemTooltip";
 import { GrailItemTooltip } from "../items/GrailItemTooltip";
@@ -23,13 +24,6 @@ const GRAIL_CATEGORIES = [
   { key: "ethereal", label: "Ethereal" },
   { key: "eth-perfect", label: "Eth Perfect" },
 ] as const;
-
-interface GrailFilters {
-  normal: "any" | "missing" | "found";
-  ethereal: "any" | "missing" | "found";
-  perfect: "any" | "missing" | "found";
-  "eth-perfect": "any" | "missing" | "found";
-}
 
 interface GrailFilterProps {
   value: GrailFilters;
@@ -94,12 +88,8 @@ function GrailFilter({ value, onChange }: GrailFilterProps) {
 
 export function GrailTracker() {
   const { allItems } = useContext(CollectionContext);
-  const [filters, setFilters] = useState<GrailFilters>({
-    normal: "any",
-    ethereal: "any",
-    perfect: "any",
-    "eth-perfect": "any",
-  });
+  const { grailFilters: filters, setGrailFilters: setFilters } =
+    useContext(SettingsContext);
 
   const progress = useMemo(() => grailProgress(allItems), [allItems]);
 

@@ -14,4 +14,10 @@ export function postProcessStash(stash: D2rStash) {
       postProcessItem(item);
     }
   });
+  if (stash.dedicatedTab) {
+    for (const slot of stash.dedicatedTab) {
+      slot.item.owner = stash;
+      postProcessItem(slot.item);
+    }
+  }
 }

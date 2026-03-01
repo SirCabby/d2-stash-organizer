@@ -8,12 +8,18 @@ import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
 import { addPage } from "../../scripts/plugy-stash/addPage";
 import { organize } from "../../scripts/grail/organize";
-import { isPlugyStash, isCharacter } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isD2rStash,
+  isCharacter,
+} from "../../scripts/save-file/ownership";
+import { Item } from "../../scripts/items/types/Item";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { postProcessStash as postProcessPlugyStash } from "../../scripts/plugy-stash/parsing/postProcessStash";
 import { postProcessStash as postProcessD2rStash } from "../../scripts/d2r-stash/parsing/postProcessStash";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
+import { topOffDedicatedTab } from "../../scripts/d2r-stash/dedicatedTab";
 
 export function Settings() {
   const { accessibleFont, toggleAccessibleFont } = useContext(SettingsContext);
@@ -37,14 +43,17 @@ export function Settings() {
     }
     let pagesCreated = 0;
     let itemsPlaced = 0;
+    let slotsMaxed = 0;
     const newOwners = owners.map((owner) => {
       if (isPlugyStash(owner)) {
         // 1. Gather all simple items by code
-        const allSimple = owner.pages.flatMap((page) => page.items.filter(isSimpleItem));
-        const byCode = new Map();
+        const allSimple = owner.pages.flatMap((page) =>
+          page.items.filter(isSimpleItem)
+        );
+        const byCode = new Map<string, Item[]>();
         for (const item of allSimple) {
           if (!byCode.has(item.code)) byCode.set(item.code, []);
-          byCode.get(item.code).push(item);
+          byCode.get(item.code)!.push(item);
         }
         // 2. Remove all simple items from all pages
         for (const page of owner.pages) {
@@ -56,23 +65,27 @@ export function Settings() {
           const base = getBase(template);
           const w = base.width;
           const h = base.height;
-          const maxPerPage = Math.floor(PAGE_WIDTH / w) * Math.floor(PAGE_HEIGHT / h);
-          const page = addPage(owner, template.name || code) as { items: import("../../scripts/items/types/Item").Item[] };
-          let maxId = Math.max(0, ...allSimple.map(i => i.id ?? 0));
+          const maxPerPage =
+            Math.floor(PAGE_WIDTH / w) * Math.floor(PAGE_HEIGHT / h);
+          const page = addPage(owner, template.name || code);
+          let maxId = Math.max(0, ...allSimple.map((i) => i.id ?? 0));
           let placed = 0;
           outer: for (let row = 0; row <= PAGE_HEIGHT - h; row++) {
             for (let col = 0; col <= PAGE_WIDTH - w; col++) {
               if (placed >= maxPerPage) break outer;
               // Check for collision
-              if (page.items.some(existing => {
-                const eb = getBase(existing);
-                return (
-                  col < existing.column + eb.width &&
-                  col + w > existing.column &&
-                  row < existing.row + eb.height &&
-                  row + h > existing.row
-                );
-              })) continue;
+              if (
+                page.items.some((existing) => {
+                  const eb = getBase(existing);
+                  return (
+                    col < existing.column + eb.width &&
+                    col + w > existing.column &&
+                    row < existing.row + eb.height &&
+                    row + h > existing.row
+                  );
+                })
+              )
+                continue;
               const newItem = {
                 ...template,
                 id: ++maxId,
@@ -90,10 +103,25 @@ export function Settings() {
         organize(owner);
         return owner;
       }
+      if (isD2rStash(owner) && owner.variant === "rotw") {
+        const topped = topOffDedicatedTab(owner);
+        slotsMaxed += topped;
+        postProcessD2rStash(owner);
+        return owner;
+      }
       return owner;
     });
     setCollection(newOwners);
-    alert(`Created ${pagesCreated} pages and placed ${itemsPlaced} simple items (one page per item code).`);
+    const parts: string[] = [];
+    if (pagesCreated > 0 || itemsPlaced > 0) {
+      parts.push(
+        `Created ${pagesCreated} pages and placed ${itemsPlaced} simple items`
+      );
+    }
+    if (slotsMaxed > 0) {
+      parts.push(`Maxed ${slotsMaxed} dedicated tab slot(s) to 99`);
+    }
+    alert(parts.length > 0 ? parts.join(". ") + "." : "Nothing to top off.");
   }, [owners, setCollection]);
 
   // Repair All handler
@@ -103,8 +131,7 @@ export function Settings() {
       return;
     }
     let repairedCount = 0;
-    const repairItem = (item: any) => {
-      // Repair durability
+    const repairItem = (item: Item) => {
       if (item.durability && item.durability.length === 2) {
         if (typeof item.extraDurability === "number") {
           item.durability[0] = item.durability[1] + item.extraDurability;
@@ -113,7 +140,6 @@ export function Settings() {
         }
         repairedCount++;
       }
-      // Repair charges in all modifiers
       if (item.modifiers) {
         for (const mod of item.modifiers) {
           if (
@@ -126,7 +152,6 @@ export function Settings() {
           }
         }
       }
-      // Recursively repair socketed items
       if (item.filledSockets) {
         for (const socketed of item.filledSockets) {
           repairItem(socketed);

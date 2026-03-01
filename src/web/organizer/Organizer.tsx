@@ -1,27 +1,37 @@
 import { useCallback, useContext, useState } from "preact/hooks";
 import { CollectionContext } from "../store/CollectionContext";
+import { SettingsContext } from "../settings/SettingsContext";
 import { organize } from "../../scripts/grail/organize";
 import { ExternalLink } from "../routing/ExternalLink";
 import "./Organizer.css";
 import { numberInputChangeHandler } from "./numberInputChangeHandler";
 import { OwnerSelector } from "../save-files/OwnerSelector";
 import { useUpdateCollection } from "../store/useUpdateCollection";
-import { isPlugyStash, ItemsOwner } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isStash,
+  ItemsOwner,
+} from "../../scripts/save-file/ownership";
 import { updateCharacterStashes } from "../store/plugyDuplicates";
 
 export function Organizer() {
-  const { lastActivePlugyStashPage, hasPlugY } = useContext(CollectionContext);
+  const { lastActivePlugyStashPage, hasPlugY, hasD2rStash } =
+    useContext(CollectionContext);
+  const {
+    organizerSkipPages: skipPages,
+    setOrganizerSkipPages: setSkipPages,
+    organizerEmptyPages: emptyPages,
+    setOrganizerEmptyPages: setEmptyPages,
+  } = useContext(SettingsContext);
   const { updateSingleFile, rollback } = useUpdateCollection();
 
   const [stash, setStash] = useState<ItemsOwner>();
-  const [skipPages, setSkipPages] = useState(1);
-  const [emptyPages, setEmptyPages] = useState(0);
 
   const handleOrganize = useCallback(async () => {
-    if (stash && isPlugyStash(stash)) {
+    if (stash && isStash(stash)) {
       try {
         organize(stash, [], skipPages, emptyPages);
-        if (lastActivePlugyStashPage) {
+        if (lastActivePlugyStashPage && isPlugyStash(stash)) {
           updateCharacterStashes(lastActivePlugyStashPage);
         }
         await updateSingleFile(stash);
@@ -44,16 +54,15 @@ export function Organizer() {
     rollback,
   ]);
 
-  if (!hasPlugY) {
+  if (!hasPlugY && !hasD2rStash) {
     return (
       <p>
         This feature requires{" "}
         <ExternalLink href="http://plugy.free.fr/">
           PlugY's extended stash
-        </ExternalLink>
-        . It allows you to organize your collection across hundreds of pages in
-        just one click, whether in the shared stash or in a character's personal
-        stash.
+        </ExternalLink>{" "}
+        or a D2R shared stash file. It allows you to organize your collection
+        across multiple pages in just one click.
       </p>
     );
   }

@@ -4,7 +4,22 @@ node_modules/
 
 test/
 dist/
+docs/
 
 # Input and Output folders
 Input/
 Output/
+test-output/
+test-parse.ts
+
+# Game data extracted from D2/D2R (copyrighted)
+game-data/txt/
+game-data/txt-rotw/
+game-data/json/
+
+# Game save files
+*.d2s
+*.d2i
+*.d2is
+*.sss
+*.d2x

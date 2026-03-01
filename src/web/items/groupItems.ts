@@ -4,7 +4,28 @@ import {
   ItemLocation,
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
-import { ownerName } from "../../scripts/save-file/ownership";
+import { isD2rStash, ownerName } from "../../scripts/save-file/ownership";
+
+function isDedicatedTabItem(item: Item): boolean {
+  return (
+    !!item.owner &&
+    isD2rStash(item.owner) &&
+    item.location === ItemLocation.CURSOR &&
+    item.stored === ItemStorageType.STASH
+  );
+}
+
+/**
+ * Returns the effective count for a group of items. For dedicated tab items
+ * the stack quantity is stored on a single item object; for regular items
+ * the count is the number of objects in the group.
+ */
+export function groupQuantity(group: Item[]): number {
+  if (group.length === 1 && isDedicatedTabItem(group[0])) {
+    return group[0].quantity ?? 1;
+  }
+  return group.length;
+}
 
 /**
  * Creates a unique key for grouping items by both code and location

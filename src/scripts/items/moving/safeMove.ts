@@ -1,17 +1,15 @@
-import { PlugyStash } from "../../plugy-stash/types";
+import { Stash } from "../../save-file/ownership";
 import { Item } from "../types/Item";
 import { collision } from "./collision";
 import { positionItem } from "./positionItem";
 
 export function moveItem(
-  stash: PlugyStash,
+  stash: Stash,
   item: Item,
   toPage: number,
   row: number,
   col: number
 ) {
-  // FIXME: this is legacy, we should use transferItem now for organization
-  // Remove from the current page
   for (const page of stash.pages) {
     const index = page.items.indexOf(item);
     if (index >= 0) {

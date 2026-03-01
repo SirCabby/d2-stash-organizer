@@ -8,13 +8,21 @@ export function parsePage(reader: SaveFileReader, stash: D2rStash) {
     throw new Error(`Unexpected header ${header} for a stash page`);
   }
 
-  reader.read(8);
+  // Capture format identifier from first page (same value on all pages)
+  if (stash.formatId == null) {
+    stash.formatId = reader.readInt32LE();
+  } else {
+    reader.read(4);
+  }
+
+  // Skip game version field
+  reader.read(4);
   const page: D2rPage = {
     gold: reader.readInt32LE(),
     items: [],
   };
 
-  // Position at the start of the list
+  // Skip page length (4) + padding (44)
   reader.read(48);
   page.items.push(...parseItemList(reader, stash));
 

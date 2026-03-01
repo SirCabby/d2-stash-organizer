@@ -1,11 +1,11 @@
 import { Item } from "../../items/types/Item";
 import { layout } from "../layout";
-import { PlugyStash } from "../../plugy-stash/types";
 import { makeIndex } from "../../plugy-stash/makeIndex";
 import { addPage } from "../../plugy-stash/addPage";
 import { moveItem } from "../../items/moving/safeMove";
+import { Stash } from "../../save-file/ownership";
 
-export function organizeUnknown(stash: PlugyStash, items: Item[]) {
+export function organizeUnknown(stash: Stash, items: Item[]) {
   if (items.length === 0) return;
 
   const offset = stash.pages.length;

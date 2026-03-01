@@ -5,6 +5,7 @@ import { ItemTooltip } from "./ItemTooltip";
 import { ItemLocationDesc } from "./ItemLocationDesc";
 import { useCallback, useContext } from "preact/hooks";
 import { SelectionContext } from "../transfer/SelectionContext";
+import { groupQuantity } from "./groupItems";
 
 import {
   getItemCategoryName,
@@ -63,7 +64,10 @@ export function Item({
         <td>{item.classRequirement ? item.classRequirement : "All"}</td>
       )}
       <td>
-        <AdditionalInfo item={item} quantity={duplicates?.length} />
+        <AdditionalInfo
+          item={item}
+          quantity={duplicates ? groupQuantity(duplicates) : undefined}
+        />
       </td>
       {withLocation && (
         <td>

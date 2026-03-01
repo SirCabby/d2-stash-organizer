@@ -4,7 +4,11 @@ import { parseItem } from "./parseItem";
 import { ItemLocation } from "../types/ItemLocation";
 import { ItemsOwner } from "../../save-file/ownership";
 
-export function parseItemList(reader: SaveFileReader, owner: ItemsOwner) {
+export function parseItemList(
+  reader: SaveFileReader,
+  owner: ItemsOwner,
+  options?: { dedicatedTab?: boolean }
+) {
   const header = reader.readString(2);
   if (header !== "JM") {
     throw new Error(`Unexpected header ${header} for an item list`);
@@ -13,9 +17,20 @@ export function parseItemList(reader: SaveFileReader, owner: ItemsOwner) {
   let remainingItems = reader.readInt16LE();
   const items: Item[] = [];
 
-  // After that comes the first item
   while (remainingItems > 0) {
-    const parsedItem = parseItem(reader, owner);
+    let parsedItem: Item;
+    try {
+      parsedItem = parseItem(reader, owner, options);
+    } catch (e) {
+      // A failed parse (e.g. mod-added item code not in our data) leaves the
+      // reader at an unknown position. We can't reliably find the next item
+      // boundary, so return whatever we successfully parsed so far.
+      console.warn(
+        `Item parse failed — skipping ${remainingItems} remaining item(s):`,
+        e instanceof Error ? e.message : e
+      );
+      break;
+    }
     if (parsedItem.location === ItemLocation.SOCKET) {
       const socketedItem = items[items.length - 1];
       if (!socketedItem.filledSockets) {

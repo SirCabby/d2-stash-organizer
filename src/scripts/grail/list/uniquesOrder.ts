@@ -107,6 +107,7 @@ export const UNIQUES_ORDER: UniqueSection[][] = [
     { name: "Necromancer", shortName: "Necro", types: ["head"] },
     { name: "Paladin", shortName: "Paladin", types: ["ashd"] },
     { name: "Sorceress", shortName: "Sorceress", types: ["orb"] },
+    { name: "Warlock", shortName: "Warlock", types: ["grim"] },
   ],
 ];
 

@@ -9,14 +9,11 @@ export async function itemTypesToJson() {
   const classMappings: ItemTypeClassMapping = {};
 
   for (const line of table) {
-    const itemType = line[0].trim();
-    const classCode = line[25].trim(); // Class column (index 25)
+    const typeCode = line[1].trim();
+    const classCode = line[25].trim();
 
-    // Only add mappings where there's actually a class restriction
-    if (classCode && classCode !== "") {
-      // Store both the original case and lowercase versions for flexible lookup
-      classMappings[itemType] = classCode;
-      classMappings[itemType.toLowerCase()] = classCode;
+    if (typeCode && classCode && classCode !== "") {
+      classMappings[typeCode] = classCode;
     }
   }
 

@@ -60,6 +60,16 @@ export function parseSimple(stream: BinaryStream, owner: ItemsOwner) {
     item.filledSockets = [];
   }
 
+  // D2R compact items carry a realm-data flag after the socket/quest fields.
+  // When set, 1 byte of data follows. For dedicated-tab items this byte is
+  // the stack quantity; for regular items it is opaque realm data. Non-simple
+  // items handle their realm data in parseQuality instead.
+  if (item.simple && owner.version >= FIRST_D2R) {
+    if (readBool()) {
+      item.quantity = readInt(8);
+    }
+  }
+
   if (item.simple) {
     item.name = base.name;
   }

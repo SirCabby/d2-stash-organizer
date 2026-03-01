@@ -12,7 +12,7 @@ export async function runewordsToJson(
     // This is a bit crazy, but it's what the game seems to actually do for runeword names
     let index = Number(line[0].split("Runeword")[1]);
     const runes = line
-      .slice(16, 21)
+      .slice(18, 23)
       .map((rune) => rune.trim())
       .filter((rune) => !!rune);
     const runeword: Runeword = {
@@ -25,7 +25,7 @@ export async function runewordsToJson(
       modifiers: [],
     };
     for (let i = 0; i < 7; i++) {
-      const modifier = readModifierRange(line, 22 + 4 * i, skills);
+      const modifier = readModifierRange(line, 24 + 4 * i, skills);
       if (modifier) {
         runeword.modifiers.push(modifier);
       }

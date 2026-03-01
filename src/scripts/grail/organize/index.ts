@@ -1,4 +1,3 @@
-import { PlugyStash } from "../../plugy-stash/types";
 import { Item } from "../../items/types/Item";
 import { deletePages } from "../../plugy-stash/deletePages";
 import { groupBySection } from "./groupBySection";
@@ -14,6 +13,7 @@ import { organizeUniques } from "./uniques";
 import { organizeRespecs } from "./respecs";
 import { organizeUbers } from "./ubers";
 import { addPage } from "../../plugy-stash/addPage";
+import { Stash } from "../../save-file/ownership";
 
 /**
  * Counts every item, even socketed ones.
@@ -29,7 +29,7 @@ function countEveryItem(items: Item[]) {
 }
 
 export function organize(
-  stash: PlugyStash,
+  stash: Stash,
   additionalItems: Item[] = [],
   offset = 0,
   emptyPages = 0

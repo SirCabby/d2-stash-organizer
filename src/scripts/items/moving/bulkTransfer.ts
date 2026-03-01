@@ -1,5 +1,6 @@
 import {
   isCharacter,
+  isD2rStash,
   isPlugyStash,
   ItemsOwner,
 } from "../../save-file/ownership";
@@ -7,6 +8,37 @@ import { addPage } from "../../plugy-stash/addPage";
 import { transferItem } from "./transferItem";
 import { ItemStorageType } from "../types/ItemLocation";
 import { Item } from "../types/Item";
+import {
+  addToDedicatedTab,
+  isDedicatedTabEligible,
+} from "../../d2r-stash/dedicatedTab";
+
+function removeFromOriginalOwner(item: Item) {
+  const { owner } = item;
+  if (!owner) return;
+  if ("pages" in owner) {
+    for (const page of owner.pages) {
+      const idx = page.items.indexOf(item);
+      if (idx >= 0) {
+        page.items.splice(idx, 1);
+        return;
+      }
+    }
+    if ("dedicatedTab" in owner && owner.dedicatedTab) {
+      const tab = owner.dedicatedTab;
+      const idx = tab.findIndex((s) => s.item === item);
+      if (idx >= 0) {
+        tab.splice(idx, 1);
+        return;
+      }
+    }
+  } else {
+    const idx = owner.items.indexOf(item);
+    if (idx >= 0) {
+      owner.items.splice(idx, 1);
+    }
+  }
+}
 
 export function bulkTransfer(
   target: ItemsOwner,
@@ -31,15 +63,44 @@ export function bulkTransfer(
         throw new Error("Not enough space to transfer all the selected items.");
       }
     }
-  } else {
+  } else if (isD2rStash(target) && target.variant === "rotw") {
+    let dedicatedCount = 0;
+    let pageCount = 0;
+    const failed: Item[] = [];
     itemsLoop: for (const item of items) {
-      // Retry from page 0 every time, in case the new item is smaller than the previous ones
+      if (isDedicatedTabEligible(item)) {
+        removeFromOriginalOwner(item);
+        item.owner = target;
+        if (addToDedicatedTab(target, item)) {
+          dedicatedCount++;
+          continue;
+        }
+      }
       let pageIndex = 0;
       while (pageIndex < target.pages.length) {
         if (transferItem(item, target, ItemStorageType.STASH, pageIndex)) {
+          pageCount++;
           continue itemsLoop;
         }
-        // We ran out of space on this page, we try the next one
+        pageIndex++;
+      }
+      failed.push(item);
+    }
+    if (failed.length > 0) {
+      const placed = dedicatedCount + pageCount;
+      throw new Error(
+        `Not enough space: ${placed}/${items.length} items transferred ` +
+          `(${dedicatedCount} to dedicated tab, ${pageCount} to stash pages). ` +
+          `${failed.length} item(s) could not fit.`
+      );
+    }
+  } else {
+    itemsLoop2: for (const item of items) {
+      let pageIndex = 0;
+      while (pageIndex < target.pages.length) {
+        if (transferItem(item, target, ItemStorageType.STASH, pageIndex)) {
+          continue itemsLoop2;
+        }
         pageIndex++;
       }
       throw new Error("Not enough space to transfer all the selected items.");

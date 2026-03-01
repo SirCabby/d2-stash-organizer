@@ -1,6 +1,7 @@
 import {
-  D2R_SHARED_STASH_NAME,
+  d2rStashName,
   isCharacter,
+  isD2rStash,
   isPlugyStash,
   ItemsOwner,
   NON_PLUGY_SHARED_STASH_NAME,
@@ -26,7 +27,9 @@ export function PrettyOwnerName({ owner }: { owner: ItemsOwner }) {
     }
   } else if (isCharacter(owner)) {
     return <span class="unique">{owner.filename.slice(0, -4)}</span>;
+  } else if (isD2rStash(owner)) {
+    return <span class="magic">{d2rStashName(owner.filename)}</span>;
   } else {
-    return <span class="magic">{D2R_SHARED_STASH_NAME}</span>;
+    return <span class="magic">{owner.filename}</span>;
   }
 }

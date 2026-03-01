@@ -1,18 +1,23 @@
 import { Item as ItemType } from "../../scripts/items/types/Item";
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { groupItems } from "../items/groupItems";
+import { groupItems, groupQuantity } from "../items/groupItems";
 import { Pagination } from "../controls/Pagination";
 import { SortField, SortDirection } from "./Collection";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
 import { isSimpleItem } from "./utils/isSimpleItem";
-import { isPlugyStash, ownerName } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isD2rStash,
+  ownerName,
+} from "../../scripts/save-file/ownership";
 import {
   ItemLocation,
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
 import { Item } from "../items/Item";
+import { dedicatedTabName } from "../../scripts/d2r-stash/dedicatedTab";
 
 // Function to get the quality display name for an item
 export function getItemQualityName(item: ItemType): string {
@@ -236,8 +241,7 @@ function getGroupedItemSortValue(
     case "characteristics": {
       const characteristics = [];
       if (isSimpleItem(representativeItem)) {
-        // Include quantity for simple items
-        characteristics.push(`quantity: ${itemGroup.length}`);
+        characteristics.push(`quantity: ${groupQuantity(itemGroup)}`);
       }
       if (representativeItem.ethereal) {
         characteristics.push("ethereal");
@@ -284,6 +288,14 @@ function getGroupedItemSortValue(
           } else {
             return `Worn by ${name}`;
           }
+        case ItemLocation.CURSOR:
+          if (
+            isD2rStash(representativeItem.owner) &&
+            representativeItem.stored === ItemStorageType.STASH
+          ) {
+            return `In ${name} ${dedicatedTabName(representativeItem)} tab`;
+          }
+          return "Unknown location";
         default:
           return "Unknown location";
       }

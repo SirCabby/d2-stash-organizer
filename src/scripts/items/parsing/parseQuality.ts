@@ -44,11 +44,11 @@ function getLevel(item: Item) {
 
       break;
     case ItemQuality.SET:
-      if (item.unique)
+      if (item.unique && SET_ITEMS[item.unique])
         reqlevel = Math.max(reqlevel, SET_ITEMS[item.unique].levelReq);
       break;
     case ItemQuality.UNIQUE:
-      if (item.unique)
+      if (item.unique && UNIQUE_ITEMS[item.unique])
         reqlevel = Math.max(reqlevel, UNIQUE_ITEMS[item.unique].reqlevel);
       break;
     case ItemQuality.CRAFTED:
@@ -60,7 +60,8 @@ function getLevel(item: Item) {
 }
 export function parseQuality(
   { read, readBool, readInt }: BinaryStream,
-  item: Item
+  item: Item,
+  isD2R = false
 ) {
   item.id = readInt(32);
   item.level = readInt(7);
@@ -91,24 +92,28 @@ export function parseQuality(
       item.prefixes = [readInt(11)];
       item.suffixes = [readInt(11)];
       item.name = getBase(item).name;
-      if (item.prefixes[0]) {
+      if (item.prefixes[0] && MAGIC_PREFIXES[item.prefixes[0]]) {
         item.name = `${MAGIC_PREFIXES[item.prefixes[0]].name} ${item.name}`;
       }
-      if (item.suffixes[0]) {
+      if (item.suffixes[0] && MAGIC_SUFFIXES[item.suffixes[0]]) {
         item.name = `${item.name} ${MAGIC_SUFFIXES[item.suffixes[0]].name}`;
       }
       break;
     case ItemQuality.SET:
       item.unique = readInt(12);
-      item.name = SET_ITEMS[item.unique].name;
+      item.name = SET_ITEMS[item.unique]?.name ?? getBase(item).name;
       break;
     case ItemQuality.UNIQUE:
       item.unique = readInt(12);
-      item.name = UNIQUE_ITEMS[item.unique].name;
+      item.name = UNIQUE_ITEMS[item.unique]?.name ?? getBase(item).name;
       break;
     case ItemQuality.RARE:
-    case ItemQuality.CRAFTED:
-      item.name = `${RARE_NAMES[readInt(8)]} ${RARE_NAMES[readInt(8)]}`;
+    case ItemQuality.CRAFTED: {
+      const rn1 = readInt(8);
+      const rn2 = readInt(8);
+      item.name = `${RARE_NAMES[rn1] ?? "Unknown"} ${
+        RARE_NAMES[rn2] ?? "Unknown"
+      }`;
       // Up to 6 affixes, alternating between prefix and suffix
       item.prefixes = [];
       item.suffixes = [];
@@ -118,6 +123,7 @@ export function parseQuality(
         }
       }
       break;
+    }
   }
 
   if (item.runeword) {
@@ -126,14 +132,15 @@ export function parseQuality(
     if (item.runewordId === 2691) {
       item.runewordId = 21;
     }
-    item.name = RUNEWORDS[item.runewordId].name;
+    item.name = RUNEWORDS[item.runewordId]?.name ?? getBase(item).name;
     read(4);
   }
 
   if (item.personalized) {
+    const charBits = isD2R ? 8 : 7;
     let charName = "";
     let charCode: number;
-    while ((charCode = readInt(7)) !== 0) {
+    while ((charCode = readInt(charBits)) !== 0) {
       charName += String.fromCharCode(charCode);
     }
     item.name = `${charName}'s ${item.name}`;
@@ -147,6 +154,11 @@ export function parseQuality(
     read(5);
   }
 
-  // Skip unknown "timestamp" bit
-  read(1);
+  // Realm data flag (1 bit). If set, D2R items have 4x uint32 of realm data.
+  if (readBool()) {
+    const realmDataCount = isD2R ? 4 : 3;
+    for (let i = 0; i < realmDataCount; i++) {
+      readInt(32);
+    }
+  }
 }

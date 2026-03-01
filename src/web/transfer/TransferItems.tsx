@@ -3,6 +3,7 @@ import { SelectionContext } from "./SelectionContext";
 import { TransferItemsTable } from "./TransferItemsTable";
 import "./TransferItems.css";
 import { CollectionContext } from "../store/CollectionContext";
+import { SettingsContext } from "../settings/SettingsContext";
 import { PrettyOwnerName } from "../save-files/PrettyOwnerName";
 import {
   isCharacter,
@@ -27,6 +28,12 @@ import { isSimpleItem } from "../collection/utils/isSimpleItem";
 
 export function TransferItems() {
   const { lastActivePlugyStashPage } = useContext(CollectionContext);
+  const {
+    transferWithOrganize: withOrganize,
+    setTransferWithOrganize: setWithOrganize,
+    transferSkipPages: skipPages,
+    setTransferSkipPages: setSkipPages,
+  } = useContext(SettingsContext);
   const { updateAllFiles, rollback } = useUpdateCollection();
   const { selectedItems, unselectAll } = useContext(SelectionContext);
   const { transferQuantities, resetQuantities } = useContext(
@@ -36,9 +43,6 @@ export function TransferItems() {
   const [targetStorage, setTargetStorage] = useState<ItemStorageType>();
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState<string>();
-
-  const [withOrganize, setWithOrganize] = useState<boolean>(false);
-  const [skipPages, setSkipPages] = useState(0);
 
   const items = useMemo(() => Array.from(selectedItems), [selectedItems]);
 

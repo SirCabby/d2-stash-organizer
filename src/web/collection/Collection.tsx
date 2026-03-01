@@ -60,10 +60,11 @@ export function Collection() {
     setCollectionLocation,
   } = useContext(SettingsContext);
 
-  // Clean up location filter when locations no longer exist
+  // Clean up location filter when locations no longer exist, but only once
+  // items have actually been loaded (allItems is empty on initial render
+  // before IndexedDB finishes loading).
   useEffect(() => {
-    if (collectionLocation.length > 0) {
-      // Get all available location names from current items
+    if (collectionLocation.length > 0 && allItems.length > 0) {
       const availableLocations = new Set<string>();
       for (const item of allItems) {
         if (item.owner) {
@@ -71,12 +72,10 @@ export function Collection() {
         }
       }
 
-      // Filter out locations that no longer exist
       const validLocations = collectionLocation.filter((location) =>
         availableLocations.has(location)
       );
 
-      // Update the filter if any locations were removed
       if (validLocations.length !== collectionLocation.length) {
         setCollectionLocation(validLocations);
       }

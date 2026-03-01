@@ -1,12 +1,12 @@
 import { Item } from "../../items/types/Item";
 import { layout } from "../layout";
-import { PlugyStash } from "../../plugy-stash/types";
 import { makeIndex } from "../../plugy-stash/makeIndex";
 import { RUNEWORDS } from "../../../game-data";
 import { getBase } from "../../items/getBase";
 import { EQUIPMENT_TYPES } from "../list/uniquesOrder";
 import { addPage } from "../../plugy-stash/addPage";
 import { moveItem } from "../../items/moving/safeMove";
+import { Stash } from "../../save-file/ownership";
 
 function runewordsOrder(a: Item, b: Item) {
   return RUNEWORDS[a.runewordId!].levelReq - RUNEWORDS[b.runewordId!].levelReq;
@@ -28,7 +28,7 @@ function basesOrder(a: Item, b: Item) {
   );
 }
 
-export function organizeRunewords(stash: PlugyStash, both: Item[]) {
+export function organizeRunewords(stash: Stash, both: Item[]) {
   if (both.length === 0) return;
 
   const runewords = [];

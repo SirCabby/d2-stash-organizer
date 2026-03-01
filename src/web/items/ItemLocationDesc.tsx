@@ -3,7 +3,12 @@ import {
   ItemLocation,
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
-import { isPlugyStash, ownerName } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isD2rStash,
+  ownerName,
+} from "../../scripts/save-file/ownership";
+import { dedicatedTabName } from "../../scripts/d2r-stash/dedicatedTab";
 
 export interface ItemLocationDescProps {
   item: Item;
@@ -18,7 +23,6 @@ function locationString(item: Item) {
     case ItemLocation.STORED:
       switch (item.stored) {
         case ItemStorageType.STASH:
-          // This is the case where the item is in a non-PlugY stash
           if (!isPlugyStash(item.owner)) {
             return `In ${name}'s stash`;
           }
@@ -40,6 +44,11 @@ function locationString(item: Item) {
       } else {
         return `Worn by ${name}`;
       }
+    case ItemLocation.CURSOR:
+      if (isD2rStash(item.owner) && item.stored === ItemStorageType.STASH) {
+        return `In ${name} ${dedicatedTabName(item)} tab`;
+      }
+      return "Unknown location";
     default:
       return "Unknown location";
   }

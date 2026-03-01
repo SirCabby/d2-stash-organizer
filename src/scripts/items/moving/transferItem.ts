@@ -58,6 +58,7 @@ export function transferItem(
   // Remove from original owner first
   if (originalOwner) {
     if (isStash(originalOwner)) {
+      let removed = false;
       for (
         let pageIndex = 0;
         pageIndex < originalOwner.pages.length;
@@ -67,7 +68,19 @@ export function transferItem(
         const index = page.items.indexOf(item);
         if (index >= 0) {
           page.items.splice(index, 1);
+          removed = true;
           break;
+        }
+      }
+      if (
+        !removed &&
+        "dedicatedTab" in originalOwner &&
+        originalOwner.dedicatedTab
+      ) {
+        const tab = originalOwner.dedicatedTab;
+        const idx = tab.findIndex((s: { item: Item }) => s.item === item);
+        if (idx >= 0) {
+          tab.splice(idx, 1);
         }
       }
     } else {

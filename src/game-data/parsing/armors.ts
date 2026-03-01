@@ -8,26 +8,26 @@ export async function armorsToJson() {
   const classMappings = await itemTypesToJson();
   const armors: Record<string, Armor> = {};
   for (const line of table) {
-    const code = line[18].trim();
+    const code = line[19].trim();
     const tier =
-      code === line[23].trim()
+      code === line[24].trim()
         ? EquipmentTier.NORMAL
-        : code === line[24].trim()
+        : code === line[25].trim()
         ? EquipmentTier.EXCEPTIONAL
         : EquipmentTier.ELITE;
-    const itemType = line[51].trim();
+    const itemType = line[52].trim();
     armors[code] = {
-      name: getString(line[19].trim()),
+      name: getString(line[20].trim()),
       type: itemType,
       tier,
-      def: [Number(line[5]), Number(line[6])],
-      maxSockets: Number(line[30]),
-      indestructible: line[12].trim() === "1",
-      width: Number(line[27]),
-      height: Number(line[28]),
-      qlevel: Number(line[13]),
-      levelReq: Number(line[15]),
-      stackable: line[43] === "1",
+      def: [Number(line[6]), Number(line[7])],
+      maxSockets: Number(line[31]),
+      indestructible: line[13].trim() === "1",
+      width: Number(line[28]),
+      height: Number(line[29]),
+      qlevel: Number(line[14]),
+      levelReq: Number(line[16]),
+      stackable: line[44] === "1",
       classRequirement: classMappings[itemType],
     };
   }

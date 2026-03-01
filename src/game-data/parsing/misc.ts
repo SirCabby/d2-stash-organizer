@@ -5,23 +5,26 @@ import { getString } from "../strings";
 export async function miscToJson() {
   const misc: Record<string, Misc> = {};
   for (const line of await readGameFile("Misc")) {
-    const code = line[14].trim();
+    const code = line[15].trim();
     misc[code] = {
-      name: getString(line[16].trim()),
-      type: line[31].trim(),
+      name: getString(line[17].trim()),
+      type: line[32].trim(),
       tier: 0,
-      maxSockets: Number(line[21]),
-      indestructible: line[11].trim() === "1",
-      width: Number(line[18]),
-      height: Number(line[19]),
+      maxSockets: Number(line[22]),
+      indestructible: line[12].trim() === "1",
+      width: Number(line[19]),
+      height: Number(line[20]),
       qlevel: Number(line[3]),
       levelReq: Number(line[5]),
-      stackable: line[42] === "1",
-      trackQuestDifficulty: line[47] === "1" || undefined,
+      stackable: line[43] === "1",
+      trackQuestDifficulty: line[48] === "1" || undefined,
     };
-    // Token of absolution name is messed up, has the description at the start
+    // Token of absolution name may have the description before a \n separator
     if (code === "toa") {
-      misc[code].name = misc[code].name.split("\\n")[1];
+      const parts = misc[code].name.split("\\n");
+      if (parts.length > 1) {
+        misc[code].name = parts[1];
+      }
     }
   }
   await writeJson("Misc", misc);

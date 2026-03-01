@@ -2,13 +2,10 @@ import { Page } from "./Page";
 import { useContext, useMemo, useState } from "preact/hooks";
 import { pageName } from "./utils/pageName";
 import { CollectionContext } from "../store/CollectionContext";
+import { SettingsContext } from "../settings/SettingsContext";
 import { Search, searchItems } from "../controls/Search";
 import "../controls/Controls.css";
-import {
-  filterItemsByQuality,
-  QualityFilter,
-  QualityFilterValue,
-} from "../controls/QualityFilter";
+import { filterItemsByQuality, QualityFilter } from "../controls/QualityFilter";
 import {
   isPlugyStash,
   isStash,
@@ -19,24 +16,18 @@ import { SelectAll } from "../controls/SelectAll";
 
 export function StashView() {
   const { owners, lastActivePlugyStashPage } = useContext(CollectionContext);
+  const {
+    charactersSearch: search,
+    setCharactersSearch: setSearch,
+    charactersQuality: quality,
+    setCharactersQuality: setQuality,
+  } = useContext(SettingsContext);
   const [ownerIndex, setOwnerIndex] = useState(() =>
     Math.max(
       0,
       owners.findIndex((owner) => isPlugyStash(owner) && !owner.personal)
     )
   );
-  const [search, setSearch] = useState("");
-  const [quality, setQuality] = useState<QualityFilterValue>([
-    "normal",
-    "superior",
-    "magic",
-    "rare",
-    "unique",
-    "set",
-    "runeword",
-    "crafted",
-    "misc",
-  ]);
 
   const owner = owners[ownerIndex];
 

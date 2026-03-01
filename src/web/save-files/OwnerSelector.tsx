@@ -1,5 +1,6 @@
 import {
   isPlugyStash,
+  isStash,
   ItemsOwner,
   NON_PLUGY_SHARED_STASH_NAME,
 } from "../../scripts/save-file/ownership";
@@ -21,7 +22,7 @@ export function OwnerSelector({
   onChange,
   onlyStashes,
 }: OwnerSelectorProps) {
-  const { owners, hasPlugY } = useContext(CollectionContext);
+  const { owners, hasPlugY, hasD2rStash } = useContext(CollectionContext);
 
   // Using state so it's stable
   const [newStash] = useState<PlugyStash>(() => ({
@@ -42,7 +43,7 @@ export function OwnerSelector({
 
   let possible = owners;
   if (onlyStashes) {
-    possible = owners.filter(isPlugyStash);
+    possible = owners.filter(isStash);
   }
 
   return (
@@ -60,7 +61,7 @@ export function OwnerSelector({
           </label>
         </li>
       ))}
-      {!hasPlugY && !sharedStashExists && (
+      {!hasPlugY && !hasD2rStash && !sharedStashExists && (
         <li>
           <label>
             <input

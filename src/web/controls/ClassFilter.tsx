@@ -17,6 +17,7 @@ export const CLASS_NAMES: Record<string, string> = {
   sor: "Sorceress",
   dru: "Druid",
   ass: "Assassin",
+  war: "Warlock",
 };
 
 const CLASS_OPTIONS = [
@@ -28,6 +29,7 @@ const CLASS_OPTIONS = [
   { value: "sor", label: "Sorceress" },
   { value: "dru", label: "Druid" },
   { value: "ass", label: "Assassin" },
+  { value: "war", label: "Warlock" },
 ];
 
 export function ClassFilter({ value, onChange }: ClassFilterProps) {

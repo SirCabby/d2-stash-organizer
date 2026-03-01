@@ -9,14 +9,14 @@ export async function uniquesToJson(skills: Skill[]) {
   for (const line of table) {
     const item: UniqueItem = {
       name: getString(line[0].trim()),
-      enabled: line[3].trim() === "1",
-      code: line[10].trim(),
-      qlevel: Number(line[8]),
-      reqlevel: Number(line[9]),
+      enabled: line[3].trim() !== "1",
+      code: line[13].trim(),
+      qlevel: Number(line[11]),
+      reqlevel: Number(line[12]),
       modifiers: [],
     };
     for (let i = 0; i < 12; i++) {
-      const modifier = readModifierRange(line, 22 + 4 * i, skills);
+      const modifier = readModifierRange(line, 25 + 4 * i, skills);
       if (modifier) {
         item.modifiers.push(modifier);
       }

@@ -1,9 +1,9 @@
 import { Item } from "../../items/types/Item";
 import { layout } from "../layout";
-import { PlugyStash } from "../../plugy-stash/types";
 import { makeIndex } from "../../plugy-stash/makeIndex";
 import { addPage } from "../../plugy-stash/addPage";
 import { moveItem } from "../../items/moving/safeMove";
+import { Stash } from "../../save-file/ownership";
 
 function rejuvOrder(a: Item, b: Item) {
   // Large rejuvs first
@@ -11,7 +11,7 @@ function rejuvOrder(a: Item, b: Item) {
 }
 
 // I'd rather copy-paste a bit and have the flexibility to evolve each section separately
-export function organizeRejuvs(stash: PlugyStash, items: Item[]) {
+export function organizeRejuvs(stash: Stash, items: Item[]) {
   if (items.length === 0) return;
 
   items.sort(rejuvOrder);

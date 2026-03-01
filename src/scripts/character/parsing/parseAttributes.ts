@@ -3,7 +3,7 @@ import { ITEM_STATS } from "../../../game-data";
 import { SaveFileReader } from "../../save-file/SaveFileReader";
 
 export function parseAttributes(reader: SaveFileReader) {
-  const header = reader.readString(2, 765);
+  const header = reader.readString(2);
   if (header !== "gf") {
     throw new Error(`Unexpected header ${header} for an attributes list`);
   }

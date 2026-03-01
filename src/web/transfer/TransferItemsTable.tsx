@@ -1,11 +1,15 @@
 import { Item as ItemType } from "../../scripts/items/types/Item";
 import { useMemo } from "preact/hooks";
-import { groupItems } from "../items/groupItems";
+import { groupItems, groupQuantity } from "../items/groupItems";
 import { SortField, SortDirection } from "../collection/Collection";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
-import { isPlugyStash, ownerName } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isD2rStash,
+  ownerName,
+} from "../../scripts/save-file/ownership";
 import {
   ItemLocation,
   ItemStorageType,
@@ -13,6 +17,7 @@ import {
 import { CATEGORY_NAMES } from "../controls/CategoryFilter";
 import { ItemTooltip } from "../items/ItemTooltip";
 import { AdditionalInfo } from "../items/AdditionalInfo";
+import { dedicatedTabName } from "../../scripts/d2r-stash/dedicatedTab";
 
 import { QuantityControls } from "./QuantityControls";
 
@@ -168,8 +173,7 @@ function getGroupedItemSortValue(
     case "characteristics": {
       const characteristics = [];
       if (isSimpleItem(representativeItem)) {
-        // Include quantity for simple items
-        characteristics.push(`quantity: ${itemGroup.length}`);
+        characteristics.push(`quantity: ${groupQuantity(itemGroup)}`);
       }
       if (representativeItem.ethereal) {
         characteristics.push("ethereal");
@@ -216,6 +220,14 @@ function getGroupedItemSortValue(
           } else {
             return `Worn by ${name}`;
           }
+        case ItemLocation.CURSOR:
+          if (
+            isD2rStash(representativeItem.owner) &&
+            representativeItem.stored === ItemStorageType.STASH
+          ) {
+            return `In ${name} ${dedicatedTabName(representativeItem)} tab`;
+          }
+          return "Unknown location";
         default:
           return "Unknown location";
       }
@@ -433,7 +445,7 @@ export function TransferItemsTable({
                 <td>{getItemCategoryName(item)}</td>
                 <td>{item.classRequirement ? item.classRequirement : "All"}</td>
                 <td>
-                  <AdditionalInfo item={item} quantity={items.length} />
+                  <AdditionalInfo item={item} quantity={groupQuantity(items)} />
                 </td>
                 <td>
                   {isSimpleItem(item) && items.length > 1 ? (
@@ -473,6 +485,16 @@ export function TransferItemsTable({
                               } else {
                                 return `Worn by ${name}`;
                               }
+                            case ItemLocation.CURSOR:
+                              if (
+                                isD2rStash(item.owner) &&
+                                item.stored === ItemStorageType.STASH
+                              ) {
+                                return `In ${name} ${dedicatedTabName(
+                                  item
+                                )} tab`;
+                              }
+                              return "Unknown location";
                             default:
                               return "Unknown location";
                           }

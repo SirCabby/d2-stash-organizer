@@ -4,6 +4,8 @@
   "description": "",
   "scripts": {
     "start": "ts-node src/scripts/main.ts",
+    "extract-d2r": "node src/game-data/extract-d2r-data.js",
+    "convert-rotw": "node src/game-data/convert-rotw-strings.js",
     "game-strings": "ts-node src/game-data/generate-strings.ts",
     "game-data": "ts-node src/game-data/generate-all.ts",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
@@ -31,6 +33,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "koffi": "^2.15.1",
     "prettier": "^2.3.2",
     "rollup": "^2.56.3",
     "rollup-plugin-minify-html-literals": "^1.2.6",
