@@ -59,7 +59,9 @@ export const GEMS: Record<string, Gem> = gems;
 export const ITEM_TYPE_CLASS_MAPPINGS: ItemTypeClassMapping =
   itemTypeClassMappings;
 
-let locaRecord: Record<string, ModifierLocale> = {};
+const locaRecord: Record<string, ModifierLocale> = Object.create(
+  null
+) as Record<string, ModifierLocale>;
 for (let i = 0; i < modLoc.length; ++i) {
   locaRecord[modLoc[i].Key] = modLoc[i];
 }

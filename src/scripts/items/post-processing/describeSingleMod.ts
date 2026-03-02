@@ -42,7 +42,7 @@ export function describeSingleMod(
 
   let modDesc = (modValue ?? 0) < 0 ? modInfo.descNeg : modInfo.descPos;
 
-  if (MOD_LOCA[modDesc]) {
+  if (MOD_LOCA[modDesc]?.enUS) {
     modDesc = MOD_LOCA[modDesc].enUS;
   }
 
@@ -78,13 +78,18 @@ export function describeSingleMod(
     case 11:
       modDesc = modDesc.replace("%d", `${100 / modValue!}`);
       break;
-    case 13:
-      modDesc = MOD_LOCA[fix_classSkillBonus[modifier.param || 0]].enUS;
+    case 13: {
+      const classSkillKey = fix_classSkillBonus[modifier.param ?? 0];
+      const classSkillLoca = classSkillKey && MOD_LOCA[classSkillKey];
+      if (classSkillLoca) {
+        modDesc = classSkillLoca.enUS;
+      }
       modDesc = modDesc.replace(
         "%+d",
         (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`
       );
       break;
+    }
     case 14:
       skillTab = SKILL_TABS.find(({ id }) => id === modifier.param);
       if (!skillTab) {
