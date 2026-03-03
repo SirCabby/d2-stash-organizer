@@ -36,6 +36,28 @@
   background-color: #2a2a2a;
 }
 
+#collection tbody tr.item.selected {
+  background-color: #3d5a3d;
+}
+
+#collection tbody tr.item.selected:hover {
+  background-color: #4a6b4a;
+}
+
+#collection tbody tr.item:focus {
+  outline: 2px solid #6fb76f;
+  outline-offset: -2px;
+  background-color: #2a2a2a;
+}
+
+#collection tbody tr.item:focus.selected {
+  background-color: #4a6b4a;
+}
+
+#collection tbody tr.item[role="button"] {
+  user-select: none;
+}
+
 /* Set specific column widths using px only */
 #collection th:first-child,
 #collection td:first-child {

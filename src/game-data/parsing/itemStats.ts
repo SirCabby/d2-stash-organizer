@@ -6,9 +6,6 @@ export async function itemStatsToJson() {
   const table = await readGameFile("ItemStatCost");
   const itemStats: ItemStat[] = [];
   for (const line of table) {
-    if (line[0].startsWith("unused") || line[0].endsWith("_bytime")) {
-      continue;
-    }
     const id = Number(line[1]);
     const item: ItemStat = {
       stat: line[0].trim(),

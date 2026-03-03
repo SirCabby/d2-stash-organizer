@@ -9,7 +9,7 @@ import { SelectionContext } from "./SelectionContext";
 import {
   getItemCategoryName,
   getItemQualityName,
-} from "../collection/ItemsTable";
+} from "../collection/itemUtils";
 
 export interface CustomItemProps {
   item: Item;

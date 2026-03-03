@@ -8,17 +8,20 @@ export function singleLineLayout<T extends LayoutItem>(
 ): LayoutResult<T> {
   const positions = new Map<T, Position>();
 
+  let currentPage = 0;
   let col = 0;
   for (const group of groups) {
     for (const item of group) {
       const base = getBase(item);
       if (col + base.width > PAGE_WIDTH) {
-        throw new Error(`Single-line layout ran out of space for ${item.name}`);
+        currentPage++;
+        col = 0;
       }
-      positions.set(item, { page: 0, rows: ALL_ROWS, cols: [col] });
+      positions.set(item, { page: currentPage, rows: ALL_ROWS, cols: [col] });
       col += base.width;
     }
   }
 
-  return { nbPages: Math.sign(groups.length), positions };
+  const hasItems = groups.some((g) => g.length > 0);
+  return { nbPages: hasItems ? currentPage + 1 : 0, positions };
 }

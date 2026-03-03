@@ -93,23 +93,29 @@ export function describeSingleMod(
     case 14:
       skillTab = SKILL_TABS.find(({ id }) => id === modifier.param);
       if (!skillTab) {
-        throw new Error(`Unknown skill tab ${skillTab}`);
+        modDesc = `+${modValue} to skill tab ${modifier.param}`;
+        break;
       }
       modDesc = `+${modValue} to ${skillTab.name} ${
-        CHAR_CLASSES[skillTab.charClass].classOnly
+        CHAR_CLASSES[skillTab.charClass]?.classOnly ?? ""
       }`;
       break;
     case 15:
       modDesc = modDesc
-        // Extra % because the actual one is doubled to escape it
         .replace("%d%", `${modifier.chance}`)
         .replace("%d", `${modifier.level}`)
-        .replace("%s", `${SKILLS[modifier.spell!].name}`);
+        .replace(
+          "%s",
+          SKILLS[modifier.spell!]?.name ?? `skill ${modifier.spell}`
+        );
       break;
     case 16:
       modDesc = modDesc
         .replace("%d", `${modValue}`)
-        .replace("%s", `${SKILLS[modifier.param!].name}`);
+        .replace(
+          "%s",
+          SKILLS[modifier.param!]?.name ?? `skill ${modifier.param}`
+        );
       break;
     case 1:
       valueDesc = (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`;
@@ -129,18 +135,27 @@ export function describeSingleMod(
     case 24:
       modDesc = modDesc
         .replace("%d", `${modifier.level}`)
-        .replace("%s", `${SKILLS[modifier.spell!].name}`)
+        .replace(
+          "%s",
+          SKILLS[modifier.spell!]?.name ?? `skill ${modifier.spell}`
+        )
         .replace("%d", `${modifier.charges}`)
         .replace("%d", `${modifier.maxCharges}`);
       break;
     case 27:
       skill = SKILLS[modifier.param!];
-      modDesc = `+${modValue} to ${skill.name} ${
-        CHAR_CLASSES[skill.charClass!].classOnly
-      }`;
+      if (skill) {
+        modDesc = `+${modValue} to ${skill.name} ${
+          CHAR_CLASSES[skill.charClass!]?.classOnly ?? ""
+        }`;
+      } else {
+        modDesc = `+${modValue} to skill ${modifier.param}`;
+      }
       break;
     case 28:
-      modDesc = `+${modValue} to ${SKILLS[modifier.param!].name}`;
+      modDesc = `+${modValue} to ${
+        SKILLS[modifier.param!]?.name ?? `skill ${modifier.param}`
+      }`;
       break;
     // Custom describe functions to handle groups
     case 100:

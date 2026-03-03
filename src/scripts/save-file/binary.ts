@@ -6,6 +6,7 @@ export interface BinaryStream {
   read(size: number, position?: number): string;
   readInt(size: number, position?: number): number;
   readBool(position?: number): boolean;
+  position(): number;
   done(): string;
 }
 
@@ -32,6 +33,10 @@ export function binaryStream(reader: SaveFileReader) {
     },
     readBool(position = nextIndex) {
       return stream.read(1, position) === "1";
+    },
+
+    position() {
+      return nextIndex;
     },
 
     done() {

@@ -26,13 +26,24 @@ export const UNIQUES_ORDER: UniqueSection[][] = [
       name: "Charms",
       shortName: "charms",
       types: ["scha", "mcha", "lcha"],
-      // Maybe we can do better on this
+      layout: "single-column",
+    },
+    {
+      name: "Crafted Charms",
+      shortName: "ccharms",
+      types: ["csch"],
       layout: "single-column",
     },
     {
       name: "Jewels",
       shortName: "jewels",
       types: ["jewl"],
+      layout: "single-line",
+    },
+    {
+      name: "Crafted Jewels",
+      shortName: "cjewels",
+      types: ["cjwl"],
       layout: "single-line",
     },
   ],

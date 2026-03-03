@@ -10,7 +10,7 @@ import { groupQuantity } from "./groupItems";
 import {
   getItemCategoryName,
   getItemQualityName,
-} from "../collection/ItemsTable";
+} from "../collection/itemUtils";
 
 export interface ItemProps {
   item: Item;
@@ -18,6 +18,7 @@ export interface ItemProps {
   selectable: boolean;
   withLocation: boolean;
   showClassRequirement?: boolean;
+  allItems?: Item[];
 }
 
 export function Item({
@@ -26,9 +27,16 @@ export function Item({
   selectable,
   withLocation,
   showClassRequirement,
+  allItems = [],
 }: ItemProps) {
-  const { selectedItems, toggleItem, selectAll, unselectAll } =
-    useContext(SelectionContext);
+  const {
+    selectedItems,
+    toggleItem,
+    selectAll,
+    unselectAll,
+    shiftSelect,
+    setAnchor,
+  } = useContext(SelectionContext);
 
   const handleSelect = useCallback(() => {
     if (!duplicates) {
@@ -42,10 +50,50 @@ export function Item({
     }
   }, [duplicates, item, selectAll, selectedItems, toggleItem, unselectAll]);
 
+  const handleRowClick = useCallback(
+    (event: MouseEvent) => {
+      if ((event.target as HTMLElement).tagName === "INPUT") {
+        return;
+      }
+      if (event.shiftKey && allItems.length > 0) {
+        event.preventDefault();
+        window.getSelection()?.removeAllRanges();
+        shiftSelect(item, allItems);
+      } else {
+        handleSelect();
+        setAnchor(item);
+      }
+    },
+    [item, allItems, handleSelect, shiftSelect, setAnchor]
+  );
+
+  const handleRowKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === " " || event.key === "Enter") {
+        event.preventDefault();
+        if (event.shiftKey && allItems.length > 0) {
+          shiftSelect(item, allItems);
+        } else {
+          handleSelect();
+          setAnchor(item);
+        }
+      }
+    },
+    [item, allItems, handleSelect, shiftSelect, setAnchor]
+  );
+
   return (
-    <tr class="item">
+    <tr
+      class={`item ${selectedItems.has(item) ? "selected" : ""}`}
+      onClick={selectable ? handleRowClick : undefined}
+      onKeyDown={selectable ? handleRowKeyDown : undefined}
+      tabIndex={selectable ? 0 : undefined}
+      role={selectable ? "button" : undefined}
+      aria-label={selectable ? `Select ${item.name}` : undefined}
+      style={selectable ? { cursor: "pointer" } : undefined}
+    >
       {selectable && (
-        <td>
+        <td onClick={(e: Event) => e.stopPropagation()}>
           <input
             type="checkbox"
             checked={selectedItems.has(item)}

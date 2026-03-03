@@ -9,18 +9,17 @@ import { FIRST_D2R, LAST_LEGACY } from "../../character/parsing/versions";
 import { ItemsOwner } from "../../save-file/ownership";
 import { MISC } from "../../../game-data";
 
-export function parseItem(
+export function parseItemOnce(
   reader: SaveFileReader,
   owner: ItemsOwner,
-  { dedicatedTab = false } = {}
+  startByte: number,
+  dedicatedTab: boolean,
+  skipExtraBit: boolean,
+  noExtraBit = false
 ) {
-  // https://squeek502.github.io/d2itemreader/formats/d2.html
-  const startByte = reader.nextIndex;
+  reader.nextIndex = startByte;
   const stream = binaryStream(reader);
   if (owner.version <= LAST_LEGACY) {
-    // This is awkward, but we're juggling between the regular reader and the binary stream
-    // In this case, we want to read with the binary stream to make sure the header is included
-    // in the raw binary of the item.
     const header = String.fromCharCode(stream.readInt(8), stream.readInt(8));
     if (header !== "JM") {
       throw new Error(`Unexpected header ${header} for an item`);
@@ -29,11 +28,12 @@ export function parseItem(
   const item = parseSimple(stream, owner);
 
   if (!item.simple) {
-    // If the id is cut short, it means it contained a "JM" which was identified as a boundary
     try {
       parseQuality(stream, item, owner.version >= FIRST_D2R);
       parseQuantified(stream, item);
-      if (owner.version >= FIRST_D2R) {
+      item.d2rExtraBitIndex = stream.position();
+      if ((owner.version >= FIRST_D2R || skipExtraBit) && !noExtraBit) {
+        item.hasD2rExtraBit = true;
         stream.skip(1);
       }
       parseModifiers(stream, item);
@@ -52,15 +52,49 @@ export function parseItem(
 
   item.raw = stream.done();
 
-  // D2R items are serialized into individual byte buffers. Standard items use
-  // floor(bits/8)+1 (always one extra byte). Dedicated tab items are packed
-  // tightly at ceil(bits/8).
   if (owner.version >= FIRST_D2R) {
     const bits = item.raw.length;
     const byteSize = dedicatedTab
       ? Math.ceil(bits / 8)
       : Math.floor(bits / 8) + 1;
     reader.nextIndex = startByte + byteSize;
+  }
+
+  return item;
+}
+
+// 0x4a4d = "JM" (item header), 0x5354 = "ST" (page header)
+function isValidBoundary(reader: SaveFileReader): boolean {
+  if (reader.done) return true;
+  reader.peek = true;
+  try {
+    const next = reader.readString(2);
+    return next === "JM" || next === "ST";
+  } catch {
+    return true;
+  } finally {
+    reader.peek = false;
+  }
+}
+
+export function parseItem(
+  reader: SaveFileReader,
+  owner: ItemsOwner,
+  { dedicatedTab = false } = {}
+) {
+  // https://squeek502.github.io/d2itemreader/formats/d2.html
+  const startByte = reader.nextIndex;
+  const item = parseItemOnce(reader, owner, startByte, dedicatedTab, false);
+
+  // Some RotW items stored in legacy-format .d2x stashes include a D2R-era
+  // extra bit before modifiers. When the standard parse leaves the reader
+  // misaligned, re-parse with the extra bit skipped.
+  if (
+    owner.version <= LAST_LEGACY &&
+    !item.simple &&
+    !isValidBoundary(reader)
+  ) {
+    return parseItemOnce(reader, owner, startByte, dedicatedTab, true);
   }
 
   return item;

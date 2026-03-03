@@ -14,7 +14,7 @@ import {
   ItemLocation,
   ItemStorageType,
 } from "../../scripts/items/types/ItemLocation";
-import { CATEGORY_NAMES } from "../controls/CategoryFilter";
+import { CATEGORY_NAMES } from "../collection/itemUtils";
 import { ItemTooltip } from "../items/ItemTooltip";
 import { AdditionalInfo } from "../items/AdditionalInfo";
 import { dedicatedTabName } from "../../scripts/d2r-stash/dedicatedTab";

@@ -64,6 +64,25 @@ export interface Item {
   // Searcheable description of the item. Right now it's only mods.
   search: string;
 
+  // Bit index in the raw string right before modifiers. In D2R format an
+  // extra padding bit sits here; in legacy format it does not exist.
+  // Always set for non-simple items so conversion functions know where to
+  // insert or strip the D2R extra bit.
+  d2rExtraBitIndex?: number;
+  // True when the raw data actually contains the D2R extra bit at
+  // d2rExtraBitIndex (i.e. the item was parsed from a D2R container, or
+  // from a legacy container that had the bit via RotW).
+  hasD2rExtraBit?: boolean;
+
+  // Personalized name characters (without the "'s" suffix). Stored during
+  // parsing so conversion can re-encode between 7-bit (legacy) and 8-bit
+  // (D2R) character widths.
+  personalizedName?: string;
+  // Whether the realm-data flag in parseQuality was set. When set, D2R
+  // items carry 4×uint32 of realm data while legacy items carry 3×uint32,
+  // so conversion must add or strip 32 bits.
+  hasRealmData?: boolean;
+
   // Additional pre-computed fields for easier display
   extraDurability?: number;
   enhancedDefense?: boolean;

@@ -68,18 +68,44 @@ export function parseCharacter(
   // Items on the character or in stash
   character.items.push(...parseItemList(reader, character));
 
-  // Items on a corpse
-  parseCorpses(reader, character);
+  // If an item failed to parse, the reader is at an unknown position.
+  // Try each subsequent section and recover by scanning for known headers.
+  try {
+    parseCorpses(reader, character);
+  } catch {
+    const jfOffset = findMarker(raw, 0x6a, 0x66, reader.nextIndex);
+    if (jfOffset >= 0) {
+      reader.nextIndex = jfOffset;
+    }
+  }
 
   // TODO: classic characters
   const expansionChar = true;
   if (expansionChar) {
-    parseMercenary(reader, character);
+    try {
+      parseMercenary(reader, character);
+    } catch {
+      // Skip mercenary items when the reader can't be recovered.
+    }
     character.golem = reader.readRemaining();
   }
 
   postProcessCharacter(character);
   return character;
+}
+
+function findMarker(
+  raw: Uint8Array,
+  byte0: number,
+  byte1: number,
+  minOffset: number
+): number {
+  for (let i = minOffset; i < raw.length - 1; i++) {
+    if (raw[i] === byte0 && raw[i + 1] === byte1) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function findSectionMarker(

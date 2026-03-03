@@ -48,9 +48,17 @@ export function parsePlugyStash(
     try {
       stash.pages.push(parsePage(reader, stash));
     } catch (e) {
-      if (e instanceof Error) {
-        throw new Error(`${e.message} on page ${stash.pages.length + 1}`);
+      // Item parsing can leave the reader misaligned. Scan forward for
+      // the next "ST" page header so remaining pages can still load.
+      let recovered = false;
+      for (let i = reader.nextIndex; i < raw.length - 1; i++) {
+        if (raw[i] === 0x53 && raw[i + 1] === 0x54) {
+          reader.nextIndex = i;
+          recovered = true;
+          break;
+        }
       }
+      if (!recovered) break;
     }
   }
   stash.pageFlags = typeof stash.pages[0]?.flags !== "undefined";

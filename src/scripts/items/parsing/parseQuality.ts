@@ -143,6 +143,7 @@ export function parseQuality(
     while ((charCode = readInt(charBits)) !== 0) {
       charName += String.fromCharCode(charCode);
     }
+    item.personalizedName = charName;
     item.name = `${charName}'s ${item.name}`;
   }
 
@@ -156,6 +157,7 @@ export function parseQuality(
 
   // Realm data flag (1 bit). If set, D2R items have 4x uint32 of realm data.
   if (readBool()) {
+    item.hasRealmData = true;
     const realmDataCount = isD2R ? 4 : 3;
     for (let i = 0; i < realmDataCount; i++) {
       readInt(32);
