@@ -113,6 +113,65 @@ export function topOffDedicatedTab(stash: D2rStash): number {
   return count;
 }
 
+function isCodeEligible(code: string): boolean {
+  const baseType = MISC[code]?.type;
+  if (baseType && STACKABLE_BASE_TYPES.has(baseType)) return true;
+  return isMaterialEligible(code);
+}
+
+/**
+ * Ensure every eligible item type has a dedicated tab slot at max quantity.
+ * Existing slots are topped off to 99; missing item types get new slots
+ * created at 99. Returns the number of slots created or updated.
+ */
+export function refillDedicatedTab(stash: D2rStash): number {
+  if (!stash.dedicatedTab) {
+    stash.dedicatedTab = [];
+  }
+
+  const existingCodes = new Set(stash.dedicatedTab.map((s) => s.item.code));
+  let count = 0;
+
+  // Top off existing slots
+  for (const slot of stash.dedicatedTab) {
+    if (slot.quantity < MAX_STACK) {
+      slot.quantity = MAX_STACK;
+      slot.item.quantity = MAX_STACK;
+      updateQuantityInRaw(slot.item, MAX_STACK);
+      count++;
+    }
+  }
+
+  // Create new slots for every eligible code not already present
+  for (const code of Object.keys(MISC)) {
+    if (existingCodes.has(code) || !isCodeEligible(code)) continue;
+    const item: Item = {
+      raw: buildDedicatedTabRaw(code, MAX_STACK),
+      owner: stash,
+      version: "101",
+      simple: true,
+      identified: true,
+      socketed: false,
+      ethereal: false,
+      personalized: false,
+      runeword: false,
+      location: ItemLocation.CURSOR,
+      equippedInSlot: ItemEquipSlot.NONE,
+      column: 0,
+      row: 0,
+      stored: ItemStorageType.STASH,
+      code,
+      quantity: MAX_STACK,
+      name: MISC[code]?.name ?? code,
+      search: "",
+    };
+    stash.dedicatedTab.push({ item, quantity: MAX_STACK });
+    count++;
+  }
+
+  return count;
+}
+
 /**
  * Try to place an item into the dedicated stacking tab. Returns true if the
  * item was consumed (stacked onto an existing slot or given a new slot).

@@ -19,7 +19,10 @@ import { postProcessItem } from "../../scripts/items/post-processing/postProcess
 import { postProcessStash as postProcessPlugyStash } from "../../scripts/plugy-stash/parsing/postProcessStash";
 import { postProcessStash as postProcessD2rStash } from "../../scripts/d2r-stash/parsing/postProcessStash";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
-import { topOffDedicatedTab } from "../../scripts/d2r-stash/dedicatedTab";
+import {
+  topOffDedicatedTab,
+  refillDedicatedTab,
+} from "../../scripts/d2r-stash/dedicatedTab";
 
 export function Settings() {
   const { accessibleFont, toggleAccessibleFont } = useContext(SettingsContext);
@@ -177,6 +180,27 @@ export function Settings() {
     alert(`Repaired ${repairedCount} durability/charges on all items.`);
   }, [owners, setCollection]);
 
+  const handleRefillStash = useCallback(() => {
+    if (owners.length === 0) {
+      alert("No save files loaded.");
+      return;
+    }
+    let totalSlots = 0;
+    const newOwners = owners.map((owner) => {
+      if (isD2rStash(owner) && owner.variant === "rotw") {
+        totalSlots += refillDedicatedTab(owner);
+        postProcessD2rStash(owner);
+      }
+      return owner;
+    });
+    setCollection(newOwners);
+    alert(
+      totalSlots > 0
+        ? `Refilled ${totalSlots} dedicated tab slot(s) to 99.`
+        : "No D2R RotW stash found to refill."
+    );
+  }, [owners, setCollection]);
+
   return (
     <div>
       <p>
@@ -206,6 +230,15 @@ export function Settings() {
           disabled={owners.length === 0}
         >
           Top Off Items
+        </button>
+      </p>
+      <p>
+        <button
+          class="button"
+          onClick={handleRefillStash}
+          disabled={owners.length === 0}
+        >
+          Refill Shared Stash
         </button>
       </p>
       <p>
