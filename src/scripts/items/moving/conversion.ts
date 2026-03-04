@@ -62,7 +62,8 @@ function computeQualityLayout(item: Item, charBits: number) {
     case ItemQuality.CRAFTED:
       offset += 16; // 2 × 8-bit rare names
       offset += 6; // 6 affix flags
-      offset += 11 * ((item.prefixes?.length ?? 0) + (item.suffixes?.length ?? 0));
+      offset +=
+        11 * ((item.prefixes?.length ?? 0) + (item.suffixes?.length ?? 0));
       break;
   }
 
@@ -86,7 +87,11 @@ function computeQualityLayout(item: Item, charBits: number) {
     offset += charBits === 8 ? 128 : 96;
   }
 
-  return { personalizedNameOffset, realmDataFlagOffset, totalQualityBits: offset };
+  return {
+    personalizedNameOffset,
+    realmDataFlagOffset,
+    totalQualityBits: offset,
+  };
 }
 
 /**
@@ -136,7 +141,13 @@ export function toD2R(item: Item) {
     if (item.personalized && item.personalizedName) {
       const layout = computeQualityLayout(item, 7);
       const namePos = restStart + layout.personalizedNameOffset;
-      const result = reencodePersonalizedName(raw, namePos, item.personalizedName, 7, 8);
+      const result = reencodePersonalizedName(
+        raw,
+        namePos,
+        item.personalizedName,
+        7,
+        8
+      );
       raw = result.raw;
       nameDelta = result.delta;
     }
@@ -158,7 +169,14 @@ export function toD2R(item: Item) {
     // which is why D2R-parsed sockets appear doubled.
     if (item.d2rExtraBitIndex != null && !item.hasD2rExtraBit) {
       const socketShift = item.socketed ? 4 : 0;
-      const newIdx = item.d2rExtraBitIndex - 16 - 7 + codeDelta + nameDelta + realmDelta - socketShift;
+      const newIdx =
+        item.d2rExtraBitIndex -
+        16 -
+        7 +
+        codeDelta +
+        nameDelta +
+        realmDelta -
+        socketShift;
       raw = raw.slice(0, newIdx) + "0" + raw.slice(newIdx);
       item.d2rExtraBitIndex = newIdx + socketShift;
       item.hasD2rExtraBit = true;
@@ -222,7 +240,11 @@ export function toD2(item: Item) {
       const layout = computeQualityLayout(item, 8);
       const namePos = restStart + layout.personalizedNameOffset + realmDelta;
       const result = reencodePersonalizedName(
-        rawWithoutExtra, namePos, item.personalizedName, 8, 7
+        rawWithoutExtra,
+        namePos,
+        item.personalizedName,
+        8,
+        7
       );
       rawWithoutExtra = result.raw;
       nameDelta = result.delta;

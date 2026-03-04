@@ -4,6 +4,16 @@
   margin: 0;
 }
 
+#transfer-items .button.danger {
+  background: #d32f2f;
+  border-color: #b71c1c;
+}
+
+#transfer-items .button.danger:hover {
+  background: #b71c1c;
+  border-color: #8e0000;
+}
+
 #transfer-items .selectors {
   display: flex;
   align-items: center;

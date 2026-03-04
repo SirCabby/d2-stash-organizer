@@ -10,7 +10,7 @@ export function useUpdateCollection() {
     useContext(CollectionContext);
 
   const updateAllFiles = useCallback(
-    async function (newOwner: ItemsOwner) {
+    async function (newOwner: ItemsOwner, skipDownload = false) {
       const allOwners = [...owners];
 
       // Find if the owner already exists and update it
@@ -28,7 +28,9 @@ export function useUpdateCollection() {
 
       const saveFiles = allOwners.map((owner) => toSaveFile(owner));
       await writeAllFiles(saveFiles);
-      await downloadAllFiles(saveFiles);
+      if (!skipDownload) {
+        await downloadAllFiles(saveFiles);
+      }
       setCollection(allOwners);
     },
     [owners, setCollection]
@@ -45,9 +47,18 @@ export function useUpdateCollection() {
     [setSingleFile]
   );
 
+  const saveCollection = useCallback(
+    async function () {
+      const saveFiles = owners.map((owner) => toSaveFile(owner));
+      await writeAllFiles(saveFiles);
+      setCollection([...owners]);
+    },
+    [owners, setCollection]
+  );
+
   const rollback = useCallback(() => {
     return getSavedStashes().then(setCollection);
   }, [setCollection]);
 
-  return { updateAllFiles, updateSingleFile, rollback };
+  return { updateAllFiles, updateSingleFile, saveCollection, rollback };
 }

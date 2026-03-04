@@ -21,6 +21,8 @@ import { organize } from "../../scripts/grail/organize";
 import { OwnerSelector } from "../save-files/OwnerSelector";
 import { updateCharacterStashes } from "../store/plugyDuplicates";
 import { bulkTransferWithQuantities } from "../../scripts/items/moving/bulkTransferWithQuantities";
+import { bulkCopyWithQuantities } from "../../scripts/items/moving/bulkCopyWithQuantities";
+import { bulkDeleteWithQuantities } from "../../scripts/items/moving/bulkDeleteWithQuantities";
 import { TransferQuantityContext } from "./TransferQuantityContext";
 import { Item } from "../../scripts/items/types/Item";
 import { groupItems } from "../items/groupItems";
@@ -34,7 +36,7 @@ export function TransferItems() {
     transferSkipPages: skipPages,
     setTransferSkipPages: setSkipPages,
   } = useContext(SettingsContext);
-  const { updateAllFiles, rollback } = useUpdateCollection();
+  const { updateAllFiles, saveCollection, rollback } = useUpdateCollection();
   const { selectedItems, unselectAll } = useContext(SelectionContext);
   const { transferQuantities, resetQuantities } = useContext(
     TransferQuantityContext
@@ -46,16 +48,14 @@ export function TransferItems() {
 
   const items = useMemo(() => Array.from(selectedItems), [selectedItems]);
 
-  // Calculate the actual number of items that will be transferred
   const actualTransferCount = useMemo(() => {
     const groupedItems = groupItems(items);
-    let totalTransferred = 0;
+    let total = 0;
 
     for (const itemGroup of groupedItems) {
       const representativeItem = itemGroup[0];
 
       if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
-        // For simple items with quantities, check if we have a specific transfer quantity
         const transferQuantity = transferQuantities.get(
           representativeItem.code
         );
@@ -64,26 +64,21 @@ export function TransferItems() {
           transferQuantity > 0 &&
           transferQuantity < itemGroup.length
         ) {
-          // Transfer only the specified quantity
-          totalTransferred += transferQuantity;
+          total += transferQuantity;
         } else {
-          // Transfer all items in the group
-          totalTransferred += itemGroup.length;
+          total += itemGroup.length;
         }
       } else {
-        // For non-simple items or single items, transfer all
-        totalTransferred += itemGroup.length;
+        total += itemGroup.length;
       }
     }
 
-    return totalTransferred;
+    return total;
   }, [items, transferQuantities]);
 
   const handleRemoveItem = useCallback(
     (itemToRemove: Item) => {
-      // Find all items that are the same as the one to remove (same code and location)
       const itemsToRemove = Array.from(selectedItems).filter((item) => {
-        // Basic properties must match
         if (
           item.code !== itemToRemove.code ||
           item.owner !== itemToRemove.owner
@@ -91,17 +86,14 @@ export function TransferItems() {
           return false;
         }
 
-        // Location-specific properties must match
         if (item.location !== itemToRemove.location) {
           return false;
         }
 
-        // For stored items, check storage type and page
         if (item.location === ItemLocation.STORED) {
           if (item.stored !== itemToRemove.stored) {
             return false;
           }
-          // For stash items, also check page number
           if (
             item.stored === ItemStorageType.STASH &&
             item.page !== itemToRemove.page
@@ -110,7 +102,6 @@ export function TransferItems() {
           }
         }
 
-        // For equipped items, check mercenary and corpse properties
         if (item.location === ItemLocation.EQUIPPED) {
           if (
             item.mercenary !== itemToRemove.mercenary ||
@@ -127,52 +118,108 @@ export function TransferItems() {
     [selectedItems, unselectAll]
   );
 
-  const transferItems = useCallback(async () => {
-    if (!target) {
-      setError("Please select where you want to transfer the items.");
-      return;
-    }
-    if (!isStash(target) && !targetStorage) {
-      setError(
-        "Please select where you want to store the items on your character."
-      );
-      return;
-    }
-    setError(undefined);
+  const doTransferOrCopy = useCallback(
+    async (copy: boolean) => {
+      setError(undefined);
+      setSuccess(undefined);
 
-    try {
-      bulkTransferWithQuantities(
-        target,
-        items,
-        transferQuantities,
-        targetStorage
-      );
-      if (isPlugyStash(target) && (withOrganize || target.nonPlugY)) {
-        organize(target, [], skipPages);
+      if (!target) {
+        setError(
+          copy
+            ? "Please select where you want to copy the items."
+            : "Please select where you want to transfer the items."
+        );
+        return;
       }
+      if (!isStash(target) && !targetStorage) {
+        setError(
+          "Please select where you want to store the items on your character."
+        );
+        return;
+      }
+
+      try {
+        if (copy) {
+          bulkCopyWithQuantities(
+            target,
+            items,
+            transferQuantities,
+            targetStorage
+          );
+        } else {
+          bulkTransferWithQuantities(
+            target,
+            items,
+            transferQuantities,
+            targetStorage
+          );
+        }
+        if (isPlugyStash(target) && (withOrganize || target.nonPlugY)) {
+          organize(target, [], skipPages);
+        }
+        if (lastActivePlugyStashPage) {
+          updateCharacterStashes(lastActivePlugyStashPage);
+        }
+        await updateAllFiles(target, true);
+        setSuccess(
+          copy
+            ? `${actualTransferCount} items copied!`
+            : `${actualTransferCount} items transferred!`
+        );
+      } catch (e) {
+        if (e instanceof Error) {
+          setError(e.message);
+          await rollback();
+          setTarget(undefined);
+        } else {
+          throw e;
+        }
+      }
+    },
+    [
+      items,
+      skipPages,
+      target,
+      targetStorage,
+      updateAllFiles,
+      rollback,
+      withOrganize,
+      lastActivePlugyStashPage,
+      transferQuantities,
+      actualTransferCount,
+    ]
+  );
+
+  const doDelete = useCallback(async () => {
+    setError(undefined);
+    setSuccess(undefined);
+
+    if (
+      !window.confirm(
+        `Are you sure you want to delete ${actualTransferCount} item(s)? This cannot be undone without re-uploading your save files.`
+      )
+    ) {
+      return;
+    }
+    try {
+      const deleted = bulkDeleteWithQuantities(items, transferQuantities);
       if (lastActivePlugyStashPage) {
         updateCharacterStashes(lastActivePlugyStashPage);
       }
-      // Update the entire collection to ensure all changes are reflected
-      await updateAllFiles(target);
-      setSuccess(`${actualTransferCount} items transferred!`);
+      await saveCollection();
+      setSuccess(`${deleted} items deleted!`);
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message);
         await rollback();
-        setTarget(undefined);
       } else {
         throw e;
       }
     }
   }, [
     items,
-    skipPages,
-    target,
-    targetStorage,
-    updateAllFiles,
+    saveCollection,
     rollback,
-    withOrganize,
     lastActivePlugyStashPage,
     transferQuantities,
     actualTransferCount,
@@ -201,10 +248,10 @@ export function TransferItems() {
     <div id="transfer-items">
       <p>
         You have currently selected <span class="magic">{items.length}</span>{" "}
-        items (will transfer <span class="magic">{actualTransferCount}</span>{" "}
-        items based on quantities).
+        items (<span class="magic">{actualTransferCount}</span> based on
+        quantities).
       </p>
-      <p>Select where you want to transfer them:</p>
+      <p>Select where you want to transfer or copy them:</p>
       <div class="selectors">
         <OwnerSelector selected={target} onChange={setTarget} />
         {target &&
@@ -243,7 +290,8 @@ export function TransferItems() {
                   checked={!withOrganize}
                   onChange={() => setWithOrganize(false)}
                 />{" "}
-                Just add the items at the end of {target.personal ? "" : "my"}{" "}
+                Just add the items at the end of{" "}
+                {target.personal ? "" : "my"}{" "}
                 <PrettyOwnerName owner={target} />.
               </label>
             </li>
@@ -273,9 +321,15 @@ export function TransferItems() {
           </ul>
         )}
       </div>
-      <p>
-        <button class="button" onClick={transferItems}>
+      <p class="action-buttons">
+        <button class="button" onClick={() => doTransferOrCopy(false)}>
           Transfer my items
+        </button>
+        <button class="button" onClick={() => doTransferOrCopy(true)}>
+          Copy my items
+        </button>
+        <button class="button danger" onClick={doDelete}>
+          Delete my items
         </button>
         <button class="button secondary" onClick={resetQuantities}>
           Reset quantities
