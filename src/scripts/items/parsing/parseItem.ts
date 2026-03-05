@@ -35,6 +35,9 @@ export function parseItemOnce(
       if ((owner.version >= FIRST_D2R || skipExtraBit) && !noExtraBit) {
         item.hasD2rExtraBit = true;
         stream.skip(1);
+        if (item.socketed && item.sockets != null) {
+          item.sockets = item.sockets >> 1;
+        }
       }
       parseModifiers(stream, item);
     } catch (e) {
