@@ -8,16 +8,10 @@ import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
 import { addPage } from "../../scripts/plugy-stash/addPage";
 import { organize } from "../../scripts/grail/organize";
-import {
-  isPlugyStash,
-  isD2rStash,
-  isCharacter,
-} from "../../scripts/save-file/ownership";
+import { isPlugyStash, isD2rStash } from "../../scripts/save-file/ownership";
 import { Item } from "../../scripts/items/types/Item";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
-import { postProcessStash as postProcessPlugyStash } from "../../scripts/plugy-stash/parsing/postProcessStash";
-import { postProcessStash as postProcessD2rStash } from "../../scripts/d2r-stash/parsing/postProcessStash";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
 import {
   topOffDedicatedTab,
@@ -102,14 +96,21 @@ export function Settings() {
           }
           pagesCreated++;
         }
-        postProcessPlugyStash(owner);
         organize(owner);
+        // Set correct owner/page after organize reshuffles items. Do NOT call
+        // postProcessItem here -- items were already post-processed during
+        // initial parse, and postProcessItem is not idempotent.
+        for (let i = 0; i < owner.pages.length; i++) {
+          for (const item of owner.pages[i].items) {
+            item.owner = owner;
+            item.page = i;
+          }
+        }
         return owner;
       }
       if (isD2rStash(owner) && owner.variant === "rotw") {
         const topped = topOffDedicatedTab(owner);
         slotsMaxed += topped;
-        postProcessD2rStash(owner);
         return owner;
       }
       return owner;
@@ -160,19 +161,11 @@ export function Settings() {
           repairItem(socketed);
         }
       }
-      postProcessItem(item);
     };
     const newOwners = owners.map((owner) => {
       const items = getAllItems(owner);
       for (const item of items) {
         repairItem(item);
-      }
-      // For stashes, re-run postProcessStash to update all items
-      if (isPlugyStash(owner)) {
-        postProcessPlugyStash(owner);
-      } else if (!isCharacter(owner)) {
-        // D2R stash
-        postProcessD2rStash(owner);
       }
       return owner;
     });
@@ -188,8 +181,16 @@ export function Settings() {
     let totalSlots = 0;
     const newOwners = owners.map((owner) => {
       if (isD2rStash(owner) && owner.variant === "rotw") {
+        const before = owner.dedicatedTab?.length ?? 0;
         totalSlots += refillDedicatedTab(owner);
-        postProcessD2rStash(owner);
+        // Only post-process newly created dedicated tab items; existing page
+        // items were already post-processed during initial parse.
+        if (owner.dedicatedTab) {
+          for (const slot of owner.dedicatedTab.slice(before)) {
+            slot.item.owner = owner;
+            postProcessItem(slot.item);
+          }
+        }
       }
       return owner;
     });

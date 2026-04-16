@@ -214,9 +214,9 @@ function getGroupedItemSortValue(
           return `In ${name}'s belt`;
         case ItemLocation.EQUIPPED:
           if (representativeItem.mercenary) {
-            return `Worn by ${representativeItem.mercenary}'s mercenary`;
+            return `Worn by ${name}'s mercenary`;
           } else if (representativeItem.corpse) {
-            return `On ${representativeItem.corpse}'s corpse`;
+            return `On ${name}'s corpse`;
           } else {
             return `Worn by ${name}`;
           }
@@ -479,9 +479,9 @@ export function TransferItemsTable({
                               return `In ${name}'s belt`;
                             case ItemLocation.EQUIPPED:
                               if (item.mercenary) {
-                                return `Worn by ${item.mercenary}'s mercenary`;
+                                return `Worn by ${name}'s mercenary`;
                               } else if (item.corpse) {
-                                return `On ${item.corpse}'s corpse`;
+                                return `On ${name}'s corpse`;
                               } else {
                                 return `Worn by ${name}`;
                               }

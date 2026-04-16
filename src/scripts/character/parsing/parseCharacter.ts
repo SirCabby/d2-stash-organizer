@@ -84,8 +84,23 @@ export function parseCharacter(
   if (expansionChar) {
     try {
       parseMercenary(reader, character);
-    } catch {
-      // Skip mercenary items when the reader can't be recovered.
+    } catch (e) {
+      console.warn(
+        "Mercenary parsing failed, attempting recovery:",
+        e instanceof Error ? e.message : e
+      );
+      const jfOffset = findMarker(raw, 0x6a, 0x66, reader.nextIndex);
+      if (jfOffset >= 0) {
+        reader.nextIndex = jfOffset;
+        try {
+          parseMercenary(reader, character);
+        } catch (e2) {
+          console.warn(
+            "Mercenary recovery also failed, skipping mercenary items:",
+            e2 instanceof Error ? e2.message : e2
+          );
+        }
+      }
     }
     character.golem = reader.readRemaining();
   }

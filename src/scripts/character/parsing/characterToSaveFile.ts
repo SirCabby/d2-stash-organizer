@@ -33,13 +33,8 @@ export function characterToSaveFile(character: Character) {
   const expansionChar = true;
   if (expansionChar) {
     writer.writeString("jf");
-    if (character.hasMercenary) {
-      writeItemList(
-        writer,
-        character.items.filter((item) => item.mercenary),
-        { d2rPadding }
-      );
-    }
+    const mercItems = character.items.filter((item) => item.mercenary);
+    writeItemList(writer, mercItems, { d2rPadding });
     writer.write(character.golem);
   }
 

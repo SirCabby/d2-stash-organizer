@@ -290,8 +290,7 @@ export function TransferItems() {
                   checked={!withOrganize}
                   onChange={() => setWithOrganize(false)}
                 />{" "}
-                Just add the items at the end of{" "}
-                {target.personal ? "" : "my"}{" "}
+                Just add the items at the end of {target.personal ? "" : "my"}{" "}
                 <PrettyOwnerName owner={target} />.
               </label>
             </li>
