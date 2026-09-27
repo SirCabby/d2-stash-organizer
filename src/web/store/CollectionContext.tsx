@@ -6,7 +6,8 @@ import {
   useMemo,
   useState,
 } from "preact/hooks";
-import { getSavedStashes } from "./store";
+import { getSavedStashes, readSaveLocation } from "./store";
+import { NO_SAVE_LOCATION, SaveLocation } from "./saveLocation";
 import { Item } from "../../scripts/items/types/Item";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
 import {
@@ -35,8 +36,11 @@ interface Collection {
 }
 
 export interface CollectionContextValue extends Collection {
+  /** Where the owners' save files came from, and so where saving puts them. */
+  saveLocation: SaveLocation;
   setCollection: (owners: ItemsOwner[]) => void;
   setSingleFile: (owner: ItemsOwner) => void;
+  setSaveLocation: (location: SaveLocation) => void;
 }
 
 export const CollectionContext = createContext<CollectionContextValue>({
@@ -44,8 +48,10 @@ export const CollectionContext = createContext<CollectionContextValue>({
   allItems: [],
   hasPlugY: false,
   hasD2rStash: false,
+  saveLocation: NO_SAVE_LOCATION,
   setCollection: () => undefined,
   setSingleFile: () => undefined,
+  setSaveLocation: () => undefined,
 });
 
 function formatCollection(owners: ItemsOwner[]): Collection {
@@ -75,6 +81,7 @@ export function CollectionProvider({ children }: RenderableProps<unknown>) {
     hasPlugY: false,
     hasD2rStash: false,
   });
+  const [saveLocation, setSaveLocation] = useState(NO_SAVE_LOCATION);
 
   const setCollection = useCallback(
     (owners: ItemsOwner[]) => {
@@ -104,18 +111,27 @@ export function CollectionProvider({ children }: RenderableProps<unknown>) {
   );
 
   const value = useMemo(
-    () => ({ ...collection, setCollection, setSingleFile }),
-    [collection, setCollection, setSingleFile]
+    () => ({
+      ...collection,
+      saveLocation,
+      setCollection,
+      setSingleFile,
+      setSaveLocation,
+    }),
+    [collection, saveLocation, setCollection, setSingleFile]
   );
 
   // Initialize with the stash found in storage
   useEffect(() => {
-    void getSavedStashes().then((owners) => {
-      setCollection(owners);
-      if (!window.location.hash && owners.length > 0) {
-        window.location.hash = "#saves";
+    void Promise.all([getSavedStashes(), readSaveLocation()]).then(
+      ([owners, storedLocation]) => {
+        setCollection(owners);
+        setSaveLocation(storedLocation);
+        if (!window.location.hash && owners.length > 0) {
+          window.location.hash = "#saves";
+        }
       }
-    });
+    );
   }, [setCollection]);
 
   return (

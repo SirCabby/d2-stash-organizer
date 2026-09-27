@@ -2,8 +2,8 @@ import "./Settings.css";
 import { useContext, useCallback } from "preact/hooks";
 import { SettingsContext } from "./SettingsContext";
 import { CollectionContext } from "../store/CollectionContext";
-import { downloadAllFiles } from "../store/downloader";
-import { toSaveFile } from "../store/parser";
+import { useUpdateCollection } from "../store/useUpdateCollection";
+import { SaveDestination } from "../save-files/SaveDestination";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
 import { addPage } from "../../scripts/plugy-stash/addPage";
@@ -21,16 +21,24 @@ import {
 export function Settings() {
   const { accessibleFont, toggleAccessibleFont } = useContext(SettingsContext);
   const { owners, setCollection } = useContext(CollectionContext);
+  const { saveAllFiles } = useUpdateCollection();
 
   const handleSave = useCallback(async () => {
     if (owners.length === 0) {
-      alert("No save files to download.");
+      alert("No save files to save.");
       return;
     }
 
-    const saveFiles = owners.map((owner) => toSaveFile(owner));
-    await downloadAllFiles(saveFiles);
-  }, [owners]);
+    try {
+      await saveAllFiles();
+    } catch (e) {
+      if (e instanceof Error) {
+        alert(e.message);
+      } else {
+        throw e;
+      }
+    }
+  }, [owners, saveAllFiles]);
 
   // Set Items 100 handler
   const handleSetItems100 = useCallback(() => {
@@ -224,6 +232,7 @@ export function Settings() {
           Save
         </button>
       </p>
+      <SaveDestination />
       <p>
         <button
           class="button"

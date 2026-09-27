@@ -4,6 +4,7 @@ import { FIRST_D2R, LAST_LEGACY } from "../../character/parsing/versions";
 import { encodeHuffman } from "../parsing/huffman";
 import { fromInt, fromString } from "../../save-file/binary";
 import { MISC } from "../../../game-data";
+import { getBase } from "../getBase";
 
 // 16 less bits for the JM header, 7 less for the item version
 export const D2R_OFFSET = -23;
@@ -257,14 +258,14 @@ export function toD2(item: Item) {
         item.d2rExtraBitIndex + 16 + 7 - codeDelta + nameDelta + realmDelta;
     }
   } else {
-    // Strip the D2R realm-data flag + data from simple items since legacy
-    // format lacks this field. Flag=1 means 9 bits total, flag=0 means 1 bit.
-    const lastBit = rawWithoutExtra.length - 1;
-    if (lastBit >= 8 && rawWithoutExtra[lastBit - 8] === "1") {
-      rawWithoutExtra = rawWithoutExtra.slice(0, lastBit - 8);
-    } else {
-      rawWithoutExtra = rawWithoutExtra.slice(0, lastBit);
-    }
+    // Legacy simple items end with a 1-bit socket count right after their code
+    // (and quest difficulty). D2R has its realm-data flag there instead, then
+    // the realm data if set, and a quantity flag with its byte (see
+    // parseSimple): drop all of it and put back an empty socket count.
+    const base = getBase(item);
+    const questBits = base.type === "ques" && base.trackQuestDifficulty ? 2 : 0;
+    const socketCount = D2R_ITEM_CODE_START + huffmanCode.length + questBits;
+    rawWithoutExtra = rawWithoutExtra.slice(0, socketCount) + "0";
   }
 
   item.raw =

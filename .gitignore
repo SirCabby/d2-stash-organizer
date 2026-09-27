@@ -23,3 +23,6 @@ game-data/json/
 *.d2is
 *.sss
 *.d2x
+
+# CascLib built by `make casclib` for extract-d2r (Linux)
+tools/CascLib/

@@ -7,9 +7,24 @@ Web-based collection manager, muling utility, stash organizer and grail tracker 
 - It reads your whole save folder in one click, and lets you search easily for items in your entire collection. 
   No more "Where did I put my spare 35% Spirit?". Just type "Spirit" in the search box, see where all your Spirits are, and even which one is the perfect one.
 - It allows you to mule and transfer items between characters or to a shared stash, either in bulk or a few at a time.
-- It organizes your entire PlugY stash for you in one click too, and lets you download the cleaned up stash file to use directly in game. 
+- It organizes your entire PlugY stash for you in one click too, and saves the cleaned up stash file to use directly in game. 
   It names pages nicely, adds indices between sections, and even lays out sets nicely on their own page.
 - It tracks grail progress, even eth grail and perfect grail if you're that kind of crazy.
+
+## Saving your changes
+In Chrome, Edge and other Chromium-based browsers, saving writes the updated files straight back to where you uploaded
+them from: the folder you picked with "Upload all my save files", or the file itself if you picked it with
+"Let me select a single file". The first time you save in a session, the browser asks for permission to edit them.
+Other browsers can't write to your disk, so saving downloads the files instead (as a zip when there are several).
+
+Transfers and deletions only change the tool's working copy; Settings > Save writes every file at once. Every file is
+fully written before any of them replaces what's on disk, so a save that fails part-way leaves your files as they were,
+instead of saving some characters but not the others you moved items to or from. Organizing a stash saves that stash
+right away.
+
+Close the game before saving. If the game saved a file after you uploaded it, saving refuses to overwrite it with the
+older copy: upload your save folder again, then redo your changes. And if some items in a file couldn't be read, the
+file is only ever saved exactly as it was uploaded, and changes to it are refused, so those items can't be lost.
 
 ## Security and privacy
 Everything runs in the browser: no installation required, no coding, no security risks for your computer. 
@@ -69,6 +84,16 @@ The project is organized in the following folders:
 - `test/`: Git-ignored folder used to store private stash information safely when testing directly with Node instead of the web version.
 
 ### Available scripts
+
+The Makefile wraps the scripts below, on Windows and Linux (`make help` lists every target):
+- `make setup` installs dependencies, extracts the game data from your D2R installation, and builds the web tool into
+  `docs/`. Run it once, and again after a game update.
+- `make build` regenerates the game data JSON and builds; `make run` builds, then serves the tool on http://localhost:10001.
+
+Extracting the game data (`make extract-d2r`, part of `make setup`) reads the game's CASC archives with CascLib. On
+Windows, it uses the `CascLib.dll` that comes with D2RMM. On Linux, it first builds CascLib into `tools/CascLib/`
+(needs git, cmake and a C++ compiler), and finds a Battle.net install in Lutris' `~/Games/battlenet` Wine prefix or in
+`~/.wine`. Set `D2R_PATH` to use another installation, and `CASCLIB_PATH` for another CascLib.
 
 For local development:
 - `npm install` pulls dependency from NPM.

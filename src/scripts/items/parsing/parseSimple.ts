@@ -54,19 +54,25 @@ export function parseSimple(stream: BinaryStream, owner: ItemsOwner) {
     read(2);
   }
 
-  item.nbFilledSockets = readInt(item.simple ? 1 : 3);
-  if (item.socketed && item.nbFilledSockets > 0) {
-    // Array to store socketed items
-    item.filledSockets = [];
-  }
-
-  // D2R compact items carry a realm-data flag after the socket/quest fields.
-  // When set, 1 byte of data follows. For dedicated-tab items this byte is
-  // the stack quantity; for regular items it is opaque realm data. Non-simple
-  // items handle their realm data in parseQuality instead.
   if (item.simple && owner.version >= FIRST_D2R) {
+    // Where legacy simple items have a 1-bit socket count, D2R ones have a
+    // realm-data flag. RotW sets it (runes in sockets, potions in the belt...),
+    // followed by 128 bits of realm data, the same size as on non-simple items
+    // (see parseQuality).
+    if (readBool()) {
+      item.hasRealmData = true;
+      read(128);
+    }
+    // Then a flag for 1 byte of data: the stack quantity on dedicated-tab
+    // items, opaque data on regular items.
     if (readBool()) {
       item.quantity = readInt(8);
+    }
+  } else {
+    item.nbFilledSockets = readInt(item.simple ? 1 : 3);
+    if (item.socketed && item.nbFilledSockets > 0) {
+      // Array to store socketed items
+      item.filledSockets = [];
     }
   }
 

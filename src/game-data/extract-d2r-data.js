@@ -1,21 +1,32 @@
 /**
- * Extracts game data files from D2R CASC archives using CascLib.dll.
+ * Extracts game data files from D2R CASC archives using CascLib.
  *
  * Requires:
- *   - D2R installed (default: C:\Program Files (x86)\Diablo II Resurrected)
- *   - D2RMM installed (provides CascLib.dll)
+ *   - D2R installed. Default: C:\Program Files (x86)\Diablo II Resurrected on
+ *     Windows; on Linux, a Battle.net install in a Lutris or Wine prefix.
+ *   - CascLib: on Windows, D2RMM's CascLib.dll; on Linux, the
+ *     tools/CascLib/build/libcasc.so that `make casclib` builds.
  *
  * Override paths via environment variables:
  *   D2R_PATH     - D2R installation directory
- *   CASCLIB_PATH - Full path to CascLib.dll
+ *   CASCLIB_PATH - Full path to CascLib.dll / libcasc.so
  */
 const koffi = require("koffi");
 const path = require("path");
 const fs = require("fs");
 const { execSync } = require("child_process");
 
-const DEFAULT_D2R_PATH =
-  "C:\\Program Files (x86)\\Diablo II Resurrected";
+const IS_WINDOWS = process.platform === "win32";
+const HOME = process.env.USERPROFILE || process.env.HOME || "";
+
+// On Linux, Battle.net runs in a Wine prefix: Lutris' default one, then Wine's.
+const DEFAULT_D2R_PATHS = IS_WINDOWS
+  ? ["C:\\Program Files (x86)\\Diablo II Resurrected"]
+  : [["Games", "battlenet"], [".wine"]].map((prefix) =>
+      path.join(HOME, ...prefix, "drive_c", "Program Files (x86)", "Diablo II Resurrected")
+    );
+
+const LOCAL_CASCLIB = path.join(__dirname, "..", "..", "tools", "CascLib", "build", "libcasc.so");
 
 // Excel data tables to extract from global\excel\
 const EXCEL_FILES = {
@@ -79,6 +90,16 @@ function findCascLib() {
     process.exit(1);
   }
 
+  if (!IS_WINDOWS) {
+    if (fs.existsSync(LOCAL_CASCLIB)) {
+      return LOCAL_CASCLIB;
+    }
+    console.error(
+      `Could not find ${LOCAL_CASCLIB}. Run \`make casclib\` or set CASCLIB_PATH.`
+    );
+    process.exit(1);
+  }
+
   // Search for D2RMM process to find its installation path
   const searchPaths = [];
   try {
@@ -94,11 +115,10 @@ function findCascLib() {
   }
 
   // Common D2RMM locations
-  const home = process.env.USERPROFILE || process.env.HOME || "";
   searchPaths.push(
-    path.join(home, "AppData", "Local", "Programs", "D2RMM", "tools", "CascLib.dll"),
-    path.join(home, "Google Drive", "Saves", "PC Games + Saved Games", "Diablo 2 Resurrected", "D2RMM 1.7.3", "tools", "CascLib.dll"),
-    path.join(home, "Google Drive", "Saves", "PC Games + Saved Games", "Diablo 2 Resurrected", "D2RMM 1.7.4", "tools", "CascLib.dll"),
+    path.join(HOME, "AppData", "Local", "Programs", "D2RMM", "tools", "CascLib.dll"),
+    path.join(HOME, "Google Drive", "Saves", "PC Games + Saved Games", "Diablo 2 Resurrected", "D2RMM 1.7.3", "tools", "CascLib.dll"),
+    path.join(HOME, "Google Drive", "Saves", "PC Games + Saved Games", "Diablo 2 Resurrected", "D2RMM 1.7.4", "tools", "CascLib.dll"),
   );
 
   for (const p of searchPaths) {
@@ -157,12 +177,18 @@ function extractFile(casc, storage, cascPath) {
 }
 
 function main() {
-  const gameDir = process.env.D2R_PATH || DEFAULT_D2R_PATH;
+  const gameDir =
+    process.env.D2R_PATH ||
+    DEFAULT_D2R_PATHS.find((dir) => fs.existsSync(path.join(dir, "Data"))) ||
+    DEFAULT_D2R_PATHS[0];
   const gamePath = path.join(gameDir, "Data");
 
   if (!fs.existsSync(gamePath)) {
     console.error(
       `D2R Data directory not found: ${gamePath}\n` +
+      (process.env.D2R_PATH
+        ? ""
+        : `Searched:\n${DEFAULT_D2R_PATHS.map((dir) => `  ${dir}`).join("\n")}\n`) +
       "Set D2R_PATH to your D2R installation directory."
     );
     process.exit(1);

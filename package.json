@@ -11,7 +11,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
-    "build": "npm run format && npm run lint -- --max-warnings 0 && (rmdir /s /q docs 2>nul || exit 0) && rollup -c --environment PROD",
+    "build": "npm run format && npm run lint -- --max-warnings 0 && node -e \"require('fs').rmSync('docs', { recursive: true, force: true })\" && rollup -c --environment PROD",
     "watch": "rollup -cwm"
   },
   "keywords": [],

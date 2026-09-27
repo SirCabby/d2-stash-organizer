@@ -1,7 +1,7 @@
 # D2 Stash Organizer - Project Rules
 
 ## Project Overview
-This is a TypeScript/Preact web app for organizing Diablo 2 stash files (PlugY and D2R). It runs entirely client-side in the browser. The project is built and tested on Windows.
+This is a TypeScript/Preact web app for organizing Diablo 2 stash files (PlugY and D2R). It runs entirely client-side in the browser. The project is built and tested on Windows and Linux.
 
 ## Build and Validation
 - **Always run `make build` to validate code changes**
@@ -11,11 +11,10 @@ This is a TypeScript/Preact web app for organizing Diablo 2 stash files (PlugY a
   - TypeScript compilation
   - Rollup bundling for production
 
-## Windows-Specific Considerations
-- This project is designed for Windows environments
-- Use Windows-compatible commands and paths
-- The build system uses Windows batch files (e.g., `kill_port.bat`)
-- File operations should use Windows path separators when necessary
+## Platform Considerations
+- The project is built on both Windows and Linux: keep commands and paths working on both
+- Use the Makefile rather than raw npm scripts. It branches on `OS=Windows_NT` (e.g. `kill_port.bat` on Windows, `fuser` elsewhere) and sets `.NOTPARALLEL`, because its targets form a pipeline and the owner runs `make -j16`
+- Game data extraction (`make extract-d2r`) needs CascLib: D2RMM's `CascLib.dll` on Windows; on Linux, `make casclib` builds `tools/CascLib/build/libcasc.so` (git-ignored). The D2R install defaults to Lutris' `~/Games/battlenet` Wine prefix, then `~/.wine`; override with `D2R_PATH`
 
 ## Development Workflow
 1. Make code changes
@@ -25,10 +24,12 @@ This is a TypeScript/Preact web app for organizing Diablo 2 stash files (PlugY a
 5. Commit changes
 
 ## Key Commands
+- `make setup` - First run: install dependencies, extract D2R game data, and build
 - `make install` - Install dependencies
 - `make build` - Build and validate the project
 - `make run` - Start development server
 - `make regenerate` - Regenerate game data files
+- `make extract-d2r` - Re-extract game data after a game update
 
 ## Code Quality Standards
 - Follow TypeScript best practices
@@ -114,3 +115,19 @@ The settings page (`src/web/settings/Settings.tsx`) has bulk-operation buttons. 
 - **Mercenary parsing misalignment**: `hasMercenary` was read from hardcoded offset 179 which shifted in RotW. Fixed by peeking for the "JM" header after the "jf" marker.
 - **postProcessItem double/triple call**: Settings handlers called `postProcessItem` multiple times on already-processed items, causing inflated modifier values on stash items. Fixed by removing all re-post-processing from repair/top-off/refill handlers.
 - **Missing mercenary item list header**: `characterToSaveFile` skipped writing the "JM" item list header when a character had zero mercenary items. D2R expects the `"jf" + "JM" + count(0)` sequence to always be present; omitting "JM" caused the game to fail to join. Fixed by always calling `writeItemList` for mercenary items even when the list is empty.
+- **RotW simple-item realm data**: v105 sets the realm-data flag on simple items (runes in sockets, potions in the belt), followed by 128 bits of realm data, like non-simple items. The parser read that flag as the 1-bit socket count, lost alignment after the first such item, and `parseItemList` silently dropped the rest of the list (46 of a character's items). `parseSimple` now reads the flag and data for D2R simple items, and `toD2` truncates simple items right after their code instead of guessing their tail.
+
+---
+
+## Saving and the GameStateTracker Companion Site
+
+This site also runs as a GameStateTracker (GST) companion site. GST serves the production build (`docs/`) from a local path at `/companion-sites/<id>/` and embeds it in an iframe with `sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"`. The tool does not read GST's save data: users upload their saves as usual.
+
+- **GST setup**: add a companion site with Local Path = this repo's `docs/` (after `make build`); the URL Template can be empty. A hosted Base URL does not work embedded, because Chromium refuses file pickers in cross-origin iframes.
+- **Keep every emitted URL relative** (scripts, `assets/`, `examples/`): the site is served from a sub-path.
+- **No network calls or analytics**: GST is a local, offline-first tool.
+- **Saving goes through `src/web/store/saveLocation.ts`**. Uploads keep File System Access handles (Chromium only) in IndexedDB (`save_location` store), and saving writes back through them. GST's iframe sandbox blocks downloads, so writing in place is the only way to save from the embedded view; the download fallback for other browsers only works in a new tab.
+- **The save location changes together with the collection**: uploads parse every file before storing anything, and `writeAllFiles` / `writeSaveFile` store the new location in the same IndexedDB transaction as the files. Otherwise a save could write one folder's characters into another folder.
+- **Saving stays all or nothing** (`writeToSaveLocation`): every destination and permission is resolved before writing, and every file is staged before any is committed. Saving some characters but not others duplicates or loses the items moved between them.
+- **Never write what wasn't fully read** (`toSaveFile` in `src/web/store/parser.ts`): `parseItemList` skips the rest of a list after an item it can't parse, so rewriting that file would drop those items. `parseSaveFile` records every file that doesn't re-serialize to its exact bytes; `toSaveFile` returns such a file's original bytes while it's unchanged and throws once something changes it. Every persistence path (IndexedDB working copy, in-place save, download) goes through `toSaveFile`.
+- **Never overwrite a newer file**: the save location records each file's disk `lastModified` when it's loaded or saved (`versions`), and `writeToSaveLocation` refuses to write if any file on disk changed since (typically the game saving it).

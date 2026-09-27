@@ -6,6 +6,7 @@ import { ExternalLink } from "../routing/ExternalLink";
 import "./Organizer.css";
 import { numberInputChangeHandler } from "./numberInputChangeHandler";
 import { OwnerSelector } from "../save-files/OwnerSelector";
+import { SaveDestination } from "../save-files/SaveDestination";
 import { useUpdateCollection } from "../store/useUpdateCollection";
 import {
   isPlugyStash,
@@ -102,6 +103,7 @@ export function Organizer() {
           Organize my stash
         </button>
       </p>
+      <SaveDestination />
     </>
   );
 }

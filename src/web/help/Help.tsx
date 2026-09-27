@@ -22,9 +22,10 @@ export function Help() {
           You can also use this website as a replacement for GoMule. It allow
           you to{" "}
           <a href="#transfer">transfer items from one character to another</a>,
-          either in bulk or a few at a time, and gives you the updated save
-          files to download. It can also create an off-game stash to store as
-          many items as you need if you do not have enough mules.
+          either in bulk or a few at a time, and saves the updated files
+          straight back to your save folder (in Chrome or Edge; other browsers
+          download them instead). It can also create an off-game stash to store
+          as many items as you need if you do not have enough mules.
         </p>
         <p>
           If you are more of a PlugY fan than GoMule, this tool is fully

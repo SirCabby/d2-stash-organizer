@@ -4,6 +4,8 @@ import { FilePicker } from "./FilePicker";
 import "./SaveFiles.css";
 import { UPLOAD_CONFIRM } from "../store/singleStashConfirmation";
 import { PrettyOwnerName } from "./PrettyOwnerName";
+import { SaveDestination } from "./SaveDestination";
+import { isUnreadable } from "../store/parser";
 import { LAST_LEGACY } from "../../scripts/character/parsing/versions";
 
 const dateFormatter = Intl.DateTimeFormat(undefined, {
@@ -35,6 +37,8 @@ export function SaveFiles() {
     return details;
   }, [owners]);
 
+  const unreadable = useMemo(() => owners.filter(isUnreadable), [owners]);
+
   return (
     <>
       <p class="sidenote">
@@ -61,6 +65,21 @@ export function SaveFiles() {
           </FilePicker>
         )}
       </p>
+      <SaveDestination />
+      {unreadable.length > 0 && (
+        <p class="danger">
+          Some items in{" "}
+          {unreadable.map((owner, i) => (
+            <>
+              {i > 0 && ", "}
+              <PrettyOwnerName owner={owner} />
+            </>
+          ))}{" "}
+          could not be read, so they are missing from your collection. To keep
+          them safe, saving leaves these files exactly as they are, and refuses
+          any change to them.
+        </p>
+      )}
       <table id="save-files">
         <tr>
           <th>Character name</th>
