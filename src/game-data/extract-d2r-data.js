@@ -39,6 +39,7 @@ const EXCEL_FILES = {
   "magicprefix.txt": "MagicPrefix.txt",
   "magicsuffix.txt": "MagicSuffix.txt",
   "misc.txt": "Misc.txt",
+  "monstats.txt": "MonStats.txt",
   "playerclass.txt": "PlayerClass.txt",
   "properties.txt": "Properties.txt",
   "rareprefix.txt": "RarePrefix.txt",

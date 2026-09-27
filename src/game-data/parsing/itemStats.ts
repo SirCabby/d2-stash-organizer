@@ -20,7 +20,6 @@ export async function itemStatsToJson() {
       descPos: line[40],
       descNeg: line[41],
       descAdditional: getString(line[42].trim()),
-      display: Number(line[50]),
     };
     if (
       (item.encode === 2 && (item.size !== 7 || item.paramSize !== 16)) ||

@@ -15,6 +15,7 @@ import { charClassesToJson } from "./parsing/charClasses";
 import { statGroupsToJson } from "./parsing/statGroups";
 import { gemsToJson } from "./parsing/gems";
 import { itemTypesToJson } from "./parsing/itemTypes";
+import { monstersToJson } from "./parsing/monsters";
 
 async function generateAll() {
   await armorsToJson();
@@ -29,6 +30,7 @@ async function generateAll() {
   await skillTabsToJson();
   await magicAffixesToJson();
   await rareNamesToJson();
+  await monstersToJson();
   await gemsToJson(skills);
   await uniquesToJson(skills);
   const setItems = await setItemsToJson(skills);

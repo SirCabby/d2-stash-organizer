@@ -31,8 +31,9 @@ export async function propertiesToJson() {
     for (let i = 1; i < 8; i++) {
       const statIndex = 4 * i;
       if (line[statIndex]) {
-        const param = line[statIndex + 1]
-          ? Number(line[statIndex + 1])
+        // The param is in "val", like the class of "+X to class skills"
+        const param = line[statIndex + 2]
+          ? Number(line[statIndex + 2])
           : undefined;
         stats.push({
           stat: line[statIndex].trim(),

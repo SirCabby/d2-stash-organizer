@@ -2,23 +2,99 @@ import { Modifier } from "../types/Modifier";
 import {
   CHAR_CLASSES,
   ITEM_STATS,
-  Skill,
+  MOD_LOCA,
+  MONSTERS,
   SKILL_TABS,
   SKILLS,
-  SkillTab,
   StatDescription,
-  MOD_LOCA,
 } from "../../../game-data";
 
-const fix_classSkillBonus = [
-  "ModStr3a",
-  "ModStr3d",
-  "ModStr3c",
-  "ModStr3b",
-  "ModStr3e",
-  "ModStre8a",
-  "ModStre8b",
-];
+const FORMAT_SPECIFIER = /%(%|\d|\+?[diu]|s)/g;
+const VALUE_SPECIFIER = /%(\d|\+?[diu])/;
+
+// How each descfunc shows the value, for strings that don't include it
+const VALUE_FORMATS: Record<number, string> = {
+  1: "%+d",
+  2: "%d%%",
+  3: "%d",
+  4: "%+d%%",
+  5: "%d%%",
+  6: "%+d",
+  7: "%d%%",
+  8: "%+d%%",
+  9: "%d",
+  10: "%d%%",
+  12: "%+d",
+  20: "%d%%",
+  21: "%d",
+};
+
+// Strings for the time of day a by-time mod peaks at: day, dusk, night, dawn
+const PEAK_TIMES = ["ModStre9e", "ModStre9g", "ModStre9d", "ModStre9f"];
+
+/**
+ * Fills a game string in like the game's sprintf: `%d` and `%+d` take a number,
+ * `%s` takes text, `%0`, `%1`... take the argument at that position,
+ * and `%%` is a percent sign.
+ */
+function formatGameString(template: string, ...args: (number | string)[]) {
+  let nextArg = 0;
+  return template.replace(FORMAT_SPECIFIER, (_, specifier: string) => {
+    if (specifier === "%") {
+      return "%";
+    }
+    const arg = /\d/.test(specifier)
+      ? args[Number(specifier)]
+      : args[nextArg++];
+    return specifier.startsWith("+") && typeof arg === "number" && arg >= 0
+      ? `+${arg}`
+      : `${arg}`;
+  });
+}
+
+function localize(key: string) {
+  return MOD_LOCA[key]?.enUS ?? key;
+}
+
+function skillName(id?: number) {
+  return SKILLS[id!]?.name ?? `skill ${id}`;
+}
+
+/**
+ * Describes the mods that are a single number, shown as is or as a percentage
+ */
+function describeValue(
+  { descFunc, descVal }: StatDescription,
+  template: string,
+  value: number
+) {
+  switch (descFunc) {
+    case 5:
+    case 10:
+      value = Math.floor((value * 100) / 128);
+      break;
+    case 20:
+    case 21:
+      value = -value;
+      break;
+    case 29:
+      // The negative string already says the damage is increased
+      value = Math.abs(value);
+      break;
+  }
+  if (VALUE_SPECIFIER.test(template)) {
+    return formatGameString(template, value);
+  }
+  // Strings without the value rely on descval to place it.
+  // Blinding and freezing only show it when it's more than 1.
+  if (!descVal || (descFunc === 12 && value <= 1)) {
+    return template;
+  }
+  const valueDesc = formatGameString(VALUE_FORMATS[descFunc] ?? "%d", value);
+  return descVal === 1
+    ? `${valueDesc} ${template}`
+    : `${template} ${valueDesc}`;
+}
 
 /**
  * Generates the human-friendly description for an item modifier
@@ -27,191 +103,150 @@ export function describeSingleMod(
   modifier: Modifier,
   modInfo: StatDescription | null = ITEM_STATS[modifier.id]
 ) {
-  if (!modInfo) return;
+  if (!modInfo?.descFunc) return;
 
-  let modValue = modifier.value;
+  let modValue = modifier.value ?? 0;
   if (modInfo.stat.endsWith("perlevel")) {
     // Per-level mod, we show it for character level 99 for the flair
     if (modInfo.stat.includes("tohit")) {
-      modValue = modValue! / 2;
+      modValue = modValue / 2;
     } else {
-      modValue = modValue! / 8;
+      modValue = modValue / 8;
     }
     modValue = Math.floor(99 * modValue);
   }
 
-  let modDesc = (modValue ?? 0) < 0 ? modInfo.descNeg : modInfo.descPos;
+  const modDesc = localize(modValue < 0 ? modInfo.descNeg : modInfo.descPos);
 
-  if (MOD_LOCA[modDesc]?.enUS) {
-    modDesc = MOD_LOCA[modDesc].enUS;
-  }
-
-  let valueDesc: string | undefined;
-  let skill: Skill | undefined;
-  let skillTab: SkillTab | undefined;
+  let description: string;
   switch (modInfo.descFunc) {
-    case 19:
-      modDesc = modDesc
-        .replace("%d", `${modValue}`)
-        .replace("%+d", (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`)
-        .replace("%%", "%");
-
-    case 6:
-    case 12:
-      valueDesc = (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`;
-      break;
-    case 2:
-    case 7:
-      valueDesc = `${modValue}%`;
-      break;
-    case 3:
-    case 9:
-      valueDesc = `${modValue}`;
-      break;
-    case 4:
-    case 8:
-      valueDesc = (modValue ?? 0) < 0 ? `${modValue}%` : `+${modValue}%`;
-      break;
-    case 5:
-      valueDesc = `${Math.floor((modValue! * 100) / 128)}%`;
-      break;
     case 11:
-      modDesc = modDesc.replace("%d", `${100 / modValue!}`);
+      // The value is the durability repaired every 100 seconds
+      description =
+        modValue >= 100
+          ? formatGameString(modDesc, Math.floor(modValue / 100))
+          : formatGameString(
+              localize("ModStre9u"),
+              1,
+              Math.floor(100 / modValue)
+            );
       break;
-    case 13: {
-      const classSkillKey = fix_classSkillBonus[modifier.param ?? 0];
-      const classSkillLoca = classSkillKey && MOD_LOCA[classSkillKey];
-      if (classSkillLoca) {
-        modDesc = classSkillLoca.enUS;
-      }
-      modDesc = modDesc.replace(
-        "%+d",
-        (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`
+    case 13:
+      description = formatGameString(
+        CHAR_CLASSES[modifier.param!]?.skillsMod ??
+          `%+d to class ${modifier.param} skills`,
+        modValue
+      );
+      break;
+    case 14: {
+      const skillTab = SKILL_TABS.find(({ id }) => id === modifier.param);
+      description = skillTab
+        ? `${formatGameString(skillTab.skillsMod, modValue)} ${
+            CHAR_CLASSES[skillTab.charClass]?.classOnly ?? ""
+          }`.trim()
+        : formatGameString(`%+d to skill tab ${modifier.param}`, modValue);
+      break;
+    }
+    case 15:
+      description = formatGameString(
+        modDesc,
+        modifier.chance!,
+        modifier.level!,
+        skillName(modifier.spell)
+      );
+      break;
+    case 16:
+      description = formatGameString(
+        modDesc,
+        modValue,
+        skillName(modifier.param)
+      );
+      break;
+    case 17:
+    case 18: {
+      // The value changes with the time of day, we show it at its peak
+      const peakValue = ((modValue >> 12) & 0x3ff) - 0x100;
+      description = formatGameString(
+        localize(PEAK_TIMES[modValue & 3]),
+        describeValue(modInfo, modDesc, peakValue)
       );
       break;
     }
-    case 14:
-      skillTab = SKILL_TABS.find(({ id }) => id === modifier.param);
-      if (!skillTab) {
-        modDesc = `+${modValue} to skill tab ${modifier.param}`;
-        break;
-      }
-      modDesc = `+${modValue} to ${skillTab.name} ${
-        CHAR_CLASSES[skillTab.charClass]?.classOnly ?? ""
-      }`;
-      break;
-    case 15:
-      modDesc = modDesc
-        .replace("%d%", `${modifier.chance}`)
-        .replace("%d", `${modifier.level}`)
-        .replace(
-          "%s",
-          SKILLS[modifier.spell!]?.name ?? `skill ${modifier.spell}`
-        );
-      break;
-    case 16:
-      modDesc = modDesc
-        .replace("%d", `${modValue}`)
-        .replace(
-          "%s",
-          SKILLS[modifier.param!]?.name ?? `skill ${modifier.param}`
-        );
-      break;
-    case 1:
-      valueDesc = (modValue ?? 0) < 0 ? `${modValue}` : `+${modValue}`;
-      modDesc = modDesc.replace("%d", `${modValue}`);
-      break;
-    case 20:
-      valueDesc = `${-modValue!}%`;
-      break;
     case 22:
-      valueDesc = `${modValue}%`;
       // We need to do the monster type, but I can't find a single item with this.
+      description = `${formatGameString(modDesc, modValue)} monster type ${
+        modifier.param
+      }`;
       break;
     case 23:
-      valueDesc = `${modValue}%`;
-      // We need to do the monster, but I can't find a single item with this.
+      description = formatGameString(
+        modDesc,
+        modValue,
+        MONSTERS[modifier.param!] ?? `monster ${modifier.param}`
+      );
       break;
     case 24:
-      modDesc = modDesc
-        .replace("%d", `${modifier.level}`)
-        .replace(
-          "%s",
-          SKILLS[modifier.spell!]?.name ?? `skill ${modifier.spell}`
-        )
-        .replace("%d", `${modifier.charges}`)
-        .replace("%d", `${modifier.maxCharges}`);
+      description = formatGameString(
+        modDesc,
+        modifier.level!,
+        skillName(modifier.spell),
+        modifier.charges!,
+        modifier.maxCharges!
+      );
       break;
-    case 27:
-      skill = SKILLS[modifier.param!];
-      if (skill) {
-        modDesc = `+${modValue} to ${skill.name} ${
-          CHAR_CLASSES[skill.charClass!]?.classOnly ?? ""
-        }`;
-      } else {
-        modDesc = `+${modValue} to skill ${modifier.param}`;
-      }
+    case 27: {
+      const skill = SKILLS[modifier.param!];
+      description = formatGameString(
+        modDesc,
+        modValue,
+        skillName(modifier.param),
+        CHAR_CLASSES[skill?.charClass ?? -1]?.classOnly ?? ""
+      ).trim();
       break;
+    }
     case 28:
-      modDesc = `+${modValue} to ${
-        SKILLS[modifier.param!]?.name ?? `skill ${modifier.param}`
-      }`;
+      description = formatGameString(
+        modDesc,
+        modValue,
+        skillName(modifier.param)
+      );
       break;
     // Custom describe functions to handle groups
-    case 100:
+    case 100: {
       // Non-poison elemental or magic damage.
-      if (modifier.values?.[0] !== modifier.values?.[1]) {
-        modDesc = modInfo.descNeg;
-      }
-      modDesc = modDesc
-        .replace("%d", `${modifier.values?.[0]}`)
-        .replace("%d", `${modifier.values?.[1]}`);
+      // descPos describes a single value, descNeg a range.
+      const [min, max] = modifier.values!;
+      description =
+        min === max
+          ? formatGameString(modInfo.descPos, min)
+          : formatGameString(modInfo.descNeg, min, max);
       break;
-    case 101:
+    }
+    case 101: {
       // Poison damage
-      if (modifier.values?.[0] === modifier.values?.[1]) {
-        modDesc = modDesc
-          .replace(
-            "%d",
-            `${Math.round((modifier.values![0] * modifier.values![2]) / 256)}`
-          )
-          .replace("%d", `${Math.round(modifier.values![2] / 25)}`);
-      } else {
-        modDesc = modInfo.descNeg
-          .replace(
-            "%d",
-            `${Math.round((modifier.values![0] * modifier.values![2]) / 256)}`
-          )
-          .replace(
-            "%d",
-            `${Math.round((modifier.values![1] * modifier.values![2]) / 256)}`
-          )
-          .replace("%d", `${Math.round(modifier.values![2] / 25)}`);
-      }
+      const [min, max, length] = modifier.values!;
+      const seconds = Math.round(length / 25);
+      description =
+        min === max
+          ? formatGameString(
+              modInfo.descPos,
+              Math.round((min * length) / 256),
+              seconds
+            )
+          : formatGameString(
+              modInfo.descNeg,
+              Math.round((min * length) / 256),
+              Math.round((max * length) / 256),
+              seconds
+            );
       break;
-    case 29:
-      modDesc = modDesc.replace("%d", `${modValue}`).replace("%%", "%");
-      break;
+    }
+    default:
+      description = describeValue(modInfo, modDesc, modValue);
   }
 
-  if (modDesc) {
-    let fullDesc = "";
-    let display = modInfo.descVal;
-    if (modInfo.display === 2) display = -1;
-
-    switch (display) {
-      case 1:
-        fullDesc = `${valueDesc} ${modDesc}`;
-        break;
-      case 2:
-        fullDesc = `${modDesc} ${valueDesc}`;
-        break;
-      default:
-        fullDesc = modDesc;
-    }
-    if (6 <= modInfo.descFunc && modInfo.descFunc <= 9) {
-      fullDesc += ` ${modInfo.descAdditional}`;
-    }
-    return fullDesc;
+  if (modInfo.descAdditional) {
+    description += ` ${modInfo.descAdditional}`;
   }
+  return description;
 }

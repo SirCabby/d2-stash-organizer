@@ -99,7 +99,6 @@ export interface StatDescription {
   descVal?: number;
   descPos: string;
   descNeg: string;
-  display?: number;
   descAdditional?: string;
 }
 
@@ -131,7 +130,7 @@ export interface Skill {
 
 export interface SkillTab {
   id: number;
-  name: string;
+  skillsMod: string;
   charClass: number;
 }
 
