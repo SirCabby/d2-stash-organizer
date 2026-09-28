@@ -37,6 +37,22 @@ that will throw an error and prevent generating a new save file if even one poti
 never modify your items, only move them around. The tool does not have the capability to modify item mods, the
 only fields that can be modified at the moment are the position.
 
+## Loot filter grail rules
+
+D2R's loot filter can hide the grail items you already have. In a loot filter profile, name a Show rule after the grail
+(any rule with "grail" in its name, like "Show Missing Unique Grails") and give it the Unique or Set rarity, or both.
+Then run `make grail-filter` after playing, with the game closed: in every profile of your save folder, it sets the
+item codes of those rules to the bases of the grail items missing from your offline stash (the shared `.d2x` stash).
+
+- The loot filter only knows bases: a rule shows every unique of a base as long as one of that base's is missing.
+- It can't tell ethereal items apart either (the "Ethereal / Socketed" box adds gray items to a rule, it doesn't limit
+  the rule to ethereal items). So the eth grail has no rule of its own: a unique counts as missing until you have it
+  both normal and ethereal, if it can be ethereal.
+- Items still on your characters or in the game's shared stashes don't count until they're in the offline stash.
+  `make grail-filter ALL_SAVES=1` counts them too, `DRY_RUN=1` shows the changes without saving them, and `make help`
+  lists the other options.
+- The previous version of each profile it changes is kept next to it, as `<profile>.fltr.bak`.
+
 ## Item sort order
 
 The tool organizes items in the following order:

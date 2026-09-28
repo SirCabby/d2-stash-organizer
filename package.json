@@ -8,6 +8,7 @@
     "convert-rotw": "node src/game-data/convert-rotw-strings.js",
     "game-strings": "ts-node src/game-data/generate-strings.ts",
     "game-data": "ts-node src/game-data/generate-all.ts",
+    "grail-filter": "ts-node src/scripts/loot-filter/updateGrailFilter.ts",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",

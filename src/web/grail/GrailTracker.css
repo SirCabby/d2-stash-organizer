@@ -27,9 +27,31 @@
   vertical-align: top;
   line-height: 1.2;
 }
-#grail-tracker .grail-header td[colspan] {
+#grail-tracker td[colspan] {
   text-align: center;
+}
+
+/* Armor, Weapons, Accessories and Sets, like the in-game loot filter */
+#grail-tracker .grail-category td {
+  padding-top: 1.5em;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #666666;
+  color: rgb(199, 179, 119);
+  font-size: 1.4em;
+}
+#grail-tracker .grail-category:first-child td {
+  padding-top: 0;
+}
+
+#grail-tracker .grail-section td {
   padding-top: 1em;
+  font-size: 1.15em;
+}
+
+#grail-tracker .grail-tier td {
+  padding-top: 0.5em;
+  color: #999999;
+  font-size: 0.9em;
 }
 
 /* Add dividers and hover effect to item rows only */

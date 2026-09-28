@@ -1,14 +1,20 @@
-import { grailProgress } from "../../scripts/grail/list/grailProgress";
+import {
+  grailProgress,
+  GrailStatus,
+} from "../../scripts/grail/list/grailProgress";
+import { TIER_NAMES } from "../../scripts/grail/list/listGrailItems";
 import { useContext, useMemo } from "preact/hooks";
 import { JSX } from "preact";
 import "./GrailTracker.css";
 import { CollectionContext } from "../store/CollectionContext";
-import { SettingsContext, GrailFilters } from "../settings/SettingsContext";
+import {
+  SettingsContext,
+  GrailFilters,
+  GrailFilterValue,
+} from "../settings/SettingsContext";
 import { GrailSummary } from "./GrailSummary";
 import { ItemTooltip } from "../items/ItemTooltip";
 import { GrailItemTooltip } from "../items/GrailItemTooltip";
-
-const TIER_NAMES = ["Normal", "Exceptional", "Elite"];
 
 const toClassName = (b: boolean) => (b ? "found" : "missing");
 
@@ -86,6 +92,95 @@ function GrailFilter({ value, onChange }: GrailFilterProps) {
   );
 }
 
+function isShown(
+  { normal, ethereal, perfect, perfectEth }: GrailStatus,
+  filters: GrailFilters
+) {
+  // Items without an ethereal version only show when the eth filters are "any"
+  const matches = (filter: GrailFilterValue, found?: boolean) =>
+    filter === "any" ||
+    (filter === "found" && found === true) ||
+    (filter === "missing" && found === false);
+  return (
+    matches(filters.normal, normal) &&
+    matches(filters.ethereal, ethereal) &&
+    matches(filters.perfect, perfect) &&
+    matches(filters["eth-perfect"], perfectEth)
+  );
+}
+
+function grailItemRow(
+  { item, normal, ethereal, perfect, perfectEth, foundItems }: GrailStatus,
+  key: string
+) {
+  // Find the best representative item for tooltip
+  const tooltipItem = foundItems.length > 0 ? foundItems[0] : null;
+
+  // Find ethereal item for tooltip
+  const etherealItem = foundItems.find((item) => item.ethereal);
+
+  return (
+    <tr key={key} class="grail-item">
+      <th scope="row" class={"set" in item ? "set" : "unique"}>
+        {tooltipItem ? (
+          <ItemTooltip item={tooltipItem} />
+        ) : (
+          <GrailItemTooltip
+            item={item}
+            isEthereal={ethereal === true}
+            isPerfect={perfect}
+          />
+        )}
+      </th>
+      <td class={toClassName(normal)}>
+        <span style={{ display: "inline-block", verticalAlign: "top" }}>
+          Normal
+        </span>
+      </td>
+      <td class={toClassName(perfect)}>
+        <span style={{ display: "inline-block", verticalAlign: "top" }}>
+          Perfect
+        </span>
+      </td>
+      <td class={ethereal === undefined ? "" : toClassName(ethereal)}>
+        {ethereal === undefined ? null : (
+          <span style={{ display: "inline-block", verticalAlign: "top" }}>
+            {etherealItem ? (
+              <ItemTooltip item={etherealItem} useDefaultColor={false}>
+                <span>Ethereal</span>
+              </ItemTooltip>
+            ) : (
+              <GrailItemTooltip
+                item={item}
+                isEthereal={true}
+                isPerfect={false}
+                useDefaultColor={false}
+              >
+                <span>Ethereal</span>
+              </GrailItemTooltip>
+            )}
+          </span>
+        )}
+      </td>
+      <td class={perfectEth === undefined ? "" : toClassName(perfectEth)}>
+        {perfectEth === undefined ? null : (
+          <span style={{ display: "inline-block", verticalAlign: "top" }}>
+            Perfect Eth
+          </span>
+        )}
+      </td>
+    </tr>
+  );
+}
+
+function headerRow(key: string, className: string, title: string) {
+  return (
+    <tr key={key} class={className}>
+      <td colSpan={5}>{title}</td>
+    </tr>
+  );
+}
+
 export function GrailTracker() {
   const { allItems } = useContext(CollectionContext);
   const { grailFilters: filters, setGrailFilters: setFilters } =
@@ -93,127 +188,48 @@ export function GrailTracker() {
 
   const progress = useMemo(() => grailProgress(allItems), [allItems]);
 
+  // Headers only show when the filters leave items under them
   const tableRows = useMemo(() => {
     const rows: JSX.Element[] = [];
-    for (const [section, tiers] of progress) {
-      tiers.forEach((tier, i) => {
-        const items: JSX.Element[] = [];
-        for (const {
-          item,
-          normal,
-          ethereal,
-          perfect,
-          perfectEth,
-          foundItems,
-        } of tier) {
-          // Check if item should be shown based on filters
-          const shouldShowNormal =
-            filters.normal === "any" ||
-            (filters.normal === "found" && normal) ||
-            (filters.normal === "missing" && !normal);
-
-          const shouldShowEthereal =
-            filters.ethereal === "any" ||
-            (filters.ethereal === "found" && ethereal === true) ||
-            (filters.ethereal === "missing" && ethereal === false);
-
-          const shouldShowPerfect =
-            filters.perfect === "any" ||
-            (filters.perfect === "found" && perfect) ||
-            (filters.perfect === "missing" && !perfect);
-
-          const shouldShowEthPerfect =
-            filters["eth-perfect"] === "any" ||
-            (filters["eth-perfect"] === "found" && perfectEth === true) ||
-            (filters["eth-perfect"] === "missing" && perfectEth === false);
-
-          // Only show item if all selected filters are satisfied
-          if (
-            !shouldShowNormal ||
-            !shouldShowEthereal ||
-            !shouldShowPerfect ||
-            !shouldShowEthPerfect
-          ) {
+    for (const category of progress) {
+      const categoryRows: JSX.Element[] = [];
+      for (const section of category.sections) {
+        const sectionKey = `${category.name}/${section.name}`;
+        const sectionRows: JSX.Element[] = [];
+        for (const { tier, items } of section.tiers) {
+          const tierKey = `${sectionKey}/${tier ?? ""}`;
+          const itemRows = items.flatMap((status, i) =>
+            isShown(status, filters)
+              ? [grailItemRow(status, `${tierKey}/${i}`)]
+              : []
+          );
+          if (itemRows.length === 0) {
             continue;
           }
-
-          // Find the best representative item for tooltip
-          const tooltipItem = foundItems.length > 0 ? foundItems[0] : null;
-
-          // Find ethereal item for tooltip
-          const etherealItem = foundItems.find((item) => item.ethereal);
-
-          items.push(
-            <tr key={`${item.name}-${i}`} class="grail-item">
-              <th scope="row" class={"set" in item ? "set" : "unique"}>
-                {tooltipItem ? (
-                  <ItemTooltip item={tooltipItem} />
-                ) : (
-                  <GrailItemTooltip
-                    item={item}
-                    isEthereal={ethereal === true}
-                    isPerfect={perfect}
-                  />
-                )}
-              </th>
-              <td class={toClassName(normal)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>
-                  Normal
-                </span>
-              </td>
-              <td class={toClassName(perfect)}>
-                <span style={{ display: "inline-block", verticalAlign: "top" }}>
-                  Perfect
-                </span>
-              </td>
-              <td class={ethereal === undefined ? "" : toClassName(ethereal)}>
-                {ethereal === undefined ? null : (
-                  <span
-                    style={{ display: "inline-block", verticalAlign: "top" }}
-                  >
-                    {etherealItem ? (
-                      <ItemTooltip item={etherealItem} useDefaultColor={false}>
-                        <span>Ethereal</span>
-                      </ItemTooltip>
-                    ) : (
-                      <GrailItemTooltip
-                        item={item}
-                        isEthereal={true}
-                        isPerfect={false}
-                        useDefaultColor={false}
-                      >
-                        <span>Ethereal</span>
-                      </GrailItemTooltip>
-                    )}
-                  </span>
-                )}
-              </td>
-              <td
-                class={perfectEth === undefined ? "" : toClassName(perfectEth)}
-              >
-                {perfectEth === undefined ? null : (
-                  <span
-                    style={{ display: "inline-block", verticalAlign: "top" }}
-                  >
-                    Perfect Eth
-                  </span>
-                )}
-              </td>
-            </tr>
+          if (typeof tier !== "undefined") {
+            sectionRows.push(
+              headerRow(`tier-${tierKey}`, "grail-tier", TIER_NAMES[tier])
+            );
+          }
+          sectionRows.push(...itemRows);
+        }
+        if (sectionRows.length > 0) {
+          categoryRows.push(
+            headerRow(`section-${sectionKey}`, "grail-section", section.name),
+            ...sectionRows
           );
         }
-        if (items.length === 0) {
-          return;
-        }
-        const sectionName =
-          tiers.length > 1 ? `${TIER_NAMES[i]} ${section.name}` : section.name;
+      }
+      if (categoryRows.length > 0) {
         rows.push(
-          <tr key={`header-${sectionName}-${i}`} class="grail-header">
-            <td colSpan={5}>{sectionName}</td>
-          </tr>
+          headerRow(
+            `category-${category.name}`,
+            "grail-category",
+            category.name
+          ),
+          ...categoryRows
         );
-        rows.push(...items);
-      });
+      }
     }
     return rows;
   }, [filters, progress]);

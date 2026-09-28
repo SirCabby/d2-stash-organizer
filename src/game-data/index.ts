@@ -38,6 +38,7 @@ import runewords from "../../game-data/json/Runewords.json";
 import gems from "../../game-data/json/Gems.json";
 import modLoc from "../../game-data/json/item-modifiers.json";
 import itemTypeClassMappings from "../../game-data/json/ItemTypeClassMappings.json";
+import itemTypeCategories from "../../game-data/json/ItemTypeCategories.json";
 
 // TODO: switch to JSON.parse
 export const ARMORS: Record<string, Armor | undefined> = armors;
@@ -60,6 +61,8 @@ export const RUNEWORDS: Runeword[] = runewords;
 export const GEMS: Record<string, Gem> = gems;
 export const ITEM_TYPE_CLASS_MAPPINGS: ItemTypeClassMapping =
   itemTypeClassMappings;
+export const ITEM_TYPE_CATEGORIES: Record<string, string | undefined> =
+  itemTypeCategories;
 
 const locaRecord: Record<string, ModifierLocale> = Object.create(
   null

@@ -65,6 +65,17 @@ kill-port: ## Kill any process using port 10001
 run: build kill-port ## Start development server
 	npm run watch
 
+# Options of grail-filter, like `make grail-filter DRY_RUN=1` (see help)
+GRAIL_FILTER_FLAGS = $(if $(SAVE_DIR),--save-dir "$(SAVE_DIR)") \
+	$(if $(STASH),--stash "$(STASH)") \
+	$(if $(FILTER_PROFILE),--profile "$(FILTER_PROFILE)") \
+	$(if $(ALL_SAVES),--all-saves) \
+	$(if $(DRY_RUN),--dry-run)
+
+.PHONY: grail-filter
+grail-filter: ## Scope the loot filter's grail rules to the grail items missing from the offline stash
+	npm run grail-filter -- $(GRAIL_FILTER_FLAGS)
+
 .PHONY: help
 help: ## Show this help
 	@echo "Available commands:"
@@ -78,6 +89,7 @@ help: ## Show this help
 	@echo "  make build           - Regenerate + build the project into docs/"
 	@echo "  make build-all       - Full pipeline: convert RotW + regenerate + build"
 	@echo "  make run             - Start development server"
+	@echo "  make grail-filter    - Scope the loot filter's grail rules to the grail items missing from the offline stash"
 	@echo "  make kill-port       - Kill any process using port 10001"
 	@echo ""
 	@echo "Environment variables for extract-d2r:"
@@ -85,3 +97,11 @@ help: ## Show this help
 	@echo "                  on Linux, the Lutris or Wine prefix's drive_c/Program Files (x86)/Diablo II Resurrected)"
 	@echo "  CASCLIB_PATH  - Path to CascLib (default: D2RMM's CascLib.dll on Windows,"
 	@echo "                  $(CASCLIB_DIR)/build/libcasc.so elsewhere)"
+	@echo ""
+	@echo "Variables for grail-filter (e.g. make grail-filter DRY_RUN=1):"
+	@echo "  SAVE_DIR        - Save folder with the offline stash and the loot filter profiles"
+	@echo "                    (default: the first of D2R's save folders, mods first, with an offline stash)"
+	@echo "  STASH           - Offline stash (default: the save folder's shared .d2x stash)"
+	@echo "  FILTER_PROFILE  - Only update this loot filter profile (default: all of them)"
+	@echo "  ALL_SAVES=1     - Also count the grail items of the save folder's characters and other stashes"
+	@echo "  DRY_RUN=1       - Show the changes without saving them"

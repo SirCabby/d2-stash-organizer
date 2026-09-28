@@ -46,6 +46,8 @@ export interface Gem {
 export interface UniqueItem {
   name: string;
   enabled: boolean;
+  // False for the items the game leaves out of the Chronicle, its own grail
+  inChronicle: boolean;
   code: string;
   qlevel: number;
   reqlevel: number;
@@ -56,6 +58,8 @@ export interface SetItem {
   name: string;
   code: string;
   set: string;
+  // False for the items the game leaves out of the Chronicle, its own grail
+  inChronicle: boolean;
   baseModifiers: ModifierRange[];
   setModifiers: ModifierRange[][];
   qlevel: number;

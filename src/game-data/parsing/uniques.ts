@@ -10,6 +10,7 @@ export async function uniquesToJson(skills: Skill[]) {
     const item: UniqueItem = {
       name: getString(line[0].trim()),
       enabled: line[3].trim() !== "1",
+      inChronicle: line[5].trim() !== "1",
       code: line[13].trim(),
       qlevel: Number(line[11]),
       reqlevel: Number(line[12]),

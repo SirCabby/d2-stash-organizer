@@ -132,3 +132,25 @@ This site also runs as a GameStateTracker (GST) companion site. GST serves the p
 - **Saving stays all or nothing** (`writeToSaveLocation`): every destination and permission is resolved before writing, and every file is staged before any is committed. Saving some characters but not others duplicates or loses the items moved between them.
 - **Never write what wasn't fully read** (`toSaveFile` in `src/web/store/parser.ts`): `parseItemList` skips the rest of a list after an item it can't parse, so rewriting that file would drop those items. `parseSaveFile` records every file that doesn't re-serialize to its exact bytes; `toSaveFile` returns such a file's original bytes while it's unchanged and throws once something changes it. Every persistence path (IndexedDB working copy, in-place save, download) goes through `toSaveFile`.
 - **Never overwrite a newer file**: the save location records each file's disk `lastModified` when it's loaded or saved (`versions`), and `writeToSaveLocation` refuses to write if any file on disk changed since (typically the game saving it).
+
+---
+
+## Grail Tracker
+
+The tracker mirrors the game's own tools: the Chronicle (its grail) decides what counts, and the loot filter decides the grouping.
+
+- **What counts** (`listGrailItems`): uniques and set items the Chronicle tracks (`inChronicle`, from the `disableChronicle` column), minus quest items (qlevel 0). That leaves out what can't be found anymore (Constricting Ring, the Crystal Sword Azurewrath, the Warlord's Glory set, the pre-RotW sunder charms) and the crafted Renewed sunders. RotW replaced UniqueItems.txt's `enabled` column with `disabled`, which no row sets, so `enabled` alone no longer excludes anything.
+- **Grouping**: uniques go under Armor, Weapons and Accessories, one section per loot filter category, split into Normal/Exceptional/Elite for armor and weapons. Each item type's category is ItemTypes.txt's `UICategory` column (`ItemTypeCategories.json`), or its parent type's when empty. Uniques of a category the list doesn't know yet land in an "Other" section instead of disappearing. Sets stay one section per set, like in the Chronicle.
+- **The organizer keeps its own list** (`listGrailUniques` and `UNIQUES_ORDER`): `fillTemplate` throws for a unique that has no spot in its section's template, so the organizer's grail pages keep every enabled unique, whether the Chronicle tracks it or not.
+- **Always-ethereal uniques** (Ethereal Edge, Ghostflame, Shadow Killer, Wraith Flight have the `ethereal` property): their ethereal copy is the normal grail entry (`isAlwaysEthereal`), and they have no eth entry.
+
+---
+
+## Loot Filter Grail Rules
+
+`make grail-filter` (`src/scripts/loot-filter/updateGrailFilter.ts`) rewrites the Show rules with "grail" in their name, in every loot filter profile of the save folder, so that they only show the bases of the grail items missing from the offline stash (`scopeGrailRules`). The filter can't tell ethereal items apart, so there is no eth rule: a unique rule also shows the bases of the uniques still missing their ethereal copy.
+
+- **Profiles** are `<name>.fltr` files next to the saves (`mods/D2RMM/` under D2RMM), written by the game as `JSON.stringify(profile, null, 4)` with no trailing newline; `lootfilter.json` maps characters to profiles. The game was seen rewriting a profile when it was edited in game, and not when it exited.
+- **Matching**: in a rule, categories and item codes add up (a category is a whole checked branch of the tree), and so do the rarities. A rule without categories or codes matches all equipment, so a grail rule with nothing missing is disabled rather than emptied. Item codes are base codes, so the rules can't tell apart two uniques of the same base.
+- **`filterEtherealSocketed`** is the "Ethereal / Socketed" box of the rarity list: it adds gray (ethereal or socketed) items to the rule and can't limit a rule to ethereal items, per the Blizzard forums and filter authors. The executable is encrypted on disk, so this couldn't be checked in its code.
+- **Game detection**: on Linux, Lutris' umu/proton wrappers keep `D2RLoader.exe` in their command line after the game exits, so `isGameRunning` only looks at the process name and the command line's first argument.

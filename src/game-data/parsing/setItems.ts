@@ -11,6 +11,7 @@ export async function setItemsToJson(skills: Skill[]) {
       name: getString(line[0].trim()),
       code: line[9].trim(),
       set: line[2].trim(),
+      inChronicle: line[5].trim() !== "1",
       qlevel: Number(line[12]),
       levelReq: Number(line[13]),
       baseModifiers: [],
