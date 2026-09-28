@@ -17,7 +17,7 @@ const ENHANCED_DEF_STATS = [
  * - Runewords have one for the base item mods, and one for the runeword itself
  * - Sets have one for each increment in set bonuses
  */
-function parseModsList({ readInt }: BinaryStream, item: Item) {
+function parseModsList({ readInt, position }: BinaryStream, item: Item) {
   const mods: Modifier[] = [];
   let modId = readInt(9);
   while (ITEM_STATS[modId]) {
@@ -36,6 +36,7 @@ function parseModsList({ readInt }: BinaryStream, item: Item) {
         ...mod,
         level: readInt(6) - modInfo.bias,
         spell: readInt(10) - modInfo.bias,
+        chargesIndex: position(),
         charges: readInt(8) - modInfo.bias,
         maxCharges: readInt(8) - modInfo.bias,
       };
@@ -62,9 +63,6 @@ function parseModsList({ readInt }: BinaryStream, item: Item) {
     // Special mods we want to have easy access to when rendering in the UI
     if (ENHANCED_DEF_STATS.includes(mod.stat)) {
       item.enhancedDefense = true;
-    }
-    if (modInfo.stat === "maxdurability") {
-      item.extraDurability = mod.value;
     }
 
     if (modInfo.followedBy) {

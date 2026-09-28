@@ -55,6 +55,9 @@ export interface Item {
   defense?: number;
   defenseRange?: [number, number];
   durability?: [current: number, max: number];
+  // Bit index of the current durability in the raw string, when it was
+  // parsed. Converting between legacy and D2R formats moves it.
+  durabilityIndex?: number;
   quantity?: number;
 
   modifiers?: Modifier[];
@@ -84,6 +87,5 @@ export interface Item {
   hasRealmData?: boolean;
 
   // Additional pre-computed fields for easier display
-  extraDurability?: number;
   enhancedDefense?: boolean;
 }

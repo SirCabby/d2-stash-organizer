@@ -1,6 +1,6 @@
 import { Item } from "../types/Item";
-import { groupItems } from "../../../web/items/groupItems";
-import { isSimpleItem } from "../../../web/collection/utils/isSimpleItem";
+import { applyQuantities } from "../../../web/items/groupItems";
+import { isStack, removeFromStack } from "../../d2r-stash/dedicatedTab";
 
 function removeFromOwner(item: Item) {
   const { owner } = item;
@@ -33,36 +33,14 @@ export function bulkDeleteWithQuantities(
   items: Item[],
   transferQuantities: Map<string, number>
 ): number {
-  const groupedItems = groupItems(items);
-
-  const itemsToDelete: Item[] = [];
-
-  for (const itemGroup of groupedItems) {
-    const representativeItem = itemGroup[0];
-
-    if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
-      const transferQuantity = transferQuantities.get(representativeItem.code);
-
-      if (
-        transferQuantity &&
-        transferQuantity > 0 &&
-        transferQuantity < itemGroup.length
-      ) {
-        const itemsOfThisType = items.filter(
-          (item) => item.code === representativeItem.code
-        );
-        itemsToDelete.push(...itemsOfThisType.slice(0, transferQuantity));
-      } else {
-        itemsToDelete.push(...itemGroup);
-      }
+  let deleted = 0;
+  for (const [item, count] of applyQuantities(items, transferQuantities)) {
+    if (isStack(item)) {
+      removeFromStack(item, count);
     } else {
-      itemsToDelete.push(...itemGroup);
+      removeFromOwner(item);
     }
+    deleted += count;
   }
-
-  for (const item of itemsToDelete) {
-    removeFromOwner(item);
-  }
-
-  return itemsToDelete.length;
+  return deleted;
 }

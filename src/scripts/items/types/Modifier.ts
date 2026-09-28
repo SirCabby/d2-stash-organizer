@@ -13,6 +13,9 @@ export interface Modifier {
   level?: number;
   charges?: number;
   maxCharges?: number;
+  // Not from the game: bit index of the charges in the item's raw string,
+  // when it was parsed. Converting between legacy and D2R formats moves it.
+  chargesIndex?: number;
   chance?: number;
   // This isn't from the game, it's our way of handling groups of mods (like poison damage)
   // that need special treatment for displaying or searching

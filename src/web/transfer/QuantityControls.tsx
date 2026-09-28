@@ -2,6 +2,7 @@ import { useContext, useCallback } from "preact/hooks";
 import { TransferQuantityContext } from "./TransferQuantityContext";
 import { Item } from "../../scripts/items/types/Item";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
+import { getItemLocationKey, groupQuantity } from "../items/groupItems";
 import "./QuantityControls.css";
 
 interface QuantityControlsProps {
@@ -14,8 +15,10 @@ export function QuantityControls({ item, duplicates }: QuantityControlsProps) {
     TransferQuantityContext
   );
 
-  const totalQuantity = duplicates?.length || 0;
-  const currentTransferQuantity = getTransferQuantity(item.code);
+  // Per row, so other rows of the same item keep their own quantity
+  const key = getItemLocationKey(item);
+  const totalQuantity = duplicates ? groupQuantity(duplicates) : 0;
+  const currentTransferQuantity = getTransferQuantity(key);
   // Default to total quantity if not set
   const displayQuantity =
     currentTransferQuantity > 0 ? currentTransferQuantity : totalQuantity;
@@ -28,7 +31,7 @@ export function QuantityControls({ item, duplicates }: QuantityControlsProps) {
       // If the value is NaN or negative, reset to 1
       if (isNaN(value) || value < 1) {
         input.value = "1";
-        setTransferQuantity(item.code, 1);
+        setTransferQuantity(key, 1);
         return;
       }
 
@@ -36,31 +39,31 @@ export function QuantityControls({ item, duplicates }: QuantityControlsProps) {
       const capped = Math.min(totalQuantity, value);
 
       // Always set the transfer quantity to what the user specified
-      setTransferQuantity(item.code, capped);
+      setTransferQuantity(key, capped);
     },
-    [item.code, setTransferQuantity, totalQuantity]
+    [key, setTransferQuantity, totalQuantity]
   );
 
   const handleIncrement = useCallback(() => {
     const newQuantity = Math.min(displayQuantity + 1, totalQuantity);
-    setTransferQuantity(item.code, newQuantity);
-  }, [displayQuantity, totalQuantity, item.code, setTransferQuantity]);
+    setTransferQuantity(key, newQuantity);
+  }, [displayQuantity, totalQuantity, key, setTransferQuantity]);
 
   const handleDecrement = useCallback(() => {
     const newQuantity = Math.max(displayQuantity - 1, 1);
-    setTransferQuantity(item.code, newQuantity);
-  }, [displayQuantity, item.code, setTransferQuantity]);
+    setTransferQuantity(key, newQuantity);
+  }, [displayQuantity, key, setTransferQuantity]);
 
   const handleSetToOne = useCallback(() => {
-    setTransferQuantity(item.code, 1);
-  }, [item.code, setTransferQuantity]);
+    setTransferQuantity(key, 1);
+  }, [key, setTransferQuantity]);
 
   const handleSetToAll = useCallback(() => {
-    setTransferQuantity(item.code, totalQuantity);
-  }, [item.code, setTransferQuantity, totalQuantity]);
+    setTransferQuantity(key, totalQuantity);
+  }, [key, setTransferQuantity, totalQuantity]);
 
   // Only show controls for simple items with quantities
-  if (!isSimpleItem(item) || !duplicates || duplicates.length <= 1) {
+  if (!isSimpleItem(item) || totalQuantity <= 1) {
     return null;
   }
 

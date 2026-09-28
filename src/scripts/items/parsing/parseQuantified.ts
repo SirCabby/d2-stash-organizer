@@ -2,7 +2,10 @@ import { BinaryStream } from "../../save-file/binary";
 import { Item } from "../types/Item";
 import { ARMORS, MISC, WEAPONS } from "../../../game-data";
 
-export function parseQuantified({ read, readInt }: BinaryStream, item: Item) {
+export function parseQuantified(
+  { readInt, position }: BinaryStream,
+  item: Item
+) {
   const baseArmor = ARMORS[item.code];
   const baseWeapon = WEAPONS[item.code];
   const baseMisc = MISC[item.code];
@@ -18,9 +21,9 @@ export function parseQuantified({ read, readInt }: BinaryStream, item: Item) {
     const maxDurability = readInt(8);
     // Indestructible items have max durability 0 and no current durability
     if (maxDurability) {
-      item.durability = [readInt(8), maxDurability];
-      // Skipping unknown extra bit
-      read(1);
+      // 9 bits, unlike the max (Save Bits in ItemStatCost.txt)
+      item.durabilityIndex = position();
+      item.durability = [readInt(9), maxDurability];
     }
   }
 

@@ -1,6 +1,7 @@
 import { Item } from "../../scripts/items/types/Item";
 import "./ItemTooltip.css";
 import { getBase } from "../../scripts/items/getBase";
+import { fullDurability } from "../../scripts/items/repairItem";
 import { colorClass } from "../collection/utils/colorClass";
 import { useState, useRef, useEffect } from "preact/hooks";
 import { JSX } from "preact";
@@ -156,8 +157,7 @@ export function ItemTooltip({
         )}
         {item.durability && (
           <div>
-            Durability: {item.durability?.[0]} of{" "}
-            {item.durability[1] + (item.extraDurability ?? 0)}
+            Durability: {item.durability[0]} of {fullDurability(item)}
           </div>
         )}
         {/* TODO: requirements */}

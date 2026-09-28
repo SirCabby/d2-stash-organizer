@@ -10,6 +10,7 @@ import {
 import { characterToSaveFile } from "../../scripts/character/parsing/characterToSaveFile";
 import { d2rStashToSaveFile } from "../../scripts/d2r-stash/parsing/d2rStashToSaveFile";
 import { parseD2rStash } from "../../scripts/d2r-stash/parsing/parseD2rStash";
+import { fixSimpleMaterials } from "../../scripts/d2r-stash/dedicatedTab";
 
 const DEFAULT_SHARED_FILENAME = "_LOD_SharedStashSave.sss";
 const DEFAULT_PERSONAL_FILENAME = "CharacterName.d2x";
@@ -38,6 +39,10 @@ export async function parseSaveFile(file: File) {
     const rewritten = serialize(owner);
     if (!sameBytes(rewritten, raw)) {
       unreadable.set(owner, { original: raw, rewritten });
+    } else {
+      // Materials that older versions left as simple items become full items
+      // on the next save. Not in unreadable files, which must stay as they are.
+      fixSimpleMaterials(owner);
     }
     return owner;
   } catch (e) {

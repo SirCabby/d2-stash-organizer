@@ -17,7 +17,7 @@ import { fromInt } from "../../save-file/binary";
 import { FIRST_D2R } from "../../character/parsing/versions";
 import { D2R_OFFSET, toD2, toD2R } from "./conversion";
 
-function cloneItem(item: Item): Item {
+export function cloneItem(item: Item): Item {
   const clone: Item = { ...item };
   if (item.filledSockets) {
     clone.filledSockets = item.filledSockets.map((s) => ({ ...s }));

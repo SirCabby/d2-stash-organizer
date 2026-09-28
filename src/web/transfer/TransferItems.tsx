@@ -11,10 +11,7 @@ import {
   isStash,
   ItemsOwner,
 } from "../../scripts/save-file/ownership";
-import {
-  ItemLocation,
-  ItemStorageType,
-} from "../../scripts/items/types/ItemLocation";
+import { ItemStorageType } from "../../scripts/items/types/ItemLocation";
 import { useUpdateCollection } from "../store/useUpdateCollection";
 import { numberInputChangeHandler } from "../organizer/numberInputChangeHandler";
 import { organize } from "../../scripts/grail/organize";
@@ -24,9 +21,7 @@ import { bulkTransferWithQuantities } from "../../scripts/items/moving/bulkTrans
 import { bulkCopyWithQuantities } from "../../scripts/items/moving/bulkCopyWithQuantities";
 import { bulkDeleteWithQuantities } from "../../scripts/items/moving/bulkDeleteWithQuantities";
 import { TransferQuantityContext } from "./TransferQuantityContext";
-import { Item } from "../../scripts/items/types/Item";
-import { groupItems } from "../items/groupItems";
-import { isSimpleItem } from "../collection/utils/isSimpleItem";
+import { applyQuantities } from "../items/groupItems";
 
 export function TransferItems() {
   const { lastActivePlugyStashPage } = useContext(CollectionContext);
@@ -48,74 +43,13 @@ export function TransferItems() {
 
   const items = useMemo(() => Array.from(selectedItems), [selectedItems]);
 
-  const actualTransferCount = useMemo(() => {
-    const groupedItems = groupItems(items);
-    let total = 0;
-
-    for (const itemGroup of groupedItems) {
-      const representativeItem = itemGroup[0];
-
-      if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
-        const transferQuantity = transferQuantities.get(
-          representativeItem.code
-        );
-        if (
-          transferQuantity &&
-          transferQuantity > 0 &&
-          transferQuantity < itemGroup.length
-        ) {
-          total += transferQuantity;
-        } else {
-          total += itemGroup.length;
-        }
-      } else {
-        total += itemGroup.length;
-      }
-    }
-
-    return total;
-  }, [items, transferQuantities]);
-
-  const handleRemoveItem = useCallback(
-    (itemToRemove: Item) => {
-      const itemsToRemove = Array.from(selectedItems).filter((item) => {
-        if (
-          item.code !== itemToRemove.code ||
-          item.owner !== itemToRemove.owner
-        ) {
-          return false;
-        }
-
-        if (item.location !== itemToRemove.location) {
-          return false;
-        }
-
-        if (item.location === ItemLocation.STORED) {
-          if (item.stored !== itemToRemove.stored) {
-            return false;
-          }
-          if (
-            item.stored === ItemStorageType.STASH &&
-            item.page !== itemToRemove.page
-          ) {
-            return false;
-          }
-        }
-
-        if (item.location === ItemLocation.EQUIPPED) {
-          if (
-            item.mercenary !== itemToRemove.mercenary ||
-            item.corpse !== itemToRemove.corpse
-          ) {
-            return false;
-          }
-        }
-
-        return true;
-      });
-      unselectAll(itemsToRemove);
-    },
-    [selectedItems, unselectAll]
+  const actualTransferCount = useMemo(
+    () =>
+      applyQuantities(items, transferQuantities).reduce(
+        (total, [, count]) => total + count,
+        0
+      ),
+    [items, transferQuantities]
   );
 
   const doTransferOrCopy = useCallback(
@@ -345,7 +279,7 @@ export function TransferItems() {
         onSort={() => {
           // No-op since this table doesn't need sorting
         }}
-        onRemoveItem={handleRemoveItem}
+        onRemoveItems={unselectAll}
       />
     </div>
   );

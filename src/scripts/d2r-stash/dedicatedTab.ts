@@ -6,8 +6,15 @@ import {
   ItemLocation,
   ItemStorageType,
 } from "../items/types/ItemLocation";
-import { fromInt } from "../save-file/binary";
+import { ItemQuality } from "../items/types/ItemQuality";
+import { fromBinary, fromInt } from "../save-file/binary";
+import { SaveFileReader } from "../save-file/SaveFileReader";
+import { isD2rStash, ItemsOwner } from "../save-file/ownership";
+import { LAST_LEGACY } from "../character/parsing/versions";
+import { getAllItems } from "../plugy-stash/getAllItems";
 import { encodeHuffman } from "../items/parsing/huffman";
+import { parseItem } from "../items/parsing/parseItem";
+import { postProcessItem } from "../items/post-processing/postProcessItem";
 
 const MAX_STACK = 99;
 
@@ -29,11 +36,39 @@ const STACKABLE_BASE_TYPES = new Set([
   ...POTION_TYPES,
 ]);
 
+// The materials RotW keeps in its tabs (AdvancedStashStackable in Misc.txt).
+// Other quest items, like the Standard of Heroes or the Uber Ancient upgrade
+// materials, don't go in them.
+const MATERIALS = new Set([
+  // Keys and organs
+  "pk1",
+  "pk2",
+  "pk3",
+  "dhn",
+  "bey",
+  "mbr",
+  // Token of Absolution and essences
+  "toa",
+  "tes",
+  "ceh",
+  "bet",
+  "fed",
+  // Worldstone shards
+  "xa1",
+  "xa2",
+  "xa3",
+  "xa4",
+  "xa5",
+  // Uber Ancient summoning materials
+  "ua1",
+  "ua2",
+  "ua3",
+  "ua4",
+  "ua5",
+]);
+
 function isMaterialEligible(code: string): boolean {
-  const base = MISC[code];
-  if (!base || base.type !== "ques") return false;
-  if (code === "box") return false;
-  return !base.trackQuestDifficulty;
+  return MATERIALS.has(code);
 }
 
 export function isDedicatedTabEligible(item: Item): boolean {
@@ -219,4 +254,132 @@ export function addToDedicatedTab(stash: D2rStash, item: Item): boolean {
 
   stash.dedicatedTab.push({ item, quantity: incomingQty });
   return true;
+}
+
+/** Whether the item is a whole stack in a RotW tab, rather than one item. */
+export function isStack(item: Item): boolean {
+  const { owner } = item;
+  return (
+    isD2rStash(owner) &&
+    !!owner.dedicatedTab?.some((slot) => slot.item === item)
+  );
+}
+
+/** Lowers a stack by `count`. Its slot goes once the stack is empty. */
+export function removeFromStack(stack: Item, count: number) {
+  const slots = (stack.owner as D2rStash).dedicatedTab ?? [];
+  const slot = slots.find((s) => s.item === stack);
+  if (!slot || count <= 0) return;
+  slot.quantity -= Math.min(count, slot.quantity);
+  if (slot.quantity === 0) {
+    slots.splice(slots.indexOf(slot), 1);
+  } else {
+    stack.quantity = slot.quantity;
+    updateQuantityInRaw(stack, slot.quantity);
+  }
+}
+
+// Outside the tabs, runes, gems and potions are simple items, while the
+// materials are full items with an ID and a level (compactsave in Misc.txt).
+function isSimpleOutsideTabs(code: string) {
+  const baseType = MISC[code]?.type;
+  return !!baseType && STACKABLE_BASE_TYPES.has(baseType);
+}
+
+// The tabs don't keep item levels, and materials don't use theirs.
+const MATERIAL_LEVEL = 99;
+
+// What follows a material's code when it is a full item, as the game makes
+// them: no sockets, an ID, a level, normal quality and no mods.
+function fullMaterialBits(d2r: boolean) {
+  return (
+    "000" + // no filled sockets
+    fromInt(Math.floor(Math.random() * 2 ** 32), 32) + // ID
+    fromInt(MATERIAL_LEVEL, 7) +
+    fromInt(ItemQuality.NORMAL, 4) +
+    "000" + // no picture, class-specific affix or realm data
+    (d2r ? "0" : "") + // D2R extra bit
+    "111111111" // end of the empty list of mods
+  );
+}
+
+// Parsing the bits back sets the item's fields to match them.
+function parseBits(raw: string, owner: ItemsOwner) {
+  const reader = new SaveFileReader(new Uint8Array(fromBinary(raw)));
+  const item = parseItem(reader, owner);
+  postProcessItem(item);
+  return item;
+}
+
+/**
+ * One item of a stack's type, laid out the way toD2R lays out items coming
+ * from PlugY.
+ */
+function singleItem(stack: Item): Item {
+  const simple = isSimpleOutsideTabs(stack.code);
+  const flags = simple
+    ? DEDICATED_TAB_FLAGS
+    : // Bit 21 is the simple flag
+      DEDICATED_TAB_FLAGS.slice(0, 21) + "0" + DEDICATED_TAB_FLAGS.slice(22);
+  return parseBits(
+    flags +
+      fromInt(ItemLocation.STORED, 3) +
+      fromInt(ItemEquipSlot.NONE, 4) +
+      fromInt(0, 4) + // column
+      fromInt(0, 4) + // row
+      fromInt(ItemStorageType.STASH, 3) +
+      encodeHuffman(stack.code.padEnd(4, " ")) +
+      (simple
+        ? "0" + // no realm data
+          "1" +
+          fromInt(0, 8) // empty quantity byte
+        : fullMaterialBits(true)),
+    stack.owner
+  );
+}
+
+// In legacy items: the JM header, then bit 21 of the flags is the simple
+// flag, and the code ends after the flags, version, location and code.
+const LEGACY_SIMPLE_FLAG = 16 + 21;
+const LEGACY_CODE_END = 16 + 32 + 10 + 18 + 32;
+
+/**
+ * Older versions of this tool took materials out of RotW tabs as simple
+ * items, which the game only makes as full items. This turns them back into
+ * full items where they are, and returns how many it found. Only for legacy
+ * saves (PlugY stashes and the offline stash), whose simple items have no
+ * quantity, so that each of them is exactly one material.
+ */
+export function fixSimpleMaterials(owner: ItemsOwner): number {
+  if (owner.version > LAST_LEGACY) return 0;
+  let fixed = 0;
+  for (const item of getAllItems(owner)) {
+    if (
+      item.simple &&
+      isDedicatedTabEligible(item) &&
+      !isSimpleOutsideTabs(item.code)
+    ) {
+      const raw =
+        item.raw.slice(0, LEGACY_SIMPLE_FLAG) +
+        "0" +
+        item.raw.slice(LEGACY_SIMPLE_FLAG + 1, LEGACY_CODE_END) +
+        fullMaterialBits(false);
+      // Keeps the fields parsing doesn't set, like the page
+      Object.assign(item, parseBits(raw, owner));
+      fixed++;
+    }
+  }
+  return fixed;
+}
+
+/** `count` single items of a stack's type, leaving the stack as it is. */
+export function singlesOfStack(stack: Item, count: number): Item[] {
+  return Array.from({ length: count }, () => singleItem(stack));
+}
+
+/** Takes `count` items off a stack, as single items to place anywhere. */
+export function takeFromStack(stack: Item, count: number): Item[] {
+  const singles = singlesOfStack(stack, count);
+  removeFromStack(stack, count);
+  return singles;
 }

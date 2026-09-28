@@ -2,9 +2,10 @@ import { createContext, RenderableProps } from "preact";
 import { useCallback, useMemo, useState } from "preact/hooks";
 
 interface TransferQuantityContext {
+  // By row, see getItemLocationKey
   transferQuantities: Map<string, number>;
-  setTransferQuantity(itemCode: string, quantity: number): void;
-  getTransferQuantity(itemCode: string): number;
+  setTransferQuantity(key: string, quantity: number): void;
+  getTransferQuantity(key: string): number;
   resetQuantities(): void;
 }
 
@@ -22,24 +23,21 @@ export function TransferQuantityProvider({
     new Map<string, number>()
   );
 
-  const setTransferQuantity = useCallback(
-    (itemCode: string, quantity: number) => {
-      setTransferQuantities((previous) => {
-        const newQuantities = new Map(previous);
-        if (quantity <= 0) {
-          newQuantities.delete(itemCode);
-        } else {
-          newQuantities.set(itemCode, quantity);
-        }
-        return newQuantities;
-      });
-    },
-    []
-  );
+  const setTransferQuantity = useCallback((key: string, quantity: number) => {
+    setTransferQuantities((previous) => {
+      const newQuantities = new Map(previous);
+      if (quantity <= 0) {
+        newQuantities.delete(key);
+      } else {
+        newQuantities.set(key, quantity);
+      }
+      return newQuantities;
+    });
+  }, []);
 
   const getTransferQuantity = useCallback(
-    (itemCode: string): number => {
-      return transferQuantities.get(itemCode) || 0;
+    (key: string): number => {
+      return transferQuantities.get(key) || 0;
     },
     [transferQuantities]
   );

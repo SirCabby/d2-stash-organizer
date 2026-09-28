@@ -13,6 +13,8 @@ import { Item } from "../../scripts/items/types/Item";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
+import { repairItem } from "../../scripts/items/repairItem";
+import { isUnreadable } from "../store/parser";
 import {
   topOffDedicatedTab,
   refillDedicatedTab,
@@ -143,37 +145,16 @@ export function Settings() {
       return;
     }
     let repairedCount = 0;
-    const repairItem = (item: Item) => {
-      if (item.durability && item.durability.length === 2) {
-        if (typeof item.extraDurability === "number") {
-          item.durability[0] = item.durability[1] + item.extraDurability;
-        } else {
-          item.durability[0] = item.durability[1];
-        }
-        repairedCount++;
-      }
-      if (item.modifiers) {
-        for (const mod of item.modifiers) {
-          if (
-            typeof mod.charges === "number" &&
-            typeof mod.maxCharges === "number" &&
-            mod.charges !== mod.maxCharges
-          ) {
-            mod.charges = mod.maxCharges;
-            repairedCount++;
-          }
-        }
-      }
-      if (item.filledSockets) {
-        for (const socketed of item.filledSockets) {
-          repairItem(socketed);
-        }
+    const repair = (item: Item) => {
+      repairedCount += repairItem(item);
+      for (const socketed of item.filledSockets ?? []) {
+        repair(socketed);
       }
     };
     const newOwners = owners.map((owner) => {
-      const items = getAllItems(owner);
-      for (const item of items) {
-        repairItem(item);
+      // Files that couldn't be fully read can't be saved with changes
+      if (!isUnreadable(owner)) {
+        getAllItems(owner).forEach(repair);
       }
       return owner;
     });

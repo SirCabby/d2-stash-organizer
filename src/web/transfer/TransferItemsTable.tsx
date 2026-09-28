@@ -158,7 +158,10 @@ export interface TransferItemsTableProps {
   sortField: SortField;
   sortDirection: SortDirection;
   onSort: (field: SortField) => void;
-  onRemoveItem?: (item: ItemType) => void;
+  // Receives exactly the items of the removed row. Matching by code instead
+  // would also drop every other selected item of that base type, like all the
+  // amulets on the same stash page.
+  onRemoveItems?: (items: ItemType[]) => void;
 }
 
 function getGroupedItemSortValue(
@@ -274,7 +277,7 @@ export function TransferItemsTable({
   sortField,
   sortDirection,
   onSort,
-  onRemoveItem,
+  onRemoveItems,
 }: TransferItemsTableProps) {
   // Group items first, then sort the groups
   const groupedItems = useMemo(() => groupItems(items), [items]);
@@ -423,10 +426,10 @@ export function TransferItemsTable({
             return (
               <tr class="item" key={item.id ?? index}>
                 <td>
-                  {onRemoveItem && (
+                  {onRemoveItems && (
                     <button
                       class="remove-btn"
-                      onClick={() => onRemoveItem(item)}
+                      onClick={() => onRemoveItems(items)}
                       aria-label={`Remove ${item.name} from transfer list`}
                       title="Remove from transfer list"
                     >
@@ -448,7 +451,7 @@ export function TransferItemsTable({
                   <AdditionalInfo item={item} quantity={groupQuantity(items)} />
                 </td>
                 <td>
-                  {isSimpleItem(item) && items.length > 1 ? (
+                  {isSimpleItem(item) && groupQuantity(items) > 1 ? (
                     <QuantityControls item={item} duplicates={items} />
                   ) : (
                     <span>—</span>

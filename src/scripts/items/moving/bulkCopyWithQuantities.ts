@@ -4,11 +4,16 @@ import {
   ItemsOwner,
 } from "../../save-file/ownership";
 import { addPage } from "../../plugy-stash/addPage";
-import { copyItemTo } from "./copyItemTo";
+import { cloneItem, copyItemTo } from "./copyItemTo";
 import { ItemStorageType } from "../types/ItemLocation";
 import { Item } from "../types/Item";
-import { groupItems } from "../../../web/items/groupItems";
-import { isSimpleItem } from "../../../web/collection/utils/isSimpleItem";
+import { applyQuantities } from "../../../web/items/groupItems";
+import {
+  addToDedicatedTab,
+  isDedicatedTabEligible,
+  isStack,
+  singlesOfStack,
+} from "../../d2r-stash/dedicatedTab";
 
 export function bulkCopyWithQuantities(
   target: ItemsOwner,
@@ -16,32 +21,9 @@ export function bulkCopyWithQuantities(
   transferQuantities: Map<string, number>,
   storageType = ItemStorageType.STASH
 ) {
-  const groupedItems = groupItems(items);
-
-  const itemsToCopy: Item[] = [];
-
-  for (const itemGroup of groupedItems) {
-    const representativeItem = itemGroup[0];
-
-    if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
-      const transferQuantity = transferQuantities.get(representativeItem.code);
-
-      if (
-        transferQuantity &&
-        transferQuantity > 0 &&
-        transferQuantity < itemGroup.length
-      ) {
-        const itemsOfThisType = items.filter(
-          (item) => item.code === representativeItem.code
-        );
-        itemsToCopy.push(...itemsOfThisType.slice(0, transferQuantity));
-      } else {
-        itemsToCopy.push(...itemGroup);
-      }
-    } else {
-      itemsToCopy.push(...itemGroup);
-    }
-  }
+  const itemsToCopy = applyQuantities(items, transferQuantities).flatMap(
+    ([item, count]) => (isStack(item) ? singlesOfStack(item, count) : [item])
+  );
 
   if (isPlugyStash(target)) {
     let pageIndex = target.pages.length;
@@ -60,13 +42,22 @@ export function bulkCopyWithQuantities(
       }
     }
   } else {
-    let pageCount = 0;
+    let copied = 0;
     const failed: Item[] = [];
     itemsLoop: for (const item of itemsToCopy) {
+      // Like transfers, RotW keeps runes, gems and materials in its tabs
+      if (target.variant === "rotw" && isDedicatedTabEligible(item)) {
+        const copy = cloneItem(item);
+        copy.owner = target;
+        if (addToDedicatedTab(target, copy)) {
+          copied++;
+          continue;
+        }
+      }
       let pageIndex = 0;
       while (pageIndex < target.pages.length) {
         if (copyItemTo(item, target, ItemStorageType.STASH, pageIndex)) {
-          pageCount++;
+          copied++;
           continue itemsLoop;
         }
         pageIndex++;
@@ -75,7 +66,7 @@ export function bulkCopyWithQuantities(
     }
     if (failed.length > 0) {
       throw new Error(
-        `Not enough space: ${pageCount}/${itemsToCopy.length} items copied. ` +
+        `Not enough space: ${copied}/${itemsToCopy.length} items copied. ` +
           `${failed.length} item(s) could not fit.`
       );
     }

@@ -8,11 +8,12 @@ import { addPage } from "../../plugy-stash/addPage";
 import { transferItem } from "./transferItem";
 import { ItemStorageType } from "../types/ItemLocation";
 import { Item } from "../types/Item";
-import { groupItems } from "../../../web/items/groupItems";
-import { isSimpleItem } from "../../../web/collection/utils/isSimpleItem";
+import { applyQuantities } from "../../../web/items/groupItems";
 import {
   addToDedicatedTab,
   isDedicatedTabEligible,
+  isStack,
+  takeFromStack,
 } from "../../d2r-stash/dedicatedTab";
 
 export function bulkTransferWithQuantities(
@@ -21,46 +22,15 @@ export function bulkTransferWithQuantities(
   transferQuantities: Map<string, number>,
   storageType = ItemStorageType.STASH
 ) {
-  // Group items to handle quantities properly
-  const groupedItems = groupItems(items);
-
-  const itemsToTransfer: Item[] = [];
-
-  for (const itemGroup of groupedItems) {
-    const representativeItem = itemGroup[0];
-
-    if (isSimpleItem(representativeItem) && itemGroup.length > 1) {
-      // For simple items with quantities, check if we have a specific transfer quantity
-      const transferQuantity = transferQuantities.get(representativeItem.code);
-
-      if (
-        transferQuantity &&
-        transferQuantity > 0 &&
-        transferQuantity < itemGroup.length
-      ) {
-        // Transfer only the specified quantity - use the first N items from the original items array
-
-        // Find the first N items of this type from the original items array
-        const itemsOfThisType = items.filter(
-          (item) => item.code === representativeItem.code
-        );
-        const itemsToTransferFromGroup = itemsOfThisType.slice(
-          0,
-          transferQuantity
-        );
-
-        itemsToTransfer.push(...itemsToTransferFromGroup);
-      } else {
-        // Transfer all items in the group (either no quantity set or quantity equals total)
-
-        // When transferring all items, use the original grouped items to ensure we get all unique items
-        itemsToTransfer.push(...itemGroup);
+  const itemsToTransfer = applyQuantities(items, transferQuantities).flatMap(
+    ([item, count]) => {
+      if (!isStack(item)) {
+        return [item];
       }
-    } else {
-      // For non-simple items or single items, transfer all
-      itemsToTransfer.push(...itemGroup);
+      // A stack moved to its own stash would go right back into its tab
+      return item.owner === target ? [] : takeFromStack(item, count);
     }
-  }
+  );
 
   // Now transfer the selected items
   if (isPlugyStash(target)) {

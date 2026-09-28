@@ -28,9 +28,10 @@ export function groupQuantity(group: Item[]): number {
 }
 
 /**
- * Creates a unique key for grouping items by both code and location
+ * Creates a unique key for grouping items by both code and location. It also
+ * keys the transfer quantity of each row of simple items.
  */
-function getItemLocationKey(item: Item): string {
+export function getItemLocationKey(item: Item): string {
   if (!item.owner) {
     return `${item.code}-unknown`;
   }
@@ -102,4 +103,24 @@ export function groupItems(items: Item[]) {
     }
   }
   return Array.from(grouped.values());
+}
+
+/**
+ * What a transfer, copy or delete acts on: each item with how many of it,
+ * which is only more than 1 for a stack in a RotW tab. A row whose transfer
+ * quantity was lowered only gives that many of its own items, never those of
+ * another row of the same item.
+ */
+export function applyQuantities(
+  items: Item[],
+  quantities: Map<string, number>
+): [Item, number][] {
+  return groupItems(items).flatMap((group): [Item, number][] => {
+    const total = groupQuantity(group);
+    const chosen = quantities.get(getItemLocationKey(group[0])) ?? 0;
+    const quantity = chosen > 0 && chosen < total ? chosen : total;
+    return group.length === 1
+      ? [[group[0], quantity]]
+      : group.slice(0, quantity).map((item) => [item, 1]);
+  });
 }
