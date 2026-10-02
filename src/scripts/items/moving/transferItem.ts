@@ -31,6 +31,10 @@ function giveItemTo(
   }
 
   item.owner = owner;
+  // The items in its sockets are in the same save now
+  for (const socket of item.filledSockets ?? []) {
+    socket.owner = owner;
+  }
   item.location = ItemLocation.STORED;
   item.equippedInSlot = ItemEquipSlot.NONE;
   item.stored = storageType;

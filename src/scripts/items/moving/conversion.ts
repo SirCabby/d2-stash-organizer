@@ -122,7 +122,13 @@ export function toD2R(item: Item) {
   if (item.owner.version >= FIRST_D2R) {
     return;
   }
+  convertToD2R(item);
+}
 
+// The items in its sockets are in the item's format, so they are converted with
+// it. Their own owner isn't asked: it can still name a save they were moved out
+// of.
+function convertToD2R(item: Item) {
   const huffmanCode = encodeHuffman(item.code.padEnd(4, " "));
   const codeDelta = huffmanCode.length - 32;
 
@@ -193,7 +199,7 @@ export function toD2R(item: Item) {
 
   if (item.filledSockets) {
     for (const socket of item.filledSockets) {
-      toD2R(socket);
+      convertToD2R(socket);
     }
   }
 }
@@ -202,7 +208,11 @@ export function toD2(item: Item) {
   if (item.owner.version <= LAST_LEGACY) {
     return;
   }
+  convertToD2(item);
+}
 
+// Like convertToD2R, the items in its sockets go with the item.
+function convertToD2(item: Item) {
   const huffmanCode = encodeHuffman(item.code.padEnd(4, " "));
   const codeDelta = huffmanCode.length - 32;
 
@@ -280,7 +290,7 @@ export function toD2(item: Item) {
 
   if (item.filledSockets) {
     for (const socket of item.filledSockets) {
-      toD2(socket);
+      convertToD2(socket);
     }
   }
 }

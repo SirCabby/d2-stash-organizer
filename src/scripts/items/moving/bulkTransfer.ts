@@ -70,11 +70,13 @@ export function bulkTransfer(
     itemsLoop: for (const item of items) {
       if (isDedicatedTabEligible(item)) {
         removeFromOriginalOwner(item);
-        item.owner = target;
         if (addToDedicatedTab(target, item)) {
+          item.owner = target;
           dedicatedCount++;
           continue;
         }
+        // Its slot is full: it goes on a page like any other item, and keeps
+        // the owner it has until then, which says what format to convert from
       }
       let pageIndex = 0;
       while (pageIndex < target.pages.length) {

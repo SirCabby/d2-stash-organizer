@@ -58,13 +58,14 @@ export function bulkTransferWithQuantities(
     itemsLoop: for (const item of itemsToTransfer) {
       if (isDedicatedTabEligible(item)) {
         removeFromOriginalOwner(item);
-        item.owner = target;
         if (addToDedicatedTab(target, item)) {
+          item.owner = target;
           dedicatedCount++;
           continue;
         }
         // Dedicated tab slot is full (99) — fall through to place on a
-        // general stash page instead.
+        // general stash page instead. The item keeps its owner until then,
+        // which says what format to convert it from.
       }
       let pageIndex = 0;
       while (pageIndex < target.pages.length) {
