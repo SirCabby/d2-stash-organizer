@@ -32,7 +32,7 @@ export function d2rStashToSaveFile(stash: D2rStash) {
 
   for (const page of stash.pages) {
     writePage(writer, stash, page.gold, 0, () => {
-      writeItemList(writer, page.items, { d2rPadding: true });
+      writeItemList(writer, page.items);
     });
   }
 

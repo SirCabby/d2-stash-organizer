@@ -6,7 +6,7 @@ import { decodeHuffman } from "./huffman";
 import { ItemsOwner } from "../../save-file/ownership";
 
 export function parseSimple(stream: BinaryStream, owner: ItemsOwner) {
-  const { read, readBool, readInt, skip } = stream;
+  const { read, readBool, readInt, skip, position } = stream;
 
   const item: Item = {
     raw: "",
@@ -61,6 +61,7 @@ export function parseSimple(stream: BinaryStream, owner: ItemsOwner) {
     // (see parseQuality).
     if (readBool()) {
       item.hasRealmData = true;
+      item.realmDataIndex = position();
       read(128);
     }
     // Then a flag for 1 byte of data: the stack quantity on dedicated-tab

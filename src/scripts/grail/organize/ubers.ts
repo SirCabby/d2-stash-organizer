@@ -31,7 +31,6 @@ export const UBERS = [
   "um4",
   "um5",
   "um6",
-  "cjw",
 ];
 
 export function organizeUbers(stash: Stash, items: Item[]) {

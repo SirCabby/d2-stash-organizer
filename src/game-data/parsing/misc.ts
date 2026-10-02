@@ -17,6 +17,7 @@ export async function miscToJson() {
       qlevel: Number(line[3]),
       levelReq: Number(line[5]),
       stackable: line[43] === "1",
+      maxStack: Number(line[45]) || undefined,
       trackQuestDifficulty: line[48] === "1" || undefined,
     };
     // Token of absolution name may have the description before a \n separator

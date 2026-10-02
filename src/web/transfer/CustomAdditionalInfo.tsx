@@ -34,7 +34,7 @@ export function CustomAdditionalInfo({
   ) {
     if (item.perfectionScore === 100) {
       relevant.push("Perfect");
-    } else {
+    } else if (typeof item.perfectionScore !== "undefined") {
       relevant.push(`${item.perfectionScore}% perfect`);
     }
   }

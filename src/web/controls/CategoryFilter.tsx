@@ -20,10 +20,10 @@ const CATEGORY_GROUPS = {
     "bow",
     "club",
     "crossbow",
+    "grimoire",
     "hand-to-hand",
     "hammer",
     "javelin",
-    "knife",
     "mace",
     "orb",
     "pelt",
@@ -38,9 +38,10 @@ const CATEGORY_GROUPS = {
     "voodoo-head",
     "wand",
   ],
-  Armor: ["armor", "belt", "boots", "circlet", "gloves", "helm", "shield"],
+  Armor: ["armor", "belt", "boots", "gloves", "helm", "shield"],
   Jewelry: ["amulet", "ring"],
   Miscellaneous: [
+    "ammo",
     "book",
     "body-part",
     "charm",
@@ -67,6 +68,13 @@ const CATEGORY_OPTIONS = Object.entries(CATEGORY_GROUPS).flatMap(
       group: groupName,
     }))
 );
+
+/** Drops saved categories that are no longer options, like "knife". */
+export function knownCategories(value: CategoryFilterValue) {
+  return value.filter((category) =>
+    CATEGORY_OPTIONS.some((option) => option.value === category)
+  );
+}
 
 export function CategoryFilter({ value, onChange }: CategoryFilterProps) {
   const [isOpen, setIsOpen] = useState(false);

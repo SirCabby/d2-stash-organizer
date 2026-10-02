@@ -1,13 +1,14 @@
 /**
- * Scopes the loot filter's grail rules to the grail items still missing from
- * the offline stash (the shared .d2x stash next to the saves). Run it again
- * after finding new items, with `make grail-filter`.
+ * Scopes the loot filter's grail rules to the grail items that the offline
+ * stash (the shared .d2x stash next to the saves) has no perfect copy of yet.
+ * Run it again after finding new items, with `make grail-filter`.
  *
  * A grail rule is a Show rule with "grail" in its name, in any loot filter
  * profile (.fltr) of the save folder. It ends up showing the bases of the
- * missing items of its rarities (Unique, Set): uniques count as missing until
- * found both normal and ethereal, since the loot filter can't tell those
- * apart. Nothing else in the profile changes.
+ * missing items of its rarities (Unique, Set): items count as missing until
+ * found with a perfection score of 100, and uniques until found perfect both
+ * normal and ethereal, since the loot filter can't tell those apart. Nothing
+ * else in the profile changes.
  *
  * Options:
  *   --save-dir <dir>  The save folder, with the offline stash and the loot
@@ -241,23 +242,37 @@ function printProgress(statuses: GrailStatus[]) {
     list: GrailStatus[],
     isFound: (status: GrailStatus) => boolean | undefined
   ) => `${list.filter(isFound).length}/${list.length}`;
-  console.log(
-    `Grail: ${count(uniques, ({ normal }) => normal)} uniques, ${count(
+  const describe = (
+    isFound: (status: GrailStatus) => boolean,
+    isFoundEth: (status: GrailStatus) => boolean | undefined
+  ) =>
+    `${count(uniques, isFound)} uniques, ${count(
       ethUniques,
+      isFoundEth
+    )} ethereal uniques, ${count(sets, isFound)} set items`;
+  console.log(
+    `Grail: ${describe(
+      ({ normal }) => normal,
       ({ ethereal }) => ethereal
-    )} ethereal uniques, ${count(sets, ({ normal }) => normal)} set items`
+    )}`
+  );
+  console.log(
+    `Perfect: ${describe(
+      ({ perfect }) => perfect,
+      ({ perfectEth }) => perfectEth
+    )}`
   );
 }
 
-// The grail entries that a save's items would add to the offline stash's
+// The perfect copies that a save's items would add to the offline stash's
 function addedEntries(stashStatuses: GrailStatus[], statuses: GrailStatus[]) {
   const before = new Map(stashStatuses.map((status) => [status.item, status]));
-  return statuses.flatMap(({ item, normal, ethereal }) => {
+  return statuses.flatMap(({ item, perfect, perfectEth }) => {
     const entries: string[] = [];
-    if (normal && !before.get(item)?.normal) {
+    if (perfect && !before.get(item)?.perfect) {
       entries.push(item.name);
     }
-    if (ethereal && !before.get(item)?.ethereal) {
+    if (perfectEth && !before.get(item)?.perfectEth) {
       entries.push(`${item.name} (eth)`);
     }
     return entries;
@@ -298,7 +313,9 @@ function describeMissing(missing: MissingGrailItem[]) {
   const described = counts
     .filter(([count]) => count > 0)
     .map(([count, kind]) => `${count} ${kind}`);
-  return described.length > 0 ? described.join(", ") : "nothing";
+  return described.length > 0
+    ? `a perfect copy of ${described.join(", ")}`
+    : "nothing";
 }
 
 function printUpdate({
@@ -321,7 +338,10 @@ function printUpdate({
   const otherCodes = removedCodes.filter((code) => !foundCodes.includes(code));
   if (foundCodes.length > 0) {
     console.log(
-      `    No longer shows, all found: ${describeBases(foundCodes, found)}`
+      `    No longer shows, all found perfect: ${describeBases(
+        foundCodes,
+        found
+      )}`
     );
   }
   if (otherCodes.length > 0) {
@@ -345,7 +365,7 @@ function printUpdate({
   }
   if (before.enabled && !after.enabled) {
     console.log(
-      "    Disabled: nothing is missing, and with no item codes it would show everything"
+      "    Disabled: everything is perfect, and with no item codes it would show everything"
     );
   }
 }
@@ -478,7 +498,7 @@ function main() {
 
   if (notInStash.length > 0) {
     console.log(
-      "\nThe filter shows these until they're in the offline stash (ALL_SAVES=1, or --all-saves, counts them already):"
+      "\nThe filter shows these until their perfect copies are in the offline stash (ALL_SAVES=1, or --all-saves, counts them already):"
     );
     notInStash.forEach((line) => console.log(line));
   }

@@ -83,9 +83,11 @@ export function parseModifiers(stream: BinaryStream, item: Item) {
   if (item.runeword) {
     // Runewords have 2 lists, the base item mods and the runeword mods
     item.modifiers.push(...parseModsList(stream, item));
+    item.runewordModifiers = parseModsList(stream, item);
+    item.modifiers.push(...item.runewordModifiers);
+  } else {
+    item.modifiers.push(...parseModsList(stream, item));
   }
-
-  item.modifiers.push(...parseModsList(stream, item));
 
   if (flags) {
     item.setItemModifiers = [];

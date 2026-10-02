@@ -3,6 +3,28 @@ import { Skill, UniqueItem } from "../types";
 import { getString } from "../strings";
 import { readModifierRange } from "./modifierRange";
 
+const ELEMENTS: Record<string, string> = {
+  "dmg-ltng": "Lightning",
+  "dmg-cold": "Cold",
+  "dmg-fire": "Fire",
+  "dmg-pois": "Poison",
+};
+
+const TRIGGERS: Record<string, string> = {
+  "death-skill": "Death",
+  "levelup-skill": "Level-up",
+};
+
+// The 8 Rainbow Facets share their name: their element and what casts their
+// skill tell them apart, like "Rainbow Facet (Cold, Level-up)"
+function variantName({ name, modifiers }: UniqueItem) {
+  const element = modifiers.find(({ prop }) => ELEMENTS[prop]);
+  const trigger = modifiers.find(({ prop }) => TRIGGERS[prop]);
+  return element && trigger
+    ? `${name} (${ELEMENTS[element.prop]}, ${TRIGGERS[trigger.prop]})`
+    : name;
+}
+
 export async function uniquesToJson(skills: Skill[]) {
   const table = await readGameFile("UniqueItems");
   const uniques: UniqueItem[] = [];
@@ -23,6 +45,12 @@ export async function uniquesToJson(skills: Skill[]) {
       }
     }
     uniques.push(item);
+  }
+  const names = uniques.map(({ name }) => name);
+  for (const item of uniques) {
+    if (names.indexOf(item.name) !== names.lastIndexOf(item.name)) {
+      item.name = variantName(item);
+    }
   }
   await writeJson("UniqueItems", uniques);
   return uniques;

@@ -2,9 +2,20 @@ import { Item } from "../../scripts/items/types/Item";
 import "./ItemTooltip.css";
 import { getBase } from "../../scripts/items/getBase";
 import { fullDurability } from "../../scripts/items/repairItem";
+import {
+  blockChance,
+  formatRange,
+  maxQuantity,
+  showsDurability,
+  statRequirements,
+  statTotals,
+  weaponDamage,
+} from "../../scripts/items/tooltipStats";
+import { CHAR_CLASSES } from "../../game-data";
 import { colorClass } from "../collection/utils/colorClass";
 import { useState, useRef, useEffect } from "preact/hooks";
 import { JSX } from "preact";
+import { useKeyboardFocus } from "./useKeyboardFocus";
 
 let UNIQUE_ID = 0;
 
@@ -26,6 +37,7 @@ export function ItemTooltip({
 }) {
   const [tooltipId] = useState(() => `item-tooltip-${item.id ?? UNIQUE_ID++}`);
   const [showBelow, setShowBelow] = useState(false);
+  const [keyboardFocus, focusHandlers] = useKeyboardFocus();
   const containerRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const className = useDefaultColor ? colorClass(item) : "";
@@ -125,14 +137,29 @@ export function ItemTooltip({
 
   let reqline = null;
   if (item.reqlevel && item.reqlevel > 1)
-    reqline = <div>Level Required: {item.reqlevel || 1}</div>;
+    reqline = <div>Required Level: {item.reqlevel || 1}</div>;
+
+  const total = statTotals(item);
+  const block = blockChance(item, total);
+  const { strength, dexterity } = statRequirements(item, total);
+  const classOnly = CHAR_CLASSES.find(
+    ({ code }) => code === item.classRequirement
+  )?.classOnly;
+  // Like 'JahIthBer'
+  const runes =
+    item.runeword &&
+    item.filledSockets?.map(({ name }) => name?.replace(/ Rune$/, "")).join("");
 
   return (
-    <span class="tooltip-container" ref={containerRef}>
+    <span
+      class={`tooltip-container ${keyboardFocus ? "keyboard-focus" : ""}`}
+      ref={containerRef}
+    >
       <span
         class={`tooltip-trigger ${className}`}
         tabIndex={0}
         aria-describedby={tooltipId}
+        {...focusHandlers}
       >
         {children || item.name}
       </span>
@@ -144,8 +171,8 @@ export function ItemTooltip({
       >
         <div class={className}>{item.name}</div>
         <div class={className}>{base?.name}</div>
+        {runes && <div class="unique">'{runes}'</div>}
         <div>Item Level: {item.level}</div>
-        {reqline}
         {"def" in base && (
           <div>
             Defense:{" "}
@@ -155,12 +182,38 @@ export function ItemTooltip({
             </span>
           </div>
         )}
-        {item.durability && (
+        {block && (
+          <div>
+            Chance to Block:{" "}
+            <span class={total("toblock") > 0 ? "magic" : ""}>
+              {formatRange(block)}%
+            </span>
+            {block[0] !== block[1] && <span class="sidenote"> (by class)</span>}
+          </div>
+        )}
+        {weaponDamage(item, total).map(({ label, min, max, enhanced }) => (
+          <div>
+            {label}:{" "}
+            <span class={enhanced ? "magic" : ""}>
+              {min} to {max}
+            </span>
+          </div>
+        ))}
+        {item.quantity !== undefined && (
+          <div>
+            Quantity: {item.quantity} of {maxQuantity(item, total)}
+          </div>
+        )}
+        {item.durability && showsDurability(item, total) && (
           <div>
             Durability: {item.durability[0]} of {fullDurability(item)}
           </div>
         )}
-        {/* TODO: requirements */}
+        {classOnly && <div>{classOnly}</div>}
+        {dexterity > 0 && <div>Required Dexterity: {dexterity}</div>}
+        {strength > 0 && <div>Required Strength: {strength}</div>}
+        {reqline}
+        {!item.identified && <div class="danger">Unidentified</div>}
         {magicMods}
         {setItemMods}
         {setGlobalMods}

@@ -18,11 +18,17 @@ function checkRange(
 ) {
   const { stats } = PROPERTIES[prop];
   for (const { stat, type } of stats) {
+    // Cold damage without a param (Baranar's Star, Famine...) rolls its duration
+    // between the damage's min and max. Items never show it, so like "Extra
+    // bloody" it doesn't count
+    if (stat === "coldlength") {
+      continue;
+    }
     // Some weird cases of "param" like the hp/lvl on Fortitude actually do have a range
     // Well, that one case. It's the only one in the entire game that I can find.
     if (type === "other" || (type === "param" && !param)) {
       let condition = (mod: Modifier) => mod.stat === stat;
-      if (prop === "skill") {
+      if (prop === "skill" || prop === "oskill") {
         condition = (mod) =>
           "param" in mod && mod.param === param && mod.stat === stat;
       } else if (prop === "skilltab") {
@@ -56,16 +62,20 @@ function checkRange(
 export function computePerfectionScore(item: Item) {
   if (!item.modifiers) return 0;
 
-  let ranges: ModifierRange[];
+  let ranges: ModifierRange[] | undefined;
   let allModifiers = item.modifiers;
   if (item.runeword) {
-    ranges = RUNEWORDS[item.runewordId!].modifiers;
+    ranges = RUNEWORDS[item.runewordId!]?.modifiers;
+    // Not the base's own mods: a superior base's enhanced damage would be
+    // mistaken for the runeword's
+    allModifiers = item.runewordModifiers!;
   } else if (item.quality === ItemQuality.UNIQUE) {
-    ranges = UNIQUE_ITEMS[item.unique!].modifiers;
+    ranges = UNIQUE_ITEMS[item.unique!]?.modifiers;
   } else if (item.quality === ItemQuality.SET) {
-    ranges = [
-      ...SET_ITEMS[item.unique!].baseModifiers,
-      ...SET_ITEMS[item.unique!].setModifiers.flat(),
+    const setItem = SET_ITEMS[item.unique!];
+    ranges = setItem && [
+      ...setItem.baseModifiers,
+      ...setItem.setModifiers.flat(),
     ];
     allModifiers = [...item.modifiers, ...item.setItemModifiers!.flat()];
   } else {
@@ -73,8 +83,18 @@ export function computePerfectionScore(item: Item) {
       "Only uniques, sets and runewords have a perfection score."
     );
   }
-  // We ignore the "Extra bloody" prop not to confuse people with hidden imperfections
-  ranges = ranges.filter(({ prop }) => prop !== "bloody");
+  // No score for items the game data has no row for, like the Standard of
+  // Heroes: a unique whose unique ID is 4095
+  if (!ranges) return;
+  ranges = ranges.filter(
+    ({ prop }) =>
+      // We ignore the "Extra bloody" prop not to confuse people with hidden imperfections
+      prop !== "bloody" &&
+      // Random skills (Ormus' Robes, Hellfire Torch) pick a skill or class id
+      // between min and max, their level is fixed
+      prop !== "skill-rand" &&
+      prop !== "randclassskill"
+  );
 
   const base = getBase(item);
 
@@ -101,6 +121,11 @@ export function computePerfectionScore(item: Item) {
       continue;
     }
     checkRange(range, allModifiers, addProp);
+  }
+
+  // Runewords also need a superior base to be perfect, it counts like a roll
+  if (item.runeword) {
+    addProp(item.quality === ItemQuality.SUPERIOR ? 1 : 0, 0, 1);
   }
 
   if (

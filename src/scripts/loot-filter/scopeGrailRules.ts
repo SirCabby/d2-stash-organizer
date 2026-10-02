@@ -2,7 +2,7 @@ import { SetItem, UniqueItem } from "../../game-data";
 import { GrailStatus } from "../grail/list/grailProgress";
 import { LootFilterProfile, LootFilterRule } from "./types";
 
-// A grail item still to find, or only its ethereal copy
+// A grail item still to find perfect, or only its ethereal copy
 export interface MissingGrailItem {
   item: UniqueItem | SetItem;
   ethereal: boolean;
@@ -12,7 +12,7 @@ export interface GrailRuleUpdate {
   before: LootFilterRule;
   after: LootFilterRule;
   missing: MissingGrailItem[];
-  // The grail items of the bases the rule no longer shows, all found since
+  // Grail items of the bases the rule no longer shows, all found perfect since
   found: (UniqueItem | SetItem)[];
   addedCodes: string[];
   removedCodes: string[];
@@ -28,19 +28,20 @@ export function isGrailRule({ name }: LootFilterRule) {
   return /grail/i.test(name);
 }
 
-// The grail items of a rule's rarities, and the copies of them still missing.
-// The loot filter can't tell ethereal items apart, so a unique rule is for
-// both the normal and the eth grail. Sets aren't part of the eth grail.
+// The grail items of a rule's rarities, and the copies of them still missing
+// a perfect roll. The loot filter can't tell ethereal items apart, so a unique
+// rule is for both the normal and the eth grail. Sets aren't part of the eth
+// grail.
 function grailItemsOf(rule: LootFilterRule, statuses: GrailStatus[]) {
   const rarities = rule.equipmentRarity ?? [];
   return statuses
     .filter(({ item }) => rarities.includes("set" in item ? "set" : "unique"))
-    .map(({ item, normal, ethereal }) => {
+    .map(({ item, perfect, perfectEth }) => {
       const missing: MissingGrailItem[] = [];
-      if (!normal) {
+      if (!perfect) {
         missing.push({ item, ethereal: false });
       }
-      if (ethereal === false) {
+      if (perfectEth === false) {
         missing.push({ item, ethereal: true });
       }
       return { item, missing };
@@ -49,8 +50,9 @@ function grailItemsOf(rule: LootFilterRule, statuses: GrailStatus[]) {
 
 /**
  * Limits the grail rules of a loot filter profile to the grail items still
- * missing. The loot filter only knows base items, so a rule shows every unique
- * (or set item) of a base as long as one of that base's is missing.
+ * missing a perfect copy. The loot filter only knows base items, so a rule
+ * shows every unique (or set item) of a base as long as one of that base's is
+ * missing.
  * The rules' other settings stay as they are.
  */
 export function scopeGrailRules(

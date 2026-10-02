@@ -1,8 +1,8 @@
-import { writeJson } from "./files";
+import { readGameFile, writeJson } from "./files";
 import { CharacterClass, SkillTab } from "../types";
 import { getString } from "../strings";
 
-const CLASSES: CharacterClass[] = [
+const CLASSES: Omit<CharacterClass, "blockFactor">[] = [
   {
     code: "ama",
     name: getString("Amazon"),
@@ -54,6 +54,12 @@ const CLASSES: CharacterClass[] = [
 ];
 
 export async function charClassesToJson() {
-  await writeJson("CharClasses", CLASSES);
-  return CLASSES;
+  // CharStats.txt has the classes in the same order
+  const charStats = await readGameFile("CharStats");
+  const classes: CharacterClass[] = CLASSES.map((charClass, i) => ({
+    ...charClass,
+    blockFactor: Number(charStats[i][22]),
+  }));
+  await writeJson("CharClasses", classes);
+  return classes;
 }

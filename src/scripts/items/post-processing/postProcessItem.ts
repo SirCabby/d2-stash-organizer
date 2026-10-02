@@ -19,6 +19,9 @@ export function postProcessItem(item: Item) {
     for (const socketed of item.filledSockets) {
       addSocketedMods(item, socketed);
       item.reqlevel = Math.max(item.reqlevel || 0, socketed.reqlevel || 0);
+      // After taking its mods, before describing adds groups to them. Unique
+      // jewels need their own perfection score for the grail.
+      postProcessItem(socketed);
     }
   }
 

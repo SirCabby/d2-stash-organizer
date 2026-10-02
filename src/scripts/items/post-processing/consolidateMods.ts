@@ -18,7 +18,6 @@ export function consolidateMods(mods: Modifier[]) {
       )) >= 0
     ) {
       const [duplicate] = mods.splice(duplicateIndex, 1);
-      mod.value = (mod.value ?? 0) + (duplicate.value ?? 0);
       if (mod.range || duplicate.range) {
         // This code is disgusting. Anyway, we sum ranges when consolidating,
         // but if one of them isn't a range we need to add the value itself
@@ -29,6 +28,8 @@ export function consolidateMods(mods: Modifier[]) {
             (duplicate.range?.[1] ?? duplicate.value ?? 0),
         ];
       }
+      // Only after the range, which needs the value before the sum
+      mod.value = (mod.value ?? 0) + (duplicate.value ?? 0);
     }
   }
 }

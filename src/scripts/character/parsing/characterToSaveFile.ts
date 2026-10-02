@@ -1,7 +1,6 @@
 import { Character } from "../types";
 import { SaveFileWriter } from "../../save-file/SaveFileWriter";
 import { writeItemList } from "../../items/parsing/writeItemList";
-import { FIRST_D2R } from "./versions";
 
 export function characterToSaveFile(character: Character) {
   const writer = new SaveFileWriter();
@@ -10,11 +9,9 @@ export function characterToSaveFile(character: Character) {
   // We don't know either the file size or the checksum yet, we will write them at the end.
   writer.skip(8);
   writer.write(character.characterData);
-  const d2rPadding = character.version >= FIRST_D2R;
   writeItemList(
     writer,
-    character.items.filter((item) => !item.mercenary && !item.corpse),
-    { d2rPadding }
+    character.items.filter((item) => !item.mercenary && !item.corpse)
   );
 
   // Corpse data
@@ -24,8 +21,7 @@ export function characterToSaveFile(character: Character) {
     writer.skip(12);
     writeItemList(
       writer,
-      character.items.filter((item) => item.corpse),
-      { d2rPadding }
+      character.items.filter((item) => item.corpse)
     );
   }
 
@@ -34,7 +30,7 @@ export function characterToSaveFile(character: Character) {
   if (expansionChar) {
     writer.writeString("jf");
     const mercItems = character.items.filter((item) => item.mercenary);
-    writeItemList(writer, mercItems, { d2rPadding });
+    writeItemList(writer, mercItems);
     writer.write(character.golem);
   }
 

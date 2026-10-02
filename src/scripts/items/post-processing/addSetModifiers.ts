@@ -7,8 +7,8 @@ import { generateFixedMods } from "./generateFixedMods";
  * Adds global set modifiers to the item
  */
 export function addSetMods(item: Item) {
-  const set =
-    item.quality === ItemQuality.SET && SETS[SET_ITEMS[item.unique!].set];
+  const setItem = item.quality === ItemQuality.SET && SET_ITEMS[item.unique!];
+  const set = setItem && SETS[setItem.set];
   if (!set) return;
 
   item.setGlobalModifiers = set.modifiers.map((notRanges) =>

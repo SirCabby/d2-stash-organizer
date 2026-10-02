@@ -98,6 +98,11 @@ export function Help() {
           and +2 Fire Mastery. As such, it has 2 perfect rolls out of 3, which
           makes it "66% perfect".
         </p>
+        <p>
+          Runewords also need a superior base to be perfect, which counts like
+          one more roll: a Call to Arms with perfect rolls in a normal base is
+          "80% perfect".
+        </p>
       </FaqSection>
 
       <FaqSection question="Where am I uploading my save files?">

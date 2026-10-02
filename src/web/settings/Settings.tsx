@@ -6,7 +6,6 @@ import { useUpdateCollection } from "../store/useUpdateCollection";
 import { SaveDestination } from "../save-files/SaveDestination";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
-import { addPage } from "../../scripts/plugy-stash/addPage";
 import { organize } from "../../scripts/grail/organize";
 import { isPlugyStash, isD2rStash } from "../../scripts/save-file/ownership";
 import { Item } from "../../scripts/items/types/Item";
@@ -14,7 +13,10 @@ import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
 import { repairItem } from "../../scripts/items/repairItem";
+import { fixDuplicateIds } from "../../scripts/items/itemIds";
+import { cloneItem } from "../../scripts/items/moving/copyItemTo";
 import { isUnreadable } from "../store/parser";
+import { updateCharacterStashes } from "../store/plugyDuplicates";
 import {
   topOffDedicatedTab,
   refillDedicatedTab,
@@ -22,7 +24,8 @@ import {
 
 export function Settings() {
   const { accessibleFont, toggleAccessibleFont } = useContext(SettingsContext);
-  const { owners, setCollection } = useContext(CollectionContext);
+  const { owners, allItems, lastActivePlugyStashPage, setCollection } =
+    useContext(CollectionContext);
   const { saveAllFiles } = useUpdateCollection();
 
   const handleSave = useCallback(async () => {
@@ -48,65 +51,36 @@ export function Settings() {
       alert("No save files loaded.");
       return;
     }
-    let pagesCreated = 0;
-    let itemsPlaced = 0;
+    let itemsAdded = 0;
+    let typesFilled = 0;
     let slotsMaxed = 0;
+    let stashFound = false;
     const newOwners = owners.map((owner) => {
       if (isPlugyStash(owner)) {
-        // 1. Gather all simple items by code
-        const allSimple = owner.pages.flatMap((page) =>
-          page.items.filter(isSimpleItem)
-        );
+        stashFound = true;
         const byCode = new Map<string, Item[]>();
-        for (const item of allSimple) {
-          if (!byCode.has(item.code)) byCode.set(item.code, []);
-          byCode.get(item.code)!.push(item);
-        }
-        // 2. Remove all simple items from all pages
         for (const page of owner.pages) {
-          page.items = page.items.filter((item) => !isSimpleItem(item));
-        }
-        // 3. For each code, create a new page and fill it
-        for (const [code, items] of byCode.entries()) {
-          const template = items[0];
-          const base = getBase(template);
-          const w = base.width;
-          const h = base.height;
-          const maxPerPage =
-            Math.floor(PAGE_WIDTH / w) * Math.floor(PAGE_HEIGHT / h);
-          const page = addPage(owner, template.name || code);
-          let maxId = Math.max(0, ...allSimple.map((i) => i.id ?? 0));
-          let placed = 0;
-          outer: for (let row = 0; row <= PAGE_HEIGHT - h; row++) {
-            for (let col = 0; col <= PAGE_WIDTH - w; col++) {
-              if (placed >= maxPerPage) break outer;
-              // Check for collision
-              if (
-                page.items.some((existing) => {
-                  const eb = getBase(existing);
-                  return (
-                    col < existing.column + eb.width &&
-                    col + w > existing.column &&
-                    row < existing.row + eb.height &&
-                    row + h > existing.row
-                  );
-                })
-              )
-                continue;
-              const newItem = {
-                ...template,
-                id: ++maxId,
-                row: row,
-                column: col,
-              } as import("../../scripts/items/types/Item").Item;
-              page.items.push(newItem);
-              placed++;
-              itemsPlaced++;
-            }
+          for (const item of page.items.filter(isSimpleItem)) {
+            if (!byCode.has(item.code)) byCode.set(item.code, []);
+            byCode.get(item.code)!.push(item);
           }
-          pagesCreated++;
         }
-        organize(owner);
+        // Fill each item type up to a full page with copies of its first item.
+        // Types that already fill a page are left as they are.
+        const copies: Item[] = [];
+        for (const items of byCode.values()) {
+          const { width, height } = getBase(items[0]);
+          const fullPage =
+            Math.floor(PAGE_WIDTH / width) * Math.floor(PAGE_HEIGHT / height);
+          if (items.length >= fullPage) continue;
+          for (let i = items.length; i < fullPage; i++) {
+            copies.push(cloneItem(items[0]));
+          }
+          typesFilled++;
+        }
+        if (copies.length === 0) return owner;
+        itemsAdded += copies.length;
+        organize(owner, copies);
         // Set correct owner/page after organize reshuffles items. Do NOT call
         // postProcessItem here -- items were already post-processed during
         // initial parse, and postProcessItem is not idempotent.
@@ -119,23 +93,31 @@ export function Settings() {
         return owner;
       }
       if (isD2rStash(owner) && owner.variant === "rotw") {
-        const topped = topOffDedicatedTab(owner);
-        slotsMaxed += topped;
+        stashFound = true;
+        slotsMaxed += topOffDedicatedTab(owner);
         return owner;
       }
       return owner;
     });
-    setCollection(newOwners);
     const parts: string[] = [];
-    if (pagesCreated > 0 || itemsPlaced > 0) {
+    if (itemsAdded > 0) {
       parts.push(
-        `Created ${pagesCreated} pages and placed ${itemsPlaced} simple items`
+        `Added ${itemsAdded} simple item(s), filling ${typesFilled} item type(s) to a full page`
       );
     }
     if (slotsMaxed > 0) {
       parts.push(`Maxed ${slotsMaxed} dedicated tab slot(s) to 99`);
     }
-    alert(parts.length > 0 ? parts.join(". ") + "." : "Nothing to top off.");
+    if (parts.length > 0) {
+      setCollection(newOwners);
+      alert(parts.join(". ") + ".");
+    } else {
+      alert(
+        stashFound
+          ? "Nothing to top off: everything is already full."
+          : "No stash found to top off."
+      );
+    }
   }, [owners, setCollection]);
 
   // Repair All handler
@@ -158,9 +140,21 @@ export function Settings() {
       }
       return owner;
     });
+    // Copies made before copying gave them IDs of their own
+    const newIdsCount = fixDuplicateIds(
+      allItems,
+      (owner) => !isUnreadable(owner)
+    );
+    if (newIdsCount > 0 && lastActivePlugyStashPage) {
+      updateCharacterStashes(lastActivePlugyStashPage);
+    }
     setCollection(newOwners);
-    alert(`Repaired ${repairedCount} durability/charges on all items.`);
-  }, [owners, setCollection]);
+    let message = `Repaired ${repairedCount} durability/charges/quantities on all items.`;
+    if (newIdsCount > 0) {
+      message += ` Gave new IDs to ${newIdsCount} copied item(s), so that the game doesn't delete them as duplicates.`;
+    }
+    alert(message);
+  }, [owners, allItems, lastActivePlugyStashPage, setCollection]);
 
   const handleRefillStash = useCallback(() => {
     if (owners.length === 0) {
@@ -168,8 +162,10 @@ export function Settings() {
       return;
     }
     let totalSlots = 0;
+    let rotwFound = false;
     const newOwners = owners.map((owner) => {
       if (isD2rStash(owner) && owner.variant === "rotw") {
+        rotwFound = true;
         const before = owner.dedicatedTab?.length ?? 0;
         totalSlots += refillDedicatedTab(owner);
         // Only post-process newly created dedicated tab items; existing page
@@ -183,12 +179,16 @@ export function Settings() {
       }
       return owner;
     });
-    setCollection(newOwners);
-    alert(
-      totalSlots > 0
-        ? `Refilled ${totalSlots} dedicated tab slot(s) to 99.`
-        : "No D2R RotW stash found to refill."
-    );
+    if (totalSlots > 0) {
+      setCollection(newOwners);
+      alert(`Refilled ${totalSlots} dedicated tab slot(s) to 99.`);
+    } else {
+      alert(
+        rotwFound
+          ? "Nothing to refill: the RotW stash tabs already hold 99 of everything."
+          : "No D2R RotW stash found to refill."
+      );
+    }
   }, [owners, setCollection]);
 
   return (

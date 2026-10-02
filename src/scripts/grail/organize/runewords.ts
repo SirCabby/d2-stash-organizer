@@ -8,8 +8,13 @@ import { addPage } from "../../plugy-stash/addPage";
 import { moveItem } from "../../items/moving/safeMove";
 import { Stash } from "../../save-file/ownership";
 
+function runewordLevel(item: Item) {
+  // Runewords the game data doesn't know, like a mod's, go first
+  return RUNEWORDS[item.runewordId!]?.levelReq ?? 0;
+}
+
 function runewordsOrder(a: Item, b: Item) {
-  return RUNEWORDS[a.runewordId!].levelReq - RUNEWORDS[b.runewordId!].levelReq;
+  return runewordLevel(a) - runewordLevel(b);
 }
 
 function basesOrder(a: Item, b: Item) {

@@ -14,7 +14,12 @@ export interface Equipment {
   height: number;
   qlevel: number;
   levelReq: number;
+  // Before the item's own mods
+  strReq?: number;
+  dexReq?: number;
   stackable: boolean;
+  // Size of a full stack, before the item's own mods
+  maxStack?: number;
   trackQuestDifficulty?: boolean;
   classRequirement?: string; // Class code (ama, bar, nec, pal, sor, dru, ass) or undefined if no restriction
 }
@@ -22,10 +27,17 @@ export interface Equipment {
 export interface Armor extends Equipment {
   // [min, max]
   def: number[];
+  // Shields only: chance to block, before the class' own
+  block?: number;
 }
 
 export interface Weapon extends Equipment {
   twoHanded: boolean;
+  // [min, max], for each way the weapon deals damage. Two-handed swords have
+  // both one-hand and two-hand damage, throwing weapons one-hand and throw.
+  oneHandDamage?: number[];
+  twoHandDamage?: number[];
+  throwDamage?: number[];
 }
 
 export interface Misc extends Equipment {}
@@ -74,6 +86,9 @@ export interface Set {
 
 export interface Runeword {
   name: string;
+  // The ID of the name in the game's strings, which items store to say which
+  // runeword they are
+  nameId: number;
   enabled: boolean;
   runes: string[];
   levelReq: number;
@@ -143,6 +158,8 @@ export interface CharacterClass {
   name: string;
   skillsMod: string;
   classOnly: string;
+  // Added to the chance to block of the shields the class uses
+  blockFactor: number;
 }
 
 export interface ModifierLocale {

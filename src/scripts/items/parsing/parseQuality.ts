@@ -12,6 +12,20 @@ import {
 } from "../../../game-data";
 import { getBase } from "../getBase";
 
+// Items store their runeword as the ID of its name in the game's strings
+const RUNEWORD_INDEXES = new Map<number, number>(
+  RUNEWORDS.map(({ nameId }, index) => [nameId, index])
+);
+
+function getRunewordId(nameId: number) {
+  return (
+    RUNEWORD_INDEXES.get(nameId) ??
+    // IDs the strings no longer have, like an older Delirium's: the original
+    // game numbered the runeword names in Runes.txt's order
+    nameId - RUNEWORDS[0].nameId
+  );
+}
+
 function getLevel(item: Item) {
   let reqlevel = 0;
   switch (item.quality) {
@@ -59,10 +73,11 @@ function getLevel(item: Item) {
   return reqlevel;
 }
 export function parseQuality(
-  { read, readBool, readInt }: BinaryStream,
+  { read, readBool, readInt, position }: BinaryStream,
   item: Item,
   isD2R = false
 ) {
+  item.idIndex = position();
   item.id = readInt(32);
   item.level = readInt(7);
   item.quality = readInt(4);
@@ -127,13 +142,8 @@ export function parseQuality(
   }
 
   if (item.runeword) {
-    item.runewordId = readInt(12) - 27;
-    // Special case for Delirium, I can't figure out why outside of it being the only patched runeword
-    if (item.runewordId === 2691) {
-      item.runewordId = 21;
-    }
+    item.runewordId = getRunewordId(readInt(16));
     item.name = RUNEWORDS[item.runewordId]?.name ?? getBase(item).name;
-    read(4);
   }
 
   if (item.personalized) {
@@ -158,6 +168,7 @@ export function parseQuality(
   // Realm data flag (1 bit). If set, D2R items have 4x uint32 of realm data.
   if (readBool()) {
     item.hasRealmData = true;
+    item.realmDataIndex = position();
     const realmDataCount = isD2R ? 4 : 3;
     for (let i = 0; i < realmDataCount; i++) {
       readInt(32);

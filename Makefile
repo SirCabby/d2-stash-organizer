@@ -73,7 +73,7 @@ GRAIL_FILTER_FLAGS = $(if $(SAVE_DIR),--save-dir "$(SAVE_DIR)") \
 	$(if $(DRY_RUN),--dry-run)
 
 .PHONY: grail-filter
-grail-filter: ## Scope the loot filter's grail rules to the grail items missing from the offline stash
+grail-filter: ## Scope the loot filter's grail rules to the grail items without a perfect copy in the offline stash
 	npm run grail-filter -- $(GRAIL_FILTER_FLAGS)
 
 .PHONY: help
@@ -89,7 +89,7 @@ help: ## Show this help
 	@echo "  make build           - Regenerate + build the project into docs/"
 	@echo "  make build-all       - Full pipeline: convert RotW + regenerate + build"
 	@echo "  make run             - Start development server"
-	@echo "  make grail-filter    - Scope the loot filter's grail rules to the grail items missing from the offline stash"
+	@echo "  make grail-filter    - Scope the loot filter's grail rules to the grail items without a perfect copy in the offline stash"
 	@echo "  make kill-port       - Kill any process using port 10001"
 	@echo ""
 	@echo "Environment variables for extract-d2r:"

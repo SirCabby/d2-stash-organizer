@@ -299,7 +299,8 @@ function fullMaterialBits(d2r: boolean) {
     fromInt(ItemQuality.NORMAL, 4) +
     "000" + // no picture, class-specific affix or realm data
     (d2r ? "0" : "") + // D2R extra bit
-    "111111111" // end of the empty list of mods
+    "111111111" + // end of the empty list of mods
+    (d2r ? "0" : "") // no tab stack quantity (see toD2R)
   );
 }
 

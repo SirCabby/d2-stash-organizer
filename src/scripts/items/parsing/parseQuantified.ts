@@ -3,8 +3,9 @@ import { Item } from "../types/Item";
 import { ARMORS, MISC, WEAPONS } from "../../../game-data";
 
 export function parseQuantified(
-  { readInt, position }: BinaryStream,
-  item: Item
+  { readInt, readBool, position }: BinaryStream,
+  item: Item,
+  d2rExtraBit: boolean
 ) {
   const baseArmor = ARMORS[item.code];
   const baseWeapon = WEAPONS[item.code];
@@ -27,7 +28,15 @@ export function parseQuantified(
     }
   }
 
+  // D2R has a bit here, set when a quantity follows
+  item.d2rExtraBitIndex = position();
+  if (d2rExtraBit) {
+    item.hasD2rExtraBit = true;
+    readBool();
+  }
+
   if (baseArmor?.stackable || baseWeapon?.stackable || baseMisc?.stackable) {
+    item.quantityIndex = position();
     item.quantity = readInt(9);
   }
 

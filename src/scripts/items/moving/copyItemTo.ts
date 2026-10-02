@@ -16,7 +16,12 @@ import { PAGE_HEIGHT, PAGE_WIDTH } from "../../plugy-stash/dimensions";
 import { fromInt } from "../../save-file/binary";
 import { FIRST_D2R } from "../../character/parsing/versions";
 import { D2R_OFFSET, toD2, toD2R } from "./conversion";
+import { giveNewIds } from "../itemIds";
 
+/**
+ * A copy of the item, as a new item: it and the items in its sockets get IDs
+ * of their own (see giveNewIds).
+ */
 export function cloneItem(item: Item): Item {
   const clone: Item = { ...item };
   if (item.filledSockets) {
@@ -40,6 +45,7 @@ export function cloneItem(item: Item): Item {
   if (item.defenseRange) {
     clone.defenseRange = [...item.defenseRange];
   }
+  giveNewIds(clone);
   return clone;
 }
 

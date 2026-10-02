@@ -5,7 +5,11 @@ import { parseQuantified } from "./parseQuantified";
 import { parseModifiers } from "./parseModifiers";
 import { ItemParsingError } from "../../errors/ItemParsingError";
 import { SaveFileReader } from "../../save-file/SaveFileReader";
-import { FIRST_D2R, LAST_LEGACY } from "../../character/parsing/versions";
+import {
+  FIRST_D2R,
+  FIRST_TAB_QUANTITY,
+  LAST_LEGACY,
+} from "../../character/parsing/versions";
 import { ItemsOwner } from "../../save-file/ownership";
 import { MISC } from "../../../game-data";
 
@@ -13,7 +17,6 @@ export function parseItemOnce(
   reader: SaveFileReader,
   owner: ItemsOwner,
   startByte: number,
-  dedicatedTab: boolean,
   skipExtraBit: boolean,
   noExtraBit = false
 ) {
@@ -30,16 +33,21 @@ export function parseItemOnce(
   if (!item.simple) {
     try {
       parseQuality(stream, item, owner.version >= FIRST_D2R);
-      parseQuantified(stream, item);
-      item.d2rExtraBitIndex = stream.position();
-      if ((owner.version >= FIRST_D2R || skipExtraBit) && !noExtraBit) {
-        item.hasD2rExtraBit = true;
-        stream.skip(1);
-        if (item.socketed && item.sockets != null) {
-          item.sockets = item.sockets >> 1;
+      parseQuantified(
+        stream,
+        item,
+        (owner.version >= FIRST_D2R || skipExtraBit) && !noExtraBit
+      );
+      parseModifiers(stream, item);
+      // RotW ends items with a flag, set on the types its tabs stack (keys,
+      // organs...), followed by their quantity in a tab stack. Simple items
+      // read it in parseSimple.
+      if (owner.version >= FIRST_TAB_QUANTITY) {
+        item.tabQuantityIndex = stream.position();
+        if (stream.readBool()) {
+          stream.read(8);
         }
       }
-      parseModifiers(stream, item);
     } catch (e) {
       if (e instanceof ItemParsingError) {
         throw e;
@@ -56,11 +64,8 @@ export function parseItemOnce(
   item.raw = stream.done();
 
   if (owner.version >= FIRST_D2R) {
-    const bits = item.raw.length;
-    const byteSize = dedicatedTab
-      ? Math.ceil(bits / 8)
-      : Math.floor(bits / 8) + 1;
-    reader.nextIndex = startByte + byteSize;
+    // Each item takes whole bytes, padded with zeros
+    reader.nextIndex = startByte + Math.ceil(item.raw.length / 8);
   }
 
   return item;
@@ -80,14 +85,10 @@ function isValidBoundary(reader: SaveFileReader): boolean {
   }
 }
 
-export function parseItem(
-  reader: SaveFileReader,
-  owner: ItemsOwner,
-  { dedicatedTab = false } = {}
-) {
+export function parseItem(reader: SaveFileReader, owner: ItemsOwner) {
   // https://squeek502.github.io/d2itemreader/formats/d2.html
   const startByte = reader.nextIndex;
-  const item = parseItemOnce(reader, owner, startByte, dedicatedTab, false);
+  const item = parseItemOnce(reader, owner, startByte, false);
 
   // Some RotW items stored in legacy-format .d2x stashes include a D2R-era
   // extra bit before modifiers. When the standard parse leaves the reader
@@ -97,7 +98,7 @@ export function parseItem(
     !item.simple &&
     !isValidBoundary(reader)
   ) {
-    return parseItemOnce(reader, owner, startByte, dedicatedTab, true);
+    return parseItemOnce(reader, owner, startByte, true);
   }
 
   return item;

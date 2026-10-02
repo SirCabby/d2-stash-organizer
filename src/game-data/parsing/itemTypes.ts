@@ -10,7 +10,9 @@ export async function itemTypesToJson() {
 
   for (const line of table) {
     const typeCode = line[1].trim();
-    const classCode = line[25].trim();
+    // The Class column, not StaffMods before it: wands only roll necromancer
+    // skills, anyone can use them
+    const classCode = line[26].trim();
 
     if (typeCode && classCode && classCode !== "") {
       classMappings[typeCode] = classCode;
@@ -19,6 +21,20 @@ export async function itemTypesToJson() {
 
   await writeJson("ItemTypeClassMappings", classMappings);
   return classMappings;
+}
+
+// The item types that are a kind of `ancestor`, like the shield types for "shld"
+export async function itemTypesOf(ancestor: string) {
+  const table = await readGameFile("ItemTypes");
+  const parents = new Map(
+    table.map((line): [string, string[]] => [
+      line[1].trim(),
+      [line[2].trim(), line[3].trim()].filter((parent) => !!parent),
+    ])
+  );
+  const isA = (typeCode: string): boolean =>
+    typeCode === ancestor || !!parents.get(typeCode)?.some(isA);
+  return new Set([...parents.keys()].filter(isA));
 }
 
 // The category each item type has in the loot filter and the Chronicle (helms, axes, rings...).

@@ -77,7 +77,7 @@ export function parseD2rStash(
     const tabType = readPageTabType(raw, pageOffsets[i]);
     if (tabType === TAB_TYPE_STACKABLE) {
       reader.nextIndex = pageOffsets[i] + 64; // skip page header + padding
-      const items = parseItemList(reader, stash, { dedicatedTab: true });
+      const items = parseItemList(reader, stash);
       stash.dedicatedTab = items.map((item) => ({
         item,
         quantity: item.quantity ?? 1,

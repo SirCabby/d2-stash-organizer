@@ -16,8 +16,9 @@
   text-align: center;
 }
 
+/* Not :focus-within: clicking the name focuses it, see useKeyboardFocus. */
 .tooltip-container:hover .tooltip-content,
-.tooltip-container:focus-within .tooltip-content {
+.tooltip-container.keyboard-focus .tooltip-content {
   position: absolute;
   height: auto;
   width: auto;
@@ -30,7 +31,7 @@
 }
 
 .tooltip-container:hover .tooltip-content.tooltip-below,
-.tooltip-container:focus-within .tooltip-content.tooltip-below {
+.tooltip-container.keyboard-focus .tooltip-content.tooltip-below {
   bottom: auto;
   top: calc(100% + 0.4em);
   z-index: 1000;

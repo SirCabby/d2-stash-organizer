@@ -30,7 +30,7 @@ const REST_PREFIX_BITS = 3 + 32 + 7 + 4; // nbFilledSockets + id + level + quali
  * data (everything after the item code). This includes the picture flag,
  * class-specific flag, quality-type data, runeword data, personalized name,
  * book bits, and realm data — everything up to (but not including) the
- * quantified data / d2rExtraBitIndex.
+ * quantified data (defense, durability, quantity, sockets).
  *
  * Returns an object with the personalized name position and realm-data flag
  * position so callers can surgically adjust those sections.
@@ -69,7 +69,7 @@ function computeQualityLayout(item: Item, charBits: number) {
   }
 
   // Runeword data
-  if (item.runeword) offset += 16; // runewordId(12) + skip(4)
+  if (item.runeword) offset += 16; // The string ID of the runeword's name
 
   // Personalized name
   const personalizedNameOffset = offset;
@@ -164,24 +164,22 @@ export function toD2R(item: Item) {
       realmDelta = 32;
     }
 
-    // Insert the D2R extra bit. In D2R format this bit sits right before the
-    // sockets field (for socketed items) or at the end of quantified data (for
-    // non-socketed items). The parser reads it as part of the sockets value,
-    // which is why D2R-parsed sockets appear doubled.
+    // Insert the D2R extra bit, before the quantity and sockets. The game
+    // sets it when a quantity follows.
     if (item.d2rExtraBitIndex != null && !item.hasD2rExtraBit) {
-      const socketShift = item.socketed ? 4 : 0;
       const newIdx =
-        item.d2rExtraBitIndex -
-        16 -
-        7 +
-        codeDelta +
-        nameDelta +
-        realmDelta -
-        socketShift;
-      raw = raw.slice(0, newIdx) + "0" + raw.slice(newIdx);
-      item.d2rExtraBitIndex = newIdx + socketShift;
+        item.d2rExtraBitIndex - 16 - 7 + codeDelta + nameDelta + realmDelta;
+      const bit = getBase(item).stackable ? "1" : "0";
+      raw = raw.slice(0, newIdx) + bit + raw.slice(newIdx);
+      item.d2rExtraBitIndex = newIdx;
       item.hasD2rExtraBit = true;
     }
+
+    // RotW items end with a flag, then their quantity in a tab stack when it's
+    // set (see parseItemOnce). The game reads the quantity only after a set
+    // flag, and it's 0 on the full items it writes, so a clear flag will do.
+    item.tabQuantityIndex = raw.length;
+    raw += "0";
   } else {
     // D2R simple items carry a realm-data flag after the socket/quest fields.
     // When set, 8 bits of data follow (stack quantity on dedicated tabs,
@@ -210,13 +208,17 @@ export function toD2(item: Item) {
 
   let rawWithoutExtra = item.raw;
   if (!item.simple) {
-    // Strip the D2R extra bit. For socketed items the bit sits before the
-    // sockets field (4 positions before d2rExtraBitIndex); for non-socketed
-    // items it sits right at d2rExtraBitIndex.
+    // Strip the flag and tab stack quantity that end RotW items
+    if (item.tabQuantityIndex != null) {
+      rawWithoutExtra = rawWithoutExtra.slice(0, item.tabQuantityIndex);
+      item.tabQuantityIndex = undefined;
+    }
+
+    // Strip the D2R extra bit
     if (item.d2rExtraBitIndex != null && item.hasD2rExtraBit) {
-      const socketShift = item.socketed ? 4 : 0;
-      const idx = item.d2rExtraBitIndex - socketShift;
-      rawWithoutExtra = item.raw.slice(0, idx) + item.raw.slice(idx + 1);
+      const idx = item.d2rExtraBitIndex;
+      rawWithoutExtra =
+        rawWithoutExtra.slice(0, idx) + rawWithoutExtra.slice(idx + 1);
       item.hasD2rExtraBit = false;
     }
 

@@ -34,6 +34,8 @@ export interface Item {
   socketedIn?: Item;
 
   id?: number;
+  // Bit index of the ID in the raw string, when it was parsed
+  idIndex?: number;
   level?: number;
   reqlevel?: number;
   quality?: ItemQuality;
@@ -44,6 +46,7 @@ export interface Item {
   classRequirement?: string; // Class code (ama, bar, nec, pal, sor, dru, ass) from base item
 
   unique?: number;
+  // Index in RUNEWORDS, out of its bounds for runewords the game data doesn't know
   runewordId?: number;
   perfectionScore?: number;
 
@@ -59,18 +62,23 @@ export interface Item {
   // parsed. Converting between legacy and D2R formats moves it.
   durabilityIndex?: number;
   quantity?: number;
+  // Same for the quantity
+  quantityIndex?: number;
 
   modifiers?: Modifier[];
+  // Runewords only: the runeword's own mods, as parsed. `modifiers` has them
+  // too, after the base's own mods (like a superior base's enhanced damage).
+  runewordModifiers?: Modifier[];
   setItemModifiers?: Modifier[][];
   setGlobalModifiers?: Modifier[][];
 
   // Searcheable description of the item. Right now it's only mods.
   search: string;
 
-  // Bit index in the raw string right before modifiers. In D2R format an
-  // extra padding bit sits here; in legacy format it does not exist.
-  // Always set for non-simple items so conversion functions know where to
-  // insert or strip the D2R extra bit.
+  // Bit index in the raw string right after the durability, before the
+  // quantity and sockets. In D2R format a bit sits here, 1 when a quantity
+  // follows; in legacy format it does not exist. Always set for non-simple
+  // items so conversion functions know where to insert or strip it.
   d2rExtraBitIndex?: number;
   // True when the raw data actually contains the D2R extra bit at
   // d2rExtraBitIndex (i.e. the item was parsed from a D2R container, or
@@ -85,6 +93,14 @@ export interface Item {
   // items carry 4×uint32 of realm data while legacy items carry 3×uint32,
   // so conversion must add or strip 32 bits.
   hasRealmData?: boolean;
+  // Bit index of the realm data, after its flag, in the raw string when it
+  // was parsed. RotW keeps the item's GUID there (see itemIds.ts).
+  realmDataIndex?: number;
+  // Non-simple items only: bit index of the flag that ends RotW items, at the
+  // end of the raw string. When set, the item's quantity in a tab stack follows
+  // in a byte (see parseItemOnce). Legacy items have neither, so conversion
+  // must add or strip them.
+  tabQuantityIndex?: number;
 
   // Additional pre-computed fields for easier display
   enhancedDefense?: boolean;

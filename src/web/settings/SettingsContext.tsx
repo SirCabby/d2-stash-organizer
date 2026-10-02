@@ -2,7 +2,10 @@ import { createContext, RenderableProps } from "preact";
 import { useCallback, useMemo, useState } from "preact/hooks";
 import { QualityFilterValue } from "../controls/QualityFilter";
 import { DuplicatesFilterValue } from "../controls/DuplicatesFilter";
-import { CategoryFilterValue } from "../controls/CategoryFilter";
+import {
+  CategoryFilterValue,
+  knownCategories,
+} from "../controls/CategoryFilter";
 import { SortField, SortDirection } from "../collection/Collection";
 import { ClassFilterValue } from "../controls/ClassFilter";
 import { CharacteristicsFilterValue } from "../controls/CharacteristicsFilter";
@@ -188,7 +191,7 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     );
   const [collectionCategory, setCollectionCategoryState] =
     useState<CategoryFilterValue>(() =>
-      readJsonArray("collectionCategory", [])
+      knownCategories(readJsonArray("collectionCategory", []))
     );
   const [collectionSortField, setCollectionSortFieldState] =
     useState<SortField>(

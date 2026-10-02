@@ -1,5 +1,5 @@
 import { Misc, Runeword, Skill } from "../types";
-import { readGameFile, writeJson } from "./files";
+import { readGameFile, readStringIds, writeJson } from "./files";
 import { getString } from "../strings";
 import { readModifierRange } from "./modifierRange";
 
@@ -7,6 +7,7 @@ export async function runewordsToJson(
   misc: Record<string, Misc>,
   skills: Skill[]
 ) {
+  const nameIds = await readStringIds("item-runes");
   let runewords: Runeword[] = [];
   for (const line of await readGameFile("Runes")) {
     // This is a bit crazy, but it's what the game seems to actually do for runeword names
@@ -17,6 +18,7 @@ export async function runewordsToJson(
       .filter((rune) => !!rune);
     const runeword: Runeword = {
       name: getString(line[0].trim()),
+      nameId: nameIds[line[0].trim()],
       enabled: line[2].trim() === "1",
       runes,
       levelReq: runes.length
