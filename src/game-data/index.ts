@@ -34,6 +34,7 @@ import rareNames from "../../game-data/json/RareNames.json";
 import monsters from "../../game-data/json/Monsters.json";
 import magicPrefixes from "../../game-data/json/MagicPrefix.json";
 import magicSuffixes from "../../game-data/json/MagicSuffix.json";
+import autoMagic from "../../game-data/json/AutoMagic.json";
 import runewords from "../../game-data/json/Runewords.json";
 import gems from "../../game-data/json/Gems.json";
 import modLoc from "../../game-data/json/item-modifiers.json";
@@ -57,6 +58,7 @@ export const RARE_NAMES: string[] = rareNames;
 export const MONSTERS: string[] = monsters;
 export const MAGIC_PREFIXES: MagicAffix[] = magicPrefixes;
 export const MAGIC_SUFFIXES: MagicAffix[] = magicSuffixes;
+export const AUTO_MAGIC: MagicAffix[] = autoMagic;
 export const RUNEWORDS: Runeword[] = runewords;
 export const GEMS: Record<string, Gem> = gems;
 export const ITEM_TYPE_CLASS_MAPPINGS: ItemTypeClassMapping =

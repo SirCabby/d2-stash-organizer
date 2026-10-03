@@ -6,7 +6,11 @@ import {
   CategoryFilterValue,
   knownCategories,
 } from "../controls/CategoryFilter";
-import { SortField, SortDirection } from "../collection/Collection";
+import {
+  SortField,
+  SortDirection,
+  ColumnWidths,
+} from "../collection/Collection";
 import { ClassFilterValue } from "../controls/ClassFilter";
 import { CharacteristicsFilterValue } from "../controls/CharacteristicsFilter";
 import { LocationFilterValue } from "../controls/LocationFilter";
@@ -105,6 +109,8 @@ interface SettingsContext {
   ) => void;
   collectionLocation: LocationFilterValue;
   setCollectionLocation: (location: LocationFilterValue) => void;
+  collectionColumnWidths: ColumnWidths;
+  setCollectionColumnWidths: (widths: ColumnWidths) => void;
 
   // Characters tab
   charactersSearch: string;
@@ -151,6 +157,8 @@ export const SettingsContext = createContext<SettingsContext>({
   setCollectionCharacteristics: () => undefined,
   collectionLocation: [],
   setCollectionLocation: () => undefined,
+  collectionColumnWidths: {},
+  setCollectionColumnWidths: () => undefined,
 
   charactersSearch: "",
   setCharactersSearch: () => undefined,
@@ -212,6 +220,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     useState<LocationFilterValue>(() =>
       readJsonArray("collectionLocation", [])
     );
+  const [collectionColumnWidths, setCollectionColumnWidthsState] =
+    useState<ColumnWidths>(() => readJson("collectionColumnWidths", {}));
 
   // -- Characters tab --
   const [charactersSearch, setCharactersSearchState] = useState(() =>
@@ -306,6 +316,11 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
     localStorage.setItem("collectionLocation", JSON.stringify(location));
   }, []);
 
+  const setCollectionColumnWidths = useCallback((widths: ColumnWidths) => {
+    setCollectionColumnWidthsState(widths);
+    localStorage.setItem("collectionColumnWidths", JSON.stringify(widths));
+  }, []);
+
   const setCharactersSearch = useCallback((search: string) => {
     setCharactersSearchState(search);
     localStorage.setItem("charactersSearch", search);
@@ -364,6 +379,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionCharacteristics,
       collectionLocation,
       setCollectionLocation,
+      collectionColumnWidths,
+      setCollectionColumnWidths,
 
       charactersSearch,
       setCharactersSearch,
@@ -405,6 +422,8 @@ export function SettingsProvider({ children }: RenderableProps<unknown>) {
       setCollectionCharacteristics,
       collectionLocation,
       setCollectionLocation,
+      collectionColumnWidths,
+      setCollectionColumnWidths,
 
       charactersSearch,
       setCharactersSearch,

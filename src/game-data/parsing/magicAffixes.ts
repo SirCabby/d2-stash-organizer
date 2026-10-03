@@ -3,7 +3,8 @@ import { MagicAffix } from "..";
 import { getString } from "../strings";
 
 export async function magicAffixesToJson() {
-  for (const file of ["MagicPrefix", "MagicSuffix"]) {
+  // AutoMagic has the mods class-specific items get on top of their affixes
+  for (const file of ["MagicPrefix", "MagicSuffix", "AutoMagic"]) {
     const table = await readGameFile(file);
     // Index 0 is unused, suffixes start at 1?
     const affixes: MagicAffix[] = [{ name: "", reqlevel: 1 }];

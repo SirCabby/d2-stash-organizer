@@ -31,6 +31,7 @@ const LOCAL_CASCLIB = path.join(__dirname, "..", "..", "tools", "CascLib", "buil
 // Excel data tables to extract from global\excel\
 const EXCEL_FILES = {
   "armor.txt": "Armor.txt",
+  "automagic.txt": "AutoMagic.txt",
   "books.txt": "Books.txt",
   "charstats.txt": "CharStats.txt",
   "gems.txt": "Gems.txt",

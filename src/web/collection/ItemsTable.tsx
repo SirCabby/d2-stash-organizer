@@ -2,7 +2,7 @@ import { Item as ItemType } from "../../scripts/items/types/Item";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { groupItems, groupQuantity } from "../items/groupItems";
 import { Pagination } from "../controls/Pagination";
-import { SortField, SortDirection } from "./Collection";
+import { SortField, SortDirection, ColumnWidths } from "./Collection";
 import { ItemQuality } from "../../scripts/items/types/ItemQuality";
 import { getBase } from "../../scripts/items/getBase";
 import { isSimpleItem } from "./utils/isSimpleItem";
@@ -17,7 +17,12 @@ import {
 } from "../../scripts/items/types/ItemLocation";
 import { Item } from "../items/Item";
 import { dedicatedTabName } from "../../scripts/d2r-stash/dedicatedTab";
-import { getItemQualityName, getItemCategoryName } from "./itemUtils";
+import {
+  getItemQualityName,
+  getItemCategoryName,
+  getRequiredLevel,
+} from "./itemUtils";
+import { ColumnResizer } from "./ColumnResizer";
 
 export interface ItemsTableProps {
   items: ItemType[];
@@ -26,7 +31,46 @@ export interface ItemsTableProps {
   sortField: SortField;
   sortDirection: SortDirection;
   onSort: (field: SortField) => void;
+  columnWidths: ColumnWidths;
+  onColumnWidthsChange: (widths: ColumnWidths) => void;
 }
+
+interface Column {
+  field: SortField;
+  label: string;
+  // What its sort button tells screen readers it sorts by
+  sortName: string;
+  // In pixels. The last column has none: it takes the rest of the table.
+  width?: number;
+}
+
+const COLUMNS: Column[] = [
+  { field: "name", label: "Item", sortName: "name", width: 380 },
+  { field: "level", label: "Level", sortName: "level", width: 80 },
+  {
+    field: "requiredLevel",
+    label: "Level to equip",
+    sortName: "level to equip",
+    width: 140,
+  },
+  { field: "quality", label: "Quality", sortName: "quality", width: 160 },
+  { field: "category", label: "Category", sortName: "category", width: 190 },
+  { field: "class", label: "Class", sortName: "class requirement", width: 80 },
+  {
+    field: "characteristics",
+    label: "Characteristics",
+    sortName: "characteristics",
+    width: 280,
+  },
+  { field: "location", label: "Location", sortName: "location" },
+];
+
+// How narrow and how wide the columns can be resized, in pixels
+const MIN_COLUMN_WIDTH = 50;
+const MAX_COLUMN_WIDTH = 1000;
+// The checkbox column's width, and the least the last column keeps
+const SELECT_COLUMN_WIDTH = 30;
+const MIN_LAST_COLUMN_WIDTH = 210;
 
 function getGroupedItemSortValue(
   itemGroup: ItemType[],
@@ -101,6 +145,8 @@ function getGroupedItemSortValue(
     }
     case "level":
       return representativeItem.level ?? 0;
+    case "requiredLevel":
+      return getRequiredLevel(representativeItem);
     case "quality":
       return getItemQualityName(representativeItem);
     case "category":
@@ -143,6 +189,8 @@ export function ItemsTable({
   sortField,
   sortDirection,
   onSort,
+  columnWidths,
+  onColumnWidthsChange,
 }: ItemsTableProps) {
   const [firstItem, setFirstItem] = useState(0);
 
@@ -165,6 +213,50 @@ export function ItemsTable({
     return sortDirection === "asc" ? "↑" : "↓";
   };
 
+  const widthOf = ({ field, width }: Column) => columnWidths[field] ?? width;
+
+  const resizeColumn = (field: SortField, width?: number) => {
+    const widths = { ...columnWidths };
+    if (width === undefined) {
+      delete widths[field];
+    } else {
+      widths[field] = width;
+    }
+    onColumnWidthsChange(widths);
+  };
+
+  // The table fills the page, unless its columns need more room
+  const minTableWidth = COLUMNS.reduce(
+    (total, column) => total + (widthOf(column) ?? MIN_LAST_COLUMN_WIDTH),
+    SELECT_COLUMN_WIDTH
+  );
+
+  // The same elements as long as the items don't change, so that resizing a
+  // column doesn't render all the rows again
+  const rows = useMemo(() => {
+    const currentPageItems = sortedGroupedItems.slice(
+      firstItem,
+      pageSize === -1 ? undefined : firstItem + pageSize
+    );
+    const currentPageFirstItems = currentPageItems.map((items) => items[0]);
+
+    return currentPageItems.map((items, index) => {
+      const item = items[0];
+      return (
+        <Item
+          key={item.id ?? index}
+          item={item}
+          duplicates={items}
+          selectable={selectable}
+          withLocation={true}
+          showClassRequirement={true}
+          showRequiredLevel={true}
+          allItems={currentPageFirstItems}
+        />
+      );
+    });
+  }, [sortedGroupedItems, firstItem, pageSize, selectable]);
+
   return (
     <>
       <Pagination
@@ -179,145 +271,54 @@ export function ItemsTable({
           </>
         )}
       />
-      <table id="collection">
+      <table
+        id="collection"
+        class="resizable"
+        style={{ minWidth: `${minTableWidth}px` }}
+      >
         <thead>
           <tr class="sidenote">
             <th>
               <span class="sr-only">Select</span>
             </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("name")}
-                aria-label={`Sort by name ${
-                  sortField === "name"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Item {getSortIcon("name")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("level")}
-                aria-label={`Sort by level ${
-                  sortField === "level"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Level {getSortIcon("level")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("quality")}
-                aria-label={`Sort by quality ${
-                  sortField === "quality"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Quality {getSortIcon("quality")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("category")}
-                aria-label={`Sort by category ${
-                  sortField === "category"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Category {getSortIcon("category")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("class")}
-                aria-label={`Sort by class requirement ${
-                  sortField === "class"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Class {getSortIcon("class")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("characteristics")}
-                aria-label={`Sort by characteristics ${
-                  sortField === "characteristics"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Characteristics {getSortIcon("characteristics")}
-              </button>
-            </th>
-            <th>
-              <button
-                class="sort-button"
-                onClick={() => onSort("location")}
-                aria-label={`Sort by location ${
-                  sortField === "location"
-                    ? sortDirection === "asc"
-                      ? "descending"
-                      : "ascending"
-                    : "ascending"
-                }`}
-              >
-                Location {getSortIcon("location")}
-              </button>
-            </th>
+            {COLUMNS.map((column) => {
+              const width = widthOf(column);
+              return (
+                <th
+                  key={column.field}
+                  style={
+                    width === undefined ? undefined : { width: `${width}px` }
+                  }
+                >
+                  <button
+                    class="sort-button"
+                    onClick={() => onSort(column.field)}
+                    aria-label={`Sort by ${column.sortName} ${
+                      sortField === column.field && sortDirection === "asc"
+                        ? "descending"
+                        : "ascending"
+                    }`}
+                  >
+                    <span class="sort-label">{column.label}</span>
+                    {getSortIcon(column.field)}
+                  </button>
+                  {width !== undefined && (
+                    <ColumnResizer
+                      label={column.label}
+                      width={width}
+                      minWidth={MIN_COLUMN_WIDTH}
+                      maxWidth={MAX_COLUMN_WIDTH}
+                      onResize={(newWidth) =>
+                        resizeColumn(column.field, newWidth)
+                      }
+                    />
+                  )}
+                </th>
+              );
+            })}
           </tr>
         </thead>
-        <tbody>
-          {(() => {
-            const currentPageItems = sortedGroupedItems.slice(
-              firstItem,
-              pageSize === -1 ? undefined : firstItem + pageSize
-            );
-            const currentPageFirstItems = currentPageItems.map(
-              (items) => items[0]
-            );
-
-            return currentPageItems.map((items, index) => {
-              const item = items[0];
-              return (
-                <Item
-                  key={item.id ?? index}
-                  item={item}
-                  duplicates={items}
-                  selectable={selectable}
-                  withLocation={true}
-                  showClassRequirement={true}
-                  allItems={currentPageFirstItems}
-                />
-              );
-            });
-          })()}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </>
   );

@@ -29,6 +29,7 @@ import { ownerName } from "../../scripts/save-file/ownership";
 export type SortField =
   | "name"
   | "level"
+  | "requiredLevel"
   | "quality"
   | "category"
   | "characteristics"
@@ -36,6 +37,8 @@ export type SortField =
   | "class"
   | "none";
 export type SortDirection = "asc" | "desc";
+// The widths the user resized the columns to, in pixels
+export type ColumnWidths = Partial<Record<SortField, number>>;
 
 export function Collection() {
   const { allItems } = useContext(CollectionContext);
@@ -58,6 +61,8 @@ export function Collection() {
     setCollectionCharacteristics,
     collectionLocation,
     setCollectionLocation,
+    collectionColumnWidths,
+    setCollectionColumnWidths,
   } = useContext(SettingsContext);
 
   // Clean up location filter when locations no longer exist, but only once
@@ -169,6 +174,8 @@ export function Collection() {
         sortField={collectionSortField}
         sortDirection={collectionSortDirection}
         onSort={handleSort}
+        columnWidths={collectionColumnWidths}
+        onColumnWidthsChange={setCollectionColumnWidths}
       />
     </>
   );

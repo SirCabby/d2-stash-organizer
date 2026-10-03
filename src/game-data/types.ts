@@ -145,6 +145,8 @@ export interface Skill {
   code: string;
   name: string;
   charClass?: number;
+  // The character level the skill needs
+  reqLevel: number;
 }
 
 export interface SkillTab {

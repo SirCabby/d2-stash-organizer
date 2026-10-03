@@ -11,7 +11,7 @@ import {
   LAST_LEGACY,
 } from "../../character/parsing/versions";
 import { ItemsOwner } from "../../save-file/ownership";
-import { MISC } from "../../../game-data";
+import { requiredLevel } from "./requiredLevel";
 
 export function parseItemOnce(
   reader: SaveFileReader,
@@ -54,12 +54,8 @@ export function parseItemOnce(
       }
       throw new ItemParsingError(item, (e as Error).message);
     }
-  } else {
-    item.reqlevel = Math.max(
-      item.reqlevel || 0,
-      MISC[item.code]?.levelReq || 0
-    );
   }
+  item.reqlevel = requiredLevel(item);
 
   item.raw = stream.done();
 

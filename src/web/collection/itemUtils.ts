@@ -94,6 +94,12 @@ export function getItemQualityName(item: Item): string {
   }
 }
 
+// The character level needed to use the item. The game shows no requirement
+// below 2: any character can use those.
+export function getRequiredLevel(item: Item): number {
+  return Math.max(item.reqlevel ?? 0, 1);
+}
+
 // Function to get all possible categories for an item (for filtering)
 export function getItemCategories(item: Item): string[] {
   const base = getBase(item);

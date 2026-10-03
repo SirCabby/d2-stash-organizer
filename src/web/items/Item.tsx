@@ -10,6 +10,7 @@ import { groupQuantity } from "./groupItems";
 import {
   getItemCategoryName,
   getItemQualityName,
+  getRequiredLevel,
 } from "../collection/itemUtils";
 
 export interface ItemProps {
@@ -18,6 +19,7 @@ export interface ItemProps {
   selectable: boolean;
   withLocation: boolean;
   showClassRequirement?: boolean;
+  showRequiredLevel?: boolean;
   allItems?: Item[];
 }
 
@@ -27,6 +29,7 @@ export function Item({
   selectable,
   withLocation,
   showClassRequirement,
+  showRequiredLevel,
   allItems = [],
 }: ItemProps) {
   const {
@@ -106,6 +109,7 @@ export function Item({
         <ItemTooltip item={item} />
       </th>
       <td>{item.level ?? "—"}</td>
+      {showRequiredLevel && <td>{getRequiredLevel(item)}</td>}
       <td>{getItemQualityName(item)}</td>
       <td>{getItemCategoryName(item)}</td>
       {showClassRequirement && (

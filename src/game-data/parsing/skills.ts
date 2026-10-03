@@ -17,6 +17,7 @@ export async function skillsToJson(charClasses: CharacterClass[]) {
       code: line[0].trim(),
       name: getString(description?.[7].trim() ?? line[0].trim()),
       ...(charClass >= 0 && { charClass }),
+      reqLevel: Number(line[178]),
     };
   }
   await writeJson("Skills", skills);
