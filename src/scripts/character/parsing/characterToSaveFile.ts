@@ -29,8 +29,11 @@ export function characterToSaveFile(character: Character) {
   const expansionChar = true;
   if (expansionChar) {
     writer.writeString("jf");
-    const mercItems = character.items.filter((item) => item.mercenary);
-    writeItemList(writer, mercItems);
+    // If the player has never had a mercenary, there is no item list
+    if (character.hasMercenary) {
+      const mercItems = character.items.filter((item) => item.mercenary);
+      writeItemList(writer, mercItems);
+    }
     writer.write(character.golem);
   }
 

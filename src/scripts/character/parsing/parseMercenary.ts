@@ -9,16 +9,18 @@ export function parseMercenary(reader: SaveFileReader, character: Character) {
   }
   // The hasMercenary flag is read from a fixed byte offset that may be wrong
   // for newer save versions (e.g. RotW). Peek for the "JM" item list header
-  // as a more reliable indicator of whether mercenary items follow.
+  // as a more reliable indicator of whether mercenary items follow. A
+  // character who never hired a mercenary has no item list at all, and
+  // characterToSaveFile relies on this flag to write the list back or not.
   reader.peek = true;
   const next = reader.readString(2);
   reader.peek = false;
-  if (next === "JM") {
+  character.hasMercenary = next === "JM";
+  if (character.hasMercenary) {
     const items = parseItemList(reader, character);
     for (const item of items) {
       item.mercenary = true;
     }
     character.items.push(...items);
-    character.hasMercenary = true;
   }
 }
