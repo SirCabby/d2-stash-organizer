@@ -22,9 +22,10 @@ import { bulkCopyWithQuantities } from "../../scripts/items/moving/bulkCopyWithQ
 import { bulkDeleteWithQuantities } from "../../scripts/items/moving/bulkDeleteWithQuantities";
 import { TransferQuantityContext } from "./TransferQuantityContext";
 import { applyQuantities } from "../items/groupItems";
+import { takenIds } from "../../scripts/items/itemIds";
 
 export function TransferItems() {
-  const { lastActivePlugyStashPage } = useContext(CollectionContext);
+  const { lastActivePlugyStashPage, owners } = useContext(CollectionContext);
   const {
     transferWithOrganize: withOrganize,
     setTransferWithOrganize: setWithOrganize,
@@ -74,10 +75,12 @@ export function TransferItems() {
 
       try {
         if (copy) {
+          // The copies get IDs no item of the collection has
           bulkCopyWithQuantities(
             target,
             items,
             transferQuantities,
+            takenIds(owners),
             targetStorage
           );
         } else {
@@ -119,6 +122,7 @@ export function TransferItems() {
       rollback,
       withOrganize,
       lastActivePlugyStashPage,
+      owners,
       transferQuantities,
       actualTransferCount,
     ]

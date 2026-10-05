@@ -16,9 +16,11 @@ import { statGroupsToJson } from "./parsing/statGroups";
 import { gemsToJson } from "./parsing/gems";
 import { itemTypeCategoriesToJson, itemTypesToJson } from "./parsing/itemTypes";
 import { monstersToJson } from "./parsing/monsters";
+import { seedRollsToJson } from "./parsing/seedRolls";
 
 async function generateAll() {
   await armorsToJson();
+  await seedRollsToJson();
   await weaponsToJson();
   await itemTypesToJson();
   await itemTypeCategoriesToJson();

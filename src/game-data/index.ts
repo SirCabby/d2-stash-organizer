@@ -16,6 +16,7 @@ import {
   Gem,
   ModifierLocale,
   ItemTypeClassMapping,
+  SeedRolls,
 } from "./types";
 
 import armors from "../../game-data/json/Armor.json";
@@ -40,6 +41,7 @@ import gems from "../../game-data/json/Gems.json";
 import modLoc from "../../game-data/json/item-modifiers.json";
 import itemTypeClassMappings from "../../game-data/json/ItemTypeClassMappings.json";
 import itemTypeCategories from "../../game-data/json/ItemTypeCategories.json";
+import seedRolls from "../../game-data/json/SeedRolls.json";
 
 // TODO: switch to JSON.parse
 export const ARMORS: Record<string, Armor | undefined> = armors;
@@ -65,6 +67,7 @@ export const ITEM_TYPE_CLASS_MAPPINGS: ItemTypeClassMapping =
   itemTypeClassMappings;
 export const ITEM_TYPE_CATEGORIES: Record<string, string | undefined> =
   itemTypeCategories;
+export const SEED_ROLLS = seedRolls as Record<string, SeedRolls | undefined>;
 
 const locaRecord: Record<string, ModifierLocale> = Object.create(
   null

@@ -16,13 +16,10 @@ import { PAGE_HEIGHT, PAGE_WIDTH } from "../../plugy-stash/dimensions";
 import { fromInt } from "../../save-file/binary";
 import { FIRST_D2R } from "../../character/parsing/versions";
 import { D2R_OFFSET, toD2, toD2R } from "./conversion";
-import { giveNewIds } from "../itemIds";
+import { giveNewIds, TakenIds } from "../itemIds";
 
-/**
- * A copy of the item, as a new item: it and the items in its sockets get IDs
- * of their own (see giveNewIds).
- */
-export function cloneItem(item: Item): Item {
+// A copy of the item's fields, and of the items in its sockets
+function duplicate(item: Item): Item {
   const clone: Item = { ...item };
   if (item.filledSockets) {
     clone.filledSockets = item.filledSockets.map((s) => ({ ...s }));
@@ -45,7 +42,16 @@ export function cloneItem(item: Item): Item {
   if (item.defenseRange) {
     clone.defenseRange = [...item.defenseRange];
   }
-  giveNewIds(clone);
+  return clone;
+}
+
+/**
+ * A copy of the item, as a new item: it and the items in its sockets get IDs
+ * of their own, which `taken` must have every item's of (see giveNewIds).
+ */
+export function cloneItem(item: Item, taken: TakenIds): Item {
+  const clone = duplicate(item);
+  giveNewIds(clone, taken);
   return clone;
 }
 
@@ -84,16 +90,19 @@ function giveItemTo(
 
 /**
  * Clone an item and place the copy at the target owner, leaving the
- * original item untouched. Returns false when there is no room.
+ * original item untouched. The copy gets IDs of its own, which `taken` must
+ * have every item's of (see giveNewIds). Returns false when there is no room.
  */
 export function copyItemTo(
   item: Item,
   to: ItemsOwner,
+  taken: TakenIds,
   storageType = ItemStorageType.STASH,
   pageIndex?: number
 ): boolean {
-  const clone = cloneItem(item);
+  const clone = duplicate(item);
 
+  let place: Item[];
   if (isStash(to)) {
     const page = to.pages[pageIndex ?? 0];
     let height = PAGE_HEIGHT;
@@ -107,7 +116,7 @@ export function copyItemTo(
       return false;
     }
     positionItem(clone, position);
-    page.items.push(clone);
+    place = page.items;
     clone.page = pageIndex;
   } else {
     const itemsInSameStorage = to.items.filter((i) => i.stored === storageType);
@@ -117,11 +126,15 @@ export function copyItemTo(
       return false;
     }
     positionItem(clone, position);
-    to.items.push(clone);
+    place = to.items;
     delete clone.page;
   }
 
   giveItemTo(clone, to, storageType);
+  // In the target's format, so that a copy into a D2R save gets a whole GUID
+  // rather than the legacy format's first 3 dwords and a 0
+  giveNewIds(clone, taken);
+  place.push(clone);
 
   return true;
 }

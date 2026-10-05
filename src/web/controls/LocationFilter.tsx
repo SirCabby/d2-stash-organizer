@@ -1,10 +1,21 @@
 import { Item } from "../../scripts/items/types/Item";
-import { useState, useEffect, useRef, useMemo } from "preact/hooks";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useMemo,
+} from "preact/hooks";
 import {
   ownerName,
   isCharacter,
   isPlugyStash,
 } from "../../scripts/save-file/ownership";
+
+// The list's height when little of the screen is left below it
+const MIN_LIST_HEIGHT = 200;
+// The gap between the open dropdown and the bottom of the screen
+const SCREEN_MARGIN = 16;
 
 export type LocationFilterValue = string[];
 
@@ -61,7 +72,39 @@ export function LocationFilter({
     [locationGroups]
   );
   const [isOpen, setIsOpen] = useState(false);
+  const [listMaxHeight, setListMaxHeight] = useState(MIN_LIST_HEIGHT);
   const containerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  // A long list reaches down to the bottom of the screen, and scrolls past that
+  useLayoutEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    const fitToScreen = () => {
+      if (!dropdownRef.current || !listRef.current) {
+        return;
+      }
+      const { top, bottom } = listRef.current.getBoundingClientRect();
+      // The dropdown's padding and border under the list
+      const below = dropdownRef.current.getBoundingClientRect().bottom - bottom;
+      setListMaxHeight(
+        Math.max(
+          MIN_LIST_HEIGHT,
+          window.innerHeight - SCREEN_MARGIN - below - top
+        )
+      );
+    };
+    fitToScreen();
+    // The list moves with the page, and the screen can change size
+    window.addEventListener("scroll", fitToScreen);
+    window.addEventListener("resize", fitToScreen);
+    return () => {
+      window.removeEventListener("scroll", fitToScreen);
+      window.removeEventListener("resize", fitToScreen);
+    };
+  }, [isOpen]);
 
   // Click outside handler
   useEffect(() => {
@@ -135,6 +178,7 @@ export function LocationFilter({
 
       {isOpen && (
         <div
+          ref={dropdownRef}
           style={{
             position: "absolute",
             top: "100%",
@@ -185,8 +229,9 @@ export function LocationFilter({
           </div>
 
           <div
+            ref={listRef}
             style={{
-              maxHeight: "200px",
+              maxHeight: `${listMaxHeight}px`,
               overflowY: "auto",
             }}
           >

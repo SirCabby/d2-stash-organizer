@@ -173,3 +173,25 @@ export interface ModifierLocale {
 export interface ItemTypeClassMapping {
   [itemType: string]: string | undefined; // itemType -> class code (ama, bar, nec, pal, sor, dru, ass) or undefined
 }
+
+/**
+ * What the game rolls from the seed an item's save keeps, when it makes an
+ * item of this base (see seeds.ts).
+ */
+export interface SeedRolls {
+  // Gold rolls nothing. Arrows and bolts roll their quantity. Armor rolls its
+  // durability, then its defense. Weapons roll a stack's quantity, then their
+  // durability. Other stackables roll their quantity.
+  kind: "gold" | "quiver" | "armor" | "weapon" | "other";
+  stackable: boolean;
+  minStack: number;
+  maxStack: number;
+  spawnStack: number;
+  // The base's durability (its low byte): the durability roll is half of it,
+  // plus a roll of that half
+  durability: number;
+  // Armor only: [min, max] base defense
+  defense?: number[];
+  // How many pictures the base's type has (rings, amulets, charms, jewels)
+  pictures: number;
+}

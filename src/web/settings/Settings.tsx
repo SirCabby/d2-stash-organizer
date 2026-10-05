@@ -7,13 +7,21 @@ import { SaveDestination } from "../save-files/SaveDestination";
 import { isSimpleItem } from "../collection/utils/isSimpleItem";
 import { getBase } from "../../scripts/items/getBase";
 import { organize } from "../../scripts/grail/organize";
-import { isPlugyStash, isD2rStash } from "../../scripts/save-file/ownership";
+import {
+  isPlugyStash,
+  isD2rStash,
+  ItemsOwner,
+} from "../../scripts/save-file/ownership";
 import { Item } from "../../scripts/items/types/Item";
 import { PAGE_HEIGHT, PAGE_WIDTH } from "../../scripts/plugy-stash/dimensions";
 import { postProcessItem } from "../../scripts/items/post-processing/postProcessItem";
 import { getAllItems } from "../../scripts/plugy-stash/getAllItems";
 import { repairItem } from "../../scripts/items/repairItem";
-import { fixDuplicateIds } from "../../scripts/items/itemIds";
+import {
+  fixDuplicateIds,
+  fixSeeds,
+  takenIds,
+} from "../../scripts/items/itemIds";
 import { cloneItem } from "../../scripts/items/moving/copyItemTo";
 import { isUnreadable } from "../store/parser";
 import { updateCharacterStashes } from "../store/plugyDuplicates";
@@ -55,6 +63,8 @@ export function Settings() {
     let typesFilled = 0;
     let slotsMaxed = 0;
     let stashFound = false;
+    // The copies get IDs no item of the collection has
+    const taken = takenIds(owners);
     const newOwners = owners.map((owner) => {
       if (isPlugyStash(owner)) {
         stashFound = true;
@@ -74,7 +84,7 @@ export function Settings() {
             Math.floor(PAGE_WIDTH / width) * Math.floor(PAGE_HEIGHT / height);
           if (items.length >= fullPage) continue;
           for (let i = items.length; i < fullPage; i++) {
-            copies.push(cloneItem(items[0]));
+            copies.push(cloneItem(items[0], taken));
           }
           typesFilled++;
         }
@@ -140,18 +150,25 @@ export function Settings() {
       }
       return owner;
     });
-    // Copies made before copying gave them IDs of their own
-    const newIdsCount = fixDuplicateIds(
-      allItems,
-      (owner) => !isUnreadable(owner)
-    );
-    if (newIdsCount > 0 && lastActivePlugyStashPage) {
+    // Copies made before copying gave them IDs of their own, and copies whose
+    // random seed doesn't roll what they have
+    const canChange = (owner: ItemsOwner) => !isUnreadable(owner);
+    const taken = takenIds(owners);
+    const newIdsCount = fixDuplicateIds(allItems, canChange, taken);
+    const seeds = fixSeeds(allItems, canChange, taken);
+    if ((newIdsCount > 0 || seeds.fixed > 0) && lastActivePlugyStashPage) {
       updateCharacterStashes(lastActivePlugyStashPage);
     }
     setCollection(newOwners);
     let message = `Repaired ${repairedCount} durability/charges/quantities on all items.`;
     if (newIdsCount > 0) {
       message += ` Gave new IDs to ${newIdsCount} copied item(s), so that the game doesn't delete them as duplicates.`;
+    }
+    if (seeds.fixed > 0) {
+      message += ` Gave ${seeds.fixed} item(s) a seed of their own that rolls their defense and picture, as the game's own items have.`;
+    }
+    if (seeds.cannotFix > 0) {
+      message += ` ${seeds.cannotFix} item(s) have a defense or picture that no seed rolls, which the game can't have made; their seeds were left as they are.`;
     }
     alert(message);
   }, [owners, allItems, lastActivePlugyStashPage, setCollection]);
