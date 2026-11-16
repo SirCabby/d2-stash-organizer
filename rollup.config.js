@@ -34,7 +34,9 @@ export default {
     // Copy any static assets to build directory
     copy({
       rootDir: "src/web",
-      patterns: ["assets/**/*"],
+      // gamestatetracker.json: this site's settings, which GameStateTracker's
+      // Add Companion Site form reads from the served folder.
+      patterns: ["assets/**/*", "gamestatetracker.json"],
     }),
     copy({
       patterns: ["examples/**/*"],
